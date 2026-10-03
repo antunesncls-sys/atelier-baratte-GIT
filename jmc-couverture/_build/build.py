@@ -192,7 +192,7 @@ def org_ld():
         + [{"@type": "AdministrativeArea", "name": n} for n in DEPTS]
         + [{"@type": "City", "name": c} for c in dict.fromkeys([v["name"] for v in VILLES] + CITIES)],
         "knowsAbout": ["Couverture", "Charpente", "Zinguerie", "Rénovation de toiture",
-                       "Remplacement de toiture", "Nettoyage de toiture", "Démoussage", "Isolation de toiture", "Couverture zinc", "Bardage zinc", "Maison d'architecte", "Toiture maison neuve", "Isolation des combles", "Fenêtre de toit", "VELUX", "Lucarnes", "Copropriété", "Gouttières", "Toiture zinc", "Ardoise", "Tuiles"],
+                       "Remplacement de toiture", "Nettoyage de toiture", "Démoussage", "Isolation de toiture", "Couverture zinc", "Bardage zinc", "Maison d'architecte", "Toiture maison neuve", "Isolation des combles", "Fenêtre de toit", "VELUX", "Lucarnes", "Copropriété", "Promotion immobilière", "Gouttières", "Toiture zinc", "Ardoise", "Tuiles"],
         "hasCredential": [
             {"@type": "EducationalOccupationalCredential", "credentialCategory": "Qualification", "name": "QUALIBAT"},
             {"@type": "EducationalOccupationalCredential", "credentialCategory": "Label", "name": "RGE - Reconnu Garant de l'Environnement"},
@@ -211,7 +211,8 @@ def org_ld():
                              ("Isolation de toiture", "/isolation-toiture/"),
                              ("Couverture zinc et bardage", "/couverture-zinc-bardage/"),
                              ("Toiture et isolation pour copropriétés", "/couvreur-copropriete-syndic/"),
-                             ("Fenêtres de toit VELUX et lucarnes", "/fenetre-de-toit-velux-lucarnes/"))
+                             ("Fenêtres de toit VELUX et lucarnes", "/fenetre-de-toit-velux-lucarnes/"),
+                             ("Couverture pour la promotion immobilière", "/couvreur-promotion-immobiliere/"))
             ],
         },
     }
@@ -343,6 +344,7 @@ def aside(title="Pourquoi choisir JMC ?"):
     <li>Entreprise certifiée QUALIBAT et RGE</li>
     <li>Garantie décennale et responsabilité civile</li>
     <li>Plus de 1 500 chantiers réalisés</li>
+    <li>Les équipes et la structure de la promotion immobilière</li>
     <li>Isolation RGE : aides possibles</li>
     <li>Devis gratuit et détaillé</li>
   </ul>
@@ -368,6 +370,7 @@ def footer():
       <li><a href="/toiture-maison-neuve/">Toiture de maison neuve</a></li>
       <li><a href="/couverture-zinc-bardage/">Couverture zinc &amp; bardage</a></li>
       <li><a href="/couvreur-copropriete-syndic/">Copropriétés &amp; syndics</a></li>
+      <li><a href="/couvreur-promotion-immobiliere/">Promotion immobilière</a></li>
       <li><a href="/fenetre-de-toit-velux-lucarnes/">Fenêtres de toit VELUX &amp; lucarnes</a></li>
       <li><a href="/nettoyage-toiture/">Nettoyage &amp; démoussage</a></li>
       <li><a href="/couverture/">Couverture</a> · <a href="/charpente/">Charpente</a> · <a href="/zinguerie/">Zinguerie</a></li>
@@ -456,7 +459,7 @@ def home():
   <div>
     <span class="eyebrow">40 ans · 1985–2025 · Couvreur charpentier zingueur</span>
     <h1>Couvreur en Île-de-France : rénovation, isolation et toitures zinc</h1>
-    <p class="lead">Remplacement et isolation de toiture, toitures de maisons neuves, couverture zinc et bardage pour maisons d'architecte : depuis 1985, JMC réalise des toitures d'exception de Saint-Maur-des-Fossés à Lagny-sur-Marne, partout en Île-de-France.</p>
+    <p class="lead">Rénovation, isolation, maisons neuves, zinc et bardage d'architecte : depuis 1985, JMC met au service des particuliers la structure et les équipes qui réalisent les toitures des programmes de promotion immobilière, partout en Île-de-France.</p>
     <div class="hero-cta"><a class="btn btn-primary" href="/contact/">Demander un devis gratuit</a>
     <a class="btn btn-ghost" href="tel:{BIZ['phone_intl']}">Appeler le {BIZ['phone']}</a></div>
     <div class="hero-labels">{labels()}<ul class="badges"><li>Garantie décennale</li><li>Devis gratuit</li></ul></div>
@@ -497,7 +500,7 @@ def home():
   <div class="stats">
     <div><strong>40</strong><span>ans d'expérience</span></div>
     <div><strong>1 500+</strong><span>chantiers réalisés</span></div>
-    <div><strong>1 000+</strong><span>clients satisfaits</span></div>
+    <div><strong>1 000+</strong><span>clients, promoteurs et particuliers</span></div>
     <div><strong>10 ans</strong><span>garantie décennale</span></div>
   </div>
 </div></section>
@@ -505,8 +508,10 @@ def home():
 <section><div class="wrap split">
   <div class="prose">
     <span class="eyebrow">L'entreprise</span>
-    <h2>Une entreprise de toiture familière des maisons d'Île-de-France</h2>
-    <p>Installée au <strong>{BIZ['street']} à {BIZ['city']}</strong>, la société JMC accompagne depuis 1985 les propriétaires, syndics, collectivités et promoteurs de l'est parisien. Pavillons en tuiles de Chelles ou du Pin, immeubles en zinc à Paris, écoles et bâtiments publics de Seine-Saint-Denis : nous connaissons les matériaux, les règles d'urbanisme et les contraintes de chaque type de bâti.</p>
+    <h2>La structure de la promotion immobilière, au service des particuliers</h2>
+    {photo("depot")}
+    <p>Depuis 1985, la société JMC réalise la charpente, la couverture et la zinguerie de programmes de <a href="/couvreur-promotion-immobiliere/">promotion immobilière</a> pour Bouygues Immobilier, Kaufman &amp; Broad, Nexity ou Archicrea, ainsi que pour des architectes et des collectivités. Pour tenir ces chantiers, nous avons bâti à Courtry une vraie structure : <strong>des équipes de couvreurs, charpentiers et zingueurs, un atelier, une flotte de véhicules et un encadrement de chantier</strong>.</p>
+    <p>Cette organisation, nous la mettons aussi au service des <strong>particuliers</strong> : vous bénéficiez de la capacité et de la rigueur d'une entreprise habituée aux grands chantiers, avec un interlocuteur dédié et l'écoute d'une entreprise familiale.</p>
     <p>Notre approche est simple : <strong>confier vos travaux à des professionnels</strong>. Chaque chantier commence par un diagnostic honnête de votre toiture. Nous vous expliquons ce qui doit être fait tout de suite, ce qui peut attendre, et nous vous remettons un devis clair, poste par poste.</p>
     <h3>Nos engagements</h3>
     <ul class="checks">
@@ -872,7 +877,7 @@ def maison_neuve():
   <article class="prose">
     {photo("depot", eager=True)}
     <h2>Le savoir-faire de la promotion immobilière, pour votre maison</h2>
-    <p>Bouygues Immobilier, Kaufman &amp; Broad, Nexity : la société JMC travaille depuis des années pour des promoteurs et des architectes sur des programmes de logements neufs en Île-de-France. Ces chantiers exigent une rigueur particulière : respect strict des plannings, conformité aux normes, contrôles de bureaux de contrôle, finitions irréprochables.</p>
+    <p>Bouygues Immobilier, Kaufman &amp; Broad, Nexity : la société JMC intervient depuis des années dans la <a href="/couvreur-promotion-immobiliere/">promotion immobilière</a>, pour des promoteurs et des architectes, sur des programmes de logements neufs en Île-de-France. Ces chantiers exigent une rigueur particulière : respect strict des plannings, conformité aux normes, contrôles de bureaux de contrôle, finitions irréprochables.</p>
     <p>C'est cette même organisation que nous mettons au service des <strong>particuliers qui font construire leur maison</strong>. Vous bénéficiez d'une entreprise structurée, équipée et assurée, avec l'écoute et la souplesse d'une entreprise familiale.</p>
 
     <h2>Ce que nous réalisons sur votre maison neuve</h2>
@@ -1388,6 +1393,64 @@ def fenetres():
     write("/fenetre-de-toit-velux-lucarnes/", html)
 
 
+def promotion():
+    trail = [("/", "Accueil"), ("/couvreur-promotion-immobiliere/", "Promotion immobilière")]
+    faq = [
+        ("Quels types de programmes réalisez-vous ?",
+         "Logements collectifs, maisons individuelles groupées, résidences, équipements publics et scolaires : nous réalisons les lots charpente, couverture et zinguerie de programmes neufs et de réhabilitations en Île-de-France."),
+        ("Quels documents fournissez-vous ?",
+         "Attestations d'assurance décennale et de responsabilité civile, qualifications QUALIBAT et RGE, documents de sécurité et de chantier, puis dossier des ouvrages exécutés à la réception, selon les exigences du maître d'ouvrage."),
+        ("Pouvez-vous tenir des plannings serrés ?",
+         "Oui. Nos équipes, notre atelier et notre flotte de véhicules sont dimensionnés pour la promotion immobilière : nous mobilisons les compagnons nécessaires pour tenir les jalons de mise hors d'eau et de livraison."),
+        ("Un particulier peut-il bénéficier de cette organisation ?",
+         "Oui, c'est tout l'intérêt : les particuliers profitent de la même structure, des mêmes équipes et des mêmes méthodes que nos clients promoteurs, avec un interlocuteur dédié du devis à la réception."),
+    ]
+    desc = "Lots charpente, couverture et zinguerie pour promoteurs immobiliers, constructeurs et maîtres d'œuvre en Île-de-France."
+    lds = [org_ld(), crumbs_ld(trail), service_ld("Couverture pour la promotion immobilière", "/couvreur-promotion-immobiliere/", desc), faq_ld(faq)]
+    html = head("Couvreur pour la promotion immobilière en Île-de-France | JMC",
+                "Charpente, couverture et zinguerie pour promoteurs, constructeurs et maîtres d'œuvre en Île-de-France. Équipes dédiées, plannings tenus, QUALIBAT & RGE.",
+                "/couvreur-promotion-immobiliere/", lds)
+    html += header("/couvreur-promotion-immobiliere/")
+    html += page_hero(trail, "Promotion immobilière", "Couvreur de la promotion immobilière, au service des promoteurs et des particuliers",
+                      "Depuis 1985, promoteurs, architectes et collectivités nous confient la charpente, la couverture et la zinguerie de leurs programmes. Cette structure et ces équipes sont aussi à la disposition des particuliers.")
+    html += f"""
+<section><div class="wrap split">
+  <article class="prose">
+    {photo("depot", eager=True)}
+    <h2>Une structure taillée pour la promotion immobilière</h2>
+    <p>Travailler pour la promotion immobilière impose une organisation que peu d'entreprises de couverture possèdent : des équipes nombreuses et qualifiées, un atelier de façonnage, une flotte de véhicules, un encadrement de chantier et une capacité à mener plusieurs opérations en parallèle. C'est la structure que JMC a construite depuis 40 ans à Courtry.</p>
+    <ul class="checks">
+      <li><strong>Des équipes dédiées</strong> : couvreurs, charpentiers et zingueurs salariés de l'entreprise</li>
+      <li><strong>Un atelier</strong> pour façonner la zinguerie et préparer les chantiers</li>
+      <li><strong>Une flotte de véhicules</strong> pour intervenir partout en Île-de-France</li>
+      <li><strong>Un encadrement de chantier</strong> et un interlocuteur unique pour le maître d'ouvrage</li>
+      <li><strong>Des garanties solides</strong> : décennale, responsabilité civile, QUALIBAT, RGE</li>
+    </ul>
+
+    <h2>Nos prestations pour les promoteurs</h2>
+    <ul class="checks">
+      <li>Lots charpente, couverture et zinguerie de logements collectifs et de maisons individuelles groupées</li>
+      <li>Couvertures tuiles, ardoise, zinc et bac acier, toitures-terrasses</li>
+      <li>Bardages zinc, habillages, lucarnes et fenêtres de toit</li>
+      <li>Réhabilitation d'immeubles anciens : charpente, couverture, balcons et ouvrages en plomb ou en zinc</li>
+      <li>Respect des plannings de mise hors d'eau, des exigences des bureaux de contrôle et des levées de réserves</li>
+    </ul>
+
+    <h2>Ils nous font confiance</h2>
+    <p>Bouygues Immobilier, Kaufman &amp; Broad, Nexity, Archicrea, des architectes et des collectivités d'Île-de-France : rue de la Croix-Nivert et rue Raffet à Paris, boulevard de Sébastopol, groupes scolaires de Montfermeil… Voir <a href="/nos-references/">nos références</a>.</p>
+
+    <h2>Et pour les particuliers : la même structure</h2>
+    <p>Les particuliers bénéficient exactement des mêmes équipes et des mêmes méthodes : diagnostic précis, devis détaillé, planning tenu, chantier encadré et propre. Que vous fassiez <a href="/toiture-maison-neuve/">construire votre maison</a>, <a href="/renovation-toiture/">rénover votre toiture</a>, <a href="/isolation-toiture/">l'isoler</a> ou réaliser une <a href="/couverture-zinc-bardage/">maison d'architecte en zinc</a>, vous êtes accompagné par une entreprise capable de mener des chantiers d'envergure.</p>
+  </article>
+  {aside("Promoteurs, constructeurs, maîtres d'œuvre")}
+</div></section>
+"""
+    html += faq_html(faq, "Questions fréquentes – promotion immobilière")
+    html += cta_band("Un programme à consulter ?", "Envoyez-nous votre dossier de consultation : réponse et chiffrage rapides.")
+    html += footer()
+    write("/couvreur-promotion-immobiliere/", html)
+
+
 REFS = [
     ("Charpente", "Rue de la Croix-Nivert", "Paris 15e", "Travaux de charpente sur immeuble parisien."),
     ("Charpente", "Nexity – rue Raffet", "Paris 16e", "Charpente pour un programme immobilier Nexity."),
@@ -1535,6 +1598,7 @@ def contact():
           <option>Charpente</option>
           <option>Zinguerie / gouttières</option>
           <option>Copropriété / syndic</option>
+          <option>Promotion immobilière / constructeur</option>
           <option>Fenêtre de toit VELUX / lucarne</option>
           <option>Autre</option>
         </select></label>
@@ -1605,7 +1669,7 @@ def notfound():
 
 
 SITEMAP = [("/", "1.0"), ("/couverture/", "0.9"), ("/charpente/", "0.9"), ("/zinguerie/", "0.9"),
-           ("/renovation-toiture/", "0.95"), ("/nettoyage-toiture/", "0.95"), ("/toiture-maison-neuve/", "0.95"), ("/isolation-toiture/", "0.95"), ("/couverture-zinc-bardage/", "0.95"), ("/couvreur-copropriete-syndic/", "0.95"), ("/fenetre-de-toit-velux-lucarnes/", "0.9"), ("/zones-intervention/", "0.7"), ("/nos-references/", "0.7"),
+           ("/renovation-toiture/", "0.95"), ("/nettoyage-toiture/", "0.95"), ("/toiture-maison-neuve/", "0.95"), ("/isolation-toiture/", "0.95"), ("/couverture-zinc-bardage/", "0.95"), ("/couvreur-copropriete-syndic/", "0.95"), ("/fenetre-de-toit-velux-lucarnes/", "0.9"), ("/couvreur-promotion-immobiliere/", "0.9"), ("/zones-intervention/", "0.7"), ("/nos-references/", "0.7"),
            ("/contact/", "0.8")]
 
 
@@ -1622,6 +1686,6 @@ def seo_files():
 
 
 if __name__ == "__main__":
-    for fn in (home, couverture, charpente, zinguerie, renovation, nettoyage, maison_neuve, isolation, zinc_bardage, copropriete, fenetres, villes, references, zones, contact, merci, mentions, notfound):
+    for fn in (home, couverture, charpente, zinguerie, renovation, nettoyage, maison_neuve, isolation, zinc_bardage, copropriete, fenetres, promotion, villes, references, zones, contact, merci, mentions, notfound):
         fn()
     seo_files()
