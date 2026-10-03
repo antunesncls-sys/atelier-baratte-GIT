@@ -28,6 +28,8 @@ BIZ = {
     "gbp": "https://www.google.com/search?kgmid=/g/11y2n5k3zl&q=JMC+COUVERTURE",
     # Adresse du compte Instagram (ex. "https://www.instagram.com/xxx/") : les liens s'affichent dès qu'elle est renseignée
     "instagram": "https://www.instagram.com/jmc.couverture/",
+    "facebook": "https://www.facebook.com/p/Jmccouverture-61562122535882/",
+    "tiktok": "https://www.tiktok.com/@jmc.couverture",
     "rating": "4,9",
     "reviews_count": 29,
     "lat": 48.91026,
@@ -142,16 +144,29 @@ def hero_mosaic():
     return f'<div class="mosaic">{items}</div>'
 
 
+FB_SVG = ('<svg class="ig" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor">'
+          '<path d="M14 8h3V4h-3c-2.8 0-4.5 1.9-4.5 4.6V11H7v4h2.5v8h4v-8h3l.5-4h-3.5V8.8c0-.5.3-.8.5-.8z"/></svg>')
+TT_SVG = ('<svg class="ig" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor">'
+          '<path d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.3a7.4 7.4 0 0 1-4-1.2v6.3A6.2 6.2 0 1 1 10.4 9v3.4a2.9 2.9 0 1 0 2.9 2.9V3h3.3z"/></svg>')
+
+
+def socials():
+    out = []
+    for key, svg, label in (("instagram", INSTA_SVG, "Instagram"), ("facebook", FB_SVG, "Facebook"), ("tiktok", TT_SVG, "TikTok")):
+        if BIZ.get(key):
+            out.append(f'<a class="ig-link" href="{BIZ[key]}" target="_blank" rel="noopener" '
+                       f'aria-label="{label} JMC Couverture">{svg}{label}</a>')
+    return out
+
+
 def insta_link(sep=""):
-    if not BIZ["instagram"]:
-        return ""
-    return f'{sep}<a class="ig-link" href="{BIZ["instagram"]}" target="_blank" rel="noopener">{INSTA_SVG}Suivez-nous sur Instagram</a>'
+    links = socials()
+    return f'{sep}<span class="socials">Suivez-nous : {" ".join(links)}</span>' if links else ""
 
 
 def insta_top():
-    if not BIZ["instagram"]:
-        return ""
-    return f' · <a class="ig-link" href="{BIZ["instagram"]}" target="_blank" rel="noopener" aria-label="Instagram JMC Couverture">{INSTA_SVG}Instagram</a>'
+    links = socials()
+    return f' · <span class="socials">{" ".join(links)}</span>' if links else ""
 
 
 def hero_bg():
@@ -201,7 +216,7 @@ def org_ld():
         "email": BIZ["email"],
         "priceRange": "€€",
         "geo": {"@type": "GeoCoordinates", "latitude": BIZ["lat"], "longitude": BIZ["lng"]},
-        "sameAs": [u for u in (BIZ["gbp"], BIZ["instagram"]) if u],
+        "sameAs": [u for u in (BIZ["gbp"], BIZ["instagram"], BIZ["facebook"], BIZ["tiktok"]) if u],
         "hasMap": BIZ["gbp"],
         "address": {
             "@type": "PostalAddress",
