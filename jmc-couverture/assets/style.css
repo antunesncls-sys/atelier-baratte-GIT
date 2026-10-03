@@ -267,3 +267,14 @@ form.quote input:focus,form.quote select:focus,form.quote textarea:focus{outline
 .engage-box h2{font-size:1.5rem}
 .engage-box ul{margin:0}
 @media (max-width:760px){.engage-box{grid-template-columns:1fr}}
+.video-band{background:var(--slate);color:#fff;padding:64px 0}
+.video-band h2{color:#fff}
+.video-band p{color:#dfe5ea}
+.video-band .eyebrow{color:var(--gold-light)}
+.video-band .checks li{color:#dfe5ea}
+.video-band .checks li::before{border-color:var(--gold-light)}
+.video-band a{color:#fff}
+.video-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center}
+.video-wrap{justify-self:center;width:100%;max-width:340px;border-radius:18px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.45);background:#000}
+.video-wrap video{display:block;width:100%;height:auto;aspect-ratio:9/16}
+@media (max-width:900px){.video-grid{grid-template-columns:1fr}.video-wrap{max-width:300px}}

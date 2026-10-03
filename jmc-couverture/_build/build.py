@@ -219,6 +219,44 @@ def partenaires_footer():
         f'<a href="{u}" target="_blank" rel="noopener">{n}</a>' for n, d, u in BIZ["partenaires"]) + "."
 
 
+VIDEO = {"src": "/assets/video/jmc-couverture-video-savoir-faire.mp4",
+         "poster": "/assets/video/jmc-couverture-video-savoir-faire.jpg",
+         "name": "JMC Couverture : votre toiture, notre savoir-faire",
+         "desc": "Toitures réalisées par JMC Couverture en Île-de-France, filmées par drone : tradition, savoir-faire, qualité, sécurité et fiabilité. 40 ans d'expérience, entreprise QUALIBAT RGE.",
+         "duration": "PT24S", "date": "2026-10-03"}
+
+
+def video_ld():
+    return {"@context": "https://schema.org", "@type": "VideoObject", "name": VIDEO["name"],
+            "description": VIDEO["desc"], "thumbnailUrl": [SITE + VIDEO["poster"]],
+            "uploadDate": VIDEO["date"], "duration": VIDEO["duration"],
+            "contentUrl": SITE + VIDEO["src"], "publisher": {"@id": SITE + "/#entreprise"}}
+
+
+def video_section():
+    return f"""
+<section class="video-band"><div class="wrap video-grid">
+  <div>
+    <span class="eyebrow">En vidéo</span>
+    <h2>Votre toiture, notre savoir-faire</h2>
+    <p>Des toitures réalisées par nos équipes, filmées par drone : tuiles, ardoise, zinc, mansardes et maisons neuves, partout en Île-de-France.</p>
+    <ul class="checks values">
+      <li><strong>Tradition</strong> : 40 ans de métier de couvreur-zingueur</li>
+      <li><strong>Savoir-faire</strong> : couverture, charpente, zinguerie</li>
+      <li><strong>Qualité</strong> : certifiés QUALIBAT et RGE</li>
+      <li><strong>Sécurité</strong> : des équipes formées</li>
+      <li><strong>Fiabilité</strong> : délais tenus et SAV dédié</li>
+    </ul>
+    <p>{insta_link()}</p>
+  </div>
+  <div class="video-wrap">
+    <video controls playsinline preload="none" poster="{VIDEO['poster']}" width="576" height="1024"
+      aria-label="{VIDEO['name']}"><source src="{VIDEO['src']}" type="video/mp4">
+      Votre navigateur ne lit pas la vidéo. <a href="{VIDEO['src']}">Télécharger la vidéo</a>.</video>
+  </div>
+</div></section>"""
+
+
 def hero_style(key):
     src = photo_src(key)
     return f' style="--hero-img:url({src})"' if src else ""
@@ -594,7 +632,7 @@ def home():
         ("Pourquoi faire appel à un couvreur RGE ?",
          "Le label RGE (Reconnu Garant de l'Environnement) est exigé pour que vos travaux d'isolation de toiture puissent bénéficier des aides publiques à la rénovation énergétique, sous réserve des conditions d'éligibilité en vigueur."),
     ]
-    lds = [org_ld(), website_ld(), faq_ld(faq)]
+    lds = [org_ld(), website_ld(), faq_ld(faq), video_ld()]
     html = head("Couvreur Île-de-France : rénovation, isolation, toiture zinc | JMC",
                 "Couvreur depuis 1985 en Île-de-France : rénovation, isolation, maison neuve, zinc et bardage d'architecte. QUALIBAT & RGE. Devis gratuit ☎ 01 64 21 38 37.",
                 "/", lds)
@@ -616,6 +654,8 @@ def home():
   {hero_mosaic()}
   <p style="margin-top:18px"><a class="more" href="/nos-references/">Voir toutes nos réalisations →</a>{insta_link(" &nbsp;·&nbsp; ")}</p>
 </div></section>
+
+{video_section()}
 
 <section class="section-alt"><div class="wrap">
   <div class="section-head"><span class="eyebrow">Nos spécialités</span>
