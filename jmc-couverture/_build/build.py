@@ -40,6 +40,9 @@ CITIES = [
     "Villemomble", "Gagny", "Paris",
 ]
 
+FOOTER_CITIES = {"Saint-Maur-des-Fossés", "Nogent-sur-Marne", "Le Perreux-sur-Marne", "Versailles", "Neuilly-sur-Seine",
+                 "Saint-Germain-en-Laye", "Le Vésinet", "Fontainebleau", "Lagny-sur-Marne"}
+
 DEPTS = ("Paris", "Seine-et-Marne", "Yvelines", "Essonne", "Hauts-de-Seine", "Seine-Saint-Denis", "Val-de-Marne", "Val-d'Oise")
 
 NAV = [
@@ -47,7 +50,7 @@ NAV = [
     ("/isolation-toiture/", "Isolation"),
     ("/toiture-maison-neuve/", "Maison neuve"),
     ("/couverture-zinc-bardage/", "Zinc &amp; bardage"),
-    ("/nettoyage-toiture/", "Nettoyage"),
+    ("/couvreur-copropriete-syndic/", "Copropriétés"),
     ("/nos-references/", "Réalisations"),
 ]
 
@@ -187,9 +190,9 @@ def org_ld():
         },
         "areaServed": [{"@type": "State", "name": "Île-de-France"}]
         + [{"@type": "AdministrativeArea", "name": n} for n in DEPTS]
-        + [{"@type": "City", "name": c} for c in CITIES],
+        + [{"@type": "City", "name": c} for c in dict.fromkeys([v["name"] for v in VILLES] + CITIES)],
         "knowsAbout": ["Couverture", "Charpente", "Zinguerie", "Rénovation de toiture",
-                       "Remplacement de toiture", "Nettoyage de toiture", "Démoussage", "Isolation de toiture", "Couverture zinc", "Bardage zinc", "Maison d'architecte", "Toiture maison neuve", "Gouttières", "Toiture zinc", "Ardoise", "Tuiles"],
+                       "Remplacement de toiture", "Nettoyage de toiture", "Démoussage", "Isolation de toiture", "Couverture zinc", "Bardage zinc", "Maison d'architecte", "Toiture maison neuve", "Isolation des combles", "Fenêtre de toit", "VELUX", "Lucarnes", "Copropriété", "Gouttières", "Toiture zinc", "Ardoise", "Tuiles"],
         "hasCredential": [
             {"@type": "EducationalOccupationalCredential", "credentialCategory": "Qualification", "name": "QUALIBAT"},
             {"@type": "EducationalOccupationalCredential", "credentialCategory": "Label", "name": "RGE - Reconnu Garant de l'Environnement"},
@@ -206,7 +209,9 @@ def org_ld():
                              ("Rénovation et remplacement de toiture", "/renovation-toiture/"),
                              ("Toiture de maison neuve", "/toiture-maison-neuve/"),
                              ("Isolation de toiture", "/isolation-toiture/"),
-                             ("Couverture zinc et bardage", "/couverture-zinc-bardage/"))
+                             ("Couverture zinc et bardage", "/couverture-zinc-bardage/"),
+                             ("Toiture et isolation pour copropriétés", "/couvreur-copropriete-syndic/"),
+                             ("Fenêtres de toit VELUX et lucarnes", "/fenetre-de-toit-velux-lucarnes/"))
             ],
         },
     }
@@ -362,11 +367,14 @@ def footer():
       <li><a href="/isolation-toiture/">Isolation de toiture</a></li>
       <li><a href="/toiture-maison-neuve/">Toiture de maison neuve</a></li>
       <li><a href="/couverture-zinc-bardage/">Couverture zinc &amp; bardage</a></li>
+      <li><a href="/couvreur-copropriete-syndic/">Copropriétés &amp; syndics</a></li>
+      <li><a href="/fenetre-de-toit-velux-lucarnes/">Fenêtres de toit VELUX &amp; lucarnes</a></li>
       <li><a href="/nettoyage-toiture/">Nettoyage &amp; démoussage</a></li>
       <li><a href="/couverture/">Couverture</a> · <a href="/charpente/">Charpente</a> · <a href="/zinguerie/">Zinguerie</a></li>
     </ul></div>
     <div><h2>Couvreur par ville</h2><ul>
-      {"".join(f'<li><a href="/{v["slug"]}/">Couvreur {v["name"]}</a></li>' for v in VILLES)}
+      {"".join(f'<li><a href="/{v["slug"]}/">Couvreur {v["name"]}</a></li>' for v in VILLES if v["name"] in FOOTER_CITIES)}
+      <li><a href="/zones-intervention/"><strong>Toutes nos villes →</strong></a></li>
     </ul></div>
     <div><h2>L'entreprise</h2><ul>
       <li><a href="/nos-references/">Nos références</a></li>
@@ -463,9 +471,9 @@ def home():
 
 <section class="section-alt"><div class="wrap">
   <div class="section-head"><span class="eyebrow">Nos spécialités</span>
-  <h2>Cinq spécialités, un seul interlocuteur pour votre toit</h2>
+  <h2>Nos spécialités : un seul interlocuteur pour votre toit</h2>
   <p>De la maison neuve à la demeure de caractère, nos couvreurs, charpentiers et zingueurs réalisent l'ensemble de votre toiture : un chantier coordonné, des délais tenus et une seule garantie décennale.</p></div>
-  <div class="grid g3" style="margin-bottom:24px">
+  <div class="grid g4" style="margin-bottom:24px">
   {service_card("roof", "Rénovation et remplacement de toiture", "/renovation-toiture/", "Réfection complète de votre couverture, de la charpente aux gouttières.",
                 ["Dépose de l'ancienne couverture", "Contrôle et renfort de charpente", "Tuiles, ardoise ou zinc neufs", "Isolation intégrée possible"])}
   {service_card("shield", "Isolation de toiture", "/isolation-toiture/", "Isolation par l'extérieur ou sous rampants, par une entreprise RGE.",
@@ -476,6 +484,10 @@ def home():
                 ["Toitures faible pente et courbes", "Bardage zinc ventilé", "Lucarnes et brisis", "Calepinage avec l'architecte"])}
   {service_card("leaf", "Nettoyage et démoussage", "/nettoyage-toiture/", "Redonnez à votre toit son aspect d'origine et prolongez sa durée de vie.",
                 ["Démoussage adapté au matériau", "Remplacement des tuiles abîmées", "Traitement hydrofuge", "Nettoyage des gouttières"])}
+  {service_card("doc", "Copropriétés et syndics", "/couvreur-copropriete-syndic/", "Réfection, réparation et isolation des combles pour les immeubles.",
+                ["Devis détaillés pour l'AG", "Isolation des combles RGE", "Travaux en site occupé", "Suivi avec le syndic"])}
+  {service_card("roof", "Fenêtres de toit VELUX et lucarnes", "/fenetre-de-toit-velux-lucarnes/", "Plus de lumière et de confort sous les toits.",
+                ["Remplacement de VELUX", "Création de fenêtres de toit", "Restauration de lucarnes", "Habillage zinc"])}
   {service_card("drop", "Couverture, charpente, zinguerie", "/couverture/", "Tous les métiers du toit, maîtrisés par nos propres équipes.",
                 ['<a href="/couverture/">Couverture</a> : tuiles, ardoise, zinc', '<a href="/charpente/">Charpente</a> traditionnelle ou industrielle', '<a href="/zinguerie/">Zinguerie</a> et gouttières', "Fenêtres de toit et lucarnes"])}
   </div>
@@ -529,7 +541,7 @@ def home():
   <div class="section-head"><span class="eyebrow">Zone d'intervention</span>
   <h2>Couvreur dans toute l'Île-de-France</h2>
   <p>Depuis notre siège de Courtry, nos équipes interviennent à Paris et dans les huit départements franciliens, en particulier dans les communes des bords de Marne et de Seine-et-Marne.</p></div>
-  <div class="city-links">{"".join(f'<a href="/{v["slug"]}/">Couvreur {v["name"]} <small>({v["num"]})</small></a>' for v in VILLES)}</div>
+  {city_groups()}
   <ul class="cities">{"".join(f"<li>{c}</li>" for c in CITIES[3:])}</ul>
   <p><a class="more" href="/zones-intervention/">Toutes nos zones d'intervention →</a></p>
 </div></section>
@@ -1066,17 +1078,134 @@ VILLES = [
 ]
 
 
+
+def _v(name, dept, num, cp, lead, p1, p2, voisines):
+    import unicodedata
+    slug = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode().lower()
+    slug = "couvreur-" + "".join(c if c.isalnum() else "-" for c in slug).strip("-").replace("--", "-")
+    return {"slug": slug, "name": name, "dept": dept, "num": num, "cp": cp, "lead": lead,
+            "texte": [p1, p2], "quartiers": [], "voisines": voisines}
+
+
+ABF = ("Une grande partie de la commune est couverte par des protections patrimoniales : les travaux de toiture y sont "
+       "souvent soumis à l'avis de l'Architecte des Bâtiments de France. Nous connaissons ces exigences (matériaux, teintes, "
+       "lucarnes, zinguerie) et vous aidons à préparer le dossier de déclaration préalable.")
+
+VILLES += [
+    _v("Fontainebleau", "Seine-et-Marne", "77", "77300",
+       "Hôtels particuliers, maisons bourgeoises et villas en lisière de forêt : votre couvreur à Fontainebleau pour des toitures dignes de la cité impériale.",
+       "Autour de son château, inscrit au patrimoine mondial de l'UNESCO, Fontainebleau aligne hôtels particuliers, maisons de maître et villas cachées dans la verdure de la forêt. Ardoise, tuile plate de pays, brisis, lucarnes ouvragées et zinguerie fine composent des toitures exigeantes.",
+       ABF, ["Avon", "Samois-sur-Seine", "Bois-le-Roi", "Barbizon", "Héricy", "Thomery"]),
+    _v("Barbizon", "Seine-et-Marne", "77", "77630",
+       "Maisons en pierre, longères et propriétés du village des peintres : votre couvreur à Barbizon pour rénover et préserver les toitures anciennes.",
+       "Village des peintres de l'École de Barbizon, à l'orée de la forêt de Fontainebleau, Barbizon a conservé ses maisons en pierre, ses longères et ses belles propriétés aux toitures de tuiles plates anciennes. Leur rénovation exige de respecter le caractère des lieux, des matériaux à la pose.",
+       ABF, ["Fontainebleau", "Chailly-en-Bière", "Saint-Martin-en-Bière", "Arbonne-la-Forêt", "Cély"]),
+    _v("Versailles", "Yvelines", "78", "78000",
+       "Hôtels particuliers, immeubles anciens et villas des quartiers résidentiels : votre couvreur à Versailles pour la rénovation, l'isolation et les toitures en ardoise et zinc.",
+       "Des quartiers Notre-Dame et Saint-Louis aux villas de Montreuil, Clagny-Glatigny ou Porchefontaine, Versailles réunit un patrimoine bâti exceptionnel : hôtels particuliers des XVIIe et XVIIIe siècles, immeubles à combles mansardés, maisons bourgeoises. Ardoise, zinc, lucarnes et brisis y sont la règle.",
+       ABF, ["Le Chesnay-Rocquencourt", "Viroflay", "Buc", "Saint-Cyr-l'École", "Vélizy-Villacoublay"]),
+    _v("Le Vésinet", "Yvelines", "78", "78110",
+       "Villas de la ville-parc, maisons de maître et demeures du XIXe siècle : votre couvreur au Vésinet pour des toitures à la hauteur de ce cadre unique.",
+       "Conçu au XIXe siècle comme une ville-parc, avec ses lacs, ses rivières et ses grandes pelouses, Le Vésinet est l'une des communes résidentielles les plus prisées de l'ouest parisien. Ses villas présentent des toitures variées et souvent complexes : ardoise, tuiles, épis de faîtage, lucarnes et zinguerie décorative.",
+       ABF, ["Chatou", "Croissy-sur-Seine", "Le Pecq", "Montesson", "Saint-Germain-en-Laye"]),
+    _v("Saint-Germain-en-Laye", "Yvelines", "78", "78100",
+       "Hôtels particuliers du centre historique, villas et maisons bourgeoises : votre couvreur à Saint-Germain-en-Laye pour la rénovation et l'isolation de votre toiture.",
+       "Entre son château, sa terrasse dessinée par Le Nôtre et sa forêt domaniale, Saint-Germain-en-Laye offre un patrimoine résidentiel remarquable : hôtels particuliers du centre ancien, immeubles de caractère et grandes villas. Couvertures en ardoise et en tuile plate, combles mansardés et lucarnes y demandent un savoir-faire traditionnel.",
+       ABF, ["Le Pecq", "Le Vésinet", "Chambourcy", "Mareil-Marly", "Maisons-Laffitte"]),
+    _v("Maisons-Laffitte", "Yvelines", "78", "78600",
+       "Villas du Parc, maisons de maître et propriétés de la cité du cheval : votre couvreur à Maisons-Laffitte.",
+       "Autour de son château et de son célèbre Parc loti au XIXe siècle, Maisons-Laffitte, la « cité du cheval », alterne grandes villas, maisons de maître et propriétés arborées le long de larges avenues. Les toitures y sont souvent anciennes, en ardoise ou en tuiles, avec lucarnes et ornements de zinc.",
+       "Nous rénovons ces couvertures en respectant leur caractère, en y intégrant une isolation performante et une zinguerie neuve, pour des maisons plus confortables et mieux valorisées.",
+       ["Sartrouville", "Le Mesnil-le-Roi", "Saint-Germain-en-Laye", "Montesson", "Herblay-sur-Seine"]),
+    _v("Le Chesnay-Rocquencourt", "Yvelines", "78", "78150",
+       "Maisons individuelles, villas et résidences aux portes de Versailles : votre couvreur au Chesnay-Rocquencourt.",
+       "Aux portes de Versailles, Le Chesnay-Rocquencourt associe quartiers pavillonnaires recherchés, villas et résidences en copropriété. Beaucoup de toitures datent des années 1960 à 1990 et arrivent à l'âge de la rénovation ou de l'isolation.",
+       "Nous intervenons aussi bien pour les propriétaires de maisons que pour les syndics de copropriété : réfection de couverture, isolation des combles, fenêtres de toit et zinguerie.",
+       ["Versailles", "La Celle-Saint-Cloud", "Bailly", "Louveciennes", "Vaucresson"]),
+    _v("Chatou", "Yvelines", "78", "78400",
+       "Villas des bords de Seine, maisons bourgeoises et pavillons : votre couvreur à Chatou pour rénover, isoler et entretenir votre toiture.",
+       "Ville des Impressionnistes, célèbre pour son île et la Maison Fournaise, Chatou a gardé de belles villas des bords de Seine et des maisons bourgeoises du début du XXe siècle, aux toitures en tuiles mécaniques, en ardoise ou en zinc.",
+       "L'humidité des bords de Seine sollicite fortement les couvertures et la zinguerie : nous assurons leur rénovation complète, leur isolation et leur entretien.",
+       ["Croissy-sur-Seine", "Le Vésinet", "Rueil-Malmaison", "Montesson", "Carrières-sur-Seine"]),
+    _v("Croissy-sur-Seine", "Yvelines", "78", "78290",
+       "Villas, maisons bourgeoises et propriétés des bords de Seine : votre couvreur à Croissy-sur-Seine.",
+       "Commune résidentielle nichée dans une boucle de la Seine, Croissy-sur-Seine compte de nombreuses villas et maisons bourgeoises entourées de jardins. Leurs toitures, souvent anciennes, mêlent tuiles, ardoises, lucarnes et zinguerie travaillée.",
+       "Nous les rénovons dans les règles de l'art, avec la possibilité d'isoler la toiture par l'extérieur lors de la réfection, sans perdre de volume dans les combles.",
+       ["Chatou", "Le Vésinet", "Bougival", "Le Pecq", "Rueil-Malmaison"]),
+    _v("Louveciennes", "Yvelines", "78", "78430",
+       "Propriétés de caractère et villas des coteaux de Seine : votre couvreur à Louveciennes.",
+       "Sur les coteaux qui dominent la Seine, Louveciennes conserve un cadre exceptionnel : grandes propriétés, maisons de caractère et villas, à l'ombre de son aqueduc et du pavillon de Madame du Barry. Les toitures, anciennes et souvent complexes, demandent un savoir-faire traditionnel.",
+       ABF, ["Marly-le-Roi", "Bougival", "Le Chesnay-Rocquencourt", "Port-Marly", "La Celle-Saint-Cloud"]),
+    _v("Marly-le-Roi", "Yvelines", "78", "78160",
+       "Maisons de caractère du centre ancien, villas et propriétés : votre couvreur à Marly-le-Roi.",
+       "Riche de son domaine national et de son centre ancien, Marly-le-Roi est une commune résidentielle où se côtoient maisons de caractère, villas et propriétés boisées. Toitures en tuile plate, en ardoise et lucarnes anciennes y sont fréquentes.",
+       ABF, ["Louveciennes", "Le Port-Marly", "Mareil-Marly", "L'Étang-la-Ville", "Saint-Germain-en-Laye"]),
+    _v("Bougival", "Yvelines", "78", "78380",
+       "Villas des bords de Seine et maisons de coteau : votre couvreur à Bougival pour rénover et isoler votre toiture.",
+       "Entre Seine et coteaux, Bougival a inspiré les peintres impressionnistes et conserve de belles villas, des maisons de bord de Seine et des propriétés étagées sur la pente. Leurs toitures exposées au vent et à l'humidité méritent une attention particulière.",
+       "Nous intervenons pour la rénovation complète de ces couvertures, leur isolation, la reprise de la zinguerie et la création ou le remplacement de fenêtres de toit et de lucarnes.",
+       ["Louveciennes", "La Celle-Saint-Cloud", "Croissy-sur-Seine", "Rueil-Malmaison", "Le Port-Marly"]),
+    _v("Neuilly-sur-Seine", "Hauts-de-Seine", "92", "92200",
+       "Hôtels particuliers, villas et immeubles haussmanniens : votre couvreur-zingueur à Neuilly-sur-Seine pour les particuliers et les copropriétés.",
+       "Entre le bois de Boulogne et la Seine, Neuilly-sur-Seine réunit hôtels particuliers, villas et immeubles de standing aux toitures en zinc et en ardoise, avec combles mansardés, lucarnes et terrassons. Ces couvertures exigent le savoir-faire des couvreurs-zingueurs parisiens.",
+       "Nous intervenons pour les propriétaires comme pour les syndics de copropriété : réfection de couverture zinc, isolation des combles, remplacement de fenêtres de toit et restauration de lucarnes.",
+       ["Levallois-Perret", "Courbevoie", "Puteaux", "Paris 16e", "Paris 17e"]),
+    _v("Boulogne-Billancourt", "Hauts-de-Seine", "92", "92100",
+       "Villas des années 1920-1930, maisons de ville et immeubles : votre couvreur à Boulogne-Billancourt.",
+       "Boulogne-Billancourt est connue pour ses villas modernistes des années 1920-1930, dont plusieurs signées Le Corbusier ou Mallet-Stevens, mais aussi pour ses maisons de ville, ses quartiers résidentiels proches du bois de Boulogne et ses nombreux immeubles en copropriété.",
+       "Toitures-terrasses, couvertures zinc, ardoise ou tuiles : nous rénovons, isolons et entretenons tous les types de toits, pour les particuliers comme pour les syndics.",
+       ["Paris 16e", "Issy-les-Moulineaux", "Saint-Cloud", "Sèvres", "Meudon"]),
+    _v("Saint-Cloud", "Hauts-de-Seine", "92", "92210",
+       "Villas de Montretout, maisons bourgeoises et immeubles de caractère : votre couvreur à Saint-Cloud.",
+       "Accrochée aux coteaux face à Paris, à côté de son domaine national, Saint-Cloud est une commune résidentielle prisée, des villas du quartier de Montretout aux maisons bourgeoises et immeubles du centre. Ardoise, zinc, tuiles et lucarnes composent des toitures variées.",
+       ABF, ["Garches", "Vaucresson", "Sèvres", "Boulogne-Billancourt", "Suresnes"]),
+    _v("Sceaux", "Hauts-de-Seine", "92", "92330",
+       "Maisons bourgeoises, villas et centre ancien près du parc : votre couvreur à Sceaux.",
+       "Autour de son célèbre parc dessiné par Le Nôtre, Sceaux offre un cadre résidentiel recherché : maisons bourgeoises, villas en meulière et centre ancien aux toitures de tuiles et d'ardoise. Beaucoup de ces couvertures centenaires arrivent à l'âge d'une rénovation complète.",
+       ABF, ["Bourg-la-Reine", "Antony", "Fontenay-aux-Roses", "Châtenay-Malabry", "Le Plessis-Robinson"]),
+    _v("Ville-d'Avray", "Hauts-de-Seine", "92", "92410",
+       "Villas et propriétés entre étangs et forêt : votre couvreur à Ville-d'Avray.",
+       "Nichée entre la forêt de Fausses-Reposes et les étangs peints par Corot, Ville-d'Avray est une commune résidentielle et boisée, faite de villas et de propriétés aux toitures souvent anciennes. L'environnement forestier favorise mousses et encrassement des gouttières.",
+       "Nous assurons la rénovation de ces toitures, leur isolation, mais aussi leur nettoyage et l'entretien de la zinguerie, pour préserver durablement votre maison.",
+       ["Sèvres", "Chaville", "Marnes-la-Coquette", "Saint-Cloud", "Versailles"]),
+    _v("Marnes-la-Coquette", "Hauts-de-Seine", "92", "92430",
+       "Grandes propriétés et villas en lisière du parc de Saint-Cloud : votre couvreur à Marnes-la-Coquette.",
+       "Petite commune très résidentielle en lisière du domaine national de Saint-Cloud, Marnes-la-Coquette se compose de grandes propriétés et de villas entourées de verdure. Leurs toitures, souvent d'exception, demandent une exécution irréprochable.",
+       "Ardoise, zinc, tuile plate, lucarnes et zinguerie décorative : nous réalisons des travaux soignés, avec un interlocuteur unique du diagnostic à la réception.",
+       ["Vaucresson", "Garches", "Ville-d'Avray", "Saint-Cloud", "La Celle-Saint-Cloud"]),
+    _v("Vaucresson", "Hauts-de-Seine", "92", "92420",
+       "Villas, maisons individuelles et propriétés arborées : votre couvreur à Vaucresson.",
+       "Commune résidentielle et verdoyante de l'ouest parisien, Vaucresson est composée majoritairement de villas et de maisons individuelles entourées de jardins. Ces toitures, de la villa ancienne à la maison d'architecte, appellent des travaux de qualité.",
+       "Rénovation, isolation par l'extérieur, couverture zinc pour extensions contemporaines, fenêtres de toit : nous prenons en charge l'ensemble de votre projet de toiture.",
+       ["Garches", "Marnes-la-Coquette", "La Celle-Saint-Cloud", "Le Chesnay-Rocquencourt", "Rueil-Malmaison"]),
+    _v("Garches", "Hauts-de-Seine", "92", "92380",
+       "Villas, maisons bourgeoises et résidences : votre couvreur à Garches.",
+       "Entre le domaine de Saint-Cloud et le golf de Saint-Cloud situé sur son territoire, Garches est une commune résidentielle où dominent villas, maisons bourgeoises et petites résidences. Les toitures y sont souvent en tuiles ou en ardoise, avec lucarnes et zinguerie.",
+       "Nous intervenons pour les particuliers comme pour les copropriétés : réfection, isolation des combles, fenêtres de toit et entretien.",
+       ["Vaucresson", "Saint-Cloud", "Rueil-Malmaison", "Marnes-la-Coquette", "Suresnes"]),
+    _v("Rueil-Malmaison", "Hauts-de-Seine", "92", "92500",
+       "Villas de Buzenval, maisons de caractère et résidences : votre couvreur à Rueil-Malmaison.",
+       "Ville de l'impératrice Joséphine et de son château de Malmaison, Rueil-Malmaison mêle quartiers résidentiels recherchés comme Buzenval ou la Malmaison, villas des bords de Seine et nombreuses copropriétés. Une grande diversité de toitures, de la tuile à l'ardoise et au zinc.",
+       "Nous accompagnons les propriétaires et les syndics de Rueil-Malmaison dans la rénovation, l'isolation et l'entretien de leurs toitures.",
+       ["Nanterre", "Suresnes", "Garches", "Bougival", "Chatou"]),
+    _v("Meudon", "Hauts-de-Seine", "92", "92190",
+       "Villas de Bellevue, maisons en meulière et résidences : votre couvreur à Meudon.",
+       "Entre la forêt de Meudon et les coteaux de Seine, Meudon offre des quartiers résidentiels prisés comme Bellevue ou Meudon-sur-Seine, avec leurs villas, leurs maisons en meulière et de nombreuses résidences. Les toitures anciennes y sont nombreuses.",
+       "Rénovation de couverture, isolation des combles, lucarnes et fenêtres de toit : nous intervenons pour les particuliers et les copropriétés de Meudon.",
+       ["Sèvres", "Issy-les-Moulineaux", "Clamart", "Chaville", "Vélizy-Villacoublay"]),
+]
+
 def ville(v):
     url = f"/{v['slug']}/"
     name = v["name"]
     trail = [("/", "Accueil"), ("/zones-intervention/", "Zones d'intervention"), (url, f"Couvreur {name}")]
     faq = [
         (f"Intervenez-vous à {name} ?",
-         f"Oui. Depuis notre siège de Courtry, nous intervenons régulièrement à {name} ({v['num']}) et dans les communes voisines : {', '.join(v['voisines'][:4])}. Le déplacement et le devis sont gratuits."),
+         f"Oui. Depuis notre siège de Courtry, nos équipes interviennent à {name} ({v['num']}) et dans les communes voisines : {', '.join(v['voisines'][:4])}. Le déplacement et le devis sont gratuits."),
         (f"Faut-il une autorisation pour refaire sa toiture à {name} ?",
          f"Si les travaux modifient l'aspect extérieur (matériau, couleur, fenêtres de toit), une déclaration préalable doit généralement être déposée en mairie de {name}. Dans un secteur protégé, l'avis de l'Architecte des Bâtiments de France peut être requis. Nous vous aidons à constituer le dossier."),
         ("Quels travaux réalisez-vous ?",
-         "Rénovation et remplacement de toiture, isolation (entreprise RGE), toiture de maison neuve, couverture zinc et bardage pour maisons d'architecte, nettoyage et démoussage, charpente et zinguerie."),
+         "Rénovation et remplacement de toiture, isolation des combles (entreprise RGE), fenêtres de toit VELUX et lucarnes, toiture de maison neuve, couverture zinc et bardage pour maisons d'architecte, travaux pour copropriétés et syndics, nettoyage, charpente et zinguerie."),
     ]
     svc = {"@context": "https://schema.org", "@type": "Service", "name": f"Couvreur à {name}",
            "serviceType": "Couverture, charpente et zinguerie", "url": SITE + url,
@@ -1102,6 +1231,8 @@ def ville(v):
       <li><a href="/isolation-toiture/"><strong>Isolation de toiture</strong></a> par l'extérieur ou sous rampants, par une entreprise RGE.</li>
       <li><a href="/couverture-zinc-bardage/"><strong>Couverture zinc et bardage</strong></a> pour maisons d'architecte, extensions et surélévations.</li>
       <li><a href="/toiture-maison-neuve/"><strong>Toiture de maison neuve</strong></a> : charpente, couverture et zinguerie de votre construction.</li>
+      <li><a href="/fenetre-de-toit-velux-lucarnes/"><strong>Fenêtres de toit VELUX et lucarnes</strong></a> : remplacement, création et restauration.</li>
+      <li><a href="/couvreur-copropriete-syndic/"><strong>Copropriétés et syndics</strong></a> : réfection, réparation, isolation des combles.</li>
       <li><a href="/nettoyage-toiture/"><strong>Nettoyage et démoussage</strong></a> avec traitement anti-mousse et hydrofuge.</li>
       <li><a href="/charpente/">Charpente</a> et <a href="/zinguerie/">zinguerie</a> : gouttières, chéneaux, lucarnes, habillages.</li>
     </ul>
@@ -1119,9 +1250,142 @@ def ville(v):
     write(url, html)
 
 
+def city_groups():
+    order = [("94", "Val-de-Marne"), ("78", "Yvelines"), ("92", "Hauts-de-Seine"), ("77", "Seine-et-Marne")]
+    out = ""
+    for num, dept in order:
+        links = "".join(f'<a href="/{v["slug"]}/">Couvreur {v["name"]}</a>' for v in VILLES if v["num"] == num)
+        if links:
+            out += f'<h3 class="city-dept">{dept} ({num})</h3><div class="city-links">{links}</div>'
+    return out
+
+
 def villes():
     for v in VILLES:
         ville(v)
+
+
+def copropriete():
+    trail = [("/", "Accueil"), ("/couvreur-copropriete-syndic/", "Copropriétés et syndics")]
+    faq = [
+        ("Travaillez-vous avec les syndics professionnels et bénévoles ?",
+         "Oui. Nous intervenons pour des syndics professionnels, des syndics bénévoles et des conseils syndicaux, sur des copropriétés de toutes tailles, du petit immeuble à la résidence de plusieurs bâtiments."),
+        ("Fournissez-vous des devis pour l'assemblée générale ?",
+         "Oui. Après visite et diagnostic, nous remettons un devis détaillé poste par poste, accompagné d'un descriptif des travaux et, si besoin, de plusieurs variantes, pour faciliter le vote en assemblée générale."),
+        ("Quelles aides pour isoler les combles d'une copropriété ?",
+         "Entreprise RGE, nous permettons à la copropriété de prétendre aux aides à la rénovation énergétique, comme les primes CEE ou MaPrimeRénov' Copropriété lorsque les travaux s'inscrivent dans un projet de rénovation globale. L'éligibilité dépend des conditions en vigueur et du projet."),
+        ("Comment se passent les travaux dans un immeuble habité ?",
+         "Nous organisons le chantier en site occupé : information des résidents, protection des parties communes, sécurisation des accès, gestion des déchets et respect des horaires. Un interlocuteur unique assure le suivi avec le syndic."),
+        ("Pouvez-vous intervenir pour une réparation ponctuelle ?",
+         "Oui : remplacement de tuiles ou d'ardoises, reprise de solins, chéneaux, descentes, fenêtres de toit ou lucarnes. Nous établissons un constat et un devis rapidement pour le syndic."),
+        ("Pouvez-vous aider à préparer le plan pluriannuel de travaux ?",
+         "Nous réalisons un état des lieux complet de la toiture (couverture, charpente, zinguerie, isolation) et chiffrons les travaux à prévoir, des éléments utiles au diagnostic et au plan pluriannuel de travaux (PPT) désormais obligatoires pour les copropriétés."),
+    ]
+    desc = "Travaux de toiture pour copropriétés et syndics : réfection, réparation, isolation des combles, fenêtres de toit VELUX, lucarnes et zinguerie."
+    svc = service_ld("Couverture et isolation pour copropriétés", "/couvreur-copropriete-syndic/", desc)
+    svc["audience"] = {"@type": "BusinessAudience", "audienceType": "Syndics de copropriété et conseils syndicaux"}
+    lds = [org_ld(), crumbs_ld(trail), svc, faq_ld(faq)]
+    html = head("Couvreur copropriété et syndic en Île-de-France : toiture, isolation | JMC",
+                "Couvreur pour syndics et copropriétés : réfection et réparation de toiture, isolation des combles RGE, fenêtres de toit VELUX, lucarnes, zinguerie. Devis pour AG.",
+                "/couvreur-copropriete-syndic/", lds)
+    html += header("/couvreur-copropriete-syndic/")
+    html += page_hero(trail, "Copropriétés · Syndics", "Couvreur pour copropriétés et syndics en Île-de-France",
+                      "Réfection et réparation de toiture, isolation des combles, fenêtres de toit VELUX et lucarnes : une entreprise structurée, certifiée QUALIBAT et RGE, qui parle le langage des syndics et des conseils syndicaux.")
+    html += f"""
+<section><div class="wrap split">
+  <article class="prose">
+    {photo("drone", eager=True)}
+    <h2>Un partenaire fiable pour les syndics</h2>
+    <p>Depuis 1985, JMC intervient sur des immeubles, des résidences et des bâtiments publics en Île-de-France : immeubles parisiens rue de la Croix-Nivert ou boulevard de Sébastopol, programmes pour des promoteurs, écoles et équipements communaux. Nous savons ce qu'attend un gestionnaire de copropriété : des devis clairs, des délais tenus, un chantier propre et un interlocuteur joignable.</p>
+
+    <h2>Travaux de toiture en copropriété</h2>
+    <h3>Réfection et réparation de couverture</h3>
+    <p>Réfection complète de toiture d'immeuble en tuiles, ardoise ou zinc, réparations ponctuelles, remplacement de tuiles et d'ardoises, reprise de faîtages, de solins et d'abergements de cheminées.</p>
+    <h3>Isolation des combles</h3>
+    <p>Isolation des combles perdus par soufflage ou déroulage, isolation sous rampants des lots aménagés sous les toits, isolation par l'extérieur lors d'une réfection : des travaux RGE qui améliorent le DPE collectif et le confort des derniers étages. Voir aussi notre page <a href="/isolation-toiture/">isolation de toiture</a>.</p>
+    <h3>Fenêtres de toit VELUX</h3>
+    <p>Remplacement de fenêtres de toit VELUX et d'autres marques, souvent dans les dimensions existantes, création de fenêtres de toit pour les lots sous combles, raccords d'étanchéité, volets roulants et stores. Détails sur notre page <a href="/fenetre-de-toit-velux-lucarnes/">fenêtres de toit et lucarnes</a>.</p>
+    <h3>Lucarnes</h3>
+    <p>Restauration et habillage zinc des lucarnes existantes, réfection des jouées et des couvertures de lucarnes, création de lucarnes lorsque le règlement de copropriété et l'urbanisme le permettent.</p>
+    <h3>Zinguerie et eaux pluviales</h3>
+    <p>Chéneaux, gouttières, descentes, noues, terrassons et brisis en zinc : nous reprenons l'ensemble de la <a href="/zinguerie/">zinguerie</a> de l'immeuble.</p>
+
+    <h2>Notre méthode avec le syndic</h2>
+    <ol class="steps">
+      <li><strong>Visite et état des lieux</strong><br>Inspection de la toiture, des combles et de la zinguerie, photos et constat.</li>
+      <li><strong>Devis détaillé pour l'assemblée générale</strong><br>Descriptif, quantités, variantes éventuelles et planning prévisionnel.</li>
+      <li><strong>Préparation du chantier</strong><br>Démarches de voirie et d'urbanisme, échafaudage, information des résidents.</li>
+      <li><strong>Travaux et suivi</strong><br>Un interlocuteur unique, des points d'avancement réguliers avec le syndic.</li>
+      <li><strong>Réception</strong><br>Réception des travaux, photos, attestations et garanties pour le dossier de la copropriété.</li>
+    </ol>
+
+    <h2>Loi Climat : anticiper les travaux</h2>
+    <p>Diagnostic de performance énergétique collectif et plan pluriannuel de travaux (PPT) s'imposent désormais aux copropriétés. La toiture et l'isolation des combles y figurent presque toujours parmi les postes prioritaires : nous vous aidons à les chiffrer et à les planifier.</p>
+  </article>
+  {aside("Syndics : pourquoi JMC ?")}
+</div></section>
+"""
+    html += faq_html(faq, "Questions fréquentes des syndics et conseils syndicaux")
+    html += cta_band("Un immeuble à faire diagnostiquer ?", "Visite, état des lieux et devis pour votre assemblée générale, gratuits.")
+    html += footer()
+    write("/couvreur-copropriete-syndic/", html)
+
+
+def fenetres():
+    trail = [("/", "Accueil"), ("/fenetre-de-toit-velux-lucarnes/", "Fenêtres de toit et lucarnes")]
+    faq = [
+        ("Combien de temps pour remplacer une fenêtre de toit VELUX ?",
+         "Un remplacement dans les mêmes dimensions se fait généralement en une journée, sans reprendre la couverture autour. Un changement de taille ou une création demande davantage de travail sur la charpente et la couverture."),
+        ("Faut-il une autorisation pour créer une fenêtre de toit ou une lucarne ?",
+         "Oui en général : la création d'une fenêtre de toit ou d'une lucarne modifie l'aspect extérieur et nécessite une déclaration préalable en mairie, voire l'accord de l'Architecte des Bâtiments de France en secteur protégé. En copropriété, l'accord de l'assemblée générale est aussi nécessaire."),
+        ("Peut-on motoriser une fenêtre de toit existante ?",
+         "Selon le modèle, il est possible d'ajouter une motorisation, un volet roulant solaire ou un store. Souvent, le remplacement par une fenêtre neuve plus performante et motorisée est la meilleure option."),
+        ("Quelle différence entre lucarne et fenêtre de toit ?",
+         "La fenêtre de toit s'intègre dans le plan de la toiture. La lucarne est un petit ouvrage maçonné ou en charpente qui dépasse du toit, avec sa propre couverture : elle apporte de la hauteur sous plafond et du caractère, mais demande plus de travaux."),
+    ]
+    desc = "Pose, remplacement et création de fenêtres de toit VELUX, restauration et création de lucarnes, habillage zinc, pour particuliers et copropriétés."
+    lds = [org_ld(), crumbs_ld(trail), service_ld("Fenêtres de toit et lucarnes", "/fenetre-de-toit-velux-lucarnes/", desc), faq_ld(faq)]
+    html = head("Fenêtre de toit VELUX et lucarnes : pose et remplacement | JMC",
+                "Remplacement et pose de fenêtres de toit VELUX, création et rénovation de lucarnes en zinc ou ardoise en Île-de-France. Particuliers et copropriétés. Devis gratuit.",
+                "/fenetre-de-toit-velux-lucarnes/", lds)
+    html += header("/fenetre-de-toit-velux-lucarnes/")
+    html += page_hero(trail, "Fenêtres de toit · Lucarnes", "Fenêtres de toit VELUX et lucarnes : pose, remplacement et création",
+                      "Plus de lumière sous les toits, une isolation renforcée, des combles enfin habitables : nos couvreurs posent et remplacent vos fenêtres de toit et créent ou restaurent vos lucarnes.")
+    html += f"""
+<section><div class="wrap split">
+  <article class="prose">
+    {photo("mansarde", eager=True)}
+    <h2>Fenêtres de toit VELUX</h2>
+    <h3>Remplacement de fenêtre de toit</h3>
+    <p>Une fenêtre de toit de plus de 20 ans laisse passer l'air, la chaleur et parfois l'eau. Nous remplaçons vos fenêtres VELUX ou d'autres marques, le plus souvent dans les dimensions existantes, avec un raccord d'étanchéité neuf et un isolant périphérique : un gain immédiat de confort.</p>
+    <h3>Création de fenêtre de toit</h3>
+    <p>Pour éclairer des combles aménagés, nous ouvrons la toiture, réalisons le chevêtre dans la charpente, posons la fenêtre et refaisons la couverture autour dans les règles de l'art.</p>
+    <h3>Options de confort</h3>
+    <ul class="checks">
+      <li>Fenêtres à rotation ou à projection, verrières d'angle</li>
+      <li>Motorisation et capteur de pluie</li>
+      <li>Volets roulants solaires et stores occultants</li>
+      <li>Vitrages isolants et phoniques</li>
+    </ul>
+
+    <h2>Lucarnes</h2>
+    <h3>Restauration de lucarnes anciennes</h3>
+    <p>Lucarnes en ardoise, en zinc ou en bois : nous reprenons leur couverture, leurs jouées, leurs habillages et leur zinguerie, en respectant le style de la maison ou de l'immeuble, comme sur cette maison bourgeoise aux trois lucarnes habillées de zinc.</p>
+    <h3>Création de lucarnes</h3>
+    <p>Lucarne jacobine, capucine, rampante ou chien-assis : nous créons la lucarne adaptée à votre toiture et à votre projet d'aménagement, de la charpente à la couverture et à la <a href="/couverture-zinc-bardage/">finition zinc</a>.</p>
+    {photo("drone")}
+
+    <h2>Pour les particuliers comme pour les copropriétés</h2>
+    <p>Nous intervenons dans les maisons individuelles comme dans les immeubles, en lien avec le <a href="/couvreur-copropriete-syndic/">syndic de copropriété</a> pour les fenêtres de toit et les lucarnes des lots sous combles. Ces travaux se combinent idéalement avec une <a href="/isolation-toiture/">isolation de toiture</a> ou une <a href="/renovation-toiture/">rénovation complète</a>.</p>
+    <p class="small">VELUX est une marque déposée de son propriétaire. JMC pose et remplace les fenêtres de toit de cette marque et d'autres fabricants.</p>
+  </article>
+  {aside("Fenêtres de toit et lucarnes")}
+</div></section>
+"""
+    html += faq_html(faq, "Questions fréquentes sur les fenêtres de toit et les lucarnes")
+    html += cta_band("Plus de lumière sous vos toits ?", "Devis gratuit pour vos fenêtres de toit et lucarnes.")
+    html += footer()
+    write("/fenetre-de-toit-velux-lucarnes/", html)
 
 
 REFS = [
@@ -1194,28 +1458,31 @@ def zones():
         ("Val-de-Marne (94)", ["Saint-Maur-des-Fossés", "La Varenne-Saint-Hilaire", "Nogent-sur-Marne", "Le Perreux-sur-Marne",
                                "Vincennes", "Saint-Mandé", "Bry-sur-Marne", "Joinville-le-Pont", "Le Plessis-Trévise",
                                "Chennevières-sur-Marne", "Fontenay-sous-Bois", "Maisons-Alfort"]),
-        ("Hauts-de-Seine (92)", ["Neuilly-sur-Seine", "Boulogne-Billancourt", "Rueil-Malmaison", "Nanterre",
-                                 "Courbevoie", "Antony", "Sceaux", "Colombes"]),
+        ("Hauts-de-Seine (92)", ["Neuilly-sur-Seine", "Boulogne-Billancourt", "Saint-Cloud", "Sceaux", "Ville-d'Avray",
+                                 "Marnes-la-Coquette", "Vaucresson", "Garches", "Rueil-Malmaison", "Meudon", "Sèvres",
+                                 "Chaville", "Bourg-la-Reine", "Levallois-Perret", "Issy-les-Moulineaux", "Antony"]),
         ("Val-d'Oise (95)", ["Cergy", "Argenteuil", "Enghien-les-Bains", "Montmorency", "Roissy-en-France",
                              "Sarcelles", "Pontoise", "L'Isle-Adam"]),
-        ("Yvelines (78)", ["Versailles", "Saint-Germain-en-Laye", "Le Vésinet", "Maisons-Laffitte",
-                           "Rambouillet", "Poissy", "Le Chesnay-Rocquencourt", "Chatou"]),
+        ("Yvelines (78)", ["Versailles", "Le Vésinet", "Saint-Germain-en-Laye", "Maisons-Laffitte",
+                           "Le Chesnay-Rocquencourt", "Chatou", "Croissy-sur-Seine", "Louveciennes", "Marly-le-Roi",
+                           "Bougival", "La Celle-Saint-Cloud", "L'Étang-la-Ville", "Chambourcy", "Viroflay", "Rambouillet"]),
         ("Essonne (91)", ["Évry-Courcouronnes", "Massy", "Palaiseau", "Corbeil-Essonnes",
                           "Brunoy", "Yerres", "Savigny-sur-Orge", "Étampes"]),
     ]
     blocks = "".join(
         f'<div class="card"><h3>{g}</h3><ul class="cities" style="columns:2 140px">'
         + "".join(f"<li>{c}</li>" for c in cs) + "</ul></div>" for g, cs in groups)
-    html = head("Couvreur en Île-de-France : Saint-Maur, Nogent, 77, Paris | JMC",
-                "Couvreur dans toute l'Île-de-France : Saint-Maur-des-Fossés, Nogent, Le Perreux, Lagny, Ozoir, Bussy-Saint-Georges, Paris et les 8 départements.",
+    html = head("Couvreur en Île-de-France : 94, 78, 92, 77 et Paris | JMC",
+                "Couvreur dans toute l'Île-de-France : Saint-Maur, Nogent, Versailles, Le Vésinet, Neuilly, Saint-Cloud, Fontainebleau, Paris et les 8 départements.",
                 "/zones-intervention/", lds)
     html += header("/zones-intervention/")
     html += page_hero(trail, "Zones d'intervention", "Couvreur dans toute l'Île-de-France",
                       "Depuis notre siège de Courtry (77), nos équipes et notre flotte de véhicules interviennent à Paris et dans les huit départements franciliens, pour les particuliers comme pour les professionnels.")
     html += f"""
 <section><div class="wrap">
-  <div class="section-head"><h2>Nos villes prioritaires</h2></div>
-  <div class="city-links" style="margin-bottom:40px">{"".join(f'<a href="/{v["slug"]}/">Couvreur {v["name"]} <small>({v["num"]})</small></a>' for v in VILLES)}</div>
+  <div class="section-head"><h2>Nos villes prioritaires</h2><p>Une page dédiée pour chaque commune où nous intervenons le plus souvent.</p></div>
+  <div style="margin-bottom:40px">{city_groups()}</div>
+  <h2>Toutes nos communes d'intervention par département</h2>
   <div class="grid g3">{blocks}</div>
   <div class="prose" style="margin-top:48px">
     <h2>Un couvreur francilien depuis 1985</h2>
@@ -1267,6 +1534,8 @@ def contact():
           <option>Couverture zinc / bardage (maison d'architecte)</option>
           <option>Charpente</option>
           <option>Zinguerie / gouttières</option>
+          <option>Copropriété / syndic</option>
+          <option>Fenêtre de toit VELUX / lucarne</option>
           <option>Autre</option>
         </select></label>
       <label>Votre projet *<textarea name="message" rows="6" required placeholder="Surface approximative, matériau actuel, problème constaté…"></textarea></label>
@@ -1336,7 +1605,7 @@ def notfound():
 
 
 SITEMAP = [("/", "1.0"), ("/couverture/", "0.9"), ("/charpente/", "0.9"), ("/zinguerie/", "0.9"),
-           ("/renovation-toiture/", "0.95"), ("/nettoyage-toiture/", "0.95"), ("/toiture-maison-neuve/", "0.95"), ("/isolation-toiture/", "0.95"), ("/couverture-zinc-bardage/", "0.95"), ("/zones-intervention/", "0.7"), ("/nos-references/", "0.7"),
+           ("/renovation-toiture/", "0.95"), ("/nettoyage-toiture/", "0.95"), ("/toiture-maison-neuve/", "0.95"), ("/isolation-toiture/", "0.95"), ("/couverture-zinc-bardage/", "0.95"), ("/couvreur-copropriete-syndic/", "0.95"), ("/fenetre-de-toit-velux-lucarnes/", "0.9"), ("/zones-intervention/", "0.7"), ("/nos-references/", "0.7"),
            ("/contact/", "0.8")]
 
 
@@ -1353,6 +1622,6 @@ def seo_files():
 
 
 if __name__ == "__main__":
-    for fn in (home, couverture, charpente, zinguerie, renovation, nettoyage, maison_neuve, isolation, zinc_bardage, villes, references, zones, contact, merci, mentions, notfound):
+    for fn in (home, couverture, charpente, zinguerie, renovation, nettoyage, maison_neuve, isolation, zinc_bardage, copropriete, fenetres, villes, references, zones, contact, merci, mentions, notfound):
         fn()
     seo_files()

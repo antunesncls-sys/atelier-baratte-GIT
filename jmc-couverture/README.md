@@ -7,6 +7,15 @@ Site statique (HTML/CSS, sans dépendance) prêt à déployer sur Netlify, OVH o
 - Nouvelles pages ciblant des requêtes locales : `/renovation-toiture/` (remplacement de toiture), `/nettoyage-toiture/` (nettoyage, démoussage), `/toiture-maison-neuve/` (particuliers qui font construire), `/zones-intervention/` (toute l'Île-de-France), plus `/mentions-legales/`, `/merci/`, `/404.html`.
 - `sitemap.xml`, `robots.txt`, logo officiel 40 ans (SVG), favicons, image de partage `assets/og-jmc-couverture.jpg`.
 
+## Pages spécialités
+Rénovation, isolation, maison neuve, zinc & bardage (architecte), copropriétés & syndics,
+fenêtres de toit VELUX & lucarnes, nettoyage, + couverture / charpente / zinguerie.
+
+## Pages villes (28)
+Données dans `VILLES` (`_build/build.py`) : 94 (Saint-Maur, Nogent, Le Perreux), 77 (Lagny, Ozoir,
+Bussy-Saint-Georges, Fontainebleau, Barbizon), 78 (Versailles, Le Vésinet, Saint-Germain-en-Laye…),
+92 (Neuilly, Boulogne, Saint-Cloud, Sceaux…). Pour en ajouter une : un appel `_v(...)` avec un texte propre à la ville.
+
 ## SEO intégré
 - Title / meta description uniques par page, ciblés « couvreur + ville / département ».
 - Un seul H1 par page, hiérarchie H2/H3, maillage interne entre services.
