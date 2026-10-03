@@ -58,6 +58,9 @@ FOOTER_CITIES = {"Saint-Maur-des-Fossés", "Nogent-sur-Marne", "Le Perreux-sur-M
 DEPTS = ("Paris", "Seine-et-Marne", "Yvelines", "Essonne", "Hauts-de-Seine", "Seine-Saint-Denis", "Val-de-Marne", "Val-d'Oise")
 
 SAVOIR_FAIRE = [
+    ("/toiture-tuile/", "Toiture en tuiles"),
+    ("/debord-de-toit-sous-face-finitions/", "Débords de toit et finitions"),
+    ("/auvent-marquise-sur-mesure/", "Auvents sur mesure"),
     ("/chien-assis-lucarne/", "Chien-assis et lucarnes"),
     ("/toiture-mansardee-brisis-terrasson/", "Toiture mansardée"),
     ("/cheneau-noue-zinc/", "Chéneaux et noues en zinc"),
@@ -310,7 +313,7 @@ def org_ld():
         + [{"@type": "AdministrativeArea", "name": n} for n in DEPTS]
         + [{"@type": "City", "name": c} for c in dict.fromkeys([v["name"] for v in VILLES] + CITIES)],
         "knowsAbout": ["Couverture", "Charpente", "Zinguerie", "Rénovation de toiture",
-                       "Remplacement de toiture", "Nettoyage de toiture", "Démoussage", "Isolation de toiture", "Couverture zinc", "Bardage zinc", "Maison d'architecte", "Toiture maison neuve", "Isolation des combles", "Isolation des combles perdus", "Isolation des rampants", "Soufflage", "Fenêtre de toit", "VELUX", "Lucarnes", "Copropriété", "Promotion immobilière", "Chien-assis", "Toiture mansardée", "Chéneau", "Noue", "Souche de cheminée", "Étanchéité toiture terrasse", "EPDM", "Descentes d'eaux pluviales", "Photovoltaïque", "Gouttières", "Toiture zinc", "Ardoise", "Tuiles"],
+                       "Remplacement de toiture", "Nettoyage de toiture", "Démoussage", "Isolation de toiture", "Couverture zinc", "Bardage zinc", "Maison d'architecte", "Toiture maison neuve", "Isolation des combles", "Isolation des combles perdus", "Isolation des rampants", "Soufflage", "Tuile mécanique", "Tuile plate", "Remaniage", "Débord de toit", "Sous-face", "Auvent", "Fenêtre de toit", "VELUX", "Lucarnes", "Copropriété", "Promotion immobilière", "Chien-assis", "Toiture mansardée", "Chéneau", "Noue", "Souche de cheminée", "Étanchéité toiture terrasse", "EPDM", "Descentes d'eaux pluviales", "Photovoltaïque", "Gouttières", "Toiture zinc", "Ardoise", "Tuiles"],
         "hasCredential": [
             {"@type": "EducationalOccupationalCredential", "credentialCategory": "Qualification", "name": "QUALIBAT"},
             {"@type": "EducationalOccupationalCredential", "credentialCategory": "Label", "name": "RGE - Reconnu Garant de l'Environnement"},
@@ -334,6 +337,9 @@ def org_ld():
                              ("Étanchéité de toiture terrasse", "/etancheite-toiture-terrasse/"),
                              ("Isolation des combles perdus", "/isolation-combles-perdus/"),
                              ("Isolation des rampants", "/isolation-rampants/"),
+                             ("Toiture en tuiles", "/toiture-tuile/"),
+                             ("Débords de toit et finitions", "/debord-de-toit-sous-face-finitions/"),
+                             ("Auvents et marquises sur mesure", "/auvent-marquise-sur-mesure/"),
                              ("Toiture avant panneaux photovoltaïques", "/toiture-avant-panneaux-photovoltaiques/"))
             ],
         },
@@ -469,6 +475,7 @@ def aside(title="Pourquoi choisir JMC ?"):
     <li>Équipe SAV et qualité dédiée, en interne</li>
     <li>Équipes formées à la sécurité et à la propreté</li>
     <li>Démarches en mairie gérées pour vous</li>
+    <li>Toutes les finitions : sous-faces, peintures, auvents</li>
     <li>Isolation RGE : aides possibles</li>
     <li>Devis gratuit et détaillé</li>
   </ul>
@@ -679,7 +686,7 @@ def home():
   {service_card("roof", "Fenêtres de toit VELUX et lucarnes", "/fenetre-de-toit-velux-lucarnes/", "Plus de lumière et de confort sous les toits.",
                 ["Remplacement de VELUX", "Création de fenêtres de toit", "Restauration de lucarnes", "Habillage zinc"])}
   {service_card("drop", "Couverture, charpente, zinguerie", "/couverture/", "Tous les métiers du toit, maîtrisés par nos propres équipes.",
-                ['<a href="/couverture/">Couverture</a> : tuiles, ardoise, zinc', '<a href="/charpente/">Charpente</a> traditionnelle ou industrielle', '<a href="/zinguerie/">Zinguerie</a> et gouttières', "Fenêtres de toit et lucarnes"])}
+                ['<a href="/toiture-tuile/">Toiture en tuiles</a>, ardoise, zinc', '<a href="/charpente/">Charpente</a> traditionnelle ou industrielle', '<a href="/zinguerie/">Zinguerie</a> et gouttières', "Fenêtres de toit et lucarnes"])}
   </div>
 </div></section>
 
@@ -776,7 +783,7 @@ def couverture():
     <p>Couvreur à Courtry depuis 1985, JMC intervient sur les pavillons, les immeubles et les bâtiments publics de Seine-et-Marne, de Seine-Saint-Denis et de Paris.</p>
 
     <h2>Les couvertures que nous posons et rénovons</h2>
-    <h3>Toiture en tuiles plates et mécaniques</h3>
+    <h3><a href="/toiture-tuile/">Toiture en tuiles plates et mécaniques</a></h3>
     <p>Matériau le plus répandu en Île-de-France, la tuile terre cuite offre une excellente longévité. Nous posons et remplaçons tuiles plates, tuiles mécaniques à emboîtement et tuiles canal, avec reprise du liteaunage, de l'écran sous-toiture et des faîtages.</p>
     <h3>Toiture en ardoise naturelle ou synthétique</h3>
     <p>L'ardoise naturelle, posée au crochet ou au clou, peut durer plus d'un siècle. L'ardoise synthétique (fibres-ciment) constitue une alternative plus économique. Nous intervenons en neuf comme en rénovation, y compris sur les brisis et les lucarnes.</p>
@@ -970,11 +977,11 @@ def renovation():
       <li><strong>Contrôle et renfort de la charpente</strong><br>Remplacement des bois abîmés, traitement si nécessaire (voir <a href="/charpente/">charpente</a>).</li>
       <li><strong>Isolation (option RGE)</strong><br>Isolation par l'extérieur (sarking) ou sous rampants.</li>
       <li><strong>Écran sous-toiture, liteaunage et couverture neuve</strong><br>Pose dans les règles de l'art (DTU), faîtages et rives.</li>
-      <li><strong>Zinguerie neuve et réception</strong><br>Gouttières, descentes, noues et abergements (voir <a href="/zinguerie/">zinguerie</a>), nettoyage du chantier.</li>
+      <li><strong>Finitions, zinguerie neuve et réception</strong><br>Débords de toit, sous-faces et peintures (voir <a href="/debord-de-toit-sous-face-finitions/">finitions</a>). Gouttières, descentes, noues et abergements (voir <a href="/zinguerie/">zinguerie</a>), nettoyage du chantier.</li>
     </ol>
 
     <h2>Quel matériau pour votre nouvelle toiture ?</h2>
-    <p>Tuiles terre cuite plates ou mécaniques, ardoise naturelle ou synthétique, zinc, bac acier : nous vous conseillons selon le style de la maison, la pente et le PLU de votre commune. Découvrez le détail de chaque matériau sur notre page <a href="/couverture/">couverture</a>.</p>
+    <p><a href="/toiture-tuile/">Tuiles</a> terre cuite plates ou mécaniques, ardoise naturelle ou synthétique, zinc, bac acier : nous vous conseillons selon le style de la maison, la pente et le PLU de votre commune. Découvrez le détail de chaque matériau sur notre page <a href="/couverture/">couverture</a>.</p>
     {reviews_block(['lily', 'richard'])}
   </article>
   {aside()}
@@ -1430,7 +1437,7 @@ def ville(v):
     {paras}
     <h2>Nos services de couverture à {name}</h2>
     <ul class="checks">
-      <li><a href="/renovation-toiture/"><strong>Rénovation et remplacement de toiture</strong></a> : réfection complète, de la charpente aux gouttières.</li>
+      <li><a href="/renovation-toiture/"><strong>Rénovation et remplacement de toiture</strong></a> : réfection complète en <a href="/toiture-tuile/">tuiles</a>, ardoise ou zinc, de la charpente aux gouttières.</li>
       <li><a href="/isolation-toiture/"><strong>Isolation de toiture</strong></a> par l'extérieur, <a href="/isolation-rampants/">sous rampants</a> ou <a href="/isolation-combles-perdus/">combles perdus</a>, par une entreprise RGE.</li>
       <li><a href="/couverture-zinc-bardage/"><strong>Couverture zinc et bardage</strong></a> pour maisons d'architecte, extensions et surélévations.</li>
       <li><a href="/toiture-maison-neuve/"><strong>Toiture de maison neuve</strong></a> : charpente, couverture et zinguerie de votre construction.</li>
@@ -1535,7 +1542,7 @@ def dept_page(d):
     {('<h2>Nos pages par ville</h2><div class="city-links">' + links + '</div>') if links else ''}
     <h2>Nos services de couverture {d['art']} {d['name']}</h2>
     <ul class="checks">
-      <li><a href="/renovation-toiture/"><strong>Rénovation et remplacement de toiture</strong></a></li>
+      <li><a href="/renovation-toiture/"><strong>Rénovation et remplacement de toiture</strong></a>, <a href="/toiture-tuile/">toitures en tuiles</a></li>
       <li><a href="/isolation-toiture/"><strong>Isolation de toiture</strong></a>, <a href="/isolation-rampants/">des rampants</a> et <a href="/isolation-combles-perdus/">des combles perdus</a> (entreprise RGE)</li>
       <li><a href="/fenetre-de-toit-velux-lucarnes/"><strong>Pose et remplacement de VELUX</strong>, lucarnes</a></li>
       <li><a href="/couverture-zinc-bardage/"><strong>Couverture zinc et bardage</strong></a> pour maisons d'architecte</li>
@@ -2184,6 +2191,123 @@ def rampants():
            ("Des combles trop chauds ou trop froids ?", "Visite, diagnostic et devis gratuits par une entreprise RGE."))
 
 
+def tuile():
+    faq = [
+        ("Tuile mécanique ou tuile plate : que choisir ?",
+         "La tuile mécanique, à emboîtement, est la plus répandue sur les pavillons d'Île-de-France : rapide à poser et économique. La tuile plate, posée en recouvrement, donne le cachet des maisons anciennes et des toitures à forte pente, mais demande beaucoup plus de tuiles au mètre carré. Le choix dépend aussi du PLU de votre commune."),
+        ("Tuile terre cuite ou tuile béton ?",
+         "La terre cuite est le matériau traditionnel : durable, elle garde ses couleurs. La tuile béton est plus lourde et plus économique, mais son aspect évolue davantage avec le temps. Nous vous conseillons selon votre charpente, votre budget et les règles d'urbanisme."),
+        ("Qu'est-ce qu'un remaniage de toiture ?",
+         "Le remaniage consiste à déposer les tuiles, remplacer les liteaux et les tuiles abîmées, puis reposer les tuiles saines. C'est une solution intermédiaire entre la simple réparation et la réfection complète, quand les tuiles sont encore en bon état."),
+        ("Combien de temps dure une toiture en tuiles ?",
+         "Une toiture en tuiles de terre cuite bien posée et entretenue dure plusieurs décennies, souvent plus de 50 ans. Un nettoyage régulier et le remplacement rapide des tuiles cassées prolongent sa durée de vie."),
+        ("Pouvez-vous remplacer seulement quelques tuiles cassées ?",
+         "Oui, en particulier lors d'un nettoyage, d'un remaniage ou d'une intervention de zinguerie. Nous vérifions alors l'ensemble de la couverture pour vous dire si d'autres travaux sont à prévoir."),
+    ]
+    body = f"""    {photo("meuliere", eager=True)}
+    <h2>La tuile, matériau roi des maisons d'Île-de-France</h2>
+    <p>Pavillons des années 1930 à aujourd'hui, maisons en meulière, maisons de ville : la grande majorité des maisons franciliennes sont couvertes de tuiles. Nos couvreurs posent, rénovent et entretiennent tous les types de toitures en tuiles, dans le respect des règles de l'art et des règles d'urbanisme de votre commune.</p>
+
+    <h2>Les tuiles que nous posons</h2>
+    <h3>Tuile mécanique</h3>
+    <p>Tuile à emboîtement, la plus courante sur les pavillons. Rapide à poser, elle existe en terre cuite ou en béton, dans de nombreux coloris : rouge, brun, vieilli, anthracite.</p>
+    <h3>Tuile plate</h3>
+    <p>Tuile traditionnelle de la région parisienne, posée en recouvrement sur les toitures à forte pente. Elle donne aux maisons anciennes et bourgeoises leur aspect authentique.</p>
+    <h3>Tuile terre cuite et tuile béton</h3>
+    <p>La terre cuite est durable et garde ses teintes ; le béton est une alternative plus économique. Nous vérifions toujours que votre charpente est adaptée au poids des tuiles choisies.</p>
+    {photo("pavillon")}
+
+    <h2>Nos travaux sur les toitures en tuiles</h2>
+    <ul class="checks">
+      <li><strong>Réfection complète</strong> : dépose, écran sous-toiture, liteaunage et tuiles neuves (voir <a href="/renovation-toiture/">rénovation de toiture</a>)</li>
+      <li><strong>Remaniage</strong> : dépose et repose des tuiles saines, remplacement des liteaux et des tuiles abîmées</li>
+      <li><strong>Remplacement de tuiles cassées</strong>, faîtages, rives et closoirs</li>
+      <li><strong>Changement de tuiles pour un nouvel aspect</strong> : passage d'une tuile rouge à une tuile anthracite, par exemple</li>
+      <li><strong>Nettoyage et traitement</strong> des tuiles (voir <a href="/nettoyage-toiture/">nettoyage et démoussage</a>)</li>
+      <li><strong>Finitions</strong> : <a href="/debord-de-toit-sous-face-finitions/">débords de toit et sous-faces</a>, zinguerie, <a href="/fenetre-de-toit-velux-lucarnes/">fenêtres de toit</a></li>
+    </ul>
+
+    <h2>Le prix d'une toiture en tuiles</h2>
+    <p>Le prix au mètre carré dépend du type de tuile (mécanique ou plate, terre cuite ou béton), de la surface, de la pente, de l'accès, de l'état de la charpente et des options (isolation, fenêtres de toit, zinguerie). Nous vous remettons un devis gratuit, détaillé poste par poste, après visite.</p>
+    {reviews_block(['lily', 'marcelino'])}"""
+    _guide("/toiture-tuile/", "Toiture en tuiles",
+           "Toiture en tuiles : tuile mécanique, tuile plate, remaniage | JMC",
+           "Pose, réfection et remaniage de toitures en tuiles mécaniques, tuiles plates, terre cuite ou béton en Île-de-France. Remplacement de tuiles, devis gratuit.",
+           "Tuiles · Toiture", "Toiture en tuiles : tuile mécanique, tuile plate et terre cuite",
+           "Réfection complète, remaniage, remplacement de tuiles cassées ou changement d'aspect : nos couvreurs travaillent toutes les tuiles des maisons d'Île-de-France.",
+           body, faq, "Couverture en tuiles",
+           ("Votre toiture en tuiles a besoin d'un diagnostic ?", "Visite et devis gratuits par un couvreur certifié QUALIBAT."))
+
+
+def debords():
+    faq = [
+        ("Qu'est-ce qu'un débord de toit ?",
+         "C'est la partie de la toiture qui dépasse de la façade. Elle protège les murs de la pluie. Son dessous, la sous-face, ainsi que les chevrons apparents et les planches de rive, sont exposés aux intempéries et doivent être entretenus."),
+        ("Faut-il repeindre les dessous de toit ?",
+         "Oui, régulièrement : une peinture ou une lasure écaillée laisse l'humidité attaquer le bois des chevrons, des voliges et des planches de rive. Nous préparons les supports (grattage, ponçage, traitement) avant d'appliquer une finition durable."),
+        ("Peut-on habiller les sous-faces pour ne plus les entretenir ?",
+         "Oui, un habillage en PVC, en aluminium ou en zinc protège durablement les sous-faces et les rives, et supprime l'entretien régulier de la peinture."),
+        ("Quand réaliser ces finitions ?",
+         "Idéalement pendant une rénovation de toiture : l'échafaudage est déjà en place, et l'ensemble de la toiture est livré propre et fini."),
+    ]
+    body = f"""    {photo("pavillon", eager=True)}
+    <h2>Les finitions font la qualité d'une toiture</h2>
+    <p>Une belle toiture ne s'arrête pas aux tuiles ou aux ardoises. Débords de toit, sous-faces, chevrons, planches de rive et bandeaux sont visibles de la rue et protègent vos façades : nous réalisons toutes ces finitions, pour une maison soignée de la toiture jusqu'aux détails.</p>
+
+    <h2>Peinture des dessous de toit</h2>
+    <p>Grattage et ponçage des anciennes peintures, traitement du bois, sous-couche puis peinture ou lasure de finition sur les sous-faces, chevrons apparents et planches de rive. Votre débord de toit retrouve son aspect neuf et le bois est protégé durablement.</p>
+
+    <h2>Remplacement et habillage</h2>
+    <ul class="checks">
+      <li>Remplacement des planches de rive, voliges et chevrons abîmés</li>
+      <li>Habillage des sous-faces et des rives en PVC, en aluminium ou en zinc, sans entretien</li>
+      <li>Bandeaux et couvertines en zinc</li>
+      <li>Grilles de ventilation et protections anti-nuisibles</li>
+    </ul>
+
+    <h2>Toutes les finitions de votre toiture</h2>
+    <p>Faîtages, rives, closoirs, habillages zinc, gouttières : en fin de <a href="/renovation-toiture/">rénovation de toiture</a>, nous livrons une toiture entièrement finie. Nous réalisons aussi des <a href="/auvent-marquise-sur-mesure/">auvents et marquises sur mesure</a> pour compléter votre façade.</p>"""
+    _guide("/debord-de-toit-sous-face-finitions/", "Débords de toit et finitions",
+           "Débord de toit, sous-face et peinture des dessous de toit | JMC",
+           "Peinture des dessous de toit, sous-faces, chevrons et planches de rive, habillage PVC, alu ou zinc : toutes les finitions de toiture en Île-de-France.",
+           "Finitions · Débords de toit", "Débords de toit, sous-faces et finitions de toiture",
+           "Peinture des dessous de toit, remplacement des planches de rive, habillage des sous-faces : nous réalisons toutes les finitions qui protègent et embellissent votre maison.",
+           body, faq, "Finitions de toiture et débords de toit",
+           ("Des dessous de toit à rafraîchir ?", "Visite et devis gratuits pour toutes vos finitions de toiture."))
+
+
+def auvents():
+    faq = [
+        ("Quelle différence entre un auvent et une marquise ?",
+         "Les deux termes désignent un petit toit qui protège une entrée. La marquise évoque plutôt les modèles décoratifs, souvent vitrés, des maisons anciennes ; l'auvent désigne plus largement tout abri en avancée de façade."),
+        ("Faut-il une autorisation pour poser un auvent ?",
+         "Un auvent modifie l'aspect de la façade : une déclaration préalable est en général nécessaire, et l'avis de l'Architecte des Bâtiments de France en secteur protégé. Nous pouvons gérer ces démarches pour vous."),
+        ("Pourquoi faire appel à un couvreur pour un auvent ?",
+         "Parce que l'auvent est un petit ouvrage de toiture : il doit être étanche, évacuer l'eau correctement et être raccordé proprement à la façade. Nous réalisons la structure sur mesure et sa couverture, avec les raccords d'étanchéité."),
+    ]
+    body = f"""    <h2>Un auvent sur mesure pour votre entrée</h2>
+    <p>Protéger votre porte d'entrée de la pluie, mettre en valeur votre façade, abriter un seuil ou une porte de garage : nous concevons et posons des auvents et marquises sur mesure, avec une structure en serrurerie adaptée à votre maison.</p>
+
+    <h2>Notre savoir-faire</h2>
+    <ul class="checks">
+      <li><strong>Structure en serrurerie sur mesure</strong>, dessinée selon les dimensions et le style de votre façade</li>
+      <li><strong>Couverture et étanchéité</strong> réalisées par nos couvreurs-zingueurs</li>
+      <li><strong>Évacuation des eaux</strong> et raccords soignés avec la façade</li>
+      <li><strong>Finitions</strong> assorties à votre toiture et à vos menuiseries</li>
+      <li><strong>Démarches en mairie</strong> gérées si nécessaire</li>
+    </ul>
+
+    <h2>Pour quels projets ?</h2>
+    <p>Auvent de porte d'entrée, marquise de style pour une maison ancienne ou en meulière, abri de porte de service ou de garage : chaque auvent est fabriqué sur mesure. Il complète idéalement une <a href="/renovation-toiture/">rénovation de toiture</a> ou des <a href="/debord-de-toit-sous-face-finitions/">finitions de façade et de débords de toit</a>.</p>"""
+    _guide("/auvent-marquise-sur-mesure/", "Auvents et marquises sur mesure",
+           "Auvent et marquise sur mesure en serrurerie, porte d'entrée | JMC",
+           "Auvents et marquises de porte d'entrée sur mesure : structure en serrurerie, couverture et étanchéité par des couvreurs-zingueurs en Île-de-France. Devis gratuit.",
+           "Serrurerie · Auvents", "Auvent et marquise sur mesure pour votre porte d'entrée",
+           "Structure en serrurerie sur mesure, couverture et étanchéité réalisées par nos couvreurs-zingueurs : un auvent qui protège et embellit votre entrée.",
+           body, faq, "Auvents et marquises sur mesure",
+           ("Un projet d'auvent ?", "Étude, démarches et devis gratuits."))
+
+
 REFS = [
     ("Charpente", "Rue de la Croix-Nivert", "Paris 15e", "Travaux de charpente sur immeuble parisien."),
     ("Charpente", "Nexity – rue Raffet", "Paris 16e", "Charpente pour un programme immobilier Nexity."),
@@ -2348,6 +2472,8 @@ def contact():
           <option>Fenêtre de toit VELUX / lucarne</option>
           <option>Étanchéité toiture terrasse / descentes</option>
           <option>Toiture avant panneaux photovoltaïques</option>
+          <option>Finitions : dessous de toit, sous-faces, peinture</option>
+          <option>Auvent / marquise sur mesure</option>
           <option>SAV – client JMC</option>
           <option>Autre</option>
         </select></label>
@@ -2418,7 +2544,7 @@ def notfound():
 
 
 SITEMAP = [("/", "1.0"), ("/couverture/", "0.9"), ("/charpente/", "0.9"), ("/zinguerie/", "0.9"),
-           ("/renovation-toiture/", "0.95"), ("/nettoyage-toiture/", "0.95"), ("/toiture-maison-neuve/", "0.95"), ("/isolation-toiture/", "0.95"), ("/couverture-zinc-bardage/", "0.95"), ("/couvreur-copropriete-syndic/", "0.95"), ("/fenetre-de-toit-velux-lucarnes/", "0.9"), ("/couvreur-promotion-immobiliere/", "0.9"), ("/notre-methode-sav-qualite/", "0.8"), ("/chien-assis-lucarne/", "0.9"), ("/toiture-mansardee-brisis-terrasson/", "0.85"), ("/cheneau-noue-zinc/", "0.85"), ("/souche-cheminee-solin-abergement/", "0.85"), ("/etancheite-toiture-terrasse/", "0.9"), ("/isolation-combles-perdus/", "0.9"), ("/isolation-rampants/", "0.9"), ("/toiture-avant-panneaux-photovoltaiques/", "0.85"), ("/zones-intervention/", "0.7"), ("/nos-references/", "0.7"),
+           ("/renovation-toiture/", "0.95"), ("/nettoyage-toiture/", "0.95"), ("/toiture-maison-neuve/", "0.95"), ("/isolation-toiture/", "0.95"), ("/couverture-zinc-bardage/", "0.95"), ("/couvreur-copropriete-syndic/", "0.95"), ("/fenetre-de-toit-velux-lucarnes/", "0.9"), ("/couvreur-promotion-immobiliere/", "0.9"), ("/notre-methode-sav-qualite/", "0.8"), ("/chien-assis-lucarne/", "0.9"), ("/toiture-mansardee-brisis-terrasson/", "0.85"), ("/cheneau-noue-zinc/", "0.85"), ("/souche-cheminee-solin-abergement/", "0.85"), ("/etancheite-toiture-terrasse/", "0.9"), ("/isolation-combles-perdus/", "0.9"), ("/isolation-rampants/", "0.9"), ("/toiture-tuile/", "0.95"), ("/debord-de-toit-sous-face-finitions/", "0.85"), ("/auvent-marquise-sur-mesure/", "0.8"), ("/toiture-avant-panneaux-photovoltaiques/", "0.85"), ("/zones-intervention/", "0.7"), ("/nos-references/", "0.7"),
            ("/contact/", "0.8")]
 
 
@@ -2436,6 +2562,6 @@ def seo_files():
 
 
 if __name__ == "__main__":
-    for fn in (home, couverture, charpente, zinguerie, renovation, nettoyage, maison_neuve, isolation, zinc_bardage, copropriete, fenetres, promotion, methode, chien_assis, mansarde, cheneau, cheminee, terrasse, photovoltaique, combles_perdus, rampants, villes, depts, references, zones, contact, merci, mentions, notfound):
+    for fn in (home, couverture, charpente, zinguerie, renovation, nettoyage, maison_neuve, isolation, zinc_bardage, copropriete, fenetres, promotion, methode, chien_assis, mansarde, cheneau, cheminee, terrasse, photovoltaique, combles_perdus, rampants, tuile, debords, auvents, villes, depts, references, zones, contact, merci, mentions, notfound):
         fn()
     seo_files()
