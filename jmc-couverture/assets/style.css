@@ -295,3 +295,16 @@ form.quote input:focus,form.quote select:focus,form.quote textarea:focus{outline
 .aside-title{font-size:1.25rem;font-weight:800;line-height:1.15;margin:0 0 .6em}
 .cta-title{font-size:clamp(1.6rem,3vw,2.3rem);font-weight:800;line-height:1.15;margin:0 0 .3em;color:#fff}
 .cta-band .cta-title{color:#fff}
+/* Pied de page compact */
+.site-footer{padding:44px 0 20px}
+.site-footer .footer-grid{grid-template-columns:1.1fr 1.3fr 1.2fr;gap:36px}
+.f-brand .logo-footer img{height:56px}
+.f-brand .labels{margin:12px 0 10px}
+.f-brand .labels img{height:44px}
+.f-brand p{margin:0;font-size:.9rem}
+.f-links{columns:2;column-gap:20px}
+.f-links li{break-inside:avoid}
+.site-footer .legal{margin-top:28px;font-size:.82rem}
+.site-footer .legal a{color:#b9c3cc;text-decoration:underline}
+@media (max-width:900px){.site-footer .footer-grid{grid-template-columns:1fr 1fr}.f-brand{grid-column:1/-1}}
+@media (max-width:560px){.site-footer .footer-grid{grid-template-columns:1fr}}

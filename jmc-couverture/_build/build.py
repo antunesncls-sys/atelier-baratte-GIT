@@ -479,53 +479,37 @@ def aside(title="Pourquoi choisir JMC ?"):
 
 
 def footer():
-    city_links = ", ".join(CITIES[:12])
     return f"""
 </main>
 <footer class="site-footer"><div class="wrap">
   <div class="footer-grid">
-    <div>
+    <div class="f-brand">
       <a class="logo logo-footer" href="/"><img src="/assets/logo-jmc-40ans.svg" alt="JMC Couverture" width="180" height="80" loading="lazy"></a>
       {labels()}
-      <p style="margin-top:16px">Entreprise de couverture, charpente et zinguerie basée à Courtry (77), intervenant dans toute l'Île-de-France. Depuis 1985, 40 ans d'expérience au service des particuliers, des collectivités et des professionnels en Île-de-France.</p>
+      <p>Couvreur, charpentier et zingueur depuis 1985 à Courtry (77). Toute l'Île-de-France.</p>
     </div>
-    <div><p class="ft">Nos spécialités</p><ul>
-      <li><a href="/renovation-toiture/">Rénovation &amp; remplacement de toiture</a></li>
-      <li><a href="/isolation-toiture/">Isolation de toiture</a></li>
-      <li><a href="/isolation-rampants/">Isolation des rampants</a> · <a href="/isolation-combles-perdus/">Combles perdus</a></li>
-      <li><a href="/toiture-maison-neuve/">Toiture de maison neuve</a></li>
-      <li><a href="/couverture-zinc-bardage/">Couverture zinc &amp; bardage</a></li>
-      <li><a href="/couvreur-copropriete-syndic/">Copropriétés &amp; syndics</a></li>
-      <li><a href="/couvreur-promotion-immobiliere/">Promotion immobilière</a></li>
-      <li><a href="/fenetre-de-toit-velux-lucarnes/">Fenêtres de toit VELUX &amp; lucarnes</a></li>
-      <li><a href="/nettoyage-toiture/">Nettoyage &amp; démoussage</a></li>
-      <li><a href="/couverture/">Couverture</a> · <a href="/charpente/">Charpente</a> · <a href="/zinguerie/">Zinguerie</a></li>
-    </ul><p class="ft" style="margin-top:18px">Savoir-faire</p><ul>
-      {"".join(f'<li><a href="{u}">{n}</a></li>' for u, n in SAVOIR_FAIRE[:4])}
-    </ul></div>
-    <div><p class="ft">Couvreur par ville</p><ul>
-      {"".join(f'<li><a href="/{v["slug"]}/">Couvreur {v["name"]}</a></li>' for v in VILLES if v["name"] in FOOTER_CITIES)}
-      <li><a href="/zones-intervention/"><strong>Toutes nos villes →</strong></a></li>
-    </ul><p class="ft" style="margin-top:18px">Départements</p><ul>
-      {"".join(f'<li><a href="/{d["slug"]}/">Couvreur {d["num"]} {d["name"] if d["num"] != "75" else ""}</a></li>' for d in DEPTS_PAGES)}
-    </ul></div>
-    <div><p class="ft">L'entreprise</p><ul>
-      <li><a href="/notre-methode-sav-qualite/">Notre méthode, SAV &amp; qualité</a></li>
-      <li><a href="/nos-references/">Nos références</a></li>
-      <li><a href="/zones-intervention/">Zones d'intervention</a></li>
-      <li><a href="/contact/">Contact &amp; devis</a></li>
-      <li><a href="/mentions-legales/">Mentions légales</a></li>
-    </ul></div>
-    <div><p class="ft">Contact</p>
-      <address style="font-style:normal">{BIZ['legal']}<br>{BIZ['street']}<br>{BIZ['zip']} {BIZ['city']}</address>
-      <p style="margin-top:10px"><a href="tel:{BIZ['phone_intl']}"><strong>{BIZ['phone']}</strong></a><br>
-      <a href="mailto:{BIZ['email']}">{BIZ['email']}</a><br>
-      <a href="{BIZ['reviews']}" target="_blank" rel="noopener">Nos avis Google</a>{insta_link("<br>")}</p>
+    <div>
+      <p class="ft">Contact</p>
+      <address style="font-style:normal">{BIZ['legal']}, {BIZ['street']}<br>{BIZ['zip']} {BIZ['city']}</address>
+      <p style="margin-top:8px"><a href="tel:{BIZ['phone_intl']}"><strong>{BIZ['phone']}</strong></a> · <a href="mailto:{BIZ['email']}">{BIZ['email']}</a><br>
+      <a href="{BIZ['reviews']}" target="_blank" rel="noopener">★ 4,9/5 · {BIZ['reviews_count']} avis Google</a></p>
+      {insta_link()}
+    </div>
+    <div>
+      <p class="ft">Liens utiles</p>
+      <ul class="f-links">
+        <li><a href="/renovation-toiture/">Rénovation de toiture</a></li>
+        <li><a href="/isolation-toiture/">Isolation</a></li>
+        <li><a href="/toiture-maison-neuve/">Maison neuve</a></li>
+        <li><a href="/couverture-zinc-bardage/">Zinc &amp; bardage</a></li>
+        <li><a href="/couvreur-copropriete-syndic/">Copropriétés</a></li>
+        <li><a href="/zones-intervention/">Zones d'intervention</a></li>
+        <li><a href="/nos-references/">Réalisations</a></li>
+        <li><a href="/notre-methode-sav-qualite/">Méthode &amp; SAV</a></li>
+      </ul>
     </div>
   </div>
-  <p class="small" style="margin-top:28px;color:#8c98a4">Couvreur à {city_links} et dans toute l'Île-de-France : Paris, Seine-et-Marne, Yvelines, Essonne, Hauts-de-Seine, Seine-Saint-Denis, Val-de-Marne et Val-d'Oise.</p>
-  <p class="small" style="color:#8c98a4">{partenaires_footer()}</p>
-  <div class="legal"><span>© {date.today().year} {BIZ['legal']} — Tous droits réservés</span><span>Certifiée QUALIBAT · RGE · Garantie décennale</span></div>
+  <div class="legal"><span>© {date.today().year} {BIZ['legal']} · <a href="/mentions-legales/">Mentions légales</a> · <a href="/contact/">Contact</a></span><span>{partenaires_footer()}</span></div>
 </div></footer>
 <a class="btn btn-primary call-fab" href="tel:{BIZ['phone_intl']}">Appeler JMC : {BIZ['phone']}</a>
 <script>
@@ -1587,6 +1571,8 @@ def city_groups():
         if links:
             out += (f'<h3 class="city-dept"><a href="/{dslug}/">Couvreur {dept} ({num})</a></h3>'
                     f'<div class="city-links">{links}</div>')
+    out += ('<h3 class="city-dept"><a href="/couvreur-paris/">Couvreur zingueur à Paris (75)</a></h3>'
+            '<div class="city-links"><a href="/couvreur-paris/">Toitures zinc et ardoise à Paris</a></div>')
     return out
 
 
@@ -1647,7 +1633,7 @@ def copropriete():
       <li><strong>Préparation du chantier</strong><br>Démarches de voirie et d'urbanisme, échafaudage, information des résidents.</li>
       <li><strong>Travaux et suivi</strong><br>Un interlocuteur unique, des points d'avancement réguliers avec le syndic.</li>
       <li><strong>Réception</strong><br>Réception des travaux, photos, attestations et garanties pour le dossier de la copropriété.</li>
-      <li><strong>SAV et suivi</strong><br>Notre équipe SAV et qualité interne reste l'interlocutrice du syndic après le chantier.</li>
+      <li><strong>SAV et suivi</strong><br>Notre <a href="/notre-methode-sav-qualite/">équipe SAV et qualité interne</a> reste l'interlocutrice du syndic après le chantier.</li>
     </ol>
 
     <h2>Loi Climat : anticiper les travaux</h2>
@@ -1752,7 +1738,7 @@ def promotion():
       <li><strong>Une flotte de véhicules</strong> pour intervenir partout en Île-de-France</li>
       <li><strong>Un encadrement de chantier</strong> et un interlocuteur unique pour le maître d'ouvrage</li>
       <li><strong>Des garanties solides</strong> : décennale, responsabilité civile, QUALIBAT, RGE</li>
-      <li><strong>Une équipe SAV et qualité interne</strong> pour le contrôle avant réception et la levée des réserves</li>
+      <li><strong>Une <a href="/notre-methode-sav-qualite/">équipe SAV et qualité interne</a></strong> pour le contrôle avant réception et la levée des réserves</li>
     </ul>
 
     <h2>Nos prestations pour les promoteurs</h2>
