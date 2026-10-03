@@ -290,3 +290,8 @@ form.quote input:focus,form.quote select:focus,form.quote textarea:focus{outline
 .soc-tiktok{color:#000}
 .site-footer .soc-tiktok,.topbar .soc-tiktok,.video-band .soc-tiktok,.section-dark .soc-tiktok{color:#fff}
 .socials{white-space:nowrap}
+/* Titres visuels non sémantiques (pied de page, encadré, bande d'appel) */
+.site-footer .ft{color:#fff;font-size:1.05rem;letter-spacing:.04em;font-weight:800;margin:0 0 .6em}
+.aside-title{font-size:1.25rem;font-weight:800;line-height:1.15;margin:0 0 .6em}
+.cta-title{font-size:clamp(1.6rem,3vw,2.3rem);font-weight:800;line-height:1.15;margin:0 0 .3em;color:#fff}
+.cta-band .cta-title{color:#fff}

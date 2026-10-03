@@ -8,6 +8,7 @@ pour conserver le référencement acquis. Chaque page sort dans <slug>/index.htm
 """
 import hashlib
 import json
+import re
 import subprocess
 from datetime import date
 from pathlib import Path
@@ -222,7 +223,7 @@ def engagement_local():
 <section class="engage"><div class="wrap">
   <div class="engage-box">
     <div><span class="eyebrow">Engagés à Courtry</span>
-    <h2>Une entreprise ancrée dans sa ville</h2>
+    <h2>Une entreprise de couverture ancrée à Courtry</h2>
     <p>Implantée à Courtry depuis 40 ans, JMC est fière de soutenir la vie locale et les jeunes de la commune.</p></div>
     <ul class="checks">{items}</ul>
   </div>
@@ -255,7 +256,7 @@ def video_section():
 <section class="video-band"><div class="wrap video-grid">
   <div>
     <span class="eyebrow">En vidéo</span>
-    <h2>Votre toiture, notre savoir-faire</h2>
+    <h2>Votre toiture, notre savoir-faire de couvreur-zingueur</h2>
     <p>Des toitures réalisées par nos équipes, filmées par drone : tuiles, ardoise, zinc, mansardes et maisons neuves, partout en Île-de-France.</p>
     <ul class="checks values">
       <li><strong>Tradition</strong> : 40 ans de métier de couvreur-zingueur</li>
@@ -443,7 +444,7 @@ def cta_band(title="Un projet de toiture ? Parlons-en.",
              text="Visite sur place et devis détaillé gratuits, sans engagement."):
     return f"""
 <section class="cta-band"><div class="wrap">
-  <div><h2>{title}</h2><p>{text}</p></div>
+  <div><p class="cta-title">{title}</p><p>{text}</p></div>
   <div class="hero-cta" style="margin:0"><a class="btn btn-dark" href="/contact/">Demander mon devis</a>
   <a class="btn btn-ghost" href="tel:{BIZ['phone_intl']}">{BIZ['phone']}</a></div>
 </div></section>"""
@@ -457,7 +458,7 @@ def faq_html(faq, title="Questions fréquentes"):
 def aside(title="Pourquoi choisir JMC ?"):
     return f"""
 <aside class="aside">
-  <h2>{title}</h2>
+  <p class="aside-title">{title}</p>
   {labels()}
   <ul class="checks">
     <li>40 ans d'expérience (depuis 1985)</li>
@@ -488,7 +489,7 @@ def footer():
       {labels()}
       <p style="margin-top:16px">Entreprise de couverture, charpente et zinguerie basée à Courtry (77), intervenant dans toute l'Île-de-France. Depuis 1985, 40 ans d'expérience au service des particuliers, des collectivités et des professionnels en Île-de-France.</p>
     </div>
-    <div><h2>Nos spécialités</h2><ul>
+    <div><p class="ft">Nos spécialités</p><ul>
       <li><a href="/renovation-toiture/">Rénovation &amp; remplacement de toiture</a></li>
       <li><a href="/isolation-toiture/">Isolation de toiture</a></li>
       <li><a href="/isolation-rampants/">Isolation des rampants</a> · <a href="/isolation-combles-perdus/">Combles perdus</a></li>
@@ -499,23 +500,23 @@ def footer():
       <li><a href="/fenetre-de-toit-velux-lucarnes/">Fenêtres de toit VELUX &amp; lucarnes</a></li>
       <li><a href="/nettoyage-toiture/">Nettoyage &amp; démoussage</a></li>
       <li><a href="/couverture/">Couverture</a> · <a href="/charpente/">Charpente</a> · <a href="/zinguerie/">Zinguerie</a></li>
-    </ul><h2 style="margin-top:18px">Savoir-faire</h2><ul>
+    </ul><p class="ft" style="margin-top:18px">Savoir-faire</p><ul>
       {"".join(f'<li><a href="{u}">{n}</a></li>' for u, n in SAVOIR_FAIRE[:4])}
     </ul></div>
-    <div><h2>Couvreur par ville</h2><ul>
+    <div><p class="ft">Couvreur par ville</p><ul>
       {"".join(f'<li><a href="/{v["slug"]}/">Couvreur {v["name"]}</a></li>' for v in VILLES if v["name"] in FOOTER_CITIES)}
       <li><a href="/zones-intervention/"><strong>Toutes nos villes →</strong></a></li>
-    </ul><h2 style="margin-top:18px">Départements</h2><ul>
+    </ul><p class="ft" style="margin-top:18px">Départements</p><ul>
       {"".join(f'<li><a href="/{d["slug"]}/">Couvreur {d["num"]} {d["name"] if d["num"] != "75" else ""}</a></li>' for d in DEPTS_PAGES)}
     </ul></div>
-    <div><h2>L'entreprise</h2><ul>
+    <div><p class="ft">L'entreprise</p><ul>
       <li><a href="/notre-methode-sav-qualite/">Notre méthode, SAV &amp; qualité</a></li>
       <li><a href="/nos-references/">Nos références</a></li>
       <li><a href="/zones-intervention/">Zones d'intervention</a></li>
       <li><a href="/contact/">Contact &amp; devis</a></li>
       <li><a href="/mentions-legales/">Mentions légales</a></li>
     </ul></div>
-    <div><h2>Contact</h2>
+    <div><p class="ft">Contact</p>
       <address style="font-style:normal">{BIZ['legal']}<br>{BIZ['street']}<br>{BIZ['zip']} {BIZ['city']}</address>
       <p style="margin-top:10px"><a href="tel:{BIZ['phone_intl']}"><strong>{BIZ['phone']}</strong></a><br>
       <a href="mailto:{BIZ['email']}">{BIZ['email']}</a><br>
@@ -543,10 +544,10 @@ def write(path, html):
     print("écrit", out.relative_to(ROOT))
 
 
-def service_card(icon, title, url, text, items):
+def service_card(icon, title, url, text, items, more=None):
     li = "".join(f"<li>{i}</li>" for i in items)
     return f"""<article class="card"><div class="icon">{ICON[icon]}</div><h3><a href="{url}" style="color:inherit;text-decoration:none">{title}</a></h3>
-<p>{text}</p><ul>{li}</ul><a class="more" href="{url}">En savoir plus →</a></article>"""
+<p>{text}</p><ul>{li}</ul><a class="more" href="{url}">{more or ("Découvrir : " + re.sub("<[^>]+>", "", title).lower().replace("velux", "VELUX"))} →</a></article>"""
 
 
 REVIEWS = [
@@ -622,7 +623,7 @@ def bouche_oreille():
     return f"""
 <section><div class="wrap">
   <div class="section-head"><span class="eyebrow">Bouche-à-oreille</span>
-  <h2>Notre meilleure publicité : vos recommandations</h2>
+  <h2>Avis clients : notre meilleure publicité, vos recommandations</h2>
   {google_badge(light=True)}
   <p>Une grande partie de nos chantiers nous est confiée grâce au <strong>bouche-à-oreille</strong> : un voisin qui a vu notre panneau, un ami satisfait, un client qui revient pour une autre maison. C'est la preuve la plus sincère de la qualité de notre travail.</p></div>
   <div class="grid g3">{reviews_html(3)}</div>
@@ -667,7 +668,7 @@ def home():
 </div></section>
 
 <section class="gallery-band"><div class="wrap">
-  <div class="section-head"><span class="eyebrow">Nos réalisations</span><h2>Des toitures qui valorisent votre maison</h2></div>
+  <div class="section-head"><span class="eyebrow">Nos réalisations</span><h2>Nos réalisations de toiture en Île-de-France</h2></div>
   {hero_mosaic()}
   <p style="margin-top:18px"><a class="more" href="/nos-references/">Voir toutes nos réalisations →</a>{insta_link(" &nbsp;·&nbsp; ")}</p>
 </div></section>
@@ -676,7 +677,7 @@ def home():
 
 <section class="section-alt"><div class="wrap">
   <div class="section-head"><span class="eyebrow">Nos spécialités</span>
-  <h2>Nos spécialités : un seul interlocuteur pour votre toit</h2>
+  <h2>Nos spécialités de couvreur : un seul interlocuteur pour votre toit</h2>
   <p>De la maison neuve à la demeure de caractère, nos couvreurs, charpentiers et zingueurs réalisent l'ensemble de votre toiture : un chantier coordonné, des délais tenus et une seule garantie décennale.</p></div>
   <div class="grid g4" style="margin-bottom:24px">
   {service_card("roof", "Rénovation et remplacement de toiture", "/renovation-toiture/", "Réfection complète de votre couverture, de la charpente aux gouttières.",
@@ -700,7 +701,7 @@ def home():
 
 <section class="savoir"><div class="wrap">
   <div class="section-head"><span class="eyebrow">Savoir-faire de couvreur-zingueur</span>
-  <h2>Les ouvrages que peu d'entreprises maîtrisent encore</h2>
+  <h2>Chien-assis, mansardes, chéneaux : les ouvrages que peu d'entreprises maîtrisent</h2>
   <p>Chien-assis, lucarnes, mansardes, chéneaux, noues, cheminées : ces détails font la qualité et la durée de vie d'une toiture. Nos couvreurs-zingueurs les réalisent dans les règles de l'art.</p></div>
   <div class="city-links">{"".join(f'<a href="{u}">{n}</a>' for u, n in SAVOIR_FAIRE)}</div>
 </div></section>
@@ -756,7 +757,7 @@ def home():
   <p><a class="more" href="/zones-intervention/">Toutes nos zones d'intervention →</a></p>
 </div></section>
 """
-    html += faq_html(faq)
+    html += faq_html(faq, "Questions fréquentes sur nos travaux de toiture")
     html += cta_band()
     html += footer()
     write("/", html)
