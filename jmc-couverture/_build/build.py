@@ -30,6 +30,8 @@ BIZ = {
     "instagram": "https://www.instagram.com/jmc.couverture/",
     "facebook": "https://www.facebook.com/p/Jmccouverture-61562122535882/",
     "tiktok": "https://www.tiktok.com/@jmc.couverture",
+    # Associations et clubs soutenus localement
+    "partenaires": [("CS Courtry Académie", "club de football de Courtry", "https://www.facebook.com/p/CS-Courtry-Acad%C3%A9mie-100083151285677/")],
     "rating": "4,9",
     "reviews_count": 29,
     "lat": 48.91026,
@@ -193,6 +195,28 @@ def google_badge(light=False):
     return (f'<a class="{cls}" href="{BIZ["reviews"]}" target="_blank" rel="noopener">'
             f'<span class="g">G</span><span class="stars">★★★★★</span>'
             f'<strong>{BIZ["rating"]}/5</strong><span>· {BIZ["reviews_count"]} avis Google</span></a>')
+
+
+def engagement_local():
+    if not BIZ.get("partenaires"):
+        return ""
+    items = "".join(f'<li><a href="{u}" target="_blank" rel="noopener"><strong>{n}</strong></a>, {d}</li>' for n, d, u in BIZ["partenaires"])
+    return f"""
+<section class="engage"><div class="wrap">
+  <div class="engage-box">
+    <div><span class="eyebrow">Engagés à Courtry</span>
+    <h2>Une entreprise ancrée dans sa ville</h2>
+    <p>Implantée à Courtry depuis 40 ans, JMC est fière de soutenir la vie locale et les jeunes de la commune.</p></div>
+    <ul class="checks">{items}</ul>
+  </div>
+</div></section>"""
+
+
+def partenaires_footer():
+    if not BIZ.get("partenaires"):
+        return ""
+    return "Partenaire de la vie locale : " + ", ".join(
+        f'<a href="{u}" target="_blank" rel="noopener">{n}</a>' for n, d, u in BIZ["partenaires"]) + "."
 
 
 def hero_style(key):
@@ -444,6 +468,7 @@ def footer():
     </div>
   </div>
   <p class="small" style="margin-top:28px;color:#8c98a4">Couvreur à {city_links} et dans toute l'Île-de-France : Paris, Seine-et-Marne, Yvelines, Essonne, Hauts-de-Seine, Seine-Saint-Denis, Val-de-Marne et Val-d'Oise.</p>
+  <p class="small" style="color:#8c98a4">{partenaires_footer()}</p>
   <div class="legal"><span>© {date.today().year} {BIZ['legal']} — Tous droits réservés</span><span>Certifiée QUALIBAT · RGE · Garantie décennale</span></div>
 </div></footer>
 <a class="btn btn-primary call-fab" href="tel:{BIZ['phone_intl']}">Appeler JMC : {BIZ['phone']}</a>
@@ -664,6 +689,7 @@ def home():
 {secu_proprete()}
 {bouche_oreille()}
 
+{engagement_local()}
 <section class="section-alt"><div class="wrap">
   <div class="section-head"><span class="eyebrow">Zone d'intervention</span>
   <h2>Couvreur dans toute l'Île-de-France</h2>

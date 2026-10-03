@@ -262,3 +262,8 @@ form.quote input:focus,form.quote select:focus,form.quote textarea:focus{outline
 .pullquote{border-left:4px solid var(--gold-light);padding:6px 0 6px 16px;font-style:italic;color:#fff !important}
 .pullquote span{font-style:normal;color:#cfd6dc;font-size:.9rem}
 .socials .ig-link{margin-right:10px}.socials .ig-link:last-child{margin-right:0}
+.engage{padding:0 0 56px}
+.engage-box{display:grid;grid-template-columns:1.3fr 1fr;gap:28px;align-items:center;background:var(--bg-2);border:1px solid var(--line);border-radius:14px;padding:30px}
+.engage-box h2{font-size:1.5rem}
+.engage-box ul{margin:0}
+@media (max-width:760px){.engage-box{grid-template-columns:1fr}}
