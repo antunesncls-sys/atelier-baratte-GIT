@@ -152,23 +152,44 @@ TT_SVG = ('<svg class="ig" viewBox="0 0 24 24" width="18" height="18" aria-hidde
           '<path d="M16.6 3c.4 2.2 1.8 3.7 4 3.9v3.3a7.4 7.4 0 0 1-4-1.2v6.3A6.2 6.2 0 1 1 10.4 9v3.4a2.9 2.9 0 1 0 2.9 2.9V3h3.3z"/></svg>')
 
 
-def socials():
+SOCIAL_LOGOS = {
+    "instagram": ('<svg viewBox="0 0 24 24" aria-hidden="true"><defs><radialGradient id="igg" cx="30%" cy="107%" r="150%">'
+                  '<stop offset="0" stop-color="#fdf497"/><stop offset=".05" stop-color="#fdf497"/><stop offset=".45" stop-color="#fd5949"/>'
+                  '<stop offset=".6" stop-color="#d6249f"/><stop offset=".9" stop-color="#285AEB"/></radialGradient></defs>'
+                  '<rect width="24" height="24" rx="6" fill="url(#igg)"/>'
+                  '<rect x="5.5" y="5.5" width="13" height="13" rx="4" fill="none" stroke="#fff" stroke-width="1.8"/>'
+                  '<circle cx="12" cy="12" r="3.2" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="16.1" cy="7.9" r="1" fill="#fff"/></svg>'),
+    "facebook": ('<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#1877F2"/>'
+                 '<path fill="#fff" d="M13.4 24v-8.4h2.8l.5-3.3h-3.3v-2.1c0-.9.5-1.8 1.9-1.8h1.5V5.6s-1.3-.2-2.6-.2c-2.7 0-4.4 1.6-4.4 4.6v2.3H6.9v3.3h2.9V24z"/></svg>'),
+    "tiktok": ('<svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#000"/>'
+               '<g transform="translate(.5 .3)"><path fill="#25F4EE" d="M15.2 4.5c.3 1.8 1.4 3 3.1 3.2v2.6a5.8 5.8 0 0 1-3.1-.9v4.9a4.8 4.8 0 1 1-4.1-4.8v2.7a2.2 2.2 0 1 0 1.5 2.1V4.5z"/></g>'
+               '<g transform="translate(-.5 -.3)"><path fill="#FE2C55" d="M15.2 4.5c.3 1.8 1.4 3 3.1 3.2v2.6a5.8 5.8 0 0 1-3.1-.9v4.9a4.8 4.8 0 1 1-4.1-4.8v2.7a2.2 2.2 0 1 0 1.5 2.1V4.5z"/></g>'
+               '<path fill="#fff" d="M15.2 4.5c.3 1.8 1.4 3 3.1 3.2v2.6a5.8 5.8 0 0 1-3.1-.9v4.9a4.8 4.8 0 1 1-4.1-4.8v2.7a2.2 2.2 0 1 0 1.5 2.1V4.5z"/></svg>'),
+}
+_SOC_N = [0]
+SOCIAL_LABELS = {"instagram": "Instagram", "facebook": "Facebook", "tiktok": "TikTok"}
+
+
+def socials(size="md"):
     out = []
-    for key, svg, label in (("instagram", INSTA_SVG, "Instagram"), ("facebook", FB_SVG, "Facebook"), ("tiktok", TT_SVG, "TikTok")):
+    for key in ("instagram", "facebook", "tiktok"):
         if BIZ.get(key):
-            out.append(f'<a class="ig-link" href="{BIZ[key]}" target="_blank" rel="noopener" '
-                       f'aria-label="{label} JMC Couverture">{svg}{label}</a>')
+            label = SOCIAL_LABELS[key]
+            _SOC_N[0] += 1
+            svg = SOCIAL_LOGOS[key].replace("igg", f"igg{_SOC_N[0]}")
+            out.append(f'<a class="soc soc-{size} soc-{key}" href="{BIZ[key]}" target="_blank" rel="noopener" '
+                       f'aria-label="{label} JMC Couverture" title="{label}">{svg}</a>')
     return out
 
 
 def insta_link(sep=""):
     links = socials()
-    return f'{sep}<span class="socials">Suivez-nous : {" ".join(links)}</span>' if links else ""
+    return f'{sep}<span class="socials">Suivez-nous {"".join(links)}</span>' if links else ""
 
 
 def insta_top():
-    links = socials()
-    return f' · <span class="socials">{" ".join(links)}</span>' if links else ""
+    links = socials("sm")
+    return f' · <span class="socials">{"".join(links)}</span>' if links else ""
 
 
 def hero_bg():

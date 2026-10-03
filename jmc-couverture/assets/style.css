@@ -278,3 +278,14 @@ form.quote input:focus,form.quote select:focus,form.quote textarea:focus{outline
 .video-wrap{justify-self:center;width:100%;max-width:340px;border-radius:18px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.45);background:#000}
 .video-wrap video{display:block;width:100%;height:auto;aspect-ratio:9/16}
 @media (max-width:900px){.video-grid{grid-template-columns:1fr}.video-wrap{max-width:300px}}
+/* Logos réseaux sociaux */
+.socials{display:inline-flex;align-items:center;gap:8px;vertical-align:middle;flex-wrap:wrap}
+.soc{display:inline-block;line-height:0;border-radius:8px;transition:transform .15s}
+.soc:hover{transform:translateY(-2px) scale(1.06)}
+.soc svg{display:block}
+.soc-sm svg{width:20px;height:20px}
+.soc-md svg{width:32px;height:32px}
+.topbar .socials{gap:6px}
+.site-footer .socials{display:flex;margin-top:10px;flex-wrap:nowrap}
+.site-footer .soc-tiktok,.topbar .soc-tiktok,.video-band .soc-tiktok{box-shadow:0 0 0 1px rgba(255,255,255,.55)}
+.socials{white-space:nowrap}
