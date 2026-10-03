@@ -254,3 +254,4 @@ form.quote input:focus,form.quote select:focus,form.quote textarea:focus{outline
 .gbadge:hover{border-color:#fbbc04;color:inherit}
 .city-dept a{color:inherit;text-decoration:none}
 .city-dept a:hover{color:var(--tile-dark)}
+.savoir{padding:56px 0}

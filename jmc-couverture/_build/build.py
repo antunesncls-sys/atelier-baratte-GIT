@@ -49,6 +49,15 @@ FOOTER_CITIES = {"Saint-Maur-des-Fossés", "Nogent-sur-Marne", "Le Perreux-sur-M
 
 DEPTS = ("Paris", "Seine-et-Marne", "Yvelines", "Essonne", "Hauts-de-Seine", "Seine-Saint-Denis", "Val-de-Marne", "Val-d'Oise")
 
+SAVOIR_FAIRE = [
+    ("/chien-assis-lucarne/", "Chien-assis et lucarnes"),
+    ("/toiture-mansardee-brisis-terrasson/", "Toiture mansardée"),
+    ("/cheneau-noue-zinc/", "Chéneaux et noues en zinc"),
+    ("/souche-cheminee-solin-abergement/", "Souche de cheminée"),
+    ("/fenetre-de-toit-velux-lucarnes/", "Pose de VELUX"),
+    ("/couverture-zinc-bardage/", "Zinc joint debout et bardage"),
+]
+
 NAV = [
     ("/renovation-toiture/", "Rénovation"),
     ("/isolation-toiture/", "Isolation"),
@@ -204,7 +213,7 @@ def org_ld():
         + [{"@type": "AdministrativeArea", "name": n} for n in DEPTS]
         + [{"@type": "City", "name": c} for c in dict.fromkeys([v["name"] for v in VILLES] + CITIES)],
         "knowsAbout": ["Couverture", "Charpente", "Zinguerie", "Rénovation de toiture",
-                       "Remplacement de toiture", "Nettoyage de toiture", "Démoussage", "Isolation de toiture", "Couverture zinc", "Bardage zinc", "Maison d'architecte", "Toiture maison neuve", "Isolation des combles", "Fenêtre de toit", "VELUX", "Lucarnes", "Copropriété", "Promotion immobilière", "Gouttières", "Toiture zinc", "Ardoise", "Tuiles"],
+                       "Remplacement de toiture", "Nettoyage de toiture", "Démoussage", "Isolation de toiture", "Couverture zinc", "Bardage zinc", "Maison d'architecte", "Toiture maison neuve", "Isolation des combles", "Fenêtre de toit", "VELUX", "Lucarnes", "Copropriété", "Promotion immobilière", "Chien-assis", "Toiture mansardée", "Chéneau", "Noue", "Souche de cheminée", "Gouttières", "Toiture zinc", "Ardoise", "Tuiles"],
         "hasCredential": [
             {"@type": "EducationalOccupationalCredential", "credentialCategory": "Qualification", "name": "QUALIBAT"},
             {"@type": "EducationalOccupationalCredential", "credentialCategory": "Label", "name": "RGE - Reconnu Garant de l'Environnement"},
@@ -388,6 +397,8 @@ def footer():
       <li><a href="/fenetre-de-toit-velux-lucarnes/">Fenêtres de toit VELUX &amp; lucarnes</a></li>
       <li><a href="/nettoyage-toiture/">Nettoyage &amp; démoussage</a></li>
       <li><a href="/couverture/">Couverture</a> · <a href="/charpente/">Charpente</a> · <a href="/zinguerie/">Zinguerie</a></li>
+    </ul><h2 style="margin-top:18px">Savoir-faire</h2><ul>
+      {"".join(f'<li><a href="{u}">{n}</a></li>' for u, n in SAVOIR_FAIRE[:4])}
     </ul></div>
     <div><h2>Couvreur par ville</h2><ul>
       {"".join(f'<li><a href="/{v["slug"]}/">Couvreur {v["name"]}</a></li>' for v in VILLES if v["name"] in FOOTER_CITIES)}
@@ -552,6 +563,13 @@ def home():
   {service_card("drop", "Couverture, charpente, zinguerie", "/couverture/", "Tous les métiers du toit, maîtrisés par nos propres équipes.",
                 ['<a href="/couverture/">Couverture</a> : tuiles, ardoise, zinc', '<a href="/charpente/">Charpente</a> traditionnelle ou industrielle', '<a href="/zinguerie/">Zinguerie</a> et gouttières', "Fenêtres de toit et lucarnes"])}
   </div>
+</div></section>
+
+<section class="savoir"><div class="wrap">
+  <div class="section-head"><span class="eyebrow">Savoir-faire de couvreur-zingueur</span>
+  <h2>Les ouvrages que peu d'entreprises maîtrisent encore</h2>
+  <p>Chien-assis, lucarnes, mansardes, chéneaux, noues, cheminées : ces détails font la qualité et la durée de vie d'une toiture. Nos couvreurs-zingueurs les réalisent dans les règles de l'art.</p></div>
+  <div class="city-links">{"".join(f'<a href="{u}">{n}</a>' for u, n in SAVOIR_FAIRE)}</div>
 </div></section>
 
 <section class="section-dark"><div class="wrap">
@@ -754,9 +772,9 @@ def zinguerie():
     <h3>Gouttières et descentes d'eaux pluviales</h3>
     <p>Pose, remplacement et réparation de gouttières pendantes, havraises ou nantaises, et de descentes avec leurs dauphins.</p>
     <h3>Chéneaux et noues</h3>
-    <p>Réfection des chéneaux encaissés et des noues, zones où l'eau se concentre et qui sont à l'origine de nombreuses fuites.</p>
+    <p>Réfection des <a href="/cheneau-noue-zinc/">chéneaux encaissés et des noues</a>, zones où l'eau se concentre et qui sont à l'origine de nombreuses fuites.</p>
     <h3>Entourages de cheminée et de fenêtres de toit</h3>
-    <p>Abergements, solins et bavettes pour assurer une étanchéité parfaite autour des cheminées, des lucarnes et des fenêtres de toit.</p>
+    <p>Abergements, <a href="/souche-cheminee-solin-abergement/">solins de cheminée</a> et bavettes pour assurer une étanchéité parfaite autour des cheminées, des lucarnes et des fenêtres de toit.</p>
     <h3>Habillages, rives et bardages zinc</h3>
     <p>Habillage de rives, de bandeaux, d'appuis de fenêtres et bardage de façade en zinc, pour une protection durable et une finition élégante.</p>
     <h3>Couvertures zinc et balcons en plomb</h3>
@@ -1042,7 +1060,7 @@ def zinc_bardage():
     ]
     desc = "Couverture zinc à joint debout, bardage zinc de façade et habillages pour maisons d'architecte, en neuf comme en rénovation."
     lds = [org_ld(), crumbs_ld(trail), service_ld("Couverture zinc et bardage zinc", "/couverture-zinc-bardage/", desc), faq_ld(faq)]
-    html = head("Couverture zinc et bardage, maison d'architecte | JMC Couverture",
+    html = head("Toiture zinc joint debout et bardage, maison d'architecte | JMC",
                 "Couvreur-zingueur pour maisons d'architecte : couverture zinc à joint debout, bardage de façade, lucarnes et habillages, partout en Île-de-France.",
                 "/couverture-zinc-bardage/", lds)
     html += header("/couverture-zinc-bardage/")
@@ -1061,8 +1079,12 @@ def zinc_bardage():
     <p>Pose traditionnelle sur voligeage ventilé, pour toitures neuves, extensions et surélévations, avec tous les accessoires : faîtages, rives, noues, chéneaux encaissés.</p>
     <h3>Bardage zinc de façade</h3>
     <p>Joint debout vertical ou horizontal, cassettes, clins : nous habillons vos façades en zinc sur ossature ventilée, compatible avec l'isolation thermique par l'extérieur.</p>
+    <h3>Zinc naturel, quartz, anthracite ou coloré</h3>
+    <p>Zinc naturel qui se patine avec le temps, zinc prépatiné gris clair (type quartz) ou anthracite, zinc pigmenté de couleur : nous vous présentons les aspects possibles et réalisons des échantillons avec votre architecte.</p>
+    <h3>Extension et surélévation en zinc</h3>
+    <p>Pour une extension contemporaine ou une surélévation, le zinc à joint debout habille toiture et façades d'un seul matériau, avec une grande légèreté pour la structure existante.</p>
     <h3>Lucarnes, brisis et habillages</h3>
-    <p>Lucarnes et brisis de toitures mansardées, couronnements d'acrotères, encadrements de baies, avancées de toit et ornements : le zinc permet des finitions d'une grande précision.</p>
+    <p>Lucarnes et brisis de <a href="/toiture-mansardee-brisis-terrasson/">toitures mansardées</a>, <a href="/chien-assis-lucarne/">chiens-assis</a>, couronnements d'acrotères, encadrements de baies, avancées de toit et ornements : le zinc permet des finitions d'une grande précision.</p>
     {photo("drone")}
 
     <h2>Une méthode pensée pour les projets d'architecte</h2>
@@ -1543,7 +1565,7 @@ def fenetres():
     <h3>Restauration de lucarnes anciennes</h3>
     <p>Lucarnes en ardoise, en zinc ou en bois : nous reprenons leur couverture, leurs jouées, leurs habillages et leur zinguerie, en respectant le style de la maison ou de l'immeuble, comme sur cette maison bourgeoise aux trois lucarnes habillées de zinc.</p>
     <h3>Création de lucarnes</h3>
-    <p>Lucarne jacobine, capucine, rampante ou chien-assis : nous créons la lucarne adaptée à votre toiture et à votre projet d'aménagement, de la charpente à la couverture et à la <a href="/couverture-zinc-bardage/">finition zinc</a>.</p>
+    <p>Lucarne jacobine, capucine, rampante ou <a href="/chien-assis-lucarne/">chien-assis</a> : nous créons la lucarne adaptée à votre toiture et à votre projet d'aménagement, de la charpente à la couverture et à la <a href="/couverture-zinc-bardage/">finition zinc</a>.</p>
     {photo("drone")}
 
     <h2>Pour les particuliers comme pour les copropriétés</h2>
@@ -1683,6 +1705,189 @@ def methode():
     html += cta_band()
     html += footer()
     write("/notre-methode-sav-qualite/", html)
+
+
+def _guide(url, crumb, title, desc, eyebrow, h1, lead, body, faq, svc_name, cta=("Un projet ?", "Visite et devis gratuits par un couvreur-zingueur certifié QUALIBAT.")):
+    trail = [("/", "Accueil"), (url, crumb)]
+    lds = [org_ld(), crumbs_ld(trail), service_ld(svc_name, url, desc), faq_ld(faq)]
+    html = head(title, desc, url, lds)
+    html += header(url)
+    html += page_hero(trail, eyebrow, h1, lead)
+    html += f"""
+<section><div class="wrap split">
+  <article class="prose">
+{body}
+  </article>
+  {aside()}
+</div></section>
+"""
+    html += faq_html(faq, f"Questions fréquentes – {crumb.lower()}")
+    html += cta_band(*cta)
+    html += footer()
+    write(url, html)
+
+
+def chien_assis():
+    faq = [
+        ("Quelle est la différence entre un chien-assis et une lucarne ?",
+         "Le chien-assis est un type de lucarne : son toit est incliné dans le sens inverse de la pente de la toiture, ce qui lui donne sa silhouette caractéristique. Dans le langage courant, on appelle souvent « chien-assis » toute lucarne qui dépasse du toit."),
+        ("Faut-il une autorisation pour créer un chien-assis ?",
+         "Oui. La création d'un chien-assis ou d'une lucarne modifie l'aspect extérieur : une déclaration préalable est en général nécessaire, et un permis de construire si la surface de plancher créée dépasse les seuils prévus par le code de l'urbanisme. En secteur protégé, l'avis de l'Architecte des Bâtiments de France est requis."),
+        ("Quel est le prix d'un chien-assis ?",
+         "Le prix dépend de la taille de la lucarne, du type choisi, des modifications de charpente, du matériau de couverture et d'habillage (zinc, ardoise, tuile) et de la menuiserie. Après visite, nous vous remettons un devis détaillé et gratuit."),
+        ("Lucarne ou fenêtre de toit VELUX : que choisir ?",
+         "La fenêtre de toit est plus simple et plus économique. Le chien-assis ou la lucarne crée de la hauteur sous plafond, une vraie fenêtre verticale et du cachet, mais demande davantage de travaux. Nous vous conseillons selon votre projet."),
+        ("Combien de temps durent les travaux ?",
+         "Selon la taille et la complexité, la création d'une lucarne prend en général de quelques jours à deux semaines, la toiture étant protégée pendant toute la durée du chantier."),
+    ]
+    body = f"""    {photo("drone", eager=True)}
+    <h2>Chien-assis et lucarnes : de la lumière et de l'espace sous les toits</h2>
+    <p>Créer un chien-assis ou une lucarne, c'est transformer des combles sombres et bas de plafond en vraies pièces à vivre : une fenêtre verticale, de la hauteur sous plafond, une vue dégagée et un cachet incomparable. Couvreurs, charpentiers et zingueurs, nos équipes réalisent l'ensemble de l'ouvrage, de l'ouverture de la toiture à l'habillage final.</p>
+
+    <h2>Les différents types de lucarnes</h2>
+    <h3>Le chien-assis</h3>
+    <p>Son toit à un seul pan est incliné dans le sens inverse de la toiture. Très répandu sur les maisons de la région parisienne, il offre un maximum de hauteur et de surface vitrée.</p>
+    <h3>La lucarne jacobine</h3>
+    <p>Lucarne à deux pans formant un fronton triangulaire en façade. C'est la lucarne classique des maisons bourgeoises et des toitures en ardoise ou en tuile plate.</p>
+    <h3>La lucarne capucine</h3>
+    <p>Lucarne à trois pans, dont un pan en croupe à l'avant. Élégante et discrète, elle se fond dans les toitures traditionnelles.</p>
+    <h3>La lucarne rampante</h3>
+    <p>Lucarne à un seul pan, incliné dans le même sens que la toiture mais avec une pente plus faible. Idéale pour gagner de la surface habitable sur toute la longueur d'un versant.</p>
+    <h3>Les lucarnes en zinc et en ardoise</h3>
+    <p>Joues, toit et fronton peuvent être habillés de <a href="/couverture-zinc-bardage/">zinc</a>, d'ardoise ou de tuile. Le zinc permet des lignes nettes et contemporaines ; l'ardoise s'impose sur les toitures <a href="/toiture-mansardee-brisis-terrasson/">mansardées</a> et les maisons de caractère.</p>
+    {photo("mansarde")}
+
+    <h2>Les étapes de la création d'un chien-assis</h2>
+    <ol class="steps">
+      <li><strong>Visite et étude</strong><br>Choix du type de lucarne, dimensions, vérification de la charpente et des règles d'urbanisme.</li>
+      <li><strong>Démarches</strong><br>Nous vous aidons à préparer la déclaration préalable (plans, insertion, descriptif).</li>
+      <li><strong>Ouverture et charpente</strong><br>Dépose de la couverture, création du chevêtre et de l'ossature de la lucarne.</li>
+      <li><strong>Couverture et habillage</strong><br>Toit de la lucarne, joues, fronton, raccords d'étanchéité en zinc ou en plomb.</li>
+      <li><strong>Menuiserie et isolation</strong><br>Pose de la fenêtre et isolation de la lucarne, pour un résultat étanche et performant.</li>
+    </ol>
+
+    <h2>Restaurer une lucarne ancienne</h2>
+    <p>Joues fissurées, habillage zinc percé, fronton abîmé : nous restaurons aussi les lucarnes existantes, à l'identique, notamment sur les maisons bourgeoises, en meulière et les immeubles parisiens. Découvrez aussi nos <a href="/fenetre-de-toit-velux-lucarnes/">fenêtres de toit VELUX</a>.</p>"""
+    _guide("/chien-assis-lucarne/", "Chien-assis et lucarnes",
+           "Chien-assis et lucarne : création, types, prix | Couvreur JMC",
+           "Création de chien-assis et de lucarnes (jacobine, capucine, rampante) en zinc ou ardoise, en Île-de-France. Démarches, étapes et devis gratuit par un couvreur-charpentier.",
+           "Chien-assis · Lucarnes", "Chien-assis et lucarnes : création et rénovation",
+           "Jacobine, capucine, rampante ou chien-assis : nous créons et restaurons vos lucarnes, de la charpente à l'habillage en zinc ou en ardoise, partout en Île-de-France.",
+           body, faq, "Création de chien-assis et de lucarnes",
+           ("Un projet de chien-assis ?", "Étude, aide aux démarches et devis gratuits."))
+
+
+def mansarde():
+    faq = [
+        ("Qu'est-ce qu'un brisis et un terrasson ?",
+         "Une toiture mansardée comporte deux pentes par versant : le brisis, partie basse presque verticale qui abrite les fenêtres et les lucarnes, et le terrasson, partie haute à faible pente. Le brisis est souvent couvert d'ardoise ou de zinc, le terrasson le plus souvent de zinc."),
+        ("Pourquoi le terrasson est-il souvent en zinc ?",
+         "Sa pente est trop faible pour des ardoises ou des tuiles classiques. Le zinc, posé à joint debout ou à tasseaux, assure une parfaite étanchéité sur ces faibles pentes."),
+        ("Peut-on isoler une toiture mansardée ?",
+         "Oui. Lors de la réfection, l'isolation peut être placée par l'extérieur ou sous rampants, en traitant soigneusement la jonction entre brisis et terrasson, point faible fréquent des combles mansardés."),
+        ("Une rénovation de mansarde nécessite-t-elle une autorisation ?",
+         "Une réfection à l'identique est souvent dispensée, mais tout changement de matériau, de teinte ou de lucarnes demande en général une déclaration préalable, et l'avis de l'Architecte des Bâtiments de France en secteur protégé."),
+    ]
+    body = f"""    {photo("mansarde", eager=True)}
+    <h2>La toiture mansardée, signature des maisons bourgeoises</h2>
+    <p>Popularisée par l'architecte François Mansart au XVIIe siècle puis généralisée par l'architecture haussmannienne, la toiture à la Mansart permet de créer un étage habitable sous les combles. On la retrouve sur les immeubles parisiens comme sur les maisons bourgeoises de Saint-Maur-des-Fossés, de Versailles ou du Vésinet.</p>
+
+    <h2>Le brisis : ardoise ou zinc</h2>
+    <p>Partie basse et très pentue de la mansarde, le brisis porte les fenêtres et les <a href="/chien-assis-lucarne/">lucarnes</a>. Il est traditionnellement couvert d'ardoise naturelle posée au crochet ou au clou, ou habillé de zinc. Nous refaisons les brisis à l'identique ou dans le matériau autorisé par votre commune.</p>
+    <h2>Le terrasson : le domaine du zinc</h2>
+    <p>Partie haute à faible pente, le terrasson est le plus souvent couvert de zinc à joint debout ou à tasseaux. Mal entretenu, c'est une source fréquente d'infiltrations : nous le remplaçons avec ses accessoires (faîtage, ourlets, raccord avec le brisis).</p>
+    {photo("drone")}
+
+    <h2>Nos travaux sur les toitures mansardées</h2>
+    <ul class="checks">
+      <li>Réfection complète des brisis en ardoise ou en zinc</li>
+      <li>Remplacement des terrassons en zinc</li>
+      <li>Restauration et création de lucarnes, habillages zinc</li>
+      <li>Chéneaux, gouttières et <a href="/cheneau-noue-zinc/">noues</a> en zinc</li>
+      <li>Isolation des combles mansardés (entreprise RGE)</li>
+      <li>Épis de faîtage, ornements et zinguerie décorative</li>
+    </ul>
+    <p>Pour les immeubles, nous intervenons en lien avec le <a href="/couvreur-copropriete-syndic/">syndic de copropriété</a>.</p>"""
+    _guide("/toiture-mansardee-brisis-terrasson/", "Toiture mansardée",
+           "Toiture mansardée : brisis ardoise, terrasson zinc | Couvreur JMC",
+           "Rénovation de toiture mansardée en Île-de-France : brisis en ardoise ou zinc, terrasson zinc, lucarnes et isolation des combles, par des couvreurs-zingueurs.",
+           "Toiture mansardée", "Toiture mansardée : brisis en ardoise et terrasson en zinc",
+           "Réfection des brisis et des terrassons, lucarnes, zinguerie et isolation : nous rénovons les toitures à la Mansart des maisons bourgeoises et des immeubles d'Île-de-France.",
+           body, faq, "Rénovation de toiture mansardée")
+
+
+def cheneau():
+    faq = [
+        ("Qu'est-ce qu'une noue de toiture ?",
+         "La noue est l'angle rentrant formé par la rencontre de deux versants de toit. L'eau de pluie s'y concentre : c'est l'un des points les plus sollicités de la couverture, généralement réalisé en zinc ou en plomb."),
+        ("Quelle différence entre chéneau et gouttière ?",
+         "La gouttière est suspendue en bas du toit. Le chéneau est un canal plus large, souvent encaissé dans la maçonnerie ou posé sur la corniche, typique des immeubles et des maisons anciennes."),
+        ("Pourquoi mon chéneau fuit-il ?",
+         "Soudures fatiguées, zinc percé par la corrosion, pente insuffisante, dilatation mal gérée ou débris qui bloquent l'écoulement. Un chéneau qui fuit endommage rapidement les murs et la charpente : il vaut mieux le refaire avant les dégâts."),
+        ("Combien de temps dure un chéneau en zinc ?",
+         "Bien posé et entretenu, un chéneau en zinc dure plusieurs décennies. Un nettoyage régulier des feuilles et débris prolonge nettement sa durée de vie."),
+    ]
+    body = f"""    {photo("meuliere", eager=True)}
+    <h2>Chéneaux et noues : là où l'eau se concentre</h2>
+    <p>Sur une toiture, toute l'eau de pluie converge vers quelques points clés : les noues, entre deux versants, et les chéneaux, qui la recueillent en bas du toit avant les descentes. Ces ouvrages en zinc travaillent en permanence ; lorsqu'ils vieillissent, ce sont eux qui provoquent les dégâts les plus coûteux.</p>
+
+    <h2>La noue en zinc</h2>
+    <p>Nous réalisons des noues en zinc façonnées sur mesure dans notre atelier, avec recouvrement correct des tuiles ou des ardoises, pour une évacuation rapide et durable de l'eau.</p>
+    <h2>Le chéneau en zinc</h2>
+    <h3>Chéneau encaissé</h3>
+    <p>Intégré dans l'épaisseur de la maçonnerie ou derrière un acrotère, il est fréquent sur les immeubles et les maisons anciennes. Nous refaisons son fond (voligeage) et son habillage zinc, avec les joints de dilatation nécessaires.</p>
+    <h3>Chéneau à l'égout et sur corniche</h3>
+    <p>Posé en bas du versant, il protège la corniche et la façade. Nous le remplaçons avec ses talons, naissances et raccords aux descentes.</p>
+
+    <h2>Nos travaux de zinguerie d'eaux pluviales</h2>
+    <ul class="checks">
+      <li>Création et réfection de noues en zinc</li>
+      <li>Chéneaux encaissés et chéneaux sur corniche</li>
+      <li>Gouttières pendantes, havraises et nantaises</li>
+      <li>Descentes d'eaux pluviales en zinc et dauphins</li>
+      <li>Couvertines et bandeaux en zinc</li>
+      <li>Nettoyage et entretien des chéneaux et gouttières</li>
+    </ul>
+    <p>Voir aussi notre page <a href="/zinguerie/">zinguerie</a> et nos travaux pour <a href="/couvreur-copropriete-syndic/">copropriétés</a>.</p>"""
+    _guide("/cheneau-noue-zinc/", "Chéneaux et noues en zinc",
+           "Chéneau et noue en zinc : réfection et création | Couvreur JMC",
+           "Réfection de chéneaux encaissés, noues en zinc, gouttières et descentes en Île-de-France, façonnés sur mesure par nos zingueurs. Devis gratuit.",
+           "Zinguerie · Chéneaux · Noues", "Chéneaux et noues en zinc : réfection et création",
+           "Noues, chéneaux encaissés, gouttières et descentes : nos zingueurs façonnent sur mesure les ouvrages qui protègent votre maison des eaux de pluie.",
+           body, faq, "Chéneaux et noues en zinc")
+
+
+def cheminee():
+    faq = [
+        ("Qu'est-ce qu'un solin de cheminée ?",
+         "Le solin assure l'étanchéité entre la souche de cheminée et la couverture. Il peut être réalisé en mortier ou, plus durablement, avec une bande métallique en zinc ou en plomb engravée dans la maçonnerie."),
+        ("Qu'est-ce que l'abergement d'une cheminée ?",
+         "C'est l'ensemble des pièces en zinc ou en plomb posées autour de la souche, en amont, sur les côtés et en aval, pour rendre la jonction avec la toiture parfaitement étanche."),
+        ("Quand faut-il refaire une souche de cheminée ?",
+         "Joints qui se creusent, briques ou enduit qui s'effritent, couronnement fissuré, traces d'humidité dans les combles autour du conduit : ce sont les signes qu'une réfection s'impose."),
+        ("Peut-on supprimer une souche de cheminée inutilisée ?",
+         "Oui, il est possible de démolir une souche inutilisée et de refaire la couverture à cet endroit, ce qui supprime un point faible de la toiture. Une autorisation peut être nécessaire selon la commune."),
+    ]
+    body = f"""    {photo("drone", eager=True)}
+    <h2>La cheminée, point sensible de la toiture</h2>
+    <p>La souche de cheminée traverse la couverture : c'est l'un des points où l'étanchéité est la plus difficile à assurer. Avec le temps, les joints se dégradent, l'enduit se fissure et les raccords se décollent. Nos couvreurs-zingueurs remettent en état l'ensemble de l'ouvrage.</p>
+
+    <h2>Nos travaux sur les cheminées</h2>
+    <h3>Réfection de souche de cheminée</h3>
+    <p>Rejointoiement ou reconstruction des briques, réfection de l'enduit, nouveau couronnement et chapeau de cheminée.</p>
+    <h3>Solins et abergements</h3>
+    <p>Remplacement des solins en mortier par des bandes en zinc ou en plomb engravées, abergements complets autour de la souche, raccordés à la couverture en tuile, en ardoise ou en zinc.</p>
+    <h3>Habillage de souche</h3>
+    <p>Habillage en zinc ou en ardoise pour protéger durablement une souche fatiguée et lui redonner une belle finition.</p>
+    <h3>Suppression de souche inutilisée</h3>
+    <p>Démolition de la souche et réfection de la couverture : un point faible en moins sur votre toit.</p>
+    <p>Ces travaux s'intègrent idéalement à une <a href="/renovation-toiture/">rénovation de toiture</a> ou à des travaux de <a href="/zinguerie/">zinguerie</a>.</p>"""
+    _guide("/souche-cheminee-solin-abergement/", "Souche de cheminée",
+           "Souche de cheminée, solin et abergement : réfection | JMC",
+           "Réfection de souche de cheminée, solins et abergements en zinc ou plomb, habillage de souche en Île-de-France, par des couvreurs-zingueurs. Devis gratuit.",
+           "Cheminée · Solin · Abergement", "Souche de cheminée : réfection, solins et abergements",
+           "Souche fissurée, solin dégradé, abergement à reprendre : nous remettons en état la cheminée et son raccord avec la toiture, en zinc, en plomb ou en ardoise.",
+           body, faq, "Réfection de souche de cheminée")
 
 
 REFS = [
@@ -1913,7 +2118,7 @@ def notfound():
 
 
 SITEMAP = [("/", "1.0"), ("/couverture/", "0.9"), ("/charpente/", "0.9"), ("/zinguerie/", "0.9"),
-           ("/renovation-toiture/", "0.95"), ("/nettoyage-toiture/", "0.95"), ("/toiture-maison-neuve/", "0.95"), ("/isolation-toiture/", "0.95"), ("/couverture-zinc-bardage/", "0.95"), ("/couvreur-copropriete-syndic/", "0.95"), ("/fenetre-de-toit-velux-lucarnes/", "0.9"), ("/couvreur-promotion-immobiliere/", "0.9"), ("/notre-methode-sav-qualite/", "0.8"), ("/zones-intervention/", "0.7"), ("/nos-references/", "0.7"),
+           ("/renovation-toiture/", "0.95"), ("/nettoyage-toiture/", "0.95"), ("/toiture-maison-neuve/", "0.95"), ("/isolation-toiture/", "0.95"), ("/couverture-zinc-bardage/", "0.95"), ("/couvreur-copropriete-syndic/", "0.95"), ("/fenetre-de-toit-velux-lucarnes/", "0.9"), ("/couvreur-promotion-immobiliere/", "0.9"), ("/notre-methode-sav-qualite/", "0.8"), ("/chien-assis-lucarne/", "0.9"), ("/toiture-mansardee-brisis-terrasson/", "0.85"), ("/cheneau-noue-zinc/", "0.85"), ("/souche-cheminee-solin-abergement/", "0.85"), ("/zones-intervention/", "0.7"), ("/nos-references/", "0.7"),
            ("/contact/", "0.8")]
 
 
@@ -1931,6 +2136,6 @@ def seo_files():
 
 
 if __name__ == "__main__":
-    for fn in (home, couverture, charpente, zinguerie, renovation, nettoyage, maison_neuve, isolation, zinc_bardage, copropriete, fenetres, promotion, methode, villes, depts, references, zones, contact, merci, mentions, notfound):
+    for fn in (home, couverture, charpente, zinguerie, renovation, nettoyage, maison_neuve, isolation, zinc_bardage, copropriete, fenetres, promotion, methode, chien_assis, mansarde, cheneau, cheminee, villes, depts, references, zones, contact, merci, mentions, notfound):
         fn()
     seo_files()
