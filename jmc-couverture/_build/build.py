@@ -23,6 +23,8 @@ BIZ = {
     "street": "97 rue Charles Van Wyngene",
     "zip": "77181",
     "city": "Courtry",
+    # Fiche Google Business Profile (kgmid /g/11y2n5k3zl)
+    "gbp": "https://www.google.com/search?kgmid=/g/11y2n5k3zl&q=JMC+COUVERTURE",
 }
 
 CITIES = [
@@ -75,6 +77,8 @@ def org_ld():
         "telephone": BIZ["phone_intl"],
         "email": BIZ["email"],
         "priceRange": "Devis gratuit",
+        "sameAs": [BIZ["gbp"]],
+        "hasMap": BIZ["gbp"],
         "address": {
             "@type": "PostalAddress",
             "streetAddress": BIZ["street"],
@@ -262,7 +266,8 @@ def footer():
     <div><h2>Contact</h2>
       <address style="font-style:normal">{BIZ['legal']}<br>{BIZ['street']}<br>{BIZ['zip']} {BIZ['city']}</address>
       <p style="margin-top:10px"><a href="tel:{BIZ['phone_intl']}"><strong>{BIZ['phone']}</strong></a><br>
-      <a href="mailto:{BIZ['email']}">{BIZ['email']}</a></p>
+      <a href="mailto:{BIZ['email']}">{BIZ['email']}</a><br>
+      <a href="{BIZ['gbp']}" target="_blank" rel="noopener">Notre fiche Google</a></p>
     </div>
   </div>
   <p class="small" style="margin-top:28px;color:#8c98a4">Couvreur à {city_links} et dans toute la Seine-et-Marne et la Seine-Saint-Denis.</p>
@@ -399,7 +404,8 @@ def home():
 <section><div class="wrap">
   <div class="section-head"><span class="eyebrow">Avis clients</span><h2>Ils nous ont confié leur toiture</h2></div>
   <div class="grid g3">{reviews_html(3)}</div>
-  <p style="margin-top:24px"><a class="more" href="/nos-references/">Voir nos références et tous les avis →</a></p>
+  <p style="margin-top:24px"><a class="more" href="/nos-references/">Voir nos références et tous les avis →</a>
+  &nbsp;·&nbsp; <a class="more" href="{BIZ['gbp']}" target="_blank" rel="noopener">Nos avis sur Google →</a></p>
 </div></section>
 
 <section class="section-alt"><div class="wrap">
@@ -673,6 +679,7 @@ def references():
 <section><div class="wrap">
   <div class="section-head"><h2>Avis de nos clients</h2></div>
   <div class="grid g3">{reviews_html(len(REVIEWS))}</div>
+  <p style="margin-top:24px"><a class="btn btn-dark" href="{BIZ['gbp']}" target="_blank" rel="noopener">Lire et laisser un avis sur Google</a></p>
 </div></section>
 """
     html += cta_band("Votre chantier sera notre prochaine référence")
@@ -767,7 +774,7 @@ def contact():
     <p><strong>{BIZ['legal']} – {BIZ['name']}</strong><br>{BIZ['street']}<br>{BIZ['zip']} {BIZ['city']}</p>
     <p>Téléphone : <a href="tel:{BIZ['phone_intl']}"><strong>{BIZ['phone']}</strong></a><br>
     E-mail : <a href="mailto:{BIZ['email']}">{BIZ['email']}</a></p>
-    <p><strong>Urgences toiture 7j/7</strong></p>
+    <p><strong>Urgences toiture 7j/7</strong> · <a href="{BIZ['gbp']}" target="_blank" rel="noopener">Fiche Google</a></p>
     <iframe class="map" title="Plan d'accès JMC Couverture, Courtry" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
       src="https://www.google.com/maps?q=97+rue+Charles+Van+Wyngene+77181+Courtry&amp;output=embed"></iframe>
   </aside>
