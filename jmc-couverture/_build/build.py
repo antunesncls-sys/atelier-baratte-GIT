@@ -46,21 +46,60 @@ NAV = [
 
 # ---------------------------------------------------------------- icônes SVG
 ICON = {
-    "roof": '<svg viewBox="0 0 24 24" fill="none" stroke="#b5482a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12 12 4l10 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>',
-    "beam": '<svg viewBox="0 0 24 24" fill="none" stroke="#b5482a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20 12 5l9 15"/><path d="M7 13h10"/><path d="M12 5v15"/></svg>',
-    "drop": '<svg viewBox="0 0 24 24" fill="none" stroke="#b5482a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18v3a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3z"/><path d="M17 12v9"/><path d="M15 21h4"/></svg>',
-    "alert": '<svg viewBox="0 0 24 24" fill="none" stroke="#b5482a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2 20h20z"/><path d="M12 10v4"/><path d="M12 17h.01"/></svg>',
-    "shield": '<svg viewBox="0 0 24 24" fill="none" stroke="#b5482a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg>',
-    "leaf": '<svg viewBox="0 0 24 24" fill="none" stroke="#b5482a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c9 0 14-6 14-15C10 4 5 9 5 19z"/><path d="M5 19 13 11"/></svg>',
-    "clock": '<svg viewBox="0 0 24 24" fill="none" stroke="#b5482a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
-    "doc": '<svg viewBox="0 0 24 24" fill="none" stroke="#b5482a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h6M9 16h6"/></svg>',
+    "roof": '<svg viewBox="0 0 24 24" fill="none" stroke="#d41d22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12 12 4l10 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>',
+    "beam": '<svg viewBox="0 0 24 24" fill="none" stroke="#d41d22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20 12 5l9 15"/><path d="M7 13h10"/><path d="M12 5v15"/></svg>',
+    "drop": '<svg viewBox="0 0 24 24" fill="none" stroke="#d41d22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18v3a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3z"/><path d="M17 12v9"/><path d="M15 21h4"/></svg>',
+    "alert": '<svg viewBox="0 0 24 24" fill="none" stroke="#d41d22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2 20h20z"/><path d="M12 10v4"/><path d="M12 17h.01"/></svg>',
+    "shield": '<svg viewBox="0 0 24 24" fill="none" stroke="#d41d22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg>',
+    "leaf": '<svg viewBox="0 0 24 24" fill="none" stroke="#d41d22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c9 0 14-6 14-15C10 4 5 9 5 19z"/><path d="M5 19 13 11"/></svg>',
+    "clock": '<svg viewBox="0 0 24 24" fill="none" stroke="#d41d22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+    "doc": '<svg viewBox="0 0 24 24" fill="none" stroke="#d41d22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h6M9 16h6"/></svg>',
 }
-LOGO = ('<svg viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="10" fill="#24313d"/>'
-        '<path d="M8 26 24 12l16 14" fill="none" stroke="#b5482a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>'
-        '<path d="M14 24v12h20V24" fill="none" stroke="#fff" stroke-width="3" stroke-linejoin="round"/></svg>')
 HERO_ART = ('<svg class="hero-art" viewBox="0 0 400 260" aria-hidden="true"><path d="M10 150 200 20l190 130" fill="none" '
             'stroke="#fff" stroke-width="14"/><path d="M50 130v120h300V130" fill="none" stroke="#fff" stroke-width="10"/>'
             '<path d="M280 70V20h40v80" fill="none" stroke="#fff" stroke-width="10"/></svg>')
+
+
+# ---------------------------------------------------------------- photos
+# Déposer les fichiers dans assets/photos/ avec ces noms (jpg, jpeg, webp ou png) puis relancer le build :
+# chaque photo n'est intégrée que si le fichier existe.
+PHOTOS = {
+    "pavillon": ("toiture-pavillon-renovation-jmc",
+                 "Pavillon dont la toiture a été rénovée par JMC Couverture",
+                 "Rénovation de la toiture d'un pavillon."),
+    "mansarde": ("toiture-mansardee-lucarnes-zinc-jmc",
+                 "Maison bourgeoise à toiture mansardée avec lucarnes habillées de zinc",
+                 "Toiture mansardée : brisis et lucarnes habillées de zinc."),
+    "meuliere": ("maison-meuliere-couverture-tuiles-jmc",
+                 "Maison en meulière avec couverture en tuiles refaite par JMC",
+                 "Maison en meulière : couverture en tuiles et zinguerie."),
+    "depot": ("depot-flotte-vehicules-jmc-couverture",
+              "Les locaux et la flotte de véhicules de l'entreprise JMC Couverture",
+              "Nos locaux et notre flotte de véhicules d'intervention."),
+}
+
+
+def photo_src(key):
+    base = PHOTOS[key][0]
+    for ext in ("webp", "jpg", "jpeg", "png"):
+        if (ROOT / "assets" / "photos" / f"{base}.{ext}").exists():
+            return f"/assets/photos/{base}.{ext}"
+    return None
+
+
+def photo(key, eager=False):
+    src = photo_src(key)
+    if not src:
+        return ""
+    _, alt, cap = PHOTOS[key]
+    load = 'fetchpriority="high"' if eager else 'loading="lazy"'
+    return (f'<figure class="photo"><img src="{src}" alt="{alt}" {load} decoding="async" width="1200" height="800">'
+            f'<figcaption>{cap}</figcaption></figure>')
+
+
+def hero_style(key):
+    src = photo_src(key)
+    return f' style="--hero-img:url({src})"' if src else ""
 
 
 # ---------------------------------------------------------------- JSON-LD
@@ -72,8 +111,9 @@ def org_ld():
         "name": BIZ["name"],
         "legalName": BIZ["legal"],
         "url": SITE + "/",
-        "logo": SITE + "/assets/logo.svg",
-        "image": SITE + "/assets/og-jmc-couverture.png",
+        "logo": SITE + "/assets/logo-jmc-40ans.png",
+        "foundingDate": "1985",
+        "image": SITE + "/assets/og-jmc-couverture.jpg",
         "telephone": BIZ["phone_intl"],
         "email": BIZ["email"],
         "priceRange": "Devis gratuit",
@@ -148,7 +188,7 @@ def head(title, desc, path, lds, robots="index,follow"):
 <meta name="description" content="{desc}">
 <meta name="robots" content="{robots}">
 <link rel="canonical" href="{canonical}">
-<meta name="theme-color" content="#24313d">
+<meta name="theme-color" content="#ee2428">
 <meta name="geo.region" content="FR-77">
 <meta name="geo.placename" content="Courtry">
 <meta property="og:type" content="website">
@@ -157,9 +197,11 @@ def head(title, desc, path, lds, robots="index,follow"):
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{canonical}">
-<meta property="og:image" content="{SITE}/assets/og-jmc-couverture.png">
+<meta property="og:image" content="{SITE}/assets/og-jmc-couverture.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&display=swap">
@@ -179,7 +221,7 @@ def header(path):
   <span>Urgence 7j/7 : <a href="tel:{BIZ['phone_intl']}"><strong>{BIZ['phone']}</strong></a></span>
 </div></div>
 <header class="site-header"><div class="wrap">
-  <a class="logo" href="/" aria-label="JMC Couverture, accueil">{LOGO}<div><strong>JMC</strong><span>Couverture · Charpente · Zinguerie</span></div></a>
+  <a class="logo" href="/" aria-label="JMC Couverture, accueil"><img src="/assets/logo-jmc-40ans.svg" alt="JMC Couverture – 40 ans, 1985-2025" width="141" height="63"></a>
   <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
   <nav class="nav" id="nav" aria-label="Navigation principale">{links}<a class="btn btn-primary" href="/contact/">Devis gratuit</a></nav>
 </div></header>
@@ -229,7 +271,7 @@ def aside(title="Pourquoi choisir JMC ?"):
 <aside class="aside">
   <h2>{title}</h2>
   <ul class="checks">
-    <li>Plus de 30 ans d'expérience</li>
+    <li>40 ans d'expérience (depuis 1985)</li>
     <li>Entreprise certifiée QUALIBAT et RGE</li>
     <li>Garantie décennale et responsabilité civile</li>
     <li>Plus de 1 500 chantiers réalisés</li>
@@ -248,8 +290,8 @@ def footer():
 <footer class="site-footer"><div class="wrap">
   <div class="footer-grid">
     <div>
-      <a class="logo" href="/" style="color:#fff">{LOGO}<div><strong>JMC</strong><span style="color:#b9c3cc">Couverture · Charpente · Zinguerie</span></div></a>
-      <p style="margin-top:16px">Entreprise de couverture, charpente et zinguerie à Courtry (77). Plus de 30 ans d'expérience au service des particuliers, des collectivités et des professionnels en Île-de-France.</p>
+      <a class="logo logo-footer" href="/"><img src="/assets/logo-jmc-40ans.svg" alt="JMC Couverture" width="180" height="80" loading="lazy"></a>
+      <p style="margin-top:16px">Entreprise de couverture, charpente et zinguerie à Courtry (77). Depuis 1985, 40 ans d'expérience au service des particuliers, des collectivités et des professionnels en Île-de-France.</p>
     </div>
     <div><h2>Nos métiers</h2><ul>
       <li><a href="/couverture/">Couverture &amp; rénovation de toiture</a></li>
@@ -329,14 +371,14 @@ def home():
     ]
     lds = [org_ld(), website_ld(), faq_ld(faq)]
     html = head("Couvreur à Courtry (77) – Couverture, Charpente, Zinguerie | JMC",
-                "Couvreur charpentier zingueur à Courtry (77) depuis 30 ans : rénovation de toiture, fuite, gouttières. QUALIBAT & RGE. Devis gratuit ☎ 01 64 21 38 37.",
+                "Couvreur charpentier zingueur à Courtry (77) depuis 1985 : rénovation de toiture, fuite, gouttières. QUALIBAT & RGE. Devis gratuit ☎ 01 64 21 38 37.",
                 "/", lds)
     html += header("/")
     html += f"""
-<section class="hero">{HERO_ART}<div class="wrap">
+<section class="hero"{hero_style("meuliere")}>{HERO_ART}<div class="wrap">
   <div>
-    <span class="eyebrow">Couvreur · Charpentier · Zingueur en Seine-et-Marne</span>
-    <h1>Votre couvreur à Courtry et en Île-de-France depuis plus de 30 ans</h1>
+    <span class="eyebrow">40 ans · 1985–2025 · Couvreur charpentier zingueur</span>
+    <h1>Votre couvreur à Courtry et en Île-de-France depuis 1985</h1>
     <p class="lead">Réfection de toiture, réparation de fuite, charpente et zinguerie : la société JMC réalise tous vos travaux de toiture en Seine-et-Marne, en Seine-Saint-Denis et à Paris, pour les particuliers comme pour les professionnels.</p>
     <div class="hero-cta"><a class="btn btn-primary" href="/contact/">Demander un devis gratuit</a>
     <a class="btn btn-ghost" href="tel:{BIZ['phone_intl']}">Appeler le {BIZ['phone']}</a></div>
@@ -366,7 +408,7 @@ def home():
 
 <section class="section-dark"><div class="wrap">
   <div class="stats">
-    <div><strong>30+</strong><span>années d'expérience</span></div>
+    <div><strong>40</strong><span>ans d'expérience</span></div>
     <div><strong>1 500+</strong><span>chantiers réalisés</span></div>
     <div><strong>1 000+</strong><span>clients satisfaits</span></div>
     <div><strong>7j/7</strong><span>intervention d'urgence</span></div>
@@ -375,9 +417,10 @@ def home():
 
 <section><div class="wrap split">
   <div class="prose">
+    {photo("depot")}
     <span class="eyebrow">L'entreprise</span>
     <h2>Une entreprise de toiture familière des maisons d'Île-de-France</h2>
-    <p>Installée au <strong>{BIZ['street']} à {BIZ['city']}</strong>, la société JMC accompagne depuis plus de trente ans les propriétaires, syndics, collectivités et promoteurs de l'est parisien. Pavillons en tuiles de Chelles ou du Pin, immeubles en zinc à Paris, écoles et bâtiments publics de Seine-Saint-Denis : nous connaissons les matériaux, les règles d'urbanisme et les contraintes de chaque type de bâti.</p>
+    <p>Installée au <strong>{BIZ['street']} à {BIZ['city']}</strong>, la société JMC accompagne depuis 1985 les propriétaires, syndics, collectivités et promoteurs de l'est parisien. Pavillons en tuiles de Chelles ou du Pin, immeubles en zinc à Paris, écoles et bâtiments publics de Seine-Saint-Denis : nous connaissons les matériaux, les règles d'urbanisme et les contraintes de chaque type de bâti.</p>
     <p>Notre approche est simple : <strong>confier vos travaux à des professionnels</strong>. Chaque chantier commence par un diagnostic honnête de votre toiture. Nous vous expliquons ce qui doit être fait tout de suite, ce qui peut attendre, et nous vous remettons un devis clair, poste par poste.</p>
     <h3>Nos engagements</h3>
     <ul class="checks">
@@ -445,15 +488,17 @@ def couverture():
     html += f"""
 <section><div class="wrap split">
   <article class="prose">
+    {photo("pavillon", eager=True)}
     <h2>Votre toiture, première protection de votre maison</h2>
     <p>L'intégrité d'une maison dépend en grande partie de la solidité de sa toiture. Elle protège des intempéries, assure la stabilité de la structure, évite les remontées d'humidité et préserve la valeur de votre bien. Une couverture négligée, c'est le risque d'infiltrations, de charpente dégradée et de pertes de chaleur importantes.</p>
-    <p>Couvreur à Courtry depuis plus de 30 ans, JMC intervient sur les pavillons, les immeubles et les bâtiments publics de Seine-et-Marne, de Seine-Saint-Denis et de Paris.</p>
+    <p>Couvreur à Courtry depuis 1985, JMC intervient sur les pavillons, les immeubles et les bâtiments publics de Seine-et-Marne, de Seine-Saint-Denis et de Paris.</p>
 
     <h2>Les couvertures que nous posons et rénovons</h2>
     <h3>Toiture en tuiles plates et mécaniques</h3>
     <p>Matériau le plus répandu en Île-de-France, la tuile terre cuite offre une excellente longévité. Nous posons et remplaçons tuiles plates, tuiles mécaniques à emboîtement et tuiles canal, avec reprise du liteaunage, de l'écran sous-toiture et des faîtages.</p>
     <h3>Toiture en ardoise naturelle ou synthétique</h3>
     <p>L'ardoise naturelle, posée au crochet ou au clou, peut durer plus d'un siècle. L'ardoise synthétique (fibres-ciment) constitue une alternative plus économique. Nous intervenons en neuf comme en rénovation, y compris sur les brisis et les lucarnes.</p>
+    {photo("meuliere")}
     <h3>Couverture en zinc</h3>
     <p>Signature des toits parisiens, dont le savoir-faire des couvreurs-zingueurs est inscrit au patrimoine culturel immatériel de l'UNESCO, la couverture zinc à joint debout ou à tasseaux convient aussi aux toitures à faible pente et aux extensions contemporaines.</p>
     <h3>Bac acier</h3>
@@ -556,6 +601,7 @@ def zinguerie():
     html += f"""
 <section><div class="wrap split">
   <article class="prose">
+    {photo("mansarde", eager=True)}
     <h2>Le rôle essentiel de la zinguerie</h2>
     <p>La zinguerie regroupe tous les ouvrages métalliques qui recueillent et évacuent l'eau de pluie, ainsi que les raccords d'étanchéité entre la couverture et les autres éléments du bâtiment. Une gouttière percée ou un chéneau mal entretenu suffit à abîmer une façade, à créer des infiltrations ou à fragiliser les fondations.</p>
     <p>Nos zingueurs façonnent et posent sur mesure chaque élément, majoritairement en <strong>zinc</strong> et en <strong>cuivre</strong>, choisis pour leur résistance aux intempéries et leur longévité. Selon le projet et l'esthétique recherchée, nous proposons aussi le PVC et l'aluminium.</p>
@@ -663,6 +709,12 @@ def references():
         f'<article class="ref"><div class="thumb">{ICON["roof" if t == "Couverture" else "beam" if t == "Charpente" else "drop"]}</div>'
         f'<div class="body"><span class="tag">{t} · {c}</span><h3>{n}</h3><p>{d}</p></div></article>'
         for t, n, c, d in REFS)
+    gallery = "".join(
+        f'<article class="ref"><div class="thumb"><img src="{photo_src(k)}" alt="{PHOTOS[k][1]}" loading="lazy" width="800" height="500"></div>'
+        f'<div class="body"><span class="tag">Réalisation</span><h3>{PHOTOS[k][2]}</h3></div></article>'
+        for k in ("pavillon", "mansarde", "meuliere") if photo_src(k))
+    gallery = (f'<section class="section-alt"><div class="wrap"><div class="section-head"><h2>Nos réalisations en images</h2>'
+               f'<p>Quelques toitures réalisées par nos équipes.</p></div><div class="refs">{gallery}</div></div></section>') if gallery else ""
     clients = ["Bouygues Immobilier", "Kaufman &amp; Broad", "Nexity", "Archicrea", "Ville de Montfermeil",
                "Ville de Nogent-sur-Marne", "Ville de Villemomble", "Maison Fochia", "Archi Noisy"]
     html += f"""
@@ -671,12 +723,13 @@ def references():
   <p>Logements, immeubles parisiens, établissements scolaires : un aperçu de nos réalisations.</p></div>
   <div class="refs">{cards}</div>
 </div></section>
-<section class="section-alt"><div class="wrap">
+{gallery}
+<section><div class="wrap">
   <div class="section-head"><h2>Ils nous font confiance</h2>
   <p>Promoteurs, architectes et collectivités de l'est parisien.</p></div>
   <ul class="clients">{"".join(f"<li>{c}</li>" for c in clients)}</ul>
 </div></section>
-<section><div class="wrap">
+<section class="section-alt"><div class="wrap">
   <div class="section-head"><h2>Avis de nos clients</h2></div>
   <div class="grid g3">{reviews_html(len(REVIEWS))}</div>
   <p style="margin-top:24px"><a class="btn btn-dark" href="{BIZ['gbp']}" target="_blank" rel="noopener">Lire et laisser un avis sur Google</a></p>
@@ -775,6 +828,7 @@ def contact():
     <p>Téléphone : <a href="tel:{BIZ['phone_intl']}"><strong>{BIZ['phone']}</strong></a><br>
     E-mail : <a href="mailto:{BIZ['email']}">{BIZ['email']}</a></p>
     <p><strong>Urgences toiture 7j/7</strong> · <a href="{BIZ['gbp']}" target="_blank" rel="noopener">Fiche Google</a></p>
+    {photo("depot")}
     <iframe class="map" title="Plan d'accès JMC Couverture, Courtry" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
       src="https://www.google.com/maps?q=97+rue+Charles+Van+Wyngene+77181+Courtry&amp;output=embed"></iframe>
   </aside>

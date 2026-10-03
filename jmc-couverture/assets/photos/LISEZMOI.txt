@@ -1,0 +1,6 @@
+Déposez ici les photos (jpg, webp ou png, ~1600 px de large, < 300 Ko) avec ces noms exacts :
+  toiture-pavillon-renovation-jmc.jpg        -> pavillon toiture anthracite (page Couverture, Références)
+  toiture-mansardee-lucarnes-zinc-jmc.jpg    -> maison mansardée à lucarnes (page Zinguerie, Références)
+  maison-meuliere-couverture-tuiles-jmc.jpg  -> maison en meulière (fond de l'accueil, Couverture, Références)
+  depot-flotte-vehicules-jmc-couverture.jpg  -> dépôt et camionnettes (Accueil, Contact)
+Puis lancez : python3 _build/build.py
