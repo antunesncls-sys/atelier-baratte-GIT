@@ -233,3 +233,4 @@ form.quote input:focus,form.quote select:focus,form.quote textarea:focus{outline
 @media (max-width:640px){.footer-grid{grid-template-columns:1fr}}
 .hero-art{display:none}
 .city-dept{font-size:1rem;margin:18px 0 10px;color:var(--ink-2)}
+.steps.grid li:last-child:nth-child(odd){grid-column:1/-1;border-color:var(--tile);background:var(--tile-soft)}

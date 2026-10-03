@@ -345,6 +345,7 @@ def aside(title="Pourquoi choisir JMC ?"):
     <li>Garantie décennale et responsabilité civile</li>
     <li>Plus de 1 500 chantiers réalisés</li>
     <li>Les équipes et la structure de la promotion immobilière</li>
+    <li>Équipe SAV et qualité dédiée, en interne</li>
     <li>Isolation RGE : aides possibles</li>
     <li>Devis gratuit et détaillé</li>
   </ul>
@@ -380,6 +381,7 @@ def footer():
       <li><a href="/zones-intervention/"><strong>Toutes nos villes →</strong></a></li>
     </ul></div>
     <div><h2>L'entreprise</h2><ul>
+      <li><a href="/notre-methode-sav-qualite/">Notre méthode, SAV &amp; qualité</a></li>
       <li><a href="/nos-references/">Nos références</a></li>
       <li><a href="/zones-intervention/">Zones d'intervention</a></li>
       <li><a href="/contact/">Contact &amp; devis</a></li>
@@ -520,19 +522,17 @@ def home():
       <li><strong>Conseil honnête</strong> : nettoyage ou remplacement, nous vous recommandons la solution adaptée.</li>
       <li><strong>Transparence</strong> : devis gratuit, détaillé et sans engagement.</li>
       <li><strong>Propreté</strong> : chantier protégé, nettoyé et gravats évacués.</li>
+      <li><strong>Suivi après travaux</strong> : une <a href="/notre-methode-sav-qualite/">équipe SAV et qualité dédiée</a>, en interne.</li>
     </ul>
   </div>
   {aside()}
 </div></section>
 
 <section class="section-alt"><div class="wrap">
-  <div class="section-head"><span class="eyebrow">Méthode</span><h2>Comment se déroule votre projet de toiture</h2></div>
-  <ol class="steps grid g2">
-    <li><strong>Prise de contact</strong><br>Par téléphone ou via le formulaire, vous nous décrivez votre besoin.</li>
-    <li><strong>Visite et diagnostic</strong><br>Un couvreur inspecte votre toiture, votre charpente et votre zinguerie.</li>
-    <li><strong>Devis détaillé gratuit</strong><br>Matériaux, surfaces, délais : tout est chiffré clairement.</li>
-    <li><strong>Travaux et réception</strong><br>Chantier sécurisé, finitions soignées, nettoyage et garantie décennale.</li>
-  </ol>
+  <div class="section-head"><span class="eyebrow">Notre process</span><h2>De la visite au SAV : un suivi complet par nos équipes</h2>
+  <p>Une méthode éprouvée sur les chantiers de promotion immobilière, et une <strong>équipe SAV et qualité dédiée en interne</strong> qui contrôle chaque chantier et reste votre interlocutrice après les travaux.</p></div>
+  {process_html()}
+  <p style="margin-top:22px"><a class="more" href="/notre-methode-sav-qualite/">Découvrir notre méthode, notre SAV et notre suivi qualité →</a></p>
 </div></section>
 
 <section><div class="wrap">
@@ -905,6 +905,7 @@ def maison_neuve():
       <li><strong>Étude et devis gratuit</strong><br>Choix du type de charpente, du matériau de couverture et des options, devis détaillé.</li>
       <li><strong>Planification</strong><br>Nous calons notre intervention avec votre maçon pour enchaîner sans temps mort.</li>
       <li><strong>Pose et mise hors d'eau</strong><br>Charpente, couverture et zinguerie, puis réception des travaux.</li>
+      <li><strong>Contrôle qualité et SAV</strong><br>Vérification par notre équipe qualité interne avant réception, puis suivi par notre SAV.</li>
     </ol>
     <p>Également pour vos <strong>extensions, surélévations et aménagements de combles</strong>. Découvrez nos <a href="/nos-references/">références</a>.</p>
   </article>
@@ -1322,6 +1323,7 @@ def copropriete():
       <li><strong>Préparation du chantier</strong><br>Démarches de voirie et d'urbanisme, échafaudage, information des résidents.</li>
       <li><strong>Travaux et suivi</strong><br>Un interlocuteur unique, des points d'avancement réguliers avec le syndic.</li>
       <li><strong>Réception</strong><br>Réception des travaux, photos, attestations et garanties pour le dossier de la copropriété.</li>
+      <li><strong>SAV et suivi</strong><br>Notre équipe SAV et qualité interne reste l'interlocutrice du syndic après le chantier.</li>
     </ol>
 
     <h2>Loi Climat : anticiper les travaux</h2>
@@ -1425,6 +1427,7 @@ def promotion():
       <li><strong>Une flotte de véhicules</strong> pour intervenir partout en Île-de-France</li>
       <li><strong>Un encadrement de chantier</strong> et un interlocuteur unique pour le maître d'ouvrage</li>
       <li><strong>Des garanties solides</strong> : décennale, responsabilité civile, QUALIBAT, RGE</li>
+      <li><strong>Une équipe SAV et qualité interne</strong> pour le contrôle avant réception et la levée des réserves</li>
     </ul>
 
     <h2>Nos prestations pour les promoteurs</h2>
@@ -1449,6 +1452,72 @@ def promotion():
     html += cta_band("Un programme à consulter ?", "Envoyez-nous votre dossier de consultation : réponse et chiffrage rapides.")
     html += footer()
     write("/couvreur-promotion-immobiliere/", html)
+
+
+PROCESS = [
+    ("Écoute et premier contact", "Par téléphone ou via le formulaire, vous nous décrivez votre projet. Un interlocuteur dédié vous est attribué dès le départ."),
+    ("Visite technique et diagnostic", "Un professionnel inspecte la couverture, la charpente, la zinguerie et l'isolation, photos à l'appui."),
+    ("Devis détaillé et conseil", "Un devis clair, poste par poste, avec nos recommandations, les variantes possibles et les aides mobilisables."),
+    ("Préparation du chantier", "Planning, démarches d'urbanisme, commande des matériaux et préparation en atelier : rien n'est laissé au hasard."),
+    ("Chantier encadré", "Nos propres équipes, un chef de chantier, une maison protégée, un chantier propre et des points d'avancement réguliers."),
+    ("Contrôle qualité et réception", "Les travaux sont vérifiés par notre équipe qualité avant la réception, réalisée avec vous. Photos et attestations vous sont remises."),
+    ("SAV et suivi dans la durée", "Après le chantier, notre équipe SAV interne reste votre interlocutrice pour toute question ou intervention liée à nos travaux."),
+]
+
+
+def process_html(n=None):
+    items = "".join(f"<li><strong>{t}</strong><br>{d}</li>" for t, d in PROCESS[:n])
+    return f'<ol class="steps grid g2">{items}</ol>'
+
+
+def methode():
+    trail = [("/", "Accueil"), ("/notre-methode-sav-qualite/", "Notre méthode, SAV et qualité")]
+    faq = [
+        ("Qui contacter après la fin de mon chantier ?",
+         "Notre équipe SAV et qualité, interne à l'entreprise. Elle connaît votre chantier et organise le suivi avec nos équipes."),
+        ("Quelles garanties couvrent mes travaux ?",
+         "Après la réception, vos travaux bénéficient des garanties légales : garantie de parfait achèvement (1 an), garantie biennale de bon fonctionnement des équipements (2 ans) et garantie décennale (10 ans), couverte par notre assurance."),
+        ("Comment est contrôlée la qualité des travaux ?",
+         "Chaque chantier est encadré par un chef de chantier et vérifié par notre équipe qualité avant la réception : étanchéité, finitions, zinguerie, propreté. La réception se fait ensuite avec vous."),
+    ]
+    page = {"@context": "https://schema.org", "@type": "AboutPage", "url": SITE + "/notre-methode-sav-qualite/",
+            "name": "Notre méthode, SAV et qualité", "about": {"@id": SITE + "/#entreprise"}}
+    lds = [org_ld(), crumbs_ld(trail), page, faq_ld(faq)]
+    html = head("Notre méthode, SAV et suivi qualité | JMC Couverture",
+                "De la visite au SAV : la méthode JMC en 7 étapes, des équipes internes, un contrôle qualité avant réception et une équipe SAV dédiée pour suivre vos travaux.",
+                "/notre-methode-sav-qualite/", lds)
+    html += header("/notre-methode-sav-qualite/")
+    html += page_hero(trail, "Méthode · SAV · Qualité", "Notre méthode : du premier contact au SAV, une équipe dédiée",
+                      "Une toiture réussie ne s'arrête pas à la fin du chantier. Méthode éprouvée sur les chantiers de promotion immobilière, contrôle qualité avant réception et équipe SAV interne : vous êtes suivi avant, pendant et après les travaux.")
+    html += f"""
+<section><div class="wrap">
+  <div class="section-head"><span class="eyebrow">Notre process</span><h2>7 étapes pour un chantier maîtrisé</h2>
+  <p>La même méthode pour un particulier, un syndic ou un promoteur : c'est ce qui garantit des délais tenus et un résultat durable.</p></div>
+  {process_html()}
+</div></section>
+
+<section class="section-alt"><div class="wrap split">
+  <article class="prose">
+    <h2>Une équipe SAV et qualité dédiée, en interne</h2>
+    <p>Chez JMC, le service après-vente n'est pas une formalité. Une <strong>équipe interne est dédiée au SAV et à la qualité</strong> : elle contrôle les chantiers avant leur réception, puis reste votre interlocutrice une fois les travaux terminés.</p>
+    <ul class="checks">
+      <li><strong>Contrôle avant réception</strong> : étanchéité, finitions, zinguerie, nettoyage du chantier</li>
+      <li><strong>Réception avec vous</strong>, photos et attestations remises</li>
+      <li><strong>Un interlocuteur SAV identifié</strong> après le chantier, au sein de l'entreprise</li>
+      <li><strong>Intervention de nos propres équipes</strong> pour toute demande liée à nos travaux</li>
+      <li><strong>Garanties légales</strong> : parfait achèvement, biennale et décennale</li>
+    </ul>
+    <h2>Pourquoi c'est important</h2>
+    <p>Beaucoup d'entreprises disparaissent une fois le chantier payé. Notre structure, construite pour répondre aux exigences de la <a href="/couvreur-promotion-immobiliere/">promotion immobilière</a>, où chaque réserve doit être levée, nous permet d'assurer un vrai suivi dans la durée, pour les promoteurs comme pour les <a href="/toiture-maison-neuve/">particuliers</a> et les <a href="/couvreur-copropriete-syndic/">copropriétés</a>.</p>
+    <p>Vous êtes déjà client et avez une demande de SAV ? <a href="/contact/">Contactez-nous</a> en choisissant « SAV – client JMC » dans le formulaire, ou appelez le <a href="tel:{BIZ['phone_intl']}">{BIZ['phone']}</a>.</p>
+  </article>
+  {aside("Suivi et qualité JMC")}
+</div></section>
+"""
+    html += faq_html(faq, "Questions fréquentes sur le suivi et le SAV")
+    html += cta_band()
+    html += footer()
+    write("/notre-methode-sav-qualite/", html)
 
 
 REFS = [
@@ -1600,6 +1669,7 @@ def contact():
           <option>Copropriété / syndic</option>
           <option>Promotion immobilière / constructeur</option>
           <option>Fenêtre de toit VELUX / lucarne</option>
+          <option>SAV – client JMC</option>
           <option>Autre</option>
         </select></label>
       <label>Votre projet *<textarea name="message" rows="6" required placeholder="Surface approximative, matériau actuel, problème constaté…"></textarea></label>
@@ -1669,7 +1739,7 @@ def notfound():
 
 
 SITEMAP = [("/", "1.0"), ("/couverture/", "0.9"), ("/charpente/", "0.9"), ("/zinguerie/", "0.9"),
-           ("/renovation-toiture/", "0.95"), ("/nettoyage-toiture/", "0.95"), ("/toiture-maison-neuve/", "0.95"), ("/isolation-toiture/", "0.95"), ("/couverture-zinc-bardage/", "0.95"), ("/couvreur-copropriete-syndic/", "0.95"), ("/fenetre-de-toit-velux-lucarnes/", "0.9"), ("/couvreur-promotion-immobiliere/", "0.9"), ("/zones-intervention/", "0.7"), ("/nos-references/", "0.7"),
+           ("/renovation-toiture/", "0.95"), ("/nettoyage-toiture/", "0.95"), ("/toiture-maison-neuve/", "0.95"), ("/isolation-toiture/", "0.95"), ("/couverture-zinc-bardage/", "0.95"), ("/couvreur-copropriete-syndic/", "0.95"), ("/fenetre-de-toit-velux-lucarnes/", "0.9"), ("/couvreur-promotion-immobiliere/", "0.9"), ("/notre-methode-sav-qualite/", "0.8"), ("/zones-intervention/", "0.7"), ("/nos-references/", "0.7"),
            ("/contact/", "0.8")]
 
 
@@ -1686,6 +1756,6 @@ def seo_files():
 
 
 if __name__ == "__main__":
-    for fn in (home, couverture, charpente, zinguerie, renovation, nettoyage, maison_neuve, isolation, zinc_bardage, copropriete, fenetres, promotion, villes, references, zones, contact, merci, mentions, notfound):
+    for fn in (home, couverture, charpente, zinguerie, renovation, nettoyage, maison_neuve, isolation, zinc_bardage, copropriete, fenetres, promotion, methode, villes, references, zones, contact, merci, mentions, notfound):
         fn()
     seo_files()
