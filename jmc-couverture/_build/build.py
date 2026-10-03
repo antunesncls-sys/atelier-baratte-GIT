@@ -346,6 +346,7 @@ def aside(title="Pourquoi choisir JMC ?"):
     <li>Plus de 1 500 chantiers réalisés</li>
     <li>Les équipes et la structure de la promotion immobilière</li>
     <li>Équipe SAV et qualité dédiée, en interne</li>
+    <li>Équipes formées à la sécurité et à la propreté</li>
     <li>Isolation RGE : aides possibles</li>
     <li>Devis gratuit et détaillé</li>
   </ul>
@@ -437,6 +438,46 @@ def reviews_html(n=3):
     return cards
 
 
+
+def secu_proprete():
+    return """
+<section class="section-dark"><div class="wrap">
+  <div class="section-head"><span class="eyebrow" style="color:var(--gold-light)">Chez vous, en toute confiance</span>
+  <h2>Des équipes formées à la sécurité et à la propreté</h2>
+  <p>Intervenir sur votre maison, c'est entrer chez vous. Nos compagnons sont formés pour travailler en toute sécurité et laisser votre maison et votre jardin aussi propres qu'à leur arrivée.</p></div>
+  <div class="grid g2">
+    <div class="card card-dark"><h3>Sécurité</h3><ul class="checks">
+      <li>Équipes formées au travail en hauteur et aux règles de sécurité</li>
+      <li>Échafaudages, garde-corps et protections collectives adaptés</li>
+      <li>Chantier balisé pour la sécurité de votre famille et de vos voisins</li>
+      <li>Matériel contrôlé et entretenu</li>
+    </ul></div>
+    <div class="card card-dark"><h3>Propreté</h3><ul class="checks">
+      <li>Protection des abords, des façades, des terrasses et des jardins</li>
+      <li>Rangement et nettoyage du chantier chaque jour</li>
+      <li>Gravats et déchets évacués et triés</li>
+      <li>Maison rendue propre à la fin des travaux</li>
+    </ul></div>
+  </div>
+</div></section>"""
+
+
+def bouche_oreille():
+    return f"""
+<section><div class="wrap">
+  <div class="section-head"><span class="eyebrow">Bouche-à-oreille</span>
+  <h2>Notre meilleure publicité : vos recommandations</h2>
+  <p>Une grande partie de nos chantiers nous est confiée grâce au <strong>bouche-à-oreille</strong> : un voisin qui a vu notre panneau, un ami satisfait, un client qui revient pour une autre maison. C'est la preuve la plus sincère de la qualité de notre travail.</p></div>
+  <div class="grid g3">{reviews_html(3)}</div>
+  <div class="wom">
+    <div><strong>On vous a recommandé JMC ?</strong><span>Dites-le-nous dans votre demande de devis : nous serons ravis de savoir qui remercier.</span></div>
+    <div class="hero-cta" style="margin:0"><a class="btn btn-primary" href="/contact/">Demander un devis</a>
+    <a class="btn btn-dark" href="{BIZ['reviews']}" target="_blank" rel="noopener">Laisser un avis Google</a></div>
+  </div>
+  <p style="margin-top:18px"><a class="more" href="/nos-references/">Voir nos références et tous les avis →</a>{insta_link(" &nbsp;·&nbsp; ")}</p>
+</div></section>"""
+
+
 # ================================================================ PAGES
 def home():
     faq = [
@@ -521,7 +562,8 @@ def home():
       <li><strong>Sécurité</strong> : garantie décennale et responsabilité civile professionnelle.</li>
       <li><strong>Conseil honnête</strong> : nettoyage ou remplacement, nous vous recommandons la solution adaptée.</li>
       <li><strong>Transparence</strong> : devis gratuit, détaillé et sans engagement.</li>
-      <li><strong>Propreté</strong> : chantier protégé, nettoyé et gravats évacués.</li>
+      <li><strong>Sécurité</strong> : des équipes formées pour intervenir chez vous en toute sécurité.</li>
+      <li><strong>Propreté</strong> : chantier protégé, nettoyé chaque jour, gravats évacués.</li>
       <li><strong>Suivi après travaux</strong> : une <a href="/notre-methode-sav-qualite/">équipe SAV et qualité dédiée</a>, en interne.</li>
     </ul>
   </div>
@@ -535,12 +577,8 @@ def home():
   <p style="margin-top:22px"><a class="more" href="/notre-methode-sav-qualite/">Découvrir notre méthode, notre SAV et notre suivi qualité →</a></p>
 </div></section>
 
-<section><div class="wrap">
-  <div class="section-head"><span class="eyebrow">Avis clients</span><h2>Ils nous ont confié leur toiture</h2></div>
-  <div class="grid g3">{reviews_html(3)}</div>
-  <p style="margin-top:24px"><a class="more" href="/nos-references/">Voir nos références et tous les avis →</a>
-  &nbsp;·&nbsp; <a class="more" href="{BIZ['reviews']}" target="_blank" rel="noopener">Nos avis sur Google →</a></p>
-</div></section>
+{secu_proprete()}
+{bouche_oreille()}
 
 <section class="section-alt"><div class="wrap">
   <div class="section-head"><span class="eyebrow">Zone d'intervention</span>
@@ -1459,7 +1497,7 @@ PROCESS = [
     ("Visite technique et diagnostic", "Un professionnel inspecte la couverture, la charpente, la zinguerie et l'isolation, photos à l'appui."),
     ("Devis détaillé et conseil", "Un devis clair, poste par poste, avec nos recommandations, les variantes possibles et les aides mobilisables."),
     ("Préparation du chantier", "Planning, démarches d'urbanisme, commande des matériaux et préparation en atelier : rien n'est laissé au hasard."),
-    ("Chantier encadré", "Nos propres équipes, un chef de chantier, une maison protégée, un chantier propre et des points d'avancement réguliers."),
+    ("Chantier sûr, propre et encadré", "Des équipes formées à la sécurité et à la propreté, un chef de chantier, une maison protégée, un chantier nettoyé chaque jour et des points d'avancement réguliers."),
     ("Contrôle qualité et réception", "Les travaux sont vérifiés par notre équipe qualité avant la réception, réalisée avec vous. Photos et attestations vous sont remises."),
     ("SAV et suivi dans la durée", "Après le chantier, notre équipe SAV interne reste votre interlocutrice pour toute question ou intervention liée à nos travaux."),
 ]
@@ -1483,8 +1521,8 @@ def methode():
     page = {"@context": "https://schema.org", "@type": "AboutPage", "url": SITE + "/notre-methode-sav-qualite/",
             "name": "Notre méthode, SAV et qualité", "about": {"@id": SITE + "/#entreprise"}}
     lds = [org_ld(), crumbs_ld(trail), page, faq_ld(faq)]
-    html = head("Notre méthode, SAV et suivi qualité | JMC Couverture",
-                "De la visite au SAV : la méthode JMC en 7 étapes, des équipes internes, un contrôle qualité avant réception et une équipe SAV dédiée pour suivre vos travaux.",
+    html = head("Notre méthode : sécurité, propreté, SAV et qualité | JMC",
+                "La méthode JMC en 7 étapes : équipes formées à la sécurité et à la propreté, contrôle qualité avant réception et équipe SAV interne dédiée.",
                 "/notre-methode-sav-qualite/", lds)
     html += header("/notre-methode-sav-qualite/")
     html += page_hero(trail, "Méthode · SAV · Qualité", "Notre méthode : du premier contact au SAV, une équipe dédiée",
@@ -1495,6 +1533,7 @@ def methode():
   <p>La même méthode pour un particulier, un syndic ou un promoteur : c'est ce qui garantit des délais tenus et un résultat durable.</p></div>
   {process_html()}
 </div></section>
+{secu_proprete()}
 
 <section class="section-alt"><div class="wrap split">
   <article class="prose">
@@ -1657,6 +1696,15 @@ def contact():
         <label>E-mail<input name="email" type="email" autocomplete="email"></label>
         <label>Ville du chantier *<input name="ville" autocomplete="address-level2" required></label>
       </div>
+      <label>Comment nous avez-vous connu ?
+        <select name="origine">
+          <option>Recommandation d'un proche ou d'un voisin</option>
+          <option>Panneau de chantier JMC</option>
+          <option>Recherche Google</option>
+          <option>Instagram</option>
+          <option>Déjà client JMC</option>
+          <option>Autre</option>
+        </select></label>
       <label>Type de travaux
         <select name="travaux">
           <option>Remplacement / rénovation de toiture</option>

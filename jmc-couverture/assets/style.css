@@ -234,3 +234,11 @@ form.quote input:focus,form.quote select:focus,form.quote textarea:focus{outline
 .hero-art{display:none}
 .city-dept{font-size:1rem;margin:18px 0 10px;color:var(--ink-2)}
 .steps.grid li:last-child:nth-child(odd){grid-column:1/-1;border-color:var(--tile);background:var(--tile-soft)}
+.card-dark{background:var(--slate-2);border-color:#3a424b;color:#e7ecf0}
+.card-dark:hover{transform:none}
+.card-dark h3{color:#fff}
+.section-dark .checks li::before{border-color:var(--gold-light)}
+.wom{margin-top:28px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;background:var(--bg-2);border:1px solid var(--line);border-left:5px solid var(--tile);border-radius:var(--radius);padding:22px 24px}
+.wom strong{display:block;font-size:1.15rem}
+.wom span{color:var(--ink-2)}
+.card-dark ul,.card-dark li{color:#dfe5ea}
