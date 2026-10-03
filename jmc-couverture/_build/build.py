@@ -54,6 +54,8 @@ SAVOIR_FAIRE = [
     ("/toiture-mansardee-brisis-terrasson/", "Toiture mansardée"),
     ("/cheneau-noue-zinc/", "Chéneaux et noues en zinc"),
     ("/souche-cheminee-solin-abergement/", "Souche de cheminée"),
+    ("/etancheite-toiture-terrasse/", "Étanchéité toiture terrasse"),
+    ("/toiture-avant-panneaux-photovoltaiques/", "Toiture avant photovoltaïque"),
     ("/fenetre-de-toit-velux-lucarnes/", "Pose de VELUX"),
     ("/couverture-zinc-bardage/", "Zinc joint debout et bardage"),
 ]
@@ -213,7 +215,7 @@ def org_ld():
         + [{"@type": "AdministrativeArea", "name": n} for n in DEPTS]
         + [{"@type": "City", "name": c} for c in dict.fromkeys([v["name"] for v in VILLES] + CITIES)],
         "knowsAbout": ["Couverture", "Charpente", "Zinguerie", "Rénovation de toiture",
-                       "Remplacement de toiture", "Nettoyage de toiture", "Démoussage", "Isolation de toiture", "Couverture zinc", "Bardage zinc", "Maison d'architecte", "Toiture maison neuve", "Isolation des combles", "Fenêtre de toit", "VELUX", "Lucarnes", "Copropriété", "Promotion immobilière", "Chien-assis", "Toiture mansardée", "Chéneau", "Noue", "Souche de cheminée", "Gouttières", "Toiture zinc", "Ardoise", "Tuiles"],
+                       "Remplacement de toiture", "Nettoyage de toiture", "Démoussage", "Isolation de toiture", "Couverture zinc", "Bardage zinc", "Maison d'architecte", "Toiture maison neuve", "Isolation des combles", "Fenêtre de toit", "VELUX", "Lucarnes", "Copropriété", "Promotion immobilière", "Chien-assis", "Toiture mansardée", "Chéneau", "Noue", "Souche de cheminée", "Étanchéité toiture terrasse", "EPDM", "Descentes d'eaux pluviales", "Photovoltaïque", "Gouttières", "Toiture zinc", "Ardoise", "Tuiles"],
         "hasCredential": [
             {"@type": "EducationalOccupationalCredential", "credentialCategory": "Qualification", "name": "QUALIBAT"},
             {"@type": "EducationalOccupationalCredential", "credentialCategory": "Label", "name": "RGE - Reconnu Garant de l'Environnement"},
@@ -233,7 +235,9 @@ def org_ld():
                              ("Couverture zinc et bardage", "/couverture-zinc-bardage/"),
                              ("Toiture et isolation pour copropriétés", "/couvreur-copropriete-syndic/"),
                              ("Fenêtres de toit VELUX et lucarnes", "/fenetre-de-toit-velux-lucarnes/"),
-                             ("Couverture pour la promotion immobilière", "/couvreur-promotion-immobiliere/"))
+                             ("Couverture pour la promotion immobilière", "/couvreur-promotion-immobiliere/"),
+                             ("Étanchéité de toiture terrasse", "/etancheite-toiture-terrasse/"),
+                             ("Toiture avant panneaux photovoltaïques", "/toiture-avant-panneaux-photovoltaiques/"))
             ],
         },
     }
@@ -367,6 +371,7 @@ def aside(title="Pourquoi choisir JMC ?"):
     <li>Les équipes et la structure de la promotion immobilière</li>
     <li>Équipe SAV et qualité dédiée, en interne</li>
     <li>Équipes formées à la sécurité et à la propreté</li>
+    <li>Démarches en mairie gérées pour vous</li>
     <li>Isolation RGE : aides possibles</li>
     <li>Devis gratuit et détaillé</li>
   </ul>
@@ -587,7 +592,7 @@ def home():
     <h2>La structure de la promotion immobilière, au service des particuliers</h2>
     {photo("depot")}
     <p>Depuis 1985, la société JMC réalise la charpente, la couverture et la zinguerie de programmes de <a href="/couvreur-promotion-immobiliere/">promotion immobilière</a> pour Bouygues Immobilier, Kaufman &amp; Broad, Nexity ou Archicrea, ainsi que pour des architectes et des collectivités. Pour tenir ces chantiers, nous avons bâti à Courtry une vraie structure : <strong>des équipes de couvreurs, charpentiers et zingueurs, un atelier, une flotte de véhicules et un encadrement de chantier</strong>.</p>
-    <p>Cette organisation, nous la mettons aussi au service des <strong>particuliers</strong> : vous bénéficiez de la capacité et de la rigueur d'une entreprise habituée aux grands chantiers, avec un interlocuteur dédié et l'écoute d'une entreprise familiale.</p>
+    <p>Cette organisation, nous la mettons aussi au service des <strong>particuliers</strong> : vous bénéficiez de la capacité et de la rigueur d'une entreprise habituée aux grands chantiers, avec un interlocuteur dédié et l'écoute d'une entreprise familiale. Nous travaillons aussi avec les <strong>maîtres d'œuvre</strong> et les architectes, pouvons <strong>gérer vos démarches en mairie</strong> et vous recommander des prestataires compétents pour préparer au mieux vos travaux.</p>
     <p>Notre approche est simple : <strong>confier vos travaux à des professionnels</strong>. Chaque chantier commence par un diagnostic honnête de votre toiture. Nous vous expliquons ce qui doit être fait tout de suite, ce qui peut attendre, et nous vous remettons un devis clair, poste par poste.</p>
     <h3>Nos engagements</h3>
     <ul class="checks">
@@ -667,7 +672,7 @@ def couverture():
     <h3>Bac acier</h3>
     <p>Léger, rapide à poser et très durable, le bac acier, simple ou isolé (panneaux sandwich), est idéal pour les garages, ateliers, bâtiments industriels et extensions.</p>
     <h3>Toiture terrasse et étanchéité EPDM</h3>
-    <p>Pour les toits plats, nous réalisons l'étanchéité par membrane EPDM : une seule pièce, sans joint, résistante aux UV et aux écarts de température.</p>
+    <p>Pour les toits plats, nous réalisons l'<a href="/etancheite-toiture-terrasse/">étanchéité des toitures terrasses</a> par membrane EPDM ou bitumineuse, avec reprise des descentes d'eaux pluviales.</p>
 
     <h2>Nos prestations de couverture</h2>
     <ul class="checks">
@@ -770,7 +775,7 @@ def zinguerie():
 
     <h2>Nos prestations de zinguerie</h2>
     <h3>Gouttières et descentes d'eaux pluviales</h3>
-    <p>Pose, remplacement et réparation de gouttières pendantes, havraises ou nantaises, et de descentes avec leurs dauphins.</p>
+    <p>Pose, remplacement et réparation de gouttières pendantes, havraises ou nantaises, et reprise des <a href="/etancheite-toiture-terrasse/">descentes d'eaux pluviales</a> avec leurs dauphins.</p>
     <h3>Chéneaux et noues</h3>
     <p>Réfection des <a href="/cheneau-noue-zinc/">chéneaux encaissés et des noues</a>, zones où l'eau se concentre et qui sont à l'origine de nombreuses fuites.</p>
     <h3>Entourages de cheminée et de fenêtres de toit</h3>
@@ -807,7 +812,7 @@ def renovation():
         ("Combien de temps durent les travaux ?",
          "Pour un pavillon, une réfection complète de couverture dure généralement d'une à trois semaines selon la surface, la complexité du toit et la météo. Votre maison reste protégée pendant toute la durée du chantier."),
         ("Faut-il une autorisation de la mairie ?",
-         "Si vous changez l'aspect extérieur (matériau, couleur, ajout de fenêtres de toit), une déclaration préalable de travaux est en général nécessaire. Une réfection à l'identique en est souvent dispensée, mais les règles dépendent du PLU de votre commune : nous vous aidons à vérifier."),
+         "Si vous changez l'aspect extérieur (matériau, couleur, ajout de fenêtres de toit), une déclaration préalable de travaux est en général nécessaire. Une réfection à l'identique en est souvent dispensée, mais les règles dépendent du PLU de votre commune : nous vérifions pour vous et pouvons gérer les démarches auprès de la mairie."),
         ("Peut-on bénéficier d'aides pour refaire sa toiture ?",
          "Le remplacement de la couverture seul n'est pas aidé, mais l'isolation de la toiture réalisée en même temps par une entreprise RGE comme JMC peut ouvrir droit à des aides à la rénovation énergétique (MaPrimeRénov', primes CEE, éco-prêt à taux zéro), selon vos revenus et les conditions en vigueur."),
     ]
@@ -840,6 +845,7 @@ def renovation():
       <li>Combles mal isolés et factures de chauffage élevées</li>
       <li>Toiture de plus de 30 ans qui n'a jamais été rénovée</li>
     </ul>
+    <p>Vous prévoyez des panneaux solaires ? Pensez à <a href="/toiture-avant-panneaux-photovoltaiques/">rénover la toiture avant leur installation</a>.</p>
     <p>Si votre couverture est saine mais simplement encrassée, un <a href="/nettoyage-toiture/">nettoyage et démoussage</a> peut suffire : nous vous le dirons honnêtement lors de la visite.</p>
 
     <h2>Les étapes d'une réfection complète</h2>
@@ -1170,7 +1176,7 @@ def _v(name, dept, num, cp, lead, p1, p2, voisines):
 
 ABF = ("Une grande partie de la commune est couverte par des protections patrimoniales : les travaux de toiture y sont "
        "souvent soumis à l'avis de l'Architecte des Bâtiments de France. Nous connaissons ces exigences (matériaux, teintes, "
-       "lucarnes, zinguerie) et vous aidons à préparer le dossier de déclaration préalable.")
+       "lucarnes, zinguerie) et pouvons gérer pour vous le dossier de déclaration préalable.")
 
 VILLES += [
     _v("Fontainebleau", "Seine-et-Marne", "77", "77300",
@@ -1284,7 +1290,7 @@ def ville(v):
         (f"Intervenez-vous à {name} ?",
          f"Oui. Depuis notre siège de Courtry, nos équipes interviennent à {name} ({v['num']}) et dans les communes voisines : {', '.join(v['voisines'][:4])}. Le déplacement et le devis sont gratuits."),
         (f"Faut-il une autorisation pour refaire sa toiture à {name} ?",
-         f"Si les travaux modifient l'aspect extérieur (matériau, couleur, fenêtres de toit), une déclaration préalable doit généralement être déposée en mairie de {name}. Dans un secteur protégé, l'avis de l'Architecte des Bâtiments de France peut être requis. Nous vous aidons à constituer le dossier."),
+         f"Si les travaux modifient l'aspect extérieur (matériau, couleur, fenêtres de toit), une déclaration préalable doit généralement être déposée en mairie de {name}. Dans un secteur protégé, l'avis de l'Architecte des Bâtiments de France peut être requis. Nous pouvons gérer ces démarches pour vous, du dossier au dépôt en mairie."),
         ("Quels travaux réalisez-vous ?",
          "Rénovation et remplacement de toiture, isolation des combles (entreprise RGE), fenêtres de toit VELUX et lucarnes, toiture de maison neuve, couverture zinc et bardage pour maisons d'architecte, travaux pour copropriétés et syndics, nettoyage, charpente et zinguerie."),
     ]
@@ -1644,7 +1650,7 @@ PROCESS = [
     ("Écoute et premier contact", "Par téléphone ou via le formulaire, vous nous décrivez votre projet. Un interlocuteur dédié vous est attribué dès le départ."),
     ("Visite technique et diagnostic", "Un professionnel inspecte la couverture, la charpente, la zinguerie et l'isolation, photos à l'appui."),
     ("Devis détaillé et conseil", "Un devis clair, poste par poste, avec nos recommandations, les variantes possibles et les aides mobilisables."),
-    ("Préparation du chantier", "Planning, démarches d'urbanisme, commande des matériaux et préparation en atelier : rien n'est laissé au hasard."),
+    ("Démarches et préparation", "Nous pouvons gérer les démarches en mairie, travailler avec votre maître d'œuvre et vous recommander des prestataires compétents pour préparer au mieux les travaux, puis planifier et préparer le chantier en atelier."),
     ("Chantier sûr, propre et encadré", "Des équipes formées à la sécurité et à la propreté, un chef de chantier, une maison protégée, un chantier nettoyé chaque jour et des points d'avancement réguliers."),
     ("Contrôle qualité et réception", "Les travaux sont vérifiés par notre équipe qualité avant la réception, réalisée avec vous. Photos et attestations vous sont remises."),
     ("SAV et suivi dans la durée", "Après le chantier, notre équipe SAV interne reste votre interlocutrice pour toute question ou intervention liée à nos travaux."),
@@ -1693,6 +1699,12 @@ def methode():
       <li><strong>Un interlocuteur SAV identifié</strong> après le chantier, au sein de l'entreprise</li>
       <li><strong>Intervention de nos propres équipes</strong> pour toute demande liée à nos travaux</li>
       <li><strong>Garanties légales</strong> : parfait achèvement, biennale et décennale</li>
+    </ul>
+    <h2>Démarches, maîtres d'œuvre et prestataires</h2>
+    <ul class="checks">
+      <li><strong>Démarches en mairie</strong> : nous pouvons préparer et déposer pour vous la déclaration préalable de travaux</li>
+      <li><strong>Maîtres d'œuvre et architectes</strong> : nous travaillons régulièrement à leurs côtés et suivons leurs prescriptions</li>
+      <li><strong>Prestataires compétents</strong> : nous pouvons vous recommander des professionnels de confiance pour préparer au mieux vos travaux</li>
     </ul>
     <h2>Pourquoi c'est important</h2>
     <p>Beaucoup d'entreprises disparaissent une fois le chantier payé. Notre structure, construite pour répondre aux exigences de la <a href="/couvreur-promotion-immobiliere/">promotion immobilière</a>, où chaque réserve doit être levée, nous permet d'assurer un vrai suivi dans la durée, pour les promoteurs comme pour les <a href="/toiture-maison-neuve/">particuliers</a> et les <a href="/couvreur-copropriete-syndic/">copropriétés</a>.</p>
@@ -1760,7 +1772,7 @@ def chien_assis():
     <h2>Les étapes de la création d'un chien-assis</h2>
     <ol class="steps">
       <li><strong>Visite et étude</strong><br>Choix du type de lucarne, dimensions, vérification de la charpente et des règles d'urbanisme.</li>
-      <li><strong>Démarches</strong><br>Nous vous aidons à préparer la déclaration préalable (plans, insertion, descriptif).</li>
+      <li><strong>Démarches</strong><br>Nous pouvons gérer pour vous la déclaration préalable auprès de la mairie (plans, insertion, descriptif).</li>
       <li><strong>Ouverture et charpente</strong><br>Dépose de la couverture, création du chevêtre et de l'ossature de la lucarne.</li>
       <li><strong>Couverture et habillage</strong><br>Toit de la lucarne, joues, fronton, raccords d'étanchéité en zinc ou en plomb.</li>
       <li><strong>Menuiserie et isolation</strong><br>Pose de la fenêtre et isolation de la lucarne, pour un résultat étanche et performant.</li>
@@ -1888,6 +1900,82 @@ def cheminee():
            "Cheminée · Solin · Abergement", "Souche de cheminée : réfection, solins et abergements",
            "Souche fissurée, solin dégradé, abergement à reprendre : nous remettons en état la cheminée et son raccord avec la toiture, en zinc, en plomb ou en ardoise.",
            body, faq, "Réfection de souche de cheminée")
+
+
+def terrasse():
+    faq = [
+        ("Quelle étanchéité choisir pour une toiture terrasse ?",
+         "Les deux grandes solutions sont la membrane EPDM, posée en une seule pièce sans joint, et l'étanchéité bitumineuse (membranes en bitume élastomère, généralement en bicouche). Le choix dépend de la surface, de l'usage de la terrasse (accessible ou non), de l'isolation et des relevés. Nous vous conseillons après visite."),
+        ("Pourquoi ma toiture terrasse fuit-elle ?",
+         "Les causes les plus fréquentes sont des relevés d'étanchéité décollés, des évacuations bouchées ou mal raccordées, une membrane vieillie ou percée, ou une pente insuffisante qui laisse l'eau stagner. Un diagnostic permet de savoir s'il faut réparer ou refaire."),
+        ("Peut-on isoler une toiture terrasse en refaisant l'étanchéité ?",
+         "Oui, c'est le bon moment : l'isolant est posé sous la nouvelle étanchéité. Réalisée par une entreprise RGE, cette isolation peut ouvrir droit à des aides selon les conditions en vigueur."),
+        ("Reprenez-vous aussi les descentes d'eaux pluviales ?",
+         "Oui. Naissances, trop-pleins, descentes et raccordements sont repris en même temps que l'étanchéité : une terrasse étanche doit aussi évacuer l'eau correctement."),
+    ]
+    body = f"""    <h2>L'étanchéité, protection vitale des toits plats</h2>
+    <p>Toits-terrasses de maisons contemporaines, extensions, garages, immeubles : une toiture plate ne pardonne pas les défauts d'étanchéité. Nos équipes réalisent la réfection complète ou la création de l'étanchéité de vos toitures terrasses, avec l'isolation, les relevés et l'évacuation des eaux pluviales.</p>
+
+    <h2>Nos solutions d'étanchéité</h2>
+    <h3>Membrane EPDM</h3>
+    <p>Une membrane en caoutchouc synthétique posée d'un seul tenant, sans joint, résistante aux UV et aux écarts de température : idéale pour les toits plats de maisons, extensions et garages.</p>
+    <h3>Étanchéité bitumineuse</h3>
+    <p>Membranes en bitume élastomère posées en une ou deux couches, solution éprouvée pour les terrasses de grande surface et les immeubles.</p>
+    <h3>Isolation de la terrasse</h3>
+    <p>Lors de la réfection, nous intégrons un isolant sous l'étanchéité pour améliorer le confort et les performances énergétiques du logement (voir <a href="/isolation-toiture/">isolation de toiture</a>).</p>
+    <h3>Relevés, acrotères et couvertines</h3>
+    <p>Les points singuliers font la qualité d'une étanchéité : relevés soignés, acrotères protégés par des couvertines en zinc ou en aluminium, seuils et traversées traités dans les règles de l'art.</p>
+
+    <h2>Reprise des descentes d'eaux pluviales</h2>
+    <p>Une terrasse étanche doit aussi évacuer l'eau rapidement. Nous reprenons les naissances, les trop-pleins, les descentes d'eaux pluviales en zinc ou en PVC et leurs raccordements, sur les toits plats comme sur les toitures en pente (voir <a href="/cheneau-noue-zinc/">chéneaux et noues</a> et <a href="/zinguerie/">zinguerie</a>).</p>
+    {photo("pavillon")}
+
+    <h2>Pour les particuliers, les copropriétés et les maîtres d'œuvre</h2>
+    <p>Maisons, extensions, immeubles en <a href="/couvreur-copropriete-syndic/">copropriété</a> ou programmes neufs : nous intervenons en direct ou aux côtés de votre maître d'œuvre ou de votre architecte, avec la même rigueur.</p>"""
+    _guide("/etancheite-toiture-terrasse/", "Étanchéité toiture terrasse",
+           "Étanchéité de toiture terrasse : EPDM, bitume, réfection | JMC",
+           "Réfection et création d'étanchéité de toiture terrasse (EPDM, bitume), isolation, relevés et reprise des descentes d'eaux pluviales en Île-de-France. Devis gratuit.",
+           "Étanchéité · Toit-terrasse", "Étanchéité de toiture terrasse et descentes d'eaux pluviales",
+           "Membrane EPDM ou étanchéité bitumineuse, isolation, relevés et évacuations : nous refaisons l'étanchéité de vos toits plats et reprenons vos descentes d'eaux pluviales.",
+           body, faq, "Étanchéité de toiture terrasse",
+           ("Un toit-terrasse à refaire ?", "Diagnostic et devis gratuits pour votre étanchéité."))
+
+
+def photovoltaique():
+    faq = [
+        ("Pourquoi refaire la toiture avant d'installer des panneaux photovoltaïques ?",
+         "Les panneaux sont installés pour 25 à 30 ans environ. Si la couverture doit être refaite pendant cette période, il faudra déposer puis reposer l'installation, ce qui coûte cher. Mieux vaut vérifier et, si besoin, rénover la toiture avant la pose."),
+        ("Comment savoir si ma toiture peut accueillir des panneaux ?",
+         "Nous vérifions l'état de la couverture, des tuiles ou ardoises, de l'écran sous-toiture, des liteaux et de la charpente, ainsi que sa capacité à supporter le poids de l'installation. Vous savez ainsi si des travaux sont nécessaires avant la pose."),
+        ("Posez-vous les panneaux photovoltaïques ?",
+         "Notre rôle est de préparer une toiture saine et adaptée : réfection de couverture, renfort de charpente, zinguerie. Nous travaillons en coordination avec votre installateur photovoltaïque pour que la pose se fasse dans les meilleures conditions."),
+        ("Peut-on combiner rénovation de toiture et isolation avant la pose ?",
+         "Oui. C'est même le moment idéal pour isoler la toiture par l'extérieur, avant que les panneaux ne rendent l'intervention plus complexe."),
+    ]
+    body = f"""    {photo("pavillon", eager=True)}
+    <h2>Une toiture saine avant vos panneaux solaires</h2>
+    <p>Une installation photovoltaïque est prévue pour durer plusieurs décennies. Encore faut-il que la toiture qui la porte soit en état de durer aussi longtemps. Poser des panneaux sur une couverture fatiguée, c'est prendre le risque de devoir tout déposer quelques années plus tard pour refaire le toit.</p>
+
+    <h2>Nos travaux de préparation</h2>
+    <ul class="checks">
+      <li><strong>Diagnostic de la toiture</strong> : couverture, écran sous-toiture, liteaux, zinguerie</li>
+      <li><strong>Vérification de la charpente</strong> et renfort si nécessaire pour supporter les panneaux</li>
+      <li><strong>Rénovation ou remplacement de la couverture</strong> sur le versant concerné ou sur l'ensemble du toit</li>
+      <li><strong>Isolation de la toiture</strong> par l'extérieur avant la pose (entreprise RGE)</li>
+      <li><strong>Zinguerie neuve</strong> : gouttières, noues, abergements</li>
+      <li><strong>Coordination avec votre installateur</strong> pour enchaîner les travaux sans perte de temps</li>
+    </ul>
+
+    <h2>Pourquoi passer par un couvreur ?</h2>
+    <p>L'installateur de panneaux connaît son matériel ; le couvreur connaît votre toiture. En faisant intervenir JMC en amont, vous partez sur une base saine, étanche et garantie par notre assurance décennale, et vous évitez les mauvaises surprises une fois les panneaux en place.</p>
+    <p>Voir aussi : <a href="/renovation-toiture/">rénovation de toiture</a>, <a href="/charpente/">charpente</a>, <a href="/isolation-toiture/">isolation</a>.</p>"""
+    _guide("/toiture-avant-panneaux-photovoltaiques/", "Toiture avant panneaux photovoltaïques",
+           "Rénover sa toiture avant des panneaux photovoltaïques | JMC",
+           "Diagnostic, renfort de charpente, réfection de couverture et isolation avant l'installation de panneaux solaires photovoltaïques, en Île-de-France. Devis gratuit.",
+           "Photovoltaïque", "Rénover sa toiture avant l'installation de panneaux photovoltaïques",
+           "Avant de poser des panneaux pour 25 à 30 ans, assurez-vous que votre toiture tiendra aussi longtemps : diagnostic, charpente, couverture et isolation par un couvreur certifié.",
+           body, faq, "Travaux de couverture avant pose de panneaux photovoltaïques",
+           ("Un projet photovoltaïque ?", "Faites vérifier votre toiture avant la pose : diagnostic et devis gratuits."))
 
 
 REFS = [
@@ -2048,6 +2136,8 @@ def contact():
           <option>Copropriété / syndic</option>
           <option>Promotion immobilière / constructeur</option>
           <option>Fenêtre de toit VELUX / lucarne</option>
+          <option>Étanchéité toiture terrasse / descentes</option>
+          <option>Toiture avant panneaux photovoltaïques</option>
           <option>SAV – client JMC</option>
           <option>Autre</option>
         </select></label>
@@ -2118,7 +2208,7 @@ def notfound():
 
 
 SITEMAP = [("/", "1.0"), ("/couverture/", "0.9"), ("/charpente/", "0.9"), ("/zinguerie/", "0.9"),
-           ("/renovation-toiture/", "0.95"), ("/nettoyage-toiture/", "0.95"), ("/toiture-maison-neuve/", "0.95"), ("/isolation-toiture/", "0.95"), ("/couverture-zinc-bardage/", "0.95"), ("/couvreur-copropriete-syndic/", "0.95"), ("/fenetre-de-toit-velux-lucarnes/", "0.9"), ("/couvreur-promotion-immobiliere/", "0.9"), ("/notre-methode-sav-qualite/", "0.8"), ("/chien-assis-lucarne/", "0.9"), ("/toiture-mansardee-brisis-terrasson/", "0.85"), ("/cheneau-noue-zinc/", "0.85"), ("/souche-cheminee-solin-abergement/", "0.85"), ("/zones-intervention/", "0.7"), ("/nos-references/", "0.7"),
+           ("/renovation-toiture/", "0.95"), ("/nettoyage-toiture/", "0.95"), ("/toiture-maison-neuve/", "0.95"), ("/isolation-toiture/", "0.95"), ("/couverture-zinc-bardage/", "0.95"), ("/couvreur-copropriete-syndic/", "0.95"), ("/fenetre-de-toit-velux-lucarnes/", "0.9"), ("/couvreur-promotion-immobiliere/", "0.9"), ("/notre-methode-sav-qualite/", "0.8"), ("/chien-assis-lucarne/", "0.9"), ("/toiture-mansardee-brisis-terrasson/", "0.85"), ("/cheneau-noue-zinc/", "0.85"), ("/souche-cheminee-solin-abergement/", "0.85"), ("/etancheite-toiture-terrasse/", "0.9"), ("/toiture-avant-panneaux-photovoltaiques/", "0.85"), ("/zones-intervention/", "0.7"), ("/nos-references/", "0.7"),
            ("/contact/", "0.8")]
 
 
@@ -2136,6 +2226,6 @@ def seo_files():
 
 
 if __name__ == "__main__":
-    for fn in (home, couverture, charpente, zinguerie, renovation, nettoyage, maison_neuve, isolation, zinc_bardage, copropriete, fenetres, promotion, methode, chien_assis, mansarde, cheneau, cheminee, villes, depts, references, zones, contact, merci, mentions, notfound):
+    for fn in (home, couverture, charpente, zinguerie, renovation, nettoyage, maison_neuve, isolation, zinc_bardage, copropriete, fenetres, promotion, methode, chien_assis, mansarde, cheneau, cheminee, terrasse, photovoltaique, villes, depts, references, zones, contact, merci, mentions, notfound):
         fn()
     seo_files()
