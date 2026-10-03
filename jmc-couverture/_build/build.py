@@ -215,7 +215,7 @@ def org_ld():
         + [{"@type": "AdministrativeArea", "name": n} for n in DEPTS]
         + [{"@type": "City", "name": c} for c in dict.fromkeys([v["name"] for v in VILLES] + CITIES)],
         "knowsAbout": ["Couverture", "Charpente", "Zinguerie", "Rénovation de toiture",
-                       "Remplacement de toiture", "Nettoyage de toiture", "Démoussage", "Isolation de toiture", "Couverture zinc", "Bardage zinc", "Maison d'architecte", "Toiture maison neuve", "Isolation des combles", "Fenêtre de toit", "VELUX", "Lucarnes", "Copropriété", "Promotion immobilière", "Chien-assis", "Toiture mansardée", "Chéneau", "Noue", "Souche de cheminée", "Étanchéité toiture terrasse", "EPDM", "Descentes d'eaux pluviales", "Photovoltaïque", "Gouttières", "Toiture zinc", "Ardoise", "Tuiles"],
+                       "Remplacement de toiture", "Nettoyage de toiture", "Démoussage", "Isolation de toiture", "Couverture zinc", "Bardage zinc", "Maison d'architecte", "Toiture maison neuve", "Isolation des combles", "Isolation des combles perdus", "Isolation des rampants", "Soufflage", "Fenêtre de toit", "VELUX", "Lucarnes", "Copropriété", "Promotion immobilière", "Chien-assis", "Toiture mansardée", "Chéneau", "Noue", "Souche de cheminée", "Étanchéité toiture terrasse", "EPDM", "Descentes d'eaux pluviales", "Photovoltaïque", "Gouttières", "Toiture zinc", "Ardoise", "Tuiles"],
         "hasCredential": [
             {"@type": "EducationalOccupationalCredential", "credentialCategory": "Qualification", "name": "QUALIBAT"},
             {"@type": "EducationalOccupationalCredential", "credentialCategory": "Label", "name": "RGE - Reconnu Garant de l'Environnement"},
@@ -237,6 +237,8 @@ def org_ld():
                              ("Fenêtres de toit VELUX et lucarnes", "/fenetre-de-toit-velux-lucarnes/"),
                              ("Couverture pour la promotion immobilière", "/couvreur-promotion-immobiliere/"),
                              ("Étanchéité de toiture terrasse", "/etancheite-toiture-terrasse/"),
+                             ("Isolation des combles perdus", "/isolation-combles-perdus/"),
+                             ("Isolation des rampants", "/isolation-rampants/"),
                              ("Toiture avant panneaux photovoltaïques", "/toiture-avant-panneaux-photovoltaiques/"))
             ],
         },
@@ -395,6 +397,7 @@ def footer():
     <div><h2>Nos spécialités</h2><ul>
       <li><a href="/renovation-toiture/">Rénovation &amp; remplacement de toiture</a></li>
       <li><a href="/isolation-toiture/">Isolation de toiture</a></li>
+      <li><a href="/isolation-rampants/">Isolation des rampants</a> · <a href="/isolation-combles-perdus/">Combles perdus</a></li>
       <li><a href="/toiture-maison-neuve/">Toiture de maison neuve</a></li>
       <li><a href="/couverture-zinc-bardage/">Couverture zinc &amp; bardage</a></li>
       <li><a href="/couvreur-copropriete-syndic/">Copropriétés &amp; syndics</a></li>
@@ -554,7 +557,7 @@ def home():
   {service_card("roof", "Rénovation et remplacement de toiture", "/renovation-toiture/", "Réfection complète de votre couverture, de la charpente aux gouttières.",
                 ["Dépose de l'ancienne couverture", "Contrôle et renfort de charpente", "Tuiles, ardoise ou zinc neufs", "Isolation intégrée possible"])}
   {service_card("shield", "Isolation de toiture", "/isolation-toiture/", "Isolation par l'extérieur ou sous rampants, par une entreprise RGE.",
-                ["Sarking lors de la rénovation", "Isolation sous rampants", "Confort d'été et économies", "Aides MaPrimeRénov' et CEE"])}
+                ["Sarking lors de la rénovation", '<a href="/isolation-rampants/">Isolation des rampants</a>', '<a href="/isolation-combles-perdus/">Isolation des combles perdus</a>', "Aides possibles (RGE)"])}
   {service_card("beam", "Toiture de maison neuve", "/toiture-maison-neuve/", "Le savoir-faire des promoteurs immobiliers, au service des particuliers.",
                 ["Charpente, couverture, zinguerie", "Mise hors d'eau rapide", "Coordination avec l'architecte", "Attestations dommages-ouvrage"])}
   {service_card("doc", "Maison d'architecte : zinc et bardage", "/couverture-zinc-bardage/", "Couverture zinc à joint debout, bardage de façade et habillages sur mesure.",
@@ -1009,7 +1012,7 @@ def isolation():
     ]
     desc = "Isolation de toiture par l'extérieur (sarking), sous rampants et combles, par une entreprise RGE : confort, économies d'énergie et aides financières."
     lds = [org_ld(), crumbs_ld(trail), service_ld("Isolation de toiture", "/isolation-toiture/", desc), faq_ld(faq)]
-    html = head("Isolation de toiture en Île-de-France : sarking, rampants, RGE | JMC",
+    html = head("Isolation de toiture, rampants et combles perdus, RGE | JMC",
                 "Isolation de toiture par l'extérieur (sarking) ou sous rampants par un couvreur RGE en Île-de-France. Confort, économies, aides possibles. Devis gratuit.",
                 "/isolation-toiture/", lds)
     html += header("/isolation-toiture/")
@@ -1030,10 +1033,10 @@ def isolation():
     <h2>Nos techniques d'isolation de toiture</h2>
     <h3>Isolation par l'extérieur (sarking)</h3>
     <p>Lors d'une <a href="/renovation-toiture/">rénovation de toiture</a>, la couverture est déposée et des panneaux isolants rigides (fibre de bois, polyuréthane) sont posés en continu au-dessus des chevrons, avant la nouvelle couverture. Avantages : aucun pont thermique, aucun volume perdu à l'intérieur, charpente apparente préservée.</p>
-    <h3>Isolation sous rampants</h3>
+    <h3><a href="/isolation-rampants/">Isolation sous rampants</a></h3>
     <p>Pour des combles aménagés dont la couverture est saine, nous posons l'isolant entre et sous les chevrons (laine minérale, fibre de bois, ouate de cellulose), avec un pare-vapeur soigneusement raccordé pour garantir l'étanchéité à l'air.</p>
-    <h3>Combles perdus</h3>
-    <p>Pour des combles non aménagés, l'isolant est déroulé ou soufflé sur le plancher : une solution rapide et très rentable.</p>
+    <h3><a href="/isolation-combles-perdus/">Isolation des combles perdus</a></h3>
+    <p>Pour des combles non aménagés, l'isolant est déroulé ou soufflé sur le plancher : une solution rapide et très rentable. Voir notre page dédiée à l'<a href="/isolation-combles-perdus/">isolation des combles perdus par soufflage</a>.</p>
 
     <h2>Isolation et rénovation : le bon moment</h2>
     <p>Le meilleur moment pour isoler, c'est quand on refait la couverture. L'échafaudage est déjà en place, la charpente est accessible et l'isolation par l'extérieur devient possible. C'est aussi vrai pour une <a href="/toiture-maison-neuve/">maison neuve</a>, où nous intégrons l'isolation de la toiture aux exigences de la RE2020.</p>
@@ -1315,7 +1318,7 @@ def ville(v):
     <h2>Nos services de couverture à {name}</h2>
     <ul class="checks">
       <li><a href="/renovation-toiture/"><strong>Rénovation et remplacement de toiture</strong></a> : réfection complète, de la charpente aux gouttières.</li>
-      <li><a href="/isolation-toiture/"><strong>Isolation de toiture</strong></a> par l'extérieur ou sous rampants, par une entreprise RGE.</li>
+      <li><a href="/isolation-toiture/"><strong>Isolation de toiture</strong></a> par l'extérieur, <a href="/isolation-rampants/">sous rampants</a> ou <a href="/isolation-combles-perdus/">combles perdus</a>, par une entreprise RGE.</li>
       <li><a href="/couverture-zinc-bardage/"><strong>Couverture zinc et bardage</strong></a> pour maisons d'architecte, extensions et surélévations.</li>
       <li><a href="/toiture-maison-neuve/"><strong>Toiture de maison neuve</strong></a> : charpente, couverture et zinguerie de votre construction.</li>
       <li><a href="/fenetre-de-toit-velux-lucarnes/"><strong>Fenêtres de toit VELUX et lucarnes</strong></a> : remplacement, création et restauration.</li>
@@ -1420,7 +1423,7 @@ def dept_page(d):
     <h2>Nos services de couverture {d['art']} {d['name']}</h2>
     <ul class="checks">
       <li><a href="/renovation-toiture/"><strong>Rénovation et remplacement de toiture</strong></a></li>
-      <li><a href="/isolation-toiture/"><strong>Isolation de toiture et des combles</strong></a> (entreprise RGE)</li>
+      <li><a href="/isolation-toiture/"><strong>Isolation de toiture</strong></a>, <a href="/isolation-rampants/">des rampants</a> et <a href="/isolation-combles-perdus/">des combles perdus</a> (entreprise RGE)</li>
       <li><a href="/fenetre-de-toit-velux-lucarnes/"><strong>Pose et remplacement de VELUX</strong>, lucarnes</a></li>
       <li><a href="/couverture-zinc-bardage/"><strong>Couverture zinc et bardage</strong></a> pour maisons d'architecte</li>
       <li><a href="/couvreur-copropriete-syndic/"><strong>Travaux pour copropriétés et syndics</strong></a></li>
@@ -1500,7 +1503,7 @@ def copropriete():
     <h3>Réfection et réparation de couverture</h3>
     <p>Réfection complète de toiture d'immeuble en tuiles, ardoise ou zinc, réparations ponctuelles, remplacement de tuiles et d'ardoises, reprise de faîtages, de solins et d'abergements de cheminées.</p>
     <h3>Isolation des combles</h3>
-    <p>Isolation des combles perdus par soufflage ou déroulage, isolation sous rampants des lots aménagés sous les toits, isolation par l'extérieur lors d'une réfection : des travaux RGE qui améliorent le DPE collectif et le confort des derniers étages. Voir aussi notre page <a href="/isolation-toiture/">isolation de toiture</a>.</p>
+    <p><a href="/isolation-combles-perdus/">Isolation des combles perdus</a> par soufflage ou déroulage, <a href="/isolation-rampants/">isolation sous rampants</a> des lots aménagés sous les toits, isolation par l'extérieur lors d'une réfection : des travaux RGE qui améliorent le DPE collectif et le confort des derniers étages. Voir aussi notre page <a href="/isolation-toiture/">isolation de toiture</a>.</p>
     <h3>Fenêtres de toit VELUX</h3>
     <p>Remplacement de fenêtres de toit VELUX et d'autres marques, souvent dans les dimensions existantes, création de fenêtres de toit pour les lots sous combles, raccords d'étanchéité, volets roulants et stores. Détails sur notre page <a href="/fenetre-de-toit-velux-lucarnes/">fenêtres de toit et lucarnes</a>.</p>
     <h3>Lucarnes</h3>
@@ -1978,6 +1981,92 @@ def photovoltaique():
            ("Un projet photovoltaïque ?", "Faites vérifier votre toiture avant la pose : diagnostic et devis gratuits."))
 
 
+def combles_perdus():
+    faq = [
+        ("Qu'est-ce que des combles perdus ?",
+         "Ce sont des combles non aménagés, trop bas ou encombrés par la charpente pour être habités. On isole alors le plancher des combles, et non la toiture : c'est la solution la plus simple et la plus rentable."),
+        ("Soufflage ou rouleaux : que choisir ?",
+         "Le soufflage d'isolant en vrac (laine de verre, laine de roche ou ouate de cellulose) remplit parfaitement tous les recoins, même dans les combles difficiles d'accès. Les rouleaux ou panneaux déroulés conviennent aux combles dégagés, faciles à parcourir. Nous choisissons la technique selon la configuration."),
+        ("Quelle épaisseur d'isolant faut-il ?",
+         "Pour être performante et éligible aux aides, l'isolation des combles perdus doit généralement atteindre une résistance thermique R ≥ 7 m².K/W, ce qui représente souvent 30 à 40 cm d'isolant selon le matériau."),
+        ("Combien de temps durent les travaux ?",
+         "Pour une maison individuelle, l'isolation des combles perdus par soufflage se réalise le plus souvent en une journée, sans travaux dans les pièces habitées."),
+        ("Y a-t-il des aides pour isoler les combles perdus ?",
+         "Réalisés par une entreprise RGE comme JMC, ces travaux peuvent bénéficier d'aides, notamment des primes CEE, selon votre situation et les conditions en vigueur au moment des travaux."),
+    ]
+    body = f"""    <h2>Les combles perdus, première source de déperdition</h2>
+    <p>Dans une maison mal isolée, la chaleur monte et s'échappe d'abord par le haut. Isoler le plancher des combles perdus est l'un des travaux les plus rentables de la rénovation énergétique : un chantier rapide, sans toucher aux pièces de vie, pour un gain de confort immédiat en hiver comme en été.</p>
+
+    <h2>Nos techniques</h2>
+    <h3>Isolation par soufflage</h3>
+    <p>Un isolant en vrac (laine de verre, laine de roche ou ouate de cellulose) est projeté à l'aide d'une machine sur toute la surface du plancher, en couche régulière et continue, jusque dans les recoins inaccessibles. Des piges de repérage permettent de contrôler l'épaisseur.</p>
+    <h3>Isolation par rouleaux ou panneaux</h3>
+    <p>Pour des combles dégagés, l'isolant est déroulé en une ou deux couches croisées, avec un pare-vapeur côté chauffé si nécessaire.</p>
+
+    <h2>Un chantier préparé dans les règles</h2>
+    <ul class="checks">
+      <li>Inspection de la charpente et de la couverture avant isolation : pas question d'isoler sous un toit qui fuit</li>
+      <li>Protection des spots et boîtiers électriques, écarts de sécurité autour des conduits de cheminée</li>
+      <li>Maintien de la ventilation de la toiture (déflecteurs en pied de versant)</li>
+      <li>Isolation et étanchéité de la trappe d'accès</li>
+      <li>Repérage de l'épaisseur et attestation de fin de travaux pour vos aides</li>
+    </ul>
+
+    <h2>Le regard du couvreur, en plus</h2>
+    <p>Parce que nous sommes couvreurs, nous vérifions aussi l'état de votre toiture et de votre charpente lors de la visite. Si une <a href="/renovation-toiture/">rénovation de toiture</a> s'impose à court terme, nous vous le disons : il serait dommage d'isoler sous une couverture à refaire.</p>
+    <p>Combles aménagés ou à aménager ? Voir l'<a href="/isolation-rampants/">isolation des rampants</a>. Toutes nos solutions : <a href="/isolation-toiture/">isolation de toiture</a>. En immeuble, nous intervenons aussi pour les <a href="/couvreur-copropriete-syndic/">copropriétés</a>.</p>"""
+    _guide("/isolation-combles-perdus/", "Isolation des combles perdus",
+           "Isolation des combles perdus par soufflage, entreprise RGE | JMC",
+           "Isolation des combles perdus par soufflage ou déroulage (laine minérale, ouate de cellulose) en Île-de-France, par un couvreur RGE. Aides possibles, devis gratuit.",
+           "Isolation · Combles perdus", "Isolation des combles perdus par soufflage",
+           "Une journée de travaux pour un gain de confort immédiat : nous isolons vos combles perdus par soufflage ou déroulage, avec le regard d'un couvreur sur votre toiture.",
+           body, faq, "Isolation des combles perdus",
+           ("Vos combles sont-ils bien isolés ?", "Visite, diagnostic et devis gratuits par une entreprise RGE."))
+
+
+def rampants():
+    faq = [
+        ("Qu'est-ce que l'isolation des rampants ?",
+         "Ce sont les parties inclinées du toit, côté intérieur. On isole les rampants lorsque les combles sont aménagés ou à aménager : l'isolant est posé entre et sous les chevrons, sous la couverture."),
+        ("Quelle performance viser ?",
+         "Pour être efficace et éligible aux aides, l'isolation des rampants doit généralement atteindre une résistance thermique R ≥ 6 m².K/W, souvent obtenue en deux couches croisées d'isolant."),
+        ("Isolation des rampants ou isolation par l'extérieur ?",
+         "Sous rampants, l'isolation se fait par l'intérieur sans toucher à la couverture, mais réduit un peu le volume habitable. Par l'extérieur (sarking), l'isolant est posé au-dessus des chevrons lors d'une réfection de toiture : aucun volume perdu, aucun pont thermique. Nous vous conseillons selon l'état de votre toiture."),
+        ("Quel isolant choisir pour les rampants ?",
+         "La laine de verre ou de roche est performante et économique. La fibre de bois, plus dense, améliore nettement le confort d'été dans les pièces sous les toits. La ouate de cellulose est une bonne alternative biosourcée."),
+        ("Qui réalise la finition intérieure ?",
+         "Nous réalisons l'isolation et le pare-vapeur. Pour la finition (plaques de plâtre, peinture), nous pouvons vous recommander des prestataires compétents qui interviennent dans la foulée."),
+    ]
+    body = f"""    <h2>Des combles aménagés confortables, été comme hiver</h2>
+    <p>Chambres, bureau, salle de jeux sous les toits : des combles aménagés mal isolés sont glacials l'hiver et étouffants l'été. L'isolation des rampants traite la toiture par l'intérieur pour en faire des pièces agréables toute l'année.</p>
+
+    <h2>Notre méthode d'isolation sous rampants</h2>
+    <ol class="steps">
+      <li><strong>Vérification de la toiture</strong><br>Couverture, écran sous-toiture et charpente : on n'isole pas sous un toit qui doit être refait.</li>
+      <li><strong>Première couche entre chevrons</strong><br>Isolant posé entre les chevrons, en conservant la ventilation sous la couverture.</li>
+      <li><strong>Deuxième couche croisée</strong><br>Sur ossature, pour supprimer les ponts thermiques et atteindre la performance visée.</li>
+      <li><strong>Pare-vapeur continu</strong><br>Membrane soigneusement raccordée et scotchée pour une parfaite étanchéité à l'air.</li>
+      <li><strong>Finition</strong><br>Plaques de plâtre par un prestataire compétent que nous vous recommandons.</li>
+    </ol>
+
+    <h2>Les isolants que nous posons</h2>
+    <ul class="checks">
+      <li><strong>Laine de verre et laine de roche</strong> : performantes et économiques</li>
+      <li><strong>Fibre de bois</strong> : excellent confort d'été grâce à sa densité</li>
+      <li><strong>Ouate de cellulose</strong> en panneaux : solution biosourcée</li>
+    </ul>
+
+    <h2>Et si vous refaites votre toiture ?</h2>
+    <p>Si la couverture doit être refaite, l'<a href="/isolation-toiture/">isolation par l'extérieur (sarking)</a> devient la meilleure option : posée au-dessus des chevrons pendant la <a href="/renovation-toiture/">rénovation de toiture</a>, elle ne prend aucun centimètre à vos pièces. Pour les combles non aménagés, voir l'<a href="/isolation-combles-perdus/">isolation des combles perdus</a>.</p>"""
+    _guide("/isolation-rampants/", "Isolation des rampants",
+           "Isolation des rampants et combles aménagés, entreprise RGE | JMC",
+           "Isolation sous rampants des combles aménagés en Île-de-France : laine minérale, fibre de bois, pare-vapeur, par un couvreur RGE. Aides possibles, devis gratuit.",
+           "Isolation · Rampants", "Isolation des rampants et des combles aménagés",
+           "Des pièces sous les toits chaudes l'hiver et fraîches l'été : nous isolons vos rampants par l'intérieur, en deux couches croisées avec pare-vapeur, après vérification de votre toiture.",
+           body, faq, "Isolation des rampants",
+           ("Des combles trop chauds ou trop froids ?", "Visite, diagnostic et devis gratuits par une entreprise RGE."))
+
+
 REFS = [
     ("Charpente", "Rue de la Croix-Nivert", "Paris 15e", "Travaux de charpente sur immeuble parisien."),
     ("Charpente", "Nexity – rue Raffet", "Paris 16e", "Charpente pour un programme immobilier Nexity."),
@@ -2130,6 +2219,8 @@ def contact():
           <option>Nettoyage / démoussage de toiture</option>
           <option>Toiture de maison neuve / extension</option>
           <option>Isolation de toiture</option>
+          <option>Isolation des rampants / combles aménagés</option>
+          <option>Isolation des combles perdus</option>
           <option>Couverture zinc / bardage (maison d'architecte)</option>
           <option>Charpente</option>
           <option>Zinguerie / gouttières</option>
@@ -2208,7 +2299,7 @@ def notfound():
 
 
 SITEMAP = [("/", "1.0"), ("/couverture/", "0.9"), ("/charpente/", "0.9"), ("/zinguerie/", "0.9"),
-           ("/renovation-toiture/", "0.95"), ("/nettoyage-toiture/", "0.95"), ("/toiture-maison-neuve/", "0.95"), ("/isolation-toiture/", "0.95"), ("/couverture-zinc-bardage/", "0.95"), ("/couvreur-copropriete-syndic/", "0.95"), ("/fenetre-de-toit-velux-lucarnes/", "0.9"), ("/couvreur-promotion-immobiliere/", "0.9"), ("/notre-methode-sav-qualite/", "0.8"), ("/chien-assis-lucarne/", "0.9"), ("/toiture-mansardee-brisis-terrasson/", "0.85"), ("/cheneau-noue-zinc/", "0.85"), ("/souche-cheminee-solin-abergement/", "0.85"), ("/etancheite-toiture-terrasse/", "0.9"), ("/toiture-avant-panneaux-photovoltaiques/", "0.85"), ("/zones-intervention/", "0.7"), ("/nos-references/", "0.7"),
+           ("/renovation-toiture/", "0.95"), ("/nettoyage-toiture/", "0.95"), ("/toiture-maison-neuve/", "0.95"), ("/isolation-toiture/", "0.95"), ("/couverture-zinc-bardage/", "0.95"), ("/couvreur-copropriete-syndic/", "0.95"), ("/fenetre-de-toit-velux-lucarnes/", "0.9"), ("/couvreur-promotion-immobiliere/", "0.9"), ("/notre-methode-sav-qualite/", "0.8"), ("/chien-assis-lucarne/", "0.9"), ("/toiture-mansardee-brisis-terrasson/", "0.85"), ("/cheneau-noue-zinc/", "0.85"), ("/souche-cheminee-solin-abergement/", "0.85"), ("/etancheite-toiture-terrasse/", "0.9"), ("/isolation-combles-perdus/", "0.9"), ("/isolation-rampants/", "0.9"), ("/toiture-avant-panneaux-photovoltaiques/", "0.85"), ("/zones-intervention/", "0.7"), ("/nos-references/", "0.7"),
            ("/contact/", "0.8")]
 
 
@@ -2226,6 +2317,6 @@ def seo_files():
 
 
 if __name__ == "__main__":
-    for fn in (home, couverture, charpente, zinguerie, renovation, nettoyage, maison_neuve, isolation, zinc_bardage, copropriete, fenetres, promotion, methode, chien_assis, mansarde, cheneau, cheminee, terrasse, photovoltaique, villes, depts, references, zones, contact, merci, mentions, notfound):
+    for fn in (home, couverture, charpente, zinguerie, renovation, nettoyage, maison_neuve, isolation, zinc_bardage, copropriete, fenetres, promotion, methode, chien_assis, mansarde, cheneau, cheminee, terrasse, photovoltaique, combles_perdus, rampants, villes, depts, references, zones, contact, merci, mentions, notfound):
         fn()
     seo_files()
