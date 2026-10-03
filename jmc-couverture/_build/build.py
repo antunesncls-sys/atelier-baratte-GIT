@@ -97,10 +97,10 @@ PHOTOS = {
                  "Maison bourgeoise : toiture mansardée en ardoise et lucarnes en zinc."),
     "meuliere": ("maison-meuliere-couverture-tuiles-jmc",
                  "Maison en pierre meulière avec couverture en tuiles terre cuite et zinguerie, panneau de chantier JMC Couverture devant la façade",
-                 "Maison en meulière : couverture en tuiles et zinguerie."),
+                 "Maison en meulière : réfection complète de la toiture en tuiles."),
     "pavillon": ("toiture-pavillon-renovation-jmc",
-                 "Pavillon francilien avec toiture rénovée en tuiles anthracite et gouttières neuves, panneau JMC Couverture sur le portail",
-                 "Pavillon : toiture rénovée en tuiles anthracite."),
+                 "Pavillon avec toiture rénovée en tuiles anthracite, VELUX et gouttières remplacés par JMC Couverture, panneau de chantier sur le portail",
+                 "Rénovation de toiture avec remplacement des VELUX et des gouttières."),
     "depot": ("depot-flotte-vehicules-jmc-couverture",
               "Siège de l'entreprise JMC Couverture avec atelier et flotte de camionnettes d'intervention",
               "Notre siège, notre atelier et notre flotte de véhicules."),
@@ -465,10 +465,37 @@ REVIEWS = [
 ]
 
 
-def reviews_html(n=3):
-    cards = "".join(
-        f'<blockquote class="review"><p>« {t} »</p><cite>— {a}</cite></blockquote>' for a, t in REVIEWS[:n])
-    return cards
+GOOGLE_REVIEWS = {
+    "lily": {"name": "Lily", "date": "février 2026", "travaux": "Réfection complète de toiture",
+             "text": "Réfection complète de ma toiture par l'entreprise JMC à Courtry. Je suis plus que ravie du résultat ! Le devis est clair, détaillé et le tarif est compétitif. Les délais des travaux sont respectés avec une organisation sans faille impressionnante et ceux-ci sont réalisés dans les règles de l'art. Le gérant et les couvreurs qui sont intervenus sont charmants, ponctuels, rigoureux, professionnels et respectueux des lieux (le chantier est protégé et nettoyé chaque soir). Je recommande vivement cette société.",
+             "short": "Le devis est clair, détaillé et le tarif est compétitif. Les délais sont respectés avec une organisation sans faille […] respectueux des lieux (le chantier est protégé et nettoyé chaque soir). Je recommande vivement cette société."},
+    "richard": {"name": "Richard K.", "date": "juin 2026", "travaux": "Réfection de toiture, 3 VELUX et isolation",
+                "text": "Réfection totale de la toiture avec remplacement de 3 velux et isolation. Équipe ponctuelle, agréable et serviable. Chantier toujours très propre à la fin de la journée. Merci pour ces travaux."},
+    "larry": {"name": "Larry H.", "date": "mai 2026", "travaux": "Travaux de toiture",
+              "text": "Travail très soigné, très professionnel et de surcroît très honnête sur les prix. Je recommande cette entreprise à 100 %."},
+    "marcelino": {"name": "Marcelino D.", "date": "juillet 2024", "travaux": "Rénovation de toiture, VELUX et gouttières",
+                  "text": "Nous avons fait appel à JMC Couverture pour la rénovation de notre toiture avec le remplacement de velux et gouttières. Professionnel, sérieux et à l'écoute. Je recommande !"},
+}
+
+
+def google_review(k, short=False):
+    r = GOOGLE_REVIEWS[k]
+    txt = r.get("short") if short and r.get("short") else r["text"]
+    return (f'<blockquote class="review greview"><div class="stars">★★★★★</div><p>« {txt} »</p>'
+            f'<cite>{r["name"]}</cite><span class="rmeta">{r["travaux"]} · {r["date"]} · '
+            f'<a href="{BIZ["reviews"]}" target="_blank" rel="noopener">Avis Google</a></span></blockquote>')
+
+
+def reviews_block(keys, title="Ce que nos clients en disent"):
+    return (f'<h2>{title}</h2><div class="grid g2">{"".join(google_review(k, short=True) for k in keys)}</div>'
+            f'<p style="margin-top:18px">{google_badge(light=True)}</p>')
+
+
+def reviews_html(n=3, old=False):
+    if old:
+        return "".join(f'<blockquote class="review"><p>« {t} »</p><cite>— {a}</cite></blockquote>' for a, t in REVIEWS[:n])
+    keys = ["lily", "richard", "larry", "marcelino"][:n]
+    return "".join(google_review(k, short=True) for k in keys)
 
 
 
@@ -477,7 +504,8 @@ def secu_proprete():
 <section class="section-dark"><div class="wrap">
   <div class="section-head"><span class="eyebrow" style="color:var(--gold-light)">Chez vous, en toute confiance</span>
   <h2>Des équipes formées à la sécurité et à la propreté</h2>
-  <p>Intervenir sur votre maison, c'est entrer chez vous. Nos compagnons sont formés pour travailler en toute sécurité et laisser votre maison et votre jardin aussi propres qu'à leur arrivée.</p></div>
+  <p>Intervenir sur votre maison, c'est entrer chez vous. Nos compagnons sont formés pour travailler en toute sécurité et laisser votre maison et votre jardin aussi propres qu'à leur arrivée.</p>
+  <p class="pullquote">« Chantier toujours très propre à la fin de la journée. » <span>— Richard K., avis Google</span><br>« Le chantier est protégé et nettoyé chaque soir. » <span>— Lily, avis Google</span></p></div>
   <div class="grid g2">
     <div class="card card-dark"><h3>Sécurité</h3><ul class="checks">
       <li>Équipes formées au travail en hauteur et aux règles de sécurité</li>
@@ -864,6 +892,7 @@ def renovation():
 
     <h2>Quel matériau pour votre nouvelle toiture ?</h2>
     <p>Tuiles terre cuite plates ou mécaniques, ardoise naturelle ou synthétique, zinc, bac acier : nous vous conseillons selon le style de la maison, la pente et le PLU de votre commune. Découvrez le détail de chaque matériau sur notre page <a href="/couverture/">couverture</a>.</p>
+    {reviews_block(['lily', 'richard'])}
   </article>
   {aside()}
 </div></section>
@@ -1041,6 +1070,7 @@ def isolation():
     <h2>Isolation et rénovation : le bon moment</h2>
     <p>Le meilleur moment pour isoler, c'est quand on refait la couverture. L'échafaudage est déjà en place, la charpente est accessible et l'isolation par l'extérieur devient possible. C'est aussi vrai pour une <a href="/toiture-maison-neuve/">maison neuve</a>, où nous intégrons l'isolation de la toiture aux exigences de la RE2020.</p>
 
+    {reviews_block(['richard', 'lily'])}
     <h2>Aides financières</h2>
     <p>Entreprise <strong>RGE</strong>, JMC vous permet de prétendre aux aides à la rénovation énergétique : MaPrimeRénov', primes CEE, éco-prêt à taux zéro et TVA à 5,5 %, selon votre situation et les règles en vigueur. Nous vous remettons un devis conforme aux exigences de ces dispositifs.</p>
   </article>
@@ -1579,6 +1609,7 @@ def fenetres():
 
     <h2>Pour les particuliers comme pour les copropriétés</h2>
     <p>Nous intervenons dans les maisons individuelles comme dans les immeubles, en lien avec le <a href="/couvreur-copropriete-syndic/">syndic de copropriété</a> pour les fenêtres de toit et les lucarnes des lots sous combles. Ces travaux se combinent idéalement avec une <a href="/isolation-toiture/">isolation de toiture</a> ou une <a href="/renovation-toiture/">rénovation complète</a>.</p>
+    {reviews_block(['richard', 'marcelino'], "Ils nous ont confié leurs VELUX")}
     <p class="small">VELUX est une marque déposée de son propriétaire. JMC pose et remplace les fenêtres de toit de cette marque et d'autres fabricants.</p>
   </article>
   {aside("Fenêtres de toit et lucarnes")}
@@ -2056,6 +2087,7 @@ def rampants():
       <li><strong>Ouate de cellulose</strong> en panneaux : solution biosourcée</li>
     </ul>
 
+    {reviews_block(['richard', 'larry'])}
     <h2>Et si vous refaites votre toiture ?</h2>
     <p>Si la couverture doit être refaite, l'<a href="/isolation-toiture/">isolation par l'extérieur (sarking)</a> devient la meilleure option : posée au-dessus des chevrons pendant la <a href="/renovation-toiture/">rénovation de toiture</a>, elle ne prend aucun centimètre à vos pièces. Pour les combles non aménagés, voir l'<a href="/isolation-combles-perdus/">isolation des combles perdus</a>.</p>"""
     _guide("/isolation-rampants/", "Isolation des rampants",
@@ -2113,7 +2145,9 @@ def references():
 </div></section>
 <section class="section-alt"><div class="wrap">
   <div class="section-head"><h2>Avis de nos clients</h2></div>
-  <div class="grid g3">{reviews_html(len(REVIEWS))}</div>
+  <div class="grid g2">{"".join(google_review(k) for k in GOOGLE_REVIEWS)}</div>
+  <h3 style="margin-top:36px">Témoignages de nos clients</h3>
+  <div class="grid g3">{reviews_html(len(REVIEWS), old=True)}</div>
   <p style="margin-top:24px"><a class="btn btn-dark" href="{BIZ['reviews']}" target="_blank" rel="noopener">Lire et laisser un avis sur Google</a></p>
 </div></section>
 """

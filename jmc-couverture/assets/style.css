@@ -255,3 +255,9 @@ form.quote input:focus,form.quote select:focus,form.quote textarea:focus{outline
 .city-dept a{color:inherit;text-decoration:none}
 .city-dept a:hover{color:var(--tile-dark)}
 .savoir{padding:56px 0}
+.greview{display:flex;flex-direction:column}
+.greview p{flex:1}
+.greview cite{font-weight:700}
+.rmeta{display:block;font-size:.82rem;color:var(--muted);margin-top:4px}
+.pullquote{border-left:4px solid var(--gold-light);padding:6px 0 6px 16px;font-style:italic;color:#fff !important}
+.pullquote span{font-style:normal;color:#cfd6dc;font-size:.9rem}
