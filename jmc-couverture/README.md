@@ -4,7 +4,7 @@ Site statique (HTML/CSS, sans dépendance) prêt à déployer sur Netlify, OVH o
 
 ## Structure
 - Les URL de l'ancien site sont **conservées** (`/charpente/`, `/couverture/`, `/zinguerie/`, `/nos-references/`, `/contact/`) pour garder le référencement acquis.
-- Nouvelles pages ciblant des requêtes locales : `/urgence-fuite-toiture/`, `/zones-intervention/`, plus `/mentions-legales/`, `/merci/`, `/404.html`.
+- Nouvelles pages ciblant des requêtes locales : `/renovation-toiture/` (remplacement de toiture), `/nettoyage-toiture/` (nettoyage, démoussage), `/zones-intervention/`, plus `/mentions-legales/`, `/merci/`, `/404.html`.
 - `sitemap.xml`, `robots.txt`, logo officiel 40 ans (SVG), favicons, image de partage `assets/og-jmc-couverture.jpg`.
 
 ## SEO intégré

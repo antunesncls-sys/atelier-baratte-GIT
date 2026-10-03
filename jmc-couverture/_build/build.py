@@ -36,12 +36,13 @@ CITIES = [
 ]
 
 NAV = [
-    ("/", "Accueil"),
+    ("/renovation-toiture/", "Rénovation de toiture"),
+    ("/nettoyage-toiture/", "Nettoyage"),
     ("/couverture/", "Couverture"),
     ("/charpente/", "Charpente"),
     ("/zinguerie/", "Zinguerie"),
     ("/nos-references/", "Références"),
-    ("/zones-intervention/", "Zones"),
+
 ]
 
 # ---------------------------------------------------------------- icônes SVG
@@ -131,7 +132,7 @@ def org_ld():
         + [{"@type": "AdministrativeArea", "name": n} for n in
            ("Seine-et-Marne", "Seine-Saint-Denis", "Val-de-Marne", "Paris")],
         "knowsAbout": ["Couverture", "Charpente", "Zinguerie", "Rénovation de toiture",
-                       "Recherche de fuite", "Gouttières", "Toiture zinc", "Ardoise", "Tuiles"],
+                       "Remplacement de toiture", "Nettoyage de toiture", "Démoussage", "Isolation de toiture", "Gouttières", "Toiture zinc", "Ardoise", "Tuiles"],
         "hasCredential": [
             {"@type": "EducationalOccupationalCredential", "credentialCategory": "Qualification", "name": "QUALIBAT"},
             {"@type": "EducationalOccupationalCredential", "credentialCategory": "Label", "name": "RGE - Reconnu Garant de l'Environnement"},
@@ -144,7 +145,8 @@ def org_ld():
                 for n, u in (("Couverture et rénovation de toiture", "/couverture/"),
                              ("Charpente bois et métallique", "/charpente/"),
                              ("Zinguerie et gouttières", "/zinguerie/"),
-                             ("Dépannage fuite de toiture", "/urgence-fuite-toiture/"))
+                             ("Nettoyage et démoussage de toiture", "/nettoyage-toiture/"),
+                             ("Rénovation et remplacement de toiture", "/renovation-toiture/"))
             ],
         },
     }
@@ -218,7 +220,7 @@ def header(path):
     return f"""
 <div class="topbar"><div class="wrap">
   <span>Couvreur certifié QUALIBAT &amp; RGE · Seine-et-Marne, Seine-Saint-Denis, Paris</span>
-  <span>Urgence 7j/7 : <a href="tel:{BIZ['phone_intl']}"><strong>{BIZ['phone']}</strong></a></span>
+  <span>Devis gratuit : <a href="tel:{BIZ['phone_intl']}"><strong>{BIZ['phone']}</strong></a></span>
 </div></div>
 <header class="site-header"><div class="wrap">
   <a class="logo" href="/" aria-label="JMC Couverture, accueil"><img src="/assets/logo-jmc-40ans.svg" alt="JMC Couverture – 40 ans, 1985-2025" width="141" height="63"></a>
@@ -275,7 +277,7 @@ def aside(title="Pourquoi choisir JMC ?"):
     <li>Entreprise certifiée QUALIBAT et RGE</li>
     <li>Garantie décennale et responsabilité civile</li>
     <li>Plus de 1 500 chantiers réalisés</li>
-    <li>Intervention d'urgence 7j/7</li>
+    <li>Isolation RGE : aides possibles</li>
     <li>Devis gratuit et détaillé</li>
   </ul>
   <p><a class="btn btn-primary" href="/contact/">Devis gratuit</a></p>
@@ -297,7 +299,8 @@ def footer():
       <li><a href="/couverture/">Couverture &amp; rénovation de toiture</a></li>
       <li><a href="/charpente/">Charpente</a></li>
       <li><a href="/zinguerie/">Zinguerie &amp; gouttières</a></li>
-      <li><a href="/urgence-fuite-toiture/">Urgence fuite de toiture</a></li>
+      <li><a href="/renovation-toiture/">Rénovation &amp; remplacement de toiture</a></li>
+      <li><a href="/nettoyage-toiture/">Nettoyage &amp; démoussage de toiture</a></li>
     </ul></div>
     <div><h2>L'entreprise</h2><ul>
       <li><a href="/nos-references/">Nos références</a></li>
@@ -362,42 +365,48 @@ def home():
          "Notre entreprise est basée à Courtry (77181). Nous intervenons dans un rayon d'environ 30 km : Seine-et-Marne (Chelles, Le Pin, Villeparisis, Claye-Souilly…), Seine-Saint-Denis (Montfermeil, Livry-Gargan, Villemomble, Gagny…), Val-de-Marne et Paris."),
         ("Le devis est-il gratuit ?",
          "Oui. Nous nous déplaçons pour diagnostiquer votre toiture et nous vous remettons un devis détaillé, gratuit et sans engagement."),
-        ("Intervenez-vous en urgence ?",
-         "Oui, nous assurons des interventions d'urgence 7j/7 en cas de fuite, de tuiles arrachées après une tempête ou de dégât des eaux venant de la toiture : bâchage, mise hors d'eau puis réparation durable."),
+        ("Faut-il nettoyer ou remplacer ma toiture ?",
+         "Si la couverture est saine mais couverte de mousse, un nettoyage avec traitement suffit et prolonge sa durée de vie. Si les tuiles sont poreuses, cassées sur de grandes surfaces ou si la toiture a plus de 30 à 50 ans, un remplacement est plus judicieux. Nous vous conseillons honnêtement après une visite gratuite."),
         ("Vos travaux sont-ils garantis ?",
          "Tous nos travaux sont couverts par notre garantie décennale et notre assurance responsabilité civile professionnelle. Nous sommes également certifiés QUALIBAT et RGE."),
         ("Pourquoi faire appel à un couvreur RGE ?",
          "Le label RGE (Reconnu Garant de l'Environnement) est exigé pour que vos travaux d'isolation de toiture puissent bénéficier des aides publiques à la rénovation énergétique, sous réserve des conditions d'éligibilité en vigueur."),
     ]
     lds = [org_ld(), website_ld(), faq_ld(faq)]
-    html = head("Couvreur à Courtry (77) – Couverture, Charpente, Zinguerie | JMC",
-                "Couvreur charpentier zingueur à Courtry (77) depuis 1985 : rénovation de toiture, fuite, gouttières. QUALIBAT & RGE. Devis gratuit ☎ 01 64 21 38 37.",
+    html = head("Rénovation et nettoyage de toiture à Courtry (77) | Couvreur JMC",
+                "Couvreur depuis 1985 à Courtry (77) : remplacement de toiture, nettoyage et démoussage, charpente, zinguerie. QUALIBAT & RGE. Devis gratuit ☎ 01 64 21 38 37.",
                 "/", lds)
     html += header("/")
     html += f"""
 <section class="hero"{hero_style("meuliere")}>{HERO_ART}<div class="wrap">
   <div>
-    <span class="eyebrow">40 ans · 1985–2025 · Couvreur charpentier zingueur</span>
-    <h1>Votre couvreur à Courtry et en Île-de-France depuis 1985</h1>
-    <p class="lead">Réfection de toiture, réparation de fuite, charpente et zinguerie : la société JMC réalise tous vos travaux de toiture en Seine-et-Marne, en Seine-Saint-Denis et à Paris, pour les particuliers comme pour les professionnels.</p>
+    <span class="eyebrow">40 ans · 1985–2025 · Couvreur à Courtry (77)</span>
+    <h1>Rénovation et nettoyage de toiture en Seine-et-Marne et Seine-Saint-Denis</h1>
+    <p class="lead">Remplacement complet de toiture, démoussage et traitement, charpente et zinguerie neuve : depuis 1985, la société JMC rénove les toitures des maisons de l'est parisien, avec un seul interlocuteur et une garantie décennale.</p>
     <div class="hero-cta"><a class="btn btn-primary" href="/contact/">Demander un devis gratuit</a>
     <a class="btn btn-ghost" href="tel:{BIZ['phone_intl']}">Appeler le {BIZ['phone']}</a></div>
-    <ul class="badges"><li>QUALIBAT</li><li>RGE</li><li>Garantie décennale</li><li>Urgence 7j/7</li></ul>
+    <ul class="badges"><li>QUALIBAT</li><li>RGE</li><li>Garantie décennale</li><li>Devis gratuit</li></ul>
   </div>
   <div class="hero-card">
-    <h2>Fuite, tuiles envolées, gouttière bouchée ?</h2>
-    <p>Nos couvreurs interviennent rapidement pour mettre votre maison hors d'eau, puis réparer durablement.</p>
-    <ul class="checks"><li>Diagnostic sur place</li><li>Bâchage d'urgence</li><li>Devis gratuit et détaillé</li></ul>
-    <a class="btn btn-dark" href="/urgence-fuite-toiture/">Urgence toiture</a>
+    <h2>Votre toiture a plus de 30 ans ou est couverte de mousse ?</h2>
+    <p>Un couvreur se déplace gratuitement pour faire le point et vous conseiller la bonne solution.</p>
+    <ul class="checks"><li>Diagnostic complet sur place</li><li>Nettoyage ou remplacement : avis honnête</li><li>Devis gratuit et détaillé</li></ul>
+    <a class="btn btn-dark" href="/contact/">Demander une visite gratuite</a>
   </div>
 </div></section>
 
 <section><div class="wrap">
   <div class="section-head"><span class="eyebrow">Nos métiers</span>
-  <h2>Couverture, charpente et zinguerie : un seul interlocuteur pour votre toit</h2>
-  <p>Une toiture saine repose sur trois savoir-faire complémentaires. Nos équipes les maîtrisent tous, ce qui vous garantit un chantier coordonné, des délais tenus et une seule garantie.</p></div>
+  <h2>Rénovation, nettoyage, charpente, zinguerie : un seul interlocuteur pour votre toit</h2>
+  <p>De l'entretien de votre couverture à son remplacement complet, nos équipes maîtrisent tous les métiers du toit : un chantier coordonné, des délais tenus et une seule garantie.</p></div>
+  <div class="grid g2" style="margin-bottom:24px">
+  {service_card("roof", "Rénovation et remplacement de toiture", "/renovation-toiture/", "Réfection complète de votre couverture, de la charpente aux gouttières, avec isolation RGE en option.",
+                ["Dépose de l'ancienne couverture", "Contrôle et renfort de charpente", "Écran sous-toiture et couverture neuve", "Isolation de toiture (aides possibles)"])}
+  {service_card("leaf", "Nettoyage et démoussage de toiture", "/nettoyage-toiture/", "Redonnez à votre toit son aspect d'origine et prolongez sa durée de vie.",
+                ["Démoussage adapté au matériau", "Remplacement des tuiles abîmées", "Traitement anti-mousse et hydrofuge", "Nettoyage des gouttières"])}
+  </div>
   <div class="grid g3">
-  {service_card("roof", "Couverture", "/couverture/", "Pose, rénovation et réparation de toiture, quel que soit le matériau.",
+  {service_card("doc", "Couverture", "/couverture/", "Pose de toiture neuve, quel que soit le matériau.",
                 ["Tuiles plates et mécaniques", "Ardoise naturelle ou synthétique", "Zinc, bac acier", "Toiture terrasse (membrane EPDM)"])}
   {service_card("beam", "Charpente", "/charpente/", "Charpentes traditionnelles et industrielles, neuves ou à reprendre.",
                 ["Pose de charpente neuve", "Renfort et traitement", "Modification pour extension", "Aménagement de combles"])}
@@ -411,7 +420,7 @@ def home():
     <div><strong>40</strong><span>ans d'expérience</span></div>
     <div><strong>1 500+</strong><span>chantiers réalisés</span></div>
     <div><strong>1 000+</strong><span>clients satisfaits</span></div>
-    <div><strong>7j/7</strong><span>intervention d'urgence</span></div>
+    <div><strong>10 ans</strong><span>garantie décennale</span></div>
   </div>
 </div></section>
 
@@ -426,7 +435,7 @@ def home():
     <ul class="checks">
       <li><strong>Qualité certifiée</strong> : qualification QUALIBAT et label RGE.</li>
       <li><strong>Sécurité</strong> : garantie décennale et responsabilité civile professionnelle.</li>
-      <li><strong>Réactivité</strong> : intervention d'urgence 7 jours sur 7.</li>
+      <li><strong>Conseil honnête</strong> : nettoyage ou remplacement, nous vous recommandons la solution adaptée.</li>
       <li><strong>Transparence</strong> : devis gratuit, détaillé et sans engagement.</li>
       <li><strong>Propreté</strong> : chantier protégé, nettoyé et gravats évacués.</li>
     </ul>
@@ -479,12 +488,12 @@ def couverture():
     ]
     desc = "Réfection, rénovation et réparation de toiture en tuiles, ardoise, zinc, bac acier et toit-terrasse."
     lds = [org_ld(), crumbs_ld(trail), service_ld("Couverture et rénovation de toiture", "/couverture/", desc), faq_ld(faq)]
-    html = head("Couvreur Seine-et-Marne : rénovation de toiture | JMC",
-                "Couvreur à Courtry (77) : réfection de toiture, tuiles, ardoise, zinc, bac acier, toit-terrasse EPDM. Entreprise QUALIBAT & RGE, garantie décennale. Devis gratuit.",
+    html = head("Couvreur Seine-et-Marne : tuiles, ardoise, zinc, bac acier | JMC",
+                "Couvreur à Courtry (77) : pose de toiture en tuiles, ardoise, zinc, bac acier et toit-terrasse EPDM. Entreprise QUALIBAT & RGE, garantie décennale. Devis gratuit.",
                 "/couverture/", lds)
     html += header("/couverture/")
-    html += page_hero(trail, "Couverture", "Couvreur en Seine-et-Marne : rénovation et réparation de toiture",
-                      "Pose neuve, réfection complète ou simple réparation : nos couvreurs travaillent tous les matériaux de couverture, dans le respect des DTU et des règles d'urbanisme locales.")
+    html += page_hero(trail, "Couverture", "Couvreur en Seine-et-Marne : toitures en tuiles, ardoise, zinc et bac acier",
+                      "Pose neuve ou réfection complète : nos couvreurs travaillent tous les matériaux de couverture, dans le respect des DTU et des règles d'urbanisme locales.")
     html += f"""
 <section><div class="wrap split">
   <article class="prose">
@@ -510,13 +519,12 @@ def couverture():
     <ul class="checks">
       <li>Réfection complète de toiture (dépose, écran sous-toiture, liteaunage, couverture neuve)</li>
       <li>Réparation de toiture et remplacement de tuiles ou d'ardoises cassées</li>
-      <li>Recherche et réparation de fuites</li>
       <li>Reprise de faîtage, d'arêtiers et de rives</li>
       <li>Pose de fenêtres de toit et de lucarnes</li>
       <li>Isolation de toiture par l'extérieur (entreprise RGE)</li>
       <li>Nettoyage, démoussage et traitement hydrofuge</li>
     </ul>
-    <p>Une fuite ? Consultez notre page <a href="/urgence-fuite-toiture/">urgence fuite de toiture</a>. Vos gouttières débordent ? Découvrez nos travaux de <a href="/zinguerie/">zinguerie</a>. Votre toiture s'affaisse ? Il faut sans doute reprendre la <a href="/charpente/">charpente</a>.</p>
+    <p>Votre toiture est à bout de souffle ? Voir notre page <a href="/renovation-toiture/">rénovation et remplacement de toiture</a>. Elle est simplement encrassée ? Pensez au <a href="/nettoyage-toiture/">nettoyage et démoussage</a>. Vos gouttières débordent ? Découvrez nos travaux de <a href="/zinguerie/">zinguerie</a>. Votre toiture s'affaisse ? Il faut sans doute reprendre la <a href="/charpente/">charpente</a>.</p>
   </article>
   {aside()}
 </div></section>
@@ -635,54 +643,128 @@ def zinguerie():
     write("/zinguerie/", html)
 
 
-def urgence():
-    trail = [("/", "Accueil"), ("/urgence-fuite-toiture/", "Urgence fuite de toiture")]
+def renovation():
+    trail = [("/", "Accueil"), ("/renovation-toiture/", "Rénovation de toiture")]
     faq = [
-        ("Que faire en attendant le couvreur en cas de fuite ?",
-         "Coupez l'électricité dans la zone touchée si l'eau approche d'installations électriques, placez des récipients sous les gouttes, protégez vos meubles et prenez des photos pour votre assurance. Ne montez jamais sur un toit mouillé."),
-        ("Mon assurance prend-elle en charge la fuite ?",
-         "Les dommages causés par une tempête, la grêle ou la neige sont en général couverts par l'assurance habitation, selon votre contrat. Déclarez le sinistre rapidement ; nous vous fournissons un devis et un rapport d'intervention pour votre dossier."),
-        ("Intervenez-vous le week-end ?",
-         "Oui, nous assurons les urgences 7 jours sur 7 pour mettre votre toiture hors d'eau."),
+        ("Quand faut-il remplacer sa toiture plutôt que la réparer ?",
+         "Quand les défauts se généralisent : tuiles poreuses ou gélives sur l'ensemble des versants, liteaux pourris, absence d'écran sous-toiture, réparations qui se succèdent. Au-delà de 30 à 50 ans pour une couverture en tuiles, une réfection complète revient souvent moins cher à terme qu'une succession de réparations."),
+        ("Combien coûte le remplacement d'une toiture ?",
+         "Le prix dépend de la surface, du matériau choisi, de la pente, de l'accès au chantier, de l'état de la charpente et des options (isolation, fenêtres de toit, zinguerie neuve). Nous établissons un devis gratuit, détaillé poste par poste, après une visite sur place."),
+        ("Combien de temps durent les travaux ?",
+         "Pour un pavillon, une réfection complète de couverture dure généralement d'une à trois semaines selon la surface, la complexité du toit et la météo. Votre maison reste protégée pendant toute la durée du chantier."),
+        ("Faut-il une autorisation de la mairie ?",
+         "Si vous changez l'aspect extérieur (matériau, couleur, ajout de fenêtres de toit), une déclaration préalable de travaux est en général nécessaire. Une réfection à l'identique en est souvent dispensée, mais les règles dépendent du PLU de votre commune : nous vous aidons à vérifier."),
+        ("Peut-on bénéficier d'aides pour refaire sa toiture ?",
+         "Le remplacement de la couverture seul n'est pas aidé, mais l'isolation de la toiture réalisée en même temps par une entreprise RGE comme JMC peut ouvrir droit à des aides à la rénovation énergétique (MaPrimeRénov', primes CEE, éco-prêt à taux zéro), selon vos revenus et les conditions en vigueur."),
     ]
-    desc = "Intervention d'urgence 7j/7 en cas de fuite de toiture, de tuiles arrachées ou de dégâts après tempête : bâchage, mise hors d'eau et réparation."
-    lds = [org_ld(), crumbs_ld(trail), service_ld("Dépannage fuite de toiture", "/urgence-fuite-toiture/", desc), faq_ld(faq)]
-    html = head("Fuite de toiture : couvreur en urgence 7j/7 (77, 93) | JMC",
-                "Fuite de toit, tuiles arrachées, dégâts de tempête ? Couvreur d'urgence 7j/7 à Courtry, Chelles, Montfermeil et alentours : bâchage et réparation. ☎ 01 64 21 38 37.",
-                "/urgence-fuite-toiture/", lds)
-    html += header("/urgence-fuite-toiture/")
-    html += page_hero(trail, "Urgence 7j/7", "Fuite de toiture : un couvreur en urgence, 7 jours sur 7",
-                      f"Infiltration, tuiles envolées après un coup de vent, gouttière arrachée : appelez le <a href=\"tel:{BIZ['phone_intl']}\" style=\"color:#fff\"><strong>{BIZ['phone']}</strong></a>. Nous mettons votre toiture hors d'eau puis réparons durablement.")
+    desc = "Remplacement et réfection complète de toiture : dépose, contrôle de charpente, écran sous-toiture, couverture neuve, zinguerie et isolation RGE."
+    lds = [org_ld(), crumbs_ld(trail), service_ld("Rénovation et remplacement de toiture", "/renovation-toiture/", desc), faq_ld(faq)]
+    html = head("Rénovation et remplacement de toiture en Seine-et-Marne | JMC",
+                "Remplacement et réfection complète de toiture à Courtry, Chelles, Montfermeil et en Île-de-France. Tuiles, ardoise, zinc, isolation RGE. 40 ans d'expérience. Devis gratuit.",
+                "/renovation-toiture/", lds)
+    html += header("/renovation-toiture/")
+    html += page_hero(trail, "Rénovation de toiture", "Rénovation et remplacement de toiture en Seine-et-Marne et Seine-Saint-Denis",
+                      "Votre toiture a fait son temps ? Nous la remplaçons entièrement, de la charpente aux gouttières, avec une seule entreprise, un seul devis et une garantie décennale.")
     html += f"""
 <section><div class="wrap split">
   <article class="prose">
-    <h2>Notre intervention d'urgence en 3 étapes</h2>
-    <ol class="steps">
-      <li><strong>Mise en sécurité et hors d'eau</strong><br>Bâchage de la toiture, remplacement provisoire des tuiles manquantes, sécurisation des éléments menaçant de tomber.</li>
-      <li><strong>Recherche de fuite</strong><br>Inspection de la couverture, des noues, des faîtages, des abergements de cheminée et de la zinguerie pour trouver l'origine réelle de l'infiltration.</li>
-      <li><strong>Réparation durable et rapport</strong><br>Réparation définitive et devis détaillé, utilisable pour votre déclaration de sinistre auprès de votre assurance.</li>
-    </ol>
-
-    <h2>Les urgences toiture que nous traitons</h2>
+    {photo("meuliere", eager=True)}
+    <h2>Pourquoi refaire sa toiture ?</h2>
+    <p>Une toiture en tuiles dure en moyenne 30 à 50 ans, parfois davantage pour l'ardoise ou le zinc. Passé ce cap, les matériaux deviennent poreux, les liteaux se fragilisent et les réparations successives ne suffisent plus. Remplacer la couverture, c'est :</p>
     <ul class="checks">
-      <li>Fuite de toit et infiltration d'eau au plafond</li>
-      <li>Tuiles ou ardoises arrachées après une tempête</li>
-      <li>Faîtage descellé, rive ou cheminée endommagée</li>
-      <li>Gouttière arrachée ou chéneau qui déborde</li>
-      <li>Fenêtre de toit qui fuit</li>
-      <li>Chute d'arbre ou de branche sur la toiture</li>
+      <li><strong>Protéger durablement</strong> la maison et sa charpente pour plusieurs décennies</li>
+      <li><strong>Mieux isoler</strong> : la toiture représente jusqu'à 30 % des pertes de chaleur d'une maison mal isolée</li>
+      <li><strong>Valoriser votre bien</strong> : une toiture neuve est un argument fort à la revente</li>
+      <li><strong>Changer d'aspect</strong> : nouvelle teinte, nouveau matériau, ajout de fenêtres de toit</li>
     </ul>
 
-    <h2>Où intervenons-nous en urgence ?</h2>
-    <p>Depuis notre base de Courtry, nous rejoignons rapidement Chelles, Le Pin, Villeparisis, Vaujours, Coubron, Montfermeil, Clichy-sous-Bois, Livry-Gargan, Sevran, Le Raincy, Villemomble, Gagny et les communes voisines. Voir <a href="/zones-intervention/">toutes nos zones d'intervention</a>.</p>
+    <h2>Les signes qu'il est temps de remplacer votre toiture</h2>
+    <ul class="checks">
+      <li>Tuiles poreuses, effritées ou cassées sur de grandes surfaces</li>
+      <li>Toiture qui ondule ou s'affaisse</li>
+      <li>Absence d'écran sous-toiture sur une couverture ancienne</li>
+      <li>Combles mal isolés et factures de chauffage élevées</li>
+      <li>Toiture de plus de 30 ans qui n'a jamais été rénovée</li>
+    </ul>
+    <p>Si votre couverture est saine mais simplement encrassée, un <a href="/nettoyage-toiture/">nettoyage et démoussage</a> peut suffire : nous vous le dirons honnêtement lors de la visite.</p>
+
+    <h2>Les étapes d'une réfection complète</h2>
+    <ol class="steps">
+      <li><strong>Visite, diagnostic et devis gratuit</strong><br>État de la couverture, de la charpente, de la zinguerie et de l'isolation.</li>
+      <li><strong>Installation du chantier</strong><br>Échafaudage, protections, benne à gravats.</li>
+      <li><strong>Dépose de l'ancienne couverture</strong><br>Tuiles, liteaux et éléments usés sont retirés et évacués.</li>
+      <li><strong>Contrôle et renfort de la charpente</strong><br>Remplacement des bois abîmés, traitement si nécessaire (voir <a href="/charpente/">charpente</a>).</li>
+      <li><strong>Isolation (option RGE)</strong><br>Isolation par l'extérieur (sarking) ou sous rampants.</li>
+      <li><strong>Écran sous-toiture, liteaunage et couverture neuve</strong><br>Pose dans les règles de l'art (DTU), faîtages et rives.</li>
+      <li><strong>Zinguerie neuve et réception</strong><br>Gouttières, descentes, noues et abergements (voir <a href="/zinguerie/">zinguerie</a>), nettoyage du chantier.</li>
+    </ol>
+
+    <h2>Quel matériau pour votre nouvelle toiture ?</h2>
+    <p>Tuiles terre cuite plates ou mécaniques, ardoise naturelle ou synthétique, zinc, bac acier : nous vous conseillons selon le style de la maison, la pente et le PLU de votre commune. Découvrez le détail de chaque matériau sur notre page <a href="/couverture/">couverture</a>.</p>
   </article>
-  {aside("Besoin d'aide maintenant ?")}
+  {aside()}
 </div></section>
 """
-    html += faq_html(faq, "Questions fréquentes en cas de fuite")
-    html += cta_band("Une fuite en ce moment ?", "Appelez-nous directement, nous intervenons 7j/7.")
+    html += faq_html(faq, "Questions fréquentes sur le remplacement de toiture")
+    html += cta_band("Votre toiture a plus de 30 ans ?", "Faites-la diagnostiquer gratuitement par un couvreur certifié QUALIBAT et RGE.")
     html += footer()
-    write("/urgence-fuite-toiture/", html)
+    write("/renovation-toiture/", html)
+
+
+def nettoyage():
+    trail = [("/", "Accueil"), ("/nettoyage-toiture/", "Nettoyage de toiture")]
+    faq = [
+        ("À quelle fréquence faut-il nettoyer sa toiture ?",
+         "En Île-de-France, un nettoyage avec traitement anti-mousse tous les 5 à 10 ans suffit généralement, davantage si la maison est entourée d'arbres ou si un versant est orienté au nord. Les gouttières, elles, se nettoient chaque année."),
+        ("Le nettoyage haute pression abîme-t-il les tuiles ?",
+         "Un jet trop puissant peut décaper la surface des tuiles en terre cuite et les rendre plus poreuses. Nous adaptons la méthode au matériau : brossage, pression modérée et produits adaptés, puis traitement."),
+        ("Le démoussage suffit-il à prolonger la vie d'une toiture ?",
+         "Sur une couverture saine, oui : un toit entretenu peut gagner de nombreuses années. Si les tuiles sont déjà poreuses, cassées ou si la toiture s'affaisse, un nettoyage ne suffira pas et nous vous conseillerons plutôt une rénovation."),
+        ("Quelle est la meilleure période pour nettoyer son toit ?",
+         "Le printemps et le début de l'automne sont idéaux : temps sec et températures douces permettent au traitement anti-mousse et à l'hydrofuge d'agir correctement."),
+    ]
+    desc = "Nettoyage de toiture, démoussage, traitement anti-mousse et hydrofuge, nettoyage des gouttières par des couvreurs professionnels."
+    lds = [org_ld(), crumbs_ld(trail), service_ld("Nettoyage et démoussage de toiture", "/nettoyage-toiture/", desc), faq_ld(faq)]
+    html = head("Nettoyage et démoussage de toiture en Seine-et-Marne | JMC",
+                "Nettoyage de toit, démoussage, traitement anti-mousse et hydrofuge à Courtry, Chelles, Villeparisis, Montfermeil… Par de vrais couvreurs, 40 ans d'expérience. Devis gratuit.",
+                "/nettoyage-toiture/", lds)
+    html += header("/nettoyage-toiture/")
+    html += page_hero(trail, "Nettoyage de toiture", "Nettoyage et démoussage de toiture par des couvreurs professionnels",
+                      "Mousses, lichens, traces noires : redonnez à votre toit son aspect d'origine et prolongez sa durée de vie, avec une entreprise de couverture qui sait aussi vérifier et remplacer les tuiles abîmées.")
+    html += f"""
+<section><div class="wrap split">
+  <article class="prose">
+    {photo("pavillon", eager=True)}
+    <h2>Pourquoi faire nettoyer sa toiture ?</h2>
+    <p>Les mousses et lichens retiennent l'humidité dans les tuiles. Avec le gel, l'eau fait éclater la terre cuite, les tuiles deviennent poreuses et la couverture vieillit prématurément. Un nettoyage régulier :</p>
+    <ul class="checks">
+      <li>prolonge la durée de vie de votre couverture ;</li>
+      <li>évite que les débris bouchent les gouttières et les descentes ;</li>
+      <li>redonne à la maison un aspect propre et soigné, un atout pour sa valeur.</li>
+    </ul>
+
+    <h2>Notre prestation de nettoyage de toit</h2>
+    <ol class="steps">
+      <li><strong>Inspection de la toiture</strong><br>Nous vérifions l'état des tuiles, des faîtages et de la zinguerie avant d'intervenir.</li>
+      <li><strong>Démoussage</strong><br>Retrait des mousses par brossage et nettoyage à pression adaptée au matériau.</li>
+      <li><strong>Remplacement des tuiles abîmées</strong><br>Les tuiles cassées ou poreuses repérées sont remplacées : c'est l'avantage de faire appel à un couvreur.</li>
+      <li><strong>Traitement anti-mousse et hydrofuge</strong><br>Pour retarder la repousse et protéger les tuiles de l'humidité.</li>
+      <li><strong>Nettoyage des gouttières</strong><br>Évacuation des débris, contrôle des descentes et des fixations.</li>
+    </ol>
+
+    <h2>Tous types de toitures</h2>
+    <p>Tuiles mécaniques ou plates en terre cuite, tuiles béton, ardoises, toitures terrasses : chaque matériau demande une méthode et des produits spécifiques. Nos couvreurs les connaissent tous (voir nos <a href="/couverture/">types de couverture</a>).</p>
+
+    <h2>Nettoyer ou remplacer ?</h2>
+    <p>Un nettoyage est efficace sur une toiture saine. Si nous constatons que les tuiles sont trop dégradées, que la toiture s'affaisse ou qu'elle n'a pas d'écran sous-toiture, nous vous le dirons et vous proposerons un devis de <a href="/renovation-toiture/">rénovation de toiture</a>. Vous pourrez comparer les deux options en toute transparence.</p>
+  </article>
+  {aside()}
+</div></section>
+"""
+    html += faq_html(faq, "Questions fréquentes sur le nettoyage de toiture")
+    html += cta_band("Votre toit est envahi par la mousse ?", "Demandez un devis de nettoyage gratuit et sans engagement.")
+    html += footer()
+    write("/nettoyage-toiture/", html)
 
 
 REFS = [
@@ -767,7 +849,7 @@ def zones():
   <div class="grid g3">{blocks}</div>
   <div class="prose" style="margin-top:48px">
     <h2>Un couvreur de proximité</h2>
-    <p>Être implanté localement, c'est connaître les maisons du secteur : pavillons en meulière et tuiles mécaniques de Chelles et du Raincy, maisons de ville de Gagny et Villemomble, résidences récentes de Villeparisis et Claye-Souilly, immeubles en zinc de Paris et de la petite couronne. C'est aussi pouvoir intervenir vite en cas de <a href="/urgence-fuite-toiture/">fuite de toiture</a>.</p>
+    <p>Être implanté localement, c'est connaître les maisons du secteur : pavillons en meulière et tuiles mécaniques de Chelles et du Raincy, maisons de ville de Gagny et Villemomble, résidences récentes de Villeparisis et Claye-Souilly, immeubles en zinc de Paris et de la petite couronne. C'est aussi pouvoir suivre de près chaque <a href="/renovation-toiture/">rénovation de toiture</a> et chaque <a href="/nettoyage-toiture/">nettoyage de toit</a>.</p>
     <p>Votre commune n'apparaît pas dans la liste ? <a href="/contact/">Contactez-nous</a> : nous étudions toutes les demandes en Île-de-France, en particulier pour les chantiers de <a href="/couverture/">couverture</a>, de <a href="/charpente/">charpente</a> et de <a href="/zinguerie/">zinguerie</a> d'envergure.</p>
   </div>
 </div></section>
@@ -808,8 +890,8 @@ def contact():
       </div>
       <label>Type de travaux
         <select name="travaux">
-          <option>Réparation / fuite de toiture</option>
-          <option>Réfection complète de toiture</option>
+          <option>Remplacement / rénovation de toiture</option>
+          <option>Nettoyage / démoussage de toiture</option>
           <option>Charpente</option>
           <option>Zinguerie / gouttières</option>
           <option>Isolation de toiture</option>
@@ -827,7 +909,7 @@ def contact():
     <p><strong>{BIZ['legal']} – {BIZ['name']}</strong><br>{BIZ['street']}<br>{BIZ['zip']} {BIZ['city']}</p>
     <p>Téléphone : <a href="tel:{BIZ['phone_intl']}"><strong>{BIZ['phone']}</strong></a><br>
     E-mail : <a href="mailto:{BIZ['email']}">{BIZ['email']}</a></p>
-    <p><strong>Urgences toiture 7j/7</strong> · <a href="{BIZ['gbp']}" target="_blank" rel="noopener">Fiche Google</a></p>
+    <p><strong>Devis gratuit et sans engagement</strong> · <a href="{BIZ['gbp']}" target="_blank" rel="noopener">Fiche Google</a></p>
     {photo("depot")}
     <iframe class="map" title="Plan d'accès JMC Couverture, Courtry" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
       src="https://www.google.com/maps?q=97+rue+Charles+Van+Wyngene+77181+Courtry&amp;output=embed"></iframe>
@@ -843,7 +925,7 @@ def merci():
                 [], robots="noindex,follow")
     html += header("/merci/")
     html += page_hero([("/", "Accueil"), ("/merci/", "Merci")], "Merci", "Votre demande a bien été envoyée",
-                      "Nous vous recontactons très rapidement. Pour une urgence, appelez-nous directement.")
+                      "Nous vous recontactons très rapidement pour organiser la visite de votre toiture.")
     html += footer()
     write("/merci/", html)
 
@@ -882,7 +964,7 @@ def notfound():
 
 
 SITEMAP = [("/", "1.0"), ("/couverture/", "0.9"), ("/charpente/", "0.9"), ("/zinguerie/", "0.9"),
-           ("/urgence-fuite-toiture/", "0.9"), ("/zones-intervention/", "0.7"), ("/nos-references/", "0.7"),
+           ("/renovation-toiture/", "0.95"), ("/nettoyage-toiture/", "0.95"), ("/zones-intervention/", "0.7"), ("/nos-references/", "0.7"),
            ("/contact/", "0.8")]
 
 
@@ -898,6 +980,6 @@ def seo_files():
 
 
 if __name__ == "__main__":
-    for fn in (home, couverture, charpente, zinguerie, urgence, references, zones, contact, merci, mentions, notfound):
+    for fn in (home, couverture, charpente, zinguerie, renovation, nettoyage, references, zones, contact, merci, mentions, notfound):
         fn()
     seo_files()
