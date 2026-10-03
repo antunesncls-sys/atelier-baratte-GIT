@@ -7,6 +7,7 @@ Les pages gardent les URL de l'ancien site (/charpente/, /couverture/, ...)
 pour conserver le référencement acquis. Chaque page sort dans <slug>/index.html.
 """
 import json
+import subprocess
 from datetime import date
 from pathlib import Path
 
@@ -25,6 +26,8 @@ BIZ = {
     "city": "Courtry",
     # Fiche Google Business Profile (kgmid /g/11y2n5k3zl)
     "gbp": "https://www.google.com/search?kgmid=/g/11y2n5k3zl&q=JMC+COUVERTURE",
+    # Adresse du compte Instagram (ex. "https://www.instagram.com/xxx/") : les liens s'affichent dès qu'elle est renseignée
+    "instagram": "",
 }
 
 CITIES = [
@@ -35,9 +38,12 @@ CITIES = [
     "Lagny-sur-Marne", "Pontault-Combault", "Nogent-sur-Marne", "Maisons-Alfort", "Paris",
 ]
 
+DEPTS = ("Paris", "Seine-et-Marne", "Yvelines", "Essonne", "Hauts-de-Seine", "Seine-Saint-Denis", "Val-de-Marne", "Val-d'Oise")
+
 NAV = [
-    ("/renovation-toiture/", "Rénovation de toiture"),
+    ("/renovation-toiture/", "Rénovation"),
     ("/nettoyage-toiture/", "Nettoyage"),
+    ("/toiture-maison-neuve/", "Maison neuve"),
     ("/couverture/", "Couverture"),
     ("/charpente/", "Charpente"),
     ("/zinguerie/", "Zinguerie"),
@@ -94,8 +100,37 @@ def photo(key, eager=False):
         return ""
     _, alt, cap = PHOTOS[key]
     load = 'fetchpriority="high"' if eager else 'loading="lazy"'
-    return (f'<figure class="photo"><img src="{src}" alt="{alt}" {load} decoding="async" width="1200" height="800">'
+    w, h = photo_dims(src)
+    return (f'<figure class="photo"><img src="{src}" alt="{alt}" {load} decoding="async" width="{w}" height="{h}">'
             f'<figcaption>{cap}</figcaption></figure>')
+
+
+def photo_dims(src):
+    out = subprocess.run(["identify", "-format", "%w %h", str(ROOT / src.lstrip("/"))], capture_output=True, text=True).stdout
+    return tuple(out.split()) if out else (1200, 800)
+
+
+def hero_mosaic():
+    keys = [k for k in ("meuliere", "mansarde", "pavillon", "depot") if photo_src(k)]
+    if not keys:
+        return ""
+    items = "".join(
+        f'<figure><img src="{photo_src(k)}" alt="{PHOTOS[k][1]}" fetchpriority="high" decoding="async" '
+        f'width="{photo_dims(photo_src(k))[0]}" height="{photo_dims(photo_src(k))[1]}"><figcaption>{PHOTOS[k][2]}</figcaption></figure>'
+        for k in keys)
+    return f'<div class="mosaic">{items}</div>'
+
+
+def insta_link(sep=""):
+    if not BIZ["instagram"]:
+        return ""
+    return f'{sep}<a href="{BIZ["instagram"]}" target="_blank" rel="noopener">Suivez-nous sur Instagram</a>'
+
+
+def insta_top():
+    if not BIZ["instagram"]:
+        return ""
+    return f' · <a href="{BIZ["instagram"]}" target="_blank" rel="noopener">Instagram</a>'
 
 
 def hero_style(key):
@@ -118,7 +153,7 @@ def org_ld():
         "telephone": BIZ["phone_intl"],
         "email": BIZ["email"],
         "priceRange": "Devis gratuit",
-        "sameAs": [BIZ["gbp"]],
+        "sameAs": [u for u in (BIZ["gbp"], BIZ["instagram"]) if u],
         "hasMap": BIZ["gbp"],
         "address": {
             "@type": "PostalAddress",
@@ -128,9 +163,9 @@ def org_ld():
             "addressRegion": "Île-de-France",
             "addressCountry": "FR",
         },
-        "areaServed": [{"@type": "City", "name": c} for c in CITIES]
-        + [{"@type": "AdministrativeArea", "name": n} for n in
-           ("Seine-et-Marne", "Seine-Saint-Denis", "Val-de-Marne", "Paris")],
+        "areaServed": [{"@type": "State", "name": "Île-de-France"}]
+        + [{"@type": "AdministrativeArea", "name": n} for n in DEPTS]
+        + [{"@type": "City", "name": c} for c in CITIES],
         "knowsAbout": ["Couverture", "Charpente", "Zinguerie", "Rénovation de toiture",
                        "Remplacement de toiture", "Nettoyage de toiture", "Démoussage", "Isolation de toiture", "Gouttières", "Toiture zinc", "Ardoise", "Tuiles"],
         "hasCredential": [
@@ -146,7 +181,8 @@ def org_ld():
                              ("Charpente bois et métallique", "/charpente/"),
                              ("Zinguerie et gouttières", "/zinguerie/"),
                              ("Nettoyage et démoussage de toiture", "/nettoyage-toiture/"),
-                             ("Rénovation et remplacement de toiture", "/renovation-toiture/"))
+                             ("Rénovation et remplacement de toiture", "/renovation-toiture/"),
+                             ("Toiture de maison neuve", "/toiture-maison-neuve/"))
             ],
         },
     }
@@ -173,8 +209,8 @@ def faq_ld(faq):
 def service_ld(name, url, desc):
     return {"@context": "https://schema.org", "@type": "Service", "name": name, "serviceType": name,
             "description": desc, "url": SITE + url, "provider": {"@id": SITE + "/#entreprise"},
-            "areaServed": [{"@type": "AdministrativeArea", "name": n} for n in
-                           ("Seine-et-Marne", "Seine-Saint-Denis", "Val-de-Marne", "Paris")]}
+            "areaServed": [{"@type": "State", "name": "Île-de-France"}]
+            + [{"@type": "AdministrativeArea", "name": n} for n in DEPTS]}
 
 
 # ---------------------------------------------------------------- gabarits
@@ -219,7 +255,7 @@ def header(path):
     links = "".join(f'<a href="{u}"{cur if u == path else ""}>{n}</a>' for u, n in NAV)
     return f"""
 <div class="topbar"><div class="wrap">
-  <span>Couvreur certifié QUALIBAT &amp; RGE · Seine-et-Marne, Seine-Saint-Denis, Paris</span>
+  <span>Couvreur certifié QUALIBAT &amp; RGE · Intervention dans toute l'Île-de-France{insta_top()}</span>
   <span>Devis gratuit : <a href="tel:{BIZ['phone_intl']}"><strong>{BIZ['phone']}</strong></a></span>
 </div></div>
 <header class="site-header"><div class="wrap">
@@ -293,7 +329,7 @@ def footer():
   <div class="footer-grid">
     <div>
       <a class="logo logo-footer" href="/"><img src="/assets/logo-jmc-40ans.svg" alt="JMC Couverture" width="180" height="80" loading="lazy"></a>
-      <p style="margin-top:16px">Entreprise de couverture, charpente et zinguerie à Courtry (77). Depuis 1985, 40 ans d'expérience au service des particuliers, des collectivités et des professionnels en Île-de-France.</p>
+      <p style="margin-top:16px">Entreprise de couverture, charpente et zinguerie basée à Courtry (77), intervenant dans toute l'Île-de-France. Depuis 1985, 40 ans d'expérience au service des particuliers, des collectivités et des professionnels en Île-de-France.</p>
     </div>
     <div><h2>Nos métiers</h2><ul>
       <li><a href="/couverture/">Couverture &amp; rénovation de toiture</a></li>
@@ -301,6 +337,7 @@ def footer():
       <li><a href="/zinguerie/">Zinguerie &amp; gouttières</a></li>
       <li><a href="/renovation-toiture/">Rénovation &amp; remplacement de toiture</a></li>
       <li><a href="/nettoyage-toiture/">Nettoyage &amp; démoussage de toiture</a></li>
+      <li><a href="/toiture-maison-neuve/">Toiture de maison neuve</a></li>
     </ul></div>
     <div><h2>L'entreprise</h2><ul>
       <li><a href="/nos-references/">Nos références</a></li>
@@ -312,10 +349,10 @@ def footer():
       <address style="font-style:normal">{BIZ['legal']}<br>{BIZ['street']}<br>{BIZ['zip']} {BIZ['city']}</address>
       <p style="margin-top:10px"><a href="tel:{BIZ['phone_intl']}"><strong>{BIZ['phone']}</strong></a><br>
       <a href="mailto:{BIZ['email']}">{BIZ['email']}</a><br>
-      <a href="{BIZ['gbp']}" target="_blank" rel="noopener">Notre fiche Google</a></p>
+      <a href="{BIZ['gbp']}" target="_blank" rel="noopener">Notre fiche Google</a>{insta_link("<br>")}</p>
     </div>
   </div>
-  <p class="small" style="margin-top:28px;color:#8c98a4">Couvreur à {city_links} et dans toute la Seine-et-Marne et la Seine-Saint-Denis.</p>
+  <p class="small" style="margin-top:28px;color:#8c98a4">Couvreur à {city_links} et dans toute l'Île-de-France : Paris, Seine-et-Marne, Yvelines, Essonne, Hauts-de-Seine, Seine-Saint-Denis, Val-de-Marne et Val-d'Oise.</p>
   <div class="legal"><span>© {date.today().year} {BIZ['legal']} — Tous droits réservés</span><span>Certifiée QUALIBAT · RGE · Garantie décennale</span></div>
 </div></footer>
 <a class="btn btn-primary call-fab" href="tel:{BIZ['phone_intl']}">Appeler JMC : {BIZ['phone']}</a>
@@ -362,7 +399,7 @@ def reviews_html(n=3):
 def home():
     faq = [
         ("Quelle zone couvre JMC Couverture ?",
-         "Notre entreprise est basée à Courtry (77181). Nous intervenons dans un rayon d'environ 30 km : Seine-et-Marne (Chelles, Le Pin, Villeparisis, Claye-Souilly…), Seine-Saint-Denis (Montfermeil, Livry-Gargan, Villemomble, Gagny…), Val-de-Marne et Paris."),
+         "Notre entreprise est basée à Courtry (77181) et intervient dans toute l'Île-de-France : Paris, Seine-et-Marne, Yvelines, Essonne, Hauts-de-Seine, Seine-Saint-Denis, Val-de-Marne et Val-d'Oise."),
         ("Le devis est-il gratuit ?",
          "Oui. Nous nous déplaçons pour diagnostiquer votre toiture et nous vous remettons un devis détaillé, gratuit et sans engagement."),
         ("Faut-il nettoyer ou remplacer ma toiture ?",
@@ -378,32 +415,35 @@ def home():
                 "/", lds)
     html += header("/")
     html += f"""
-<section class="hero"{hero_style("meuliere")}>{HERO_ART}<div class="wrap">
+<section class="hero">{HERO_ART}<div class="wrap">
   <div>
     <span class="eyebrow">40 ans · 1985–2025 · Couvreur à Courtry (77)</span>
-    <h1>Rénovation et nettoyage de toiture en Seine-et-Marne et Seine-Saint-Denis</h1>
-    <p class="lead">Remplacement complet de toiture, démoussage et traitement, charpente et zinguerie neuve : depuis 1985, la société JMC rénove les toitures des maisons de l'est parisien, avec un seul interlocuteur et une garantie décennale.</p>
+    <h1>Rénovation et nettoyage de toiture en Île-de-France</h1>
+    <p class="lead">Remplacement complet de toiture, démoussage et traitement, charpente et zinguerie neuve : depuis 1985, la société JMC rénove et construit les toitures des maisons de toute l'Île-de-France, avec un seul interlocuteur et une garantie décennale.</p>
     <div class="hero-cta"><a class="btn btn-primary" href="/contact/">Demander un devis gratuit</a>
     <a class="btn btn-ghost" href="tel:{BIZ['phone_intl']}">Appeler le {BIZ['phone']}</a></div>
     <ul class="badges"><li>QUALIBAT</li><li>RGE</li><li>Garantie décennale</li><li>Devis gratuit</li></ul>
   </div>
-  <div class="hero-card">
-    <h2>Votre toiture a plus de 30 ans ou est couverte de mousse ?</h2>
-    <p>Un couvreur se déplace gratuitement pour faire le point et vous conseiller la bonne solution.</p>
-    <ul class="checks"><li>Diagnostic complet sur place</li><li>Nettoyage ou remplacement : avis honnête</li><li>Devis gratuit et détaillé</li></ul>
-    <a class="btn btn-dark" href="/contact/">Demander une visite gratuite</a>
-  </div>
+  {hero_mosaic()}
+</div></section>
+
+<section class="visit-band"><div class="wrap">
+  <div><strong>Votre toiture a plus de 30 ans ou est couverte de mousse ?</strong>
+  <span>Un couvreur se déplace gratuitement pour vous conseiller : nettoyage ou remplacement, avis honnête et devis détaillé.</span></div>
+  <a class="btn btn-primary" href="/contact/">Demander une visite gratuite</a>
 </div></section>
 
 <section><div class="wrap">
   <div class="section-head"><span class="eyebrow">Nos métiers</span>
   <h2>Rénovation, nettoyage, charpente, zinguerie : un seul interlocuteur pour votre toit</h2>
   <p>De l'entretien de votre couverture à son remplacement complet, nos équipes maîtrisent tous les métiers du toit : un chantier coordonné, des délais tenus et une seule garantie.</p></div>
-  <div class="grid g2" style="margin-bottom:24px">
+  <div class="grid g3" style="margin-bottom:24px">
   {service_card("roof", "Rénovation et remplacement de toiture", "/renovation-toiture/", "Réfection complète de votre couverture, de la charpente aux gouttières, avec isolation RGE en option.",
                 ["Dépose de l'ancienne couverture", "Contrôle et renfort de charpente", "Écran sous-toiture et couverture neuve", "Isolation de toiture (aides possibles)"])}
   {service_card("leaf", "Nettoyage et démoussage de toiture", "/nettoyage-toiture/", "Redonnez à votre toit son aspect d'origine et prolongez sa durée de vie.",
                 ["Démoussage adapté au matériau", "Remplacement des tuiles abîmées", "Traitement anti-mousse et hydrofuge", "Nettoyage des gouttières"])}
+  {service_card("beam", "Toiture de maison neuve", "/toiture-maison-neuve/", "Vous faites construire ? Profitez de notre expérience auprès des promoteurs immobiliers.",
+                ["Charpente, couverture, zinguerie", "Mise hors d'eau rapide", "Coordination avec votre architecte", "Attestations pour la dommages-ouvrage"])}
   </div>
   <div class="grid g3">
   {service_card("doc", "Couverture", "/couverture/", "Pose de toiture neuve, quel que soit le matériau.",
@@ -426,7 +466,6 @@ def home():
 
 <section><div class="wrap split">
   <div class="prose">
-    {photo("depot")}
     <span class="eyebrow">L'entreprise</span>
     <h2>Une entreprise de toiture familière des maisons d'Île-de-France</h2>
     <p>Installée au <strong>{BIZ['street']} à {BIZ['city']}</strong>, la société JMC accompagne depuis 1985 les propriétaires, syndics, collectivités et promoteurs de l'est parisien. Pavillons en tuiles de Chelles ou du Pin, immeubles en zinc à Paris, écoles et bâtiments publics de Seine-Saint-Denis : nous connaissons les matériaux, les règles d'urbanisme et les contraintes de chaque type de bâti.</p>
@@ -462,8 +501,8 @@ def home():
 
 <section class="section-alt"><div class="wrap">
   <div class="section-head"><span class="eyebrow">Zone d'intervention</span>
-  <h2>Couvreur en Seine-et-Marne, Seine-Saint-Denis et Paris</h2>
-  <p>Depuis Courtry, nous intervenons rapidement dans tout l'est de l'Île-de-France.</p></div>
+  <h2>Couvreur dans toute l'Île-de-France</h2>
+  <p>Depuis notre siège de Courtry, nos équipes interviennent à Paris et dans les huit départements franciliens.</p></div>
   <ul class="cities">{"".join(f"<li>Couvreur {c}</li>" for c in CITIES[:16])}</ul>
   <p><a class="more" href="/zones-intervention/">Toutes nos zones d'intervention →</a></p>
 </div></section>
@@ -659,11 +698,11 @@ def renovation():
     ]
     desc = "Remplacement et réfection complète de toiture : dépose, contrôle de charpente, écran sous-toiture, couverture neuve, zinguerie et isolation RGE."
     lds = [org_ld(), crumbs_ld(trail), service_ld("Rénovation et remplacement de toiture", "/renovation-toiture/", desc), faq_ld(faq)]
-    html = head("Rénovation et remplacement de toiture en Seine-et-Marne | JMC",
+    html = head("Rénovation et remplacement de toiture en Île-de-France | JMC",
                 "Remplacement et réfection complète de toiture à Courtry, Chelles, Montfermeil et en Île-de-France. Tuiles, ardoise, zinc, isolation RGE. 40 ans d'expérience. Devis gratuit.",
                 "/renovation-toiture/", lds)
     html += header("/renovation-toiture/")
-    html += page_hero(trail, "Rénovation de toiture", "Rénovation et remplacement de toiture en Seine-et-Marne et Seine-Saint-Denis",
+    html += page_hero(trail, "Rénovation de toiture", "Rénovation et remplacement de toiture en Île-de-France",
                       "Votre toiture a fait son temps ? Nous la remplaçons entièrement, de la charpente aux gouttières, avec une seule entreprise, un seul devis et une garantie décennale.")
     html += f"""
 <section><div class="wrap split">
@@ -725,7 +764,7 @@ def nettoyage():
     ]
     desc = "Nettoyage de toiture, démoussage, traitement anti-mousse et hydrofuge, nettoyage des gouttières par des couvreurs professionnels."
     lds = [org_ld(), crumbs_ld(trail), service_ld("Nettoyage et démoussage de toiture", "/nettoyage-toiture/", desc), faq_ld(faq)]
-    html = head("Nettoyage et démoussage de toiture en Seine-et-Marne | JMC",
+    html = head("Nettoyage et démoussage de toiture en Île-de-France | JMC",
                 "Nettoyage de toit, démoussage, traitement anti-mousse et hydrofuge à Courtry, Chelles, Villeparisis, Montfermeil… Par de vrais couvreurs, 40 ans d'expérience. Devis gratuit.",
                 "/nettoyage-toiture/", lds)
     html += header("/nettoyage-toiture/")
@@ -765,6 +804,73 @@ def nettoyage():
     html += cta_band("Votre toit est envahi par la mousse ?", "Demandez un devis de nettoyage gratuit et sans engagement.")
     html += footer()
     write("/nettoyage-toiture/", html)
+
+
+def maison_neuve():
+    trail = [("/", "Accueil"), ("/toiture-maison-neuve/", "Toiture de maison neuve")]
+    faq = [
+        ("Je fais construire ma maison : puis-je choisir mon couvreur ?",
+         "Oui si vous construisez avec un architecte, un maître d'œuvre ou en lots séparés : vous signez directement avec chaque entreprise. Avec un contrat de construction de maison individuelle (CCMI), c'est en principe le constructeur qui choisit ses sous-traitants, mais vous pouvez lui demander de travailler avec nous."),
+        ("À quel moment du chantier intervenez-vous ?",
+         "Dès que la maçonnerie est arasée et les murs prêts : nous posons la charpente, puis la couverture et la zinguerie pour mettre la maison hors d'eau, avant l'intervention des menuisiers et des plaquistes. Contactez-nous dès l'obtention du permis de construire pour réserver votre créneau."),
+        ("Quels documents fournissez-vous pour mon assurance dommages-ouvrage ?",
+         "Nous vous remettons notre attestation d'assurance décennale et de responsabilité civile en cours de validité, ainsi que nos qualifications QUALIBAT et RGE, avant le démarrage du chantier."),
+        ("Pouvez-vous aussi réaliser l'isolation de la toiture ?",
+         "Oui. Entreprise RGE, nous pouvons intégrer l'isolation de la toiture à votre construction, en cohérence avec les exigences de la réglementation environnementale RE2020 définies par votre bureau d'études thermiques."),
+        ("Travaillez-vous aussi sur les extensions et surélévations ?",
+         "Oui, nous réalisons la charpente, la couverture et la zinguerie des extensions, surélévations et aménagements de combles, avec le même niveau d'exigence que pour une maison neuve."),
+    ]
+    desc = "Charpente, couverture et zinguerie de maisons neuves pour les particuliers qui font construire, avec le savoir-faire acquis sur les programmes des promoteurs immobiliers."
+    lds = [org_ld(), crumbs_ld(trail), service_ld("Toiture de maison neuve", "/toiture-maison-neuve/", desc), faq_ld(faq)]
+    html = head("Toiture de maison neuve en Île-de-France : charpente et couverture | JMC",
+                "Vous faites construire ? JMC, couvreur des promoteurs immobiliers depuis 1985, réalise la charpente, la couverture et la zinguerie de votre maison neuve en Île-de-France. Devis gratuit.",
+                "/toiture-maison-neuve/", lds)
+    html += header("/toiture-maison-neuve/")
+    html += page_hero(trail, "Maison neuve · Construction", "Toiture de maison neuve : l'expertise des promoteurs au service des particuliers",
+                      "Depuis 1985, les grands promoteurs immobiliers nous confient la charpente et la couverture de leurs programmes neufs. Vous faites construire votre maison ? Profitez du même savoir-faire, en direct.")
+    html += f"""
+<section><div class="wrap split">
+  <article class="prose">
+    {photo("depot", eager=True)}
+    <h2>Le savoir-faire de la promotion immobilière, pour votre maison</h2>
+    <p>Bouygues Immobilier, Kaufman &amp; Broad, Nexity : la société JMC travaille depuis des années pour des promoteurs et des architectes sur des programmes de logements neufs en Île-de-France. Ces chantiers exigent une rigueur particulière : respect strict des plannings, conformité aux normes, contrôles de bureaux de contrôle, finitions irréprochables.</p>
+    <p>C'est cette même organisation que nous mettons au service des <strong>particuliers qui font construire leur maison</strong>. Vous bénéficiez d'une entreprise structurée, équipée et assurée, avec l'écoute et la souplesse d'une entreprise familiale.</p>
+
+    <h2>Ce que nous réalisons sur votre maison neuve</h2>
+    <ul class="checks">
+      <li><strong>Charpente</strong> traditionnelle ou industrielle (fermettes), adaptée à vos plans et à l'usage des combles (voir <a href="/charpente/">charpente</a>)</li>
+      <li><strong>Couverture</strong> en tuiles, ardoise, zinc ou bac acier, selon le PLU et le style de la maison (voir <a href="/couverture/">couverture</a>)</li>
+      <li><strong>Zinguerie</strong> : gouttières, descentes, noues, abergements, habillages (voir <a href="/zinguerie/">zinguerie</a>)</li>
+      <li><strong>Fenêtres de toit</strong> et lucarnes</li>
+      <li><strong>Isolation de toiture</strong> par une entreprise RGE, en cohérence avec la RE2020</li>
+      <li><strong>Mise hors d'eau</strong> rapide pour ne pas retarder les autres corps de métier</li>
+    </ul>
+
+    <h2>Pourquoi nous confier la toiture de votre construction</h2>
+    <ul class="checks">
+      <li><strong>Une seule entreprise</strong> pour la charpente, la couverture et la zinguerie : moins d'interfaces, moins de risques</li>
+      <li><strong>Des délais tenus</strong> : nos équipes et notre flotte de véhicules sont dimensionnées pour les plannings exigeants de la promotion immobilière</li>
+      <li><strong>Une coordination facilitée</strong> avec votre architecte, votre maçon et votre menuisier</li>
+      <li><strong>Des garanties solides</strong> : assurance décennale, QUALIBAT et RGE, attestations fournies pour votre dommages-ouvrage</li>
+      <li><strong>40 ans d'expérience</strong> et plus de 1 500 chantiers réalisés</li>
+    </ul>
+
+    <h2>Comment ça se passe ?</h2>
+    <ol class="steps">
+      <li><strong>Envoyez-nous vos plans</strong><br>Plans du permis de construire, coupes et notice descriptive suffisent pour un premier chiffrage.</li>
+      <li><strong>Étude et devis gratuit</strong><br>Choix du type de charpente, du matériau de couverture et des options, devis détaillé.</li>
+      <li><strong>Planification</strong><br>Nous calons notre intervention avec votre maçon pour enchaîner sans temps mort.</li>
+      <li><strong>Pose et mise hors d'eau</strong><br>Charpente, couverture et zinguerie, puis réception des travaux.</li>
+    </ol>
+    <p>Également pour vos <strong>extensions, surélévations et aménagements de combles</strong>. Découvrez nos <a href="/nos-references/">références</a>.</p>
+  </article>
+  {aside("Vous faites construire ?")}
+</div></section>
+"""
+    html += faq_html(faq, "Questions fréquentes sur la toiture d'une maison neuve")
+    html += cta_band("Vous avez obtenu votre permis de construire ?", "Envoyez-nous vos plans : étude et devis gratuits pour la toiture de votre maison.")
+    html += footer()
+    write("/toiture-maison-neuve/", html)
 
 
 REFS = [
@@ -832,25 +938,34 @@ def zones():
         ("Seine-Saint-Denis (93)", ["Vaujours", "Coubron", "Montfermeil", "Clichy-sous-Bois", "Livry-Gargan",
                                     "Sevran", "Le Raincy", "Villemomble", "Gagny", "Neuilly-sur-Marne",
                                     "Noisy-le-Grand", "Noisy-le-Sec", "Aulnay-sous-Bois", "Tremblay-en-France"]),
-        ("Val-de-Marne (94) et Paris (75)", ["Nogent-sur-Marne", "Le Perreux-sur-Marne", "Fontenay-sous-Bois",
-                                             "Maisons-Alfort", "Vincennes", "Paris"]),
+        ("Paris (75)", ["Tous les arrondissements"]),
+        ("Val-de-Marne (94)", ["Nogent-sur-Marne", "Le Perreux-sur-Marne", "Fontenay-sous-Bois", "Maisons-Alfort",
+                               "Vincennes", "Saint-Maur-des-Fossés", "Créteil", "Champigny-sur-Marne"]),
+        ("Hauts-de-Seine (92)", ["Neuilly-sur-Seine", "Boulogne-Billancourt", "Rueil-Malmaison", "Nanterre",
+                                 "Courbevoie", "Antony", "Sceaux", "Colombes"]),
+        ("Val-d'Oise (95)", ["Cergy", "Argenteuil", "Enghien-les-Bains", "Montmorency", "Roissy-en-France",
+                             "Sarcelles", "Pontoise", "L'Isle-Adam"]),
+        ("Yvelines (78)", ["Versailles", "Saint-Germain-en-Laye", "Le Vésinet", "Maisons-Laffitte",
+                           "Rambouillet", "Poissy", "Le Chesnay-Rocquencourt", "Chatou"]),
+        ("Essonne (91)", ["Évry-Courcouronnes", "Massy", "Palaiseau", "Corbeil-Essonnes",
+                          "Brunoy", "Yerres", "Savigny-sur-Orge", "Étampes"]),
     ]
     blocks = "".join(
         f'<div class="card"><h3>{g}</h3><ul class="cities" style="columns:2 140px">'
         + "".join(f"<li>{c}</li>" for c in cs) + "</ul></div>" for g, cs in groups)
-    html = head("Couvreur Chelles, Montfermeil, Villeparisis… | JMC Couverture",
-                "JMC, couvreur basé à Courtry, intervient à Chelles, Le Pin, Villeparisis, Montfermeil, Livry-Gargan, Gagny, Villemomble et dans tout le 77, 93, 94 et Paris.",
+    html = head("Couvreur en Île-de-France : Paris, 77, 78, 91, 92, 93, 94, 95 | JMC",
+                "JMC, couvreur basé à Courtry (77), intervient dans toute l'Île-de-France : Paris, Seine-et-Marne, Yvelines, Essonne, Hauts-de-Seine, Seine-Saint-Denis, Val-de-Marne, Val-d'Oise.",
                 "/zones-intervention/", lds)
     html += header("/zones-intervention/")
-    html += page_hero(trail, "Zones d'intervention", "Couvreur à Courtry et dans tout l'est de l'Île-de-France",
-                      "Basée à Courtry, à la frontière de la Seine-et-Marne et de la Seine-Saint-Denis, notre entreprise intervient rapidement dans un rayon d'environ 30 km.")
+    html += page_hero(trail, "Zones d'intervention", "Couvreur dans toute l'Île-de-France",
+                      "Depuis notre siège de Courtry (77), nos équipes et notre flotte de véhicules interviennent à Paris et dans les huit départements franciliens, pour les particuliers comme pour les professionnels.")
     html += f"""
 <section><div class="wrap">
   <div class="grid g3">{blocks}</div>
   <div class="prose" style="margin-top:48px">
-    <h2>Un couvreur de proximité</h2>
-    <p>Être implanté localement, c'est connaître les maisons du secteur : pavillons en meulière et tuiles mécaniques de Chelles et du Raincy, maisons de ville de Gagny et Villemomble, résidences récentes de Villeparisis et Claye-Souilly, immeubles en zinc de Paris et de la petite couronne. C'est aussi pouvoir suivre de près chaque <a href="/renovation-toiture/">rénovation de toiture</a> et chaque <a href="/nettoyage-toiture/">nettoyage de toit</a>.</p>
-    <p>Votre commune n'apparaît pas dans la liste ? <a href="/contact/">Contactez-nous</a> : nous étudions toutes les demandes en Île-de-France, en particulier pour les chantiers de <a href="/couverture/">couverture</a>, de <a href="/charpente/">charpente</a> et de <a href="/zinguerie/">zinguerie</a> d'envergure.</p>
+    <h2>Un couvreur francilien depuis 1985</h2>
+    <p>Travailler en Île-de-France depuis 40 ans, c'est connaître les maisons du secteur : pavillons en meulière et tuiles mécaniques de Chelles et du Raincy, maisons de ville de Gagny et Villemomble, résidences récentes de Villeparisis et Claye-Souilly, immeubles en zinc de Paris et de la petite couronne. C'est aussi pouvoir suivre de près chaque <a href="/renovation-toiture/">rénovation de toiture</a> et chaque <a href="/nettoyage-toiture/">nettoyage de toit</a>.</p>
+    <p>Votre commune n'apparaît pas dans la liste ? Pas d'inquiétude : ces villes ne sont que des exemples, <a href="/contact/">contactez-nous</a>, nous intervenons partout en Île-de-France pour vos chantiers de <a href="/couverture/">couverture</a>, de <a href="/charpente/">charpente</a> et de <a href="/zinguerie/">zinguerie</a>.</p>
   </div>
 </div></section>
 <section class="section-alt" style="padding:0"><iframe class="map" style="border-radius:0;height:380px" title="Localisation de JMC Couverture à Courtry"
@@ -892,6 +1007,7 @@ def contact():
         <select name="travaux">
           <option>Remplacement / rénovation de toiture</option>
           <option>Nettoyage / démoussage de toiture</option>
+          <option>Toiture de maison neuve / extension</option>
           <option>Charpente</option>
           <option>Zinguerie / gouttières</option>
           <option>Isolation de toiture</option>
@@ -909,7 +1025,7 @@ def contact():
     <p><strong>{BIZ['legal']} – {BIZ['name']}</strong><br>{BIZ['street']}<br>{BIZ['zip']} {BIZ['city']}</p>
     <p>Téléphone : <a href="tel:{BIZ['phone_intl']}"><strong>{BIZ['phone']}</strong></a><br>
     E-mail : <a href="mailto:{BIZ['email']}">{BIZ['email']}</a></p>
-    <p><strong>Devis gratuit et sans engagement</strong> · <a href="{BIZ['gbp']}" target="_blank" rel="noopener">Fiche Google</a></p>
+    <p><strong>Devis gratuit et sans engagement</strong> · <a href="{BIZ['gbp']}" target="_blank" rel="noopener">Fiche Google</a>{insta_link(" · ")}</p>
     {photo("depot")}
     <iframe class="map" title="Plan d'accès JMC Couverture, Courtry" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
       src="https://www.google.com/maps?q=97+rue+Charles+Van+Wyngene+77181+Courtry&amp;output=embed"></iframe>
@@ -964,7 +1080,7 @@ def notfound():
 
 
 SITEMAP = [("/", "1.0"), ("/couverture/", "0.9"), ("/charpente/", "0.9"), ("/zinguerie/", "0.9"),
-           ("/renovation-toiture/", "0.95"), ("/nettoyage-toiture/", "0.95"), ("/zones-intervention/", "0.7"), ("/nos-references/", "0.7"),
+           ("/renovation-toiture/", "0.95"), ("/nettoyage-toiture/", "0.95"), ("/toiture-maison-neuve/", "0.9"), ("/zones-intervention/", "0.7"), ("/nos-references/", "0.7"),
            ("/contact/", "0.8")]
 
 
@@ -980,6 +1096,6 @@ def seo_files():
 
 
 if __name__ == "__main__":
-    for fn in (home, couverture, charpente, zinguerie, renovation, nettoyage, references, zones, contact, merci, mentions, notfound):
+    for fn in (home, couverture, charpente, zinguerie, renovation, nettoyage, maison_neuve, references, zones, contact, merci, mentions, notfound):
         fn()
     seo_files()
