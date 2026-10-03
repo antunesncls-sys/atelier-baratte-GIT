@@ -27,7 +27,7 @@ BIZ = {
     # Fiche Google Business Profile (kgmid /g/11y2n5k3zl)
     "gbp": "https://www.google.com/search?kgmid=/g/11y2n5k3zl&q=JMC+COUVERTURE",
     # Adresse du compte Instagram (ex. "https://www.instagram.com/xxx/") : les liens s'affichent dès qu'elle est renseignée
-    "instagram": "",
+    "instagram": "https://www.instagram.com/jmc.couverture/",
 }
 
 CITIES = [

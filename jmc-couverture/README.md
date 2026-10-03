@@ -23,6 +23,6 @@ python3 _build/build.py
 ## À compléter avant mise en ligne
 - Mentions légales : SIRET, RCS, directeur de publication, assureur décennal, hébergeur.
 - Photos : déjà intégrées (accueil en mosaïque, pages services). Pour en ajouter, voir `assets/photos/LISEZMOI.txt`.
-- Instagram : renseigner l'adresse du compte dans `BIZ["instagram"]` (`_build/build.py`) puis relancer le build.
+- Instagram : https://www.instagram.com/jmc.couverture/ (modifiable dans `BIZ["instagram"]`).
 - Formulaire : fonctionne nativement sur Netlify (Netlify Forms). Ailleurs, brancher un service d'envoi.
 - Créer / mettre à jour la fiche Google Business Profile avec exactement les mêmes nom, adresse et téléphone.
