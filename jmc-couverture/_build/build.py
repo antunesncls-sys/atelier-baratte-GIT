@@ -6,6 +6,7 @@ Usage : python3 _build/build.py   (depuis le dossier jmc-couverture/)
 Les pages gardent les URL de l'ancien site (/charpente/, /couverture/, ...)
 pour conserver le référencement acquis. Chaque page sort dans <slug>/index.html.
 """
+import hashlib
 import json
 import subprocess
 from datetime import date
@@ -14,6 +15,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://jmccouverture.com"
 TODAY = date.today().isoformat()
+# Version de la feuille de style (empreinte du contenu) : force le rechargement après chaque modification
+CSS_VER = hashlib.md5((ROOT / "assets" / "style.css").read_bytes()).hexdigest()[:8]
 
 BIZ = {
     "name": "JMC Couverture",
@@ -167,7 +170,9 @@ def socials(size="md"):
         if BIZ.get(key):
             label = SOCIAL_LABELS[key]
             _SOC_N[0] += 1
-            svg = SOCIAL_LOGOS[key].replace("IGID", f"igg{_SOC_N[0]}")
+            px = 20 if size == "sm" else 28
+            svg = SOCIAL_LOGOS[key].replace("IGID", f"igg{_SOC_N[0]}").replace(
+                "<svg ", f'<svg width="{px}" height="{px}" style="width:{px}px;height:{px}px" ', 1)
             out.append(f'<a class="soc soc-{size} soc-{key}" href="{BIZ[key]}" target="_blank" rel="noopener" '
                        f'aria-label="{label} JMC Couverture" title="{label}">{svg}</a>')
     return out
@@ -388,7 +393,7 @@ def head(title, desc, path, lds, robots="index,follow"):
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="/assets/photos/toiture-ardoise-lucarnes-zinc-vue-drone-jmc.jpg" imagesrcset="/assets/photos/toiture-ardoise-lucarnes-zinc-vue-drone-jmc-800.jpg 800w, /assets/photos/toiture-ardoise-lucarnes-zinc-vue-drone-jmc.jpg 1605w" imagesizes="100vw">
-<link rel="stylesheet" href="/assets/style.css">
+<link rel="stylesheet" href="/assets/style.css?v={CSS_VER}">
 {ld}
 </head>
 <body>
