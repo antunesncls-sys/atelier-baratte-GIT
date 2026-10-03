@@ -16,6 +16,15 @@ Données dans `VILLES` (`_build/build.py`) : 94 (Saint-Maur, Nogent, Le Perreux)
 Bussy-Saint-Georges, Fontainebleau, Barbizon), 78 (Versailles, Le Vésinet, Saint-Germain-en-Laye…),
 92 (Neuilly, Boulogne, Saint-Cloud, Sceaux…). Pour en ajouter une : un appel `_v(...)` avec un texte propre à la ville.
 
+## Migration depuis l'ancien site WordPress
+`_redirects` (Netlify) : 301 des anciennes pages /portfolio/, /testimonial/, /_light_image_gallery/,
+/portfolio-categories/ vers les nouvelles pages ; 410 pour les pages de démo /team/ et /wp-*.
+`_headers` : cache des polices et images, en-têtes de sécurité.
+
+## Pages départements
+/couvreur-seine-et-marne-77/, /couvreur-val-de-marne-94/, /couvreur-yvelines-78/,
+/couvreur-hauts-de-seine-92/, /couvreur-seine-saint-denis-93/, /couvreur-paris/ (données `DEPTS_PAGES`).
+
 ## SEO intégré
 - Title / meta description uniques par page, ciblés « couvreur + ville / département ».
 - Un seul H1 par page, hiérarchie H2/H3, maillage interne entre services.

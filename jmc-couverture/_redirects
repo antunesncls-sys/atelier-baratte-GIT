@@ -1,0 +1,21 @@
+# Redirections de l'ancien site WordPress (jmccouverture.com) vers le nouveau site
+# Réalisations et galeries -> références
+/portfolio/*                          /nos-references/   301
+/_light_image_gallery/*               /nos-references/   301
+/portfolio-categories/charpente/*     /charpente/        301
+/portfolio-categories/couverture/*    /couverture/       301
+/portfolio-categories/zinguerie/*     /zinguerie/        301
+/portfolio-categories/*               /nos-references/   301
+# Avis clients -> références (les avis y sont affichés)
+/testimonial/*                        /nos-references/   301
+# Anciennes pages d'équipe du thème WordPress (pages de démonstration) : supprimées
+/team/*                               /404.html          410
+# Plans de site WordPress -> nouveau plan du site
+/sitemap_index.xml                    /sitemap.xml       301
+/wp-sitemap.xml                       /sitemap.xml       301
+/page-sitemap.xml                     /sitemap.xml       301
+/*-sitemap.xml                        /sitemap.xml       301
+/feed/*                               /                  301
+/wp-admin/*                           /404.html          410
+/wp-login.php                         /404.html          410
+/wp-content/*                         /404.html          410
