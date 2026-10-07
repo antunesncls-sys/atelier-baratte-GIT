@@ -3,7 +3,7 @@ QR CODES DES PANNEAUX DE CHANTIER — JMC COUVERTURE
 
 Fichiers
 - QR-codes-panneaux-JMC-A4.pdf : une page A4 par ville, prête à imprimer (logo, QR, téléphone).
-- Recapitulatif-QR-codes.pdf   : les 48 QR codes sur une page, pour choisir.
+- Recapitulatif-QR-codes.pdf   : les 57 QR codes sur deux pages, pour choisir.
 - svg/ : QR codes vectoriels (net à toutes les tailles) -> à donner à l'imprimeur du panneau.
 - png/ : QR codes en image (1640 px) pour un usage rapide.
 

@@ -280,5 +280,59 @@
   "cp": "92190",
   "lat": 48.803633,
   "lon": 2.233989
+ },
+ "Yerres": {
+  "nom": "Yerres",
+  "cp": "91330",
+  "lat": 48.710884,
+  "lon": 2.491344
+ },
+ "Brunoy": {
+  "nom": "Brunoy",
+  "cp": "91800",
+  "lat": 48.695959,
+  "lon": 2.504827
+ },
+ "Draveil": {
+  "nom": "Draveil",
+  "cp": "91210",
+  "lat": 48.677829,
+  "lon": 2.412138
+ },
+ "Soisy-sur-Seine": {
+  "nom": "Soisy-sur-Seine",
+  "cp": "91450",
+  "lat": 48.648028,
+  "lon": 2.448895
+ },
+ "Étiolles": {
+  "nom": "Étiolles",
+  "cp": "91450",
+  "lat": 48.639156,
+  "lon": 2.471442
+ },
+ "Évry-Courcouronnes": {
+  "nom": "Évry-Courcouronnes",
+  "cp": "91000",
+  "lat": 48.62729,
+  "lon": 2.43251
+ },
+ "Corbeil-Essonnes": {
+  "nom": "Corbeil-Essonnes",
+  "cp": "91100",
+  "lat": 48.598229,
+  "lon": 2.465045
+ },
+ "Savigny-sur-Orge": {
+  "nom": "Savigny-sur-Orge",
+  "cp": "91600",
+  "lat": 48.685402,
+  "lon": 2.349202
+ },
+ "Montgeron": {
+  "nom": "Montgeron",
+  "cp": "91230",
+  "lat": 48.704816,
+  "lon": 2.455399
  }
 }

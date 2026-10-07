@@ -671,7 +671,7 @@ def bouche_oreille():
 def home():
     faq = [
         ("Quelle zone couvre JMC Couverture ?",
-         "Notre entreprise est basée à Courtry (77181) et intervient en Île-de-France, de Melun à Meaux et jusqu'au Val-d'Oise : Paris, Seine-et-Marne, Essonne, Hauts-de-Seine, Seine-Saint-Denis, Val-de-Marne et Val-d'Oise."),
+         "Notre entreprise est basée à Courtry (77181) et intervient en Île-de-France, de Melun à Meaux, jusqu'au Val-d'Oise et en Essonne : Paris, Seine-et-Marne, Essonne, Hauts-de-Seine, Seine-Saint-Denis, Val-de-Marne et Val-d'Oise."),
         ("Le devis est-il gratuit ?",
          "Oui. Nous nous déplaçons pour diagnostiquer votre toiture et nous vous remettons un devis détaillé, gratuit et sans engagement."),
         ("Faut-il nettoyer ou remplacer ma toiture ?",
@@ -688,7 +688,7 @@ def home():
     html += header("/")
     _PAGE["bref"] = ("JMC Couverture (Société JMC) est une entreprise de couverture, charpente et zinguerie fondée en 1985 à Courtry (77). "
                      "Spécialisée en couverture zinc et tuiles, rénovation et isolation de toiture (RGE), maisons neuves, copropriétés et "
-                     "fenêtres de toit, elle intervient en Seine-et-Marne de Melun à Meaux, dans le Val-d'Oise, le Val-de-Marne, "
+                     "fenêtres de toit, elle intervient en Seine-et-Marne de Melun à Meaux, dans le Val-d'Oise, l'Essonne, le Val-de-Marne, "
                      "la Seine-Saint-Denis, les Hauts-de-Seine et à Paris. Devis gratuit au 01 64 21 38 37.")
     html += f"""
 <section class="hero has-photo">{hero_bg()}<div class="wrap">
@@ -787,7 +787,7 @@ def home():
 <section class="section-alt"><div class="wrap">
   <div class="section-head"><span class="eyebrow">Zone d'intervention</span>
   <h2>Couvreur en Île-de-France : nos zones d'intervention</h2>
-  <p>Depuis notre siège de Courtry, nos équipes interviennent dans toute la Seine-et-Marne, de Melun à Meaux, dans le Val-d'Oise, le Val-de-Marne, la Seine-Saint-Denis, les Hauts-de-Seine et à Paris.</p></div>
+  <p>Depuis notre siège de Courtry, nos équipes interviennent dans toute la Seine-et-Marne, de Melun à Meaux, dans le Val-d'Oise, l'Essonne, le Val-de-Marne, la Seine-Saint-Denis, les Hauts-de-Seine et à Paris.</p></div>
   {city_groups()}
   <ul class="cities">{"".join(f"<li>{c}</li>" for c in CITIES[3:])}</ul>
   <p><a class="more" href="/zones-intervention/">Toutes nos zones d'intervention →</a></p>
@@ -1740,6 +1740,62 @@ DEPTS_PAGES.append(
                "Nos équipes y interviennent pour les particuliers, les copropriétés et les professionnels : couverture zinc et tuiles, rénovation et isolation, fenêtres de toit VELUX, zinguerie, nettoyage et entretien, avec suivi d'exécution et SAV dédié."],
      "autres": ["Sarcelles", "Gonesse", "Goussainville", "Garges-lès-Gonesse", "Saint-Gratien", "Enghien-les-Bains", "Soisy-sous-Montmorency", "Saint-Leu-la-Forêt", "Domont", "Saint-Ouen-l'Aumône", "Beaumont-sur-Oise", "Luzarches"]})
 
+# ---------- Essonne (91) : Val d'Yerres, forêt de Sénart et bords de Seine ----------
+VILLES += [
+    _v("Yerres", "Essonne", "91", "91330",
+       "Maisons bourgeoises, villas en meulière et pavillons des bords de l'Yerres : votre couvreur à Yerres.",
+       "Connue pour la propriété Caillebotte et ses berges, Yerres est une commune résidentielle où se côtoient maisons bourgeoises du XIXe siècle, villas en meulière et quartiers pavillonnaires. Tuiles plates, tuiles mécaniques, ardoise et zinc : les toitures y sont variées et souvent anciennes.",
+       "Nous y réalisons la rénovation complète de toitures, l'isolation des combles et des rampants, la restauration de lucarnes et de zinguerie, ainsi que le nettoyage et l'entretien. Visite et devis gratuits.",
+       ["Brunoy", "Montgeron", "Crosne", "Villeneuve-Saint-Georges", "Épinay-sous-Sénart", "Boussy-Saint-Antoine"]),
+    _v("Brunoy", "Essonne", "91", "91800",
+       "Maisons de maître, villas et pavillons en lisière de la forêt de Sénart : votre couvreur à Brunoy.",
+       "Entre la vallée de l'Yerres et la forêt de Sénart, Brunoy a conservé un patrimoine résidentiel remarquable : maisons de maître, villas de villégiature du XIXe siècle et pavillons des années 1930. Leurs toitures en tuiles plates, en ardoise ou en zinc demandent un savoir-faire traditionnel.",
+       "Rénovation et remplacement de toiture, isolation RGE, fenêtres de toit VELUX, lucarnes, zinguerie et nettoyage : nos équipes interviennent à Brunoy avec un suivi d'exécution et un SAV dédié.",
+       ["Yerres", "Épinay-sous-Sénart", "Boussy-Saint-Antoine", "Mandres-les-Roses", "Montgeron", "Quincy-sous-Sénart"]),
+    _v("Montgeron", "Essonne", "91", "91230",
+       "Pavillons en meulière, maisons bourgeoises et copropriétés : votre couvreur à Montgeron.",
+       "Ancienne étape de la route de Paris à Lyon, célèbre pour sa pelouse et pour le départ du premier Tour de France en 1903, Montgeron mêle maisons bourgeoises, pavillons en meulière et résidences en copropriété. La diversité des toitures y est grande.",
+       "Nous intervenons à Montgeron pour la rénovation et l'isolation des toitures, la couverture zinc et tuiles, la pose de fenêtres de toit et les travaux de copropriété présentés en assemblée générale.",
+       ["Yerres", "Crosne", "Vigneux-sur-Seine", "Draveil", "Brunoy", "Villeneuve-Saint-Georges"]),
+    _v("Draveil", "Essonne", "91", "91210",
+       "Pavillons, maisons des bords de Seine et propriétés de Champrosay : votre couvreur à Draveil.",
+       "Entre la Seine et la forêt de Sénart, Draveil réunit des quartiers pavillonnaires, des maisons des bords de Seine et les belles propriétés du hameau de Champrosay. Tuiles mécaniques, tuiles plates et zinc composent l'essentiel de ses toitures.",
+       "Rénovation de toiture, isolation des combles perdus et des rampants, zinguerie, nettoyage et démoussage : nous accompagnons les propriétaires de Draveil de la visite gratuite jusqu'au PV de réception.",
+       ["Vigneux-sur-Seine", "Montgeron", "Soisy-sur-Seine", "Juvisy-sur-Orge", "Ris-Orangis", "Athis-Mons"]),
+    _v("Soisy-sur-Seine", "Essonne", "91", "91450",
+       "Belles propriétés et maisons de caractère en lisière de la forêt de Sénart : votre couvreur à Soisy-sur-Seine.",
+       "Commune résidentielle et boisée, Soisy-sur-Seine est réputée pour ses grandes propriétés, ses maisons de caractère et son cadre préservé entre Seine et forêt. Les toitures y sont souvent complexes : grandes surfaces de tuiles plates, ardoise, lucarnes et zinguerie travaillée.",
+       "Nous y réalisons des réfections complètes de couverture, l'isolation de toiture, la restauration de lucarnes et de chiens-assis ainsi que l'entretien régulier des toitures.",
+       ["Étiolles", "Draveil", "Évry-Courcouronnes", "Tigery", "Saint-Germain-lès-Corbeil", "Ris-Orangis"]),
+    _v("Étiolles", "Essonne", "91", "91450",
+       "Propriétés de caractère, maisons d'architecte et village ancien : votre couvreur à Étiolles.",
+       "Village résidentiel en bord de forêt de Sénart, Étiolles est lié au souvenir de Madame de Pompadour, qui en porta le nom. Propriétés anciennes, maisons d'architecte et constructions récentes y portent des toitures en tuiles, en ardoise et en zinc.",
+       "Couverture zinc et bardage pour les maisons contemporaines, rénovation de toitures anciennes, isolation RGE et zinguerie : nous intervenons à Étiolles avec le soin qu'exigent ces maisons.",
+       ["Soisy-sur-Seine", "Saint-Germain-lès-Corbeil", "Tigery", "Évry-Courcouronnes", "Corbeil-Essonnes", "Draveil"]),
+    _v("Évry-Courcouronnes", "Essonne", "91", "91000",
+       "Maisons individuelles, quartiers pavillonnaires et copropriétés : votre couvreur à Évry-Courcouronnes.",
+       "Préfecture de l'Essonne, Évry-Courcouronnes s'est développée autour de la ville nouvelle et de la cathédrale de la Résurrection. Elle compte de nombreux quartiers de maisons individuelles et de copropriétés construits depuis les années 1970.",
+       "Ces toitures arrivent à l'âge de la rénovation : remplacement de couverture, isolation, fenêtres de toit et nettoyage. Nous intervenons aussi pour les syndics de copropriété de la ville.",
+       ["Corbeil-Essonnes", "Ris-Orangis", "Lisses", "Bondoufle", "Soisy-sur-Seine", "Villabé"]),
+    _v("Corbeil-Essonnes", "Essonne", "91", "91100",
+       "Centre ancien, maisons de ville et pavillons au confluent de la Seine et de l'Essonne : votre couvreur à Corbeil-Essonnes.",
+       "Au confluent de la Seine et de l'Essonne, Corbeil-Essonnes associe un centre historique aux toitures anciennes, des maisons de ville, des pavillons et des copropriétés. Une partie du centre est soumise à l'avis de l'Architecte des Bâtiments de France.",
+       "Nous gérons les démarches en mairie et réalisons la rénovation de couverture, l'isolation, la zinguerie et les travaux de copropriété à Corbeil-Essonnes.",
+       ["Évry-Courcouronnes", "Saint-Germain-lès-Corbeil", "Étiolles", "Villabé", "Saint-Pierre-du-Perray", "Le Coudray-Montceaux"]),
+    _v("Savigny-sur-Orge", "Essonne", "91", "91600",
+       "Pavillons, maisons en meulière et résidences : votre couvreur à Savigny-sur-Orge.",
+       "Grande ville pavillonnaire de la vallée de l'Orge, Savigny-sur-Orge compte de très nombreuses maisons individuelles, des pavillons en meulière de l'entre-deux-guerres et des résidences en copropriété.",
+       "Rénovation et remplacement de toiture, isolation des combles, fenêtres de toit VELUX, nettoyage et démoussage : nous intervenons à Savigny-sur-Orge avec des équipes formées à la sécurité et à la propreté du chantier.",
+       ["Juvisy-sur-Orge", "Viry-Châtillon", "Morangis", "Épinay-sur-Orge", "Athis-Mons", "Grigny"]),
+]
+
+DEPTS_PAGES.append(
+    {"num": "91", "name": "Essonne", "slug": "couvreur-essonne-91", "art": "en",
+     "lead": "Maisons bourgeoises du Val d'Yerres, propriétés en lisière de la forêt de Sénart, pavillons des bords de Seine : votre couvreur en Essonne.",
+     "texte": ["Le nord-est de l'Essonne, voisin de la Seine-et-Marne et du Val-de-Marne, concentre de belles communes résidentielles : Yerres et Brunoy dans la vallée de l'Yerres, Montgeron, Draveil, Soisy-sur-Seine et Étiolles autour de la forêt de Sénart, Évry-Courcouronnes et Corbeil-Essonnes en bord de Seine.",
+               "Nos équipes y interviennent pour les particuliers, les copropriétés et les professionnels : couverture zinc et tuiles, rénovation et isolation, fenêtres de toit VELUX, zinguerie, nettoyage et entretien, avec suivi d'exécution, PV de réception et SAV dédié."],
+     "autres": ["Crosne", "Vigneux-sur-Seine", "Épinay-sous-Sénart", "Boussy-Saint-Antoine", "Quincy-sous-Sénart", "Tigery", "Saint-Germain-lès-Corbeil", "Ris-Orangis", "Juvisy-sur-Orge", "Viry-Châtillon", "Lisses", "Saint-Pierre-du-Perray"]})
+
 # ---------------------------------------------------------------- maillage interne
 import math
 GEO = json.loads((ROOT / "_build" / "geo.json").read_text(encoding="utf-8")) if (ROOT / "_build" / "geo.json").exists() else {}
@@ -1782,7 +1838,7 @@ def spotlight():
 
 
 def city_groups(full=False):
-    order = [("77", "Seine-et-Marne"), ("95", "Val-d'Oise"), ("94", "Val-de-Marne"), ("93", "Seine-Saint-Denis"), ("92", "Hauts-de-Seine")]
+    order = [("77", "Seine-et-Marne"), ("95", "Val-d'Oise"), ("94", "Val-de-Marne"), ("91", "Essonne"), ("93", "Seine-Saint-Denis"), ("92", "Hauts-de-Seine")]
     out = ""
     for num, dept in order:
         vs = sorted([v for v in VILLES if v["num"] == num], key=lambda v: -VOL.get(v["name"], 50))
@@ -2553,7 +2609,7 @@ def qui_sommes_nous():
             ("Certifications", "Ensemble des qualifications QUALIBAT en couverture, label RGE, garantie décennale"),
             ("Chantiers réalisés", "Plus de 1 500"),
             ("Clients", "Particuliers, copropriétés et syndics, collectivités, promoteurs immobiliers, architectes"),
-            ("Zone d'intervention", "Seine-et-Marne (de Melun à Meaux), Val-d'Oise, Val-de-Marne, Seine-Saint-Denis, Hauts-de-Seine, Paris"),
+            ("Zone d'intervention", "Seine-et-Marne (de Melun à Meaux), Val-d'Oise, Essonne, Val-de-Marne, Seine-Saint-Denis, Hauts-de-Seine, Paris"),
             ("Avis Google", f"{BIZ['rating']}/5 ({BIZ['reviews_count']} avis)"),
             ("Téléphone", BIZ["phone"]), ("E-mail", BIZ["email"])]
     table = "".join(f"<tr><th scope=\"row\">{k}</th><td>{v}</td></tr>" for k, v in rows)
@@ -2687,18 +2743,18 @@ def zones():
         ("Val-d'Oise (95)", ["Sarcelles", "Gonesse", "Goussainville", "Garges-lès-Gonesse", "Saint-Gratien",
                              "Enghien-les-Bains", "Soisy-sous-Montmorency", "Saint-Leu-la-Forêt", "Domont",
                              "Saint-Ouen-l'Aumône", "Montigny-lès-Cormeilles", "Beauchamp", "Roissy-en-France"]),
-        ("Essonne (91)", ["Évry-Courcouronnes", "Massy", "Palaiseau", "Corbeil-Essonnes",
-                          "Brunoy", "Yerres", "Savigny-sur-Orge", "Étampes"]),
+        ("Essonne (91)", ["Crosne", "Vigneux-sur-Seine", "Épinay-sous-Sénart", "Boussy-Saint-Antoine", "Quincy-sous-Sénart",
+                          "Tigery", "Saint-Germain-lès-Corbeil", "Ris-Orangis", "Juvisy-sur-Orge", "Viry-Châtillon"]),
     ]
     blocks = "".join(
         f'<div class="card"><h3>{g}</h3><ul class="cities" style="columns:2 140px">'
         + "".join(f"<li>{c}</li>" for c in cs) + "</ul></div>" for g, cs in groups)
-    html = head("Couvreur en Île-de-France : 94, 78, 92, 77 et Paris | JMC",
-                "Couvreur en Île-de-France : Saint-Maur, Nogent, Le Perreux, Neuilly, Saint-Cloud, Fontainebleau, Chelles, Paris et les départements 77, 93, 94, 92.",
+    html = head("Couvreur en Île-de-France : 77, 91, 93, 94, 95, 92 et Paris | JMC",
+                "Couvreur en Île-de-France : Saint-Maur, Nogent, Le Perreux, Neuilly, Saint-Cloud, Fontainebleau, Chelles, Argenteuil, Yerres, Paris et les départements 77, 91, 93, 94, 95, 92.",
                 "/zones-intervention/", lds)
     html += header("/zones-intervention/")
     html += page_hero(trail, "Zones d'intervention", "Couvreur en Île-de-France : nos zones d'intervention",
-                      "Depuis notre siège de Courtry (77), nos équipes et notre flotte de véhicules interviennent à Paris, en Seine-et-Marne, en Seine-Saint-Denis, dans le Val-de-Marne et les Hauts-de-Seine, pour les particuliers comme pour les professionnels.")
+                      "Depuis notre siège de Courtry (77), nos équipes et notre flotte de véhicules interviennent à Paris, en Seine-et-Marne, en Seine-Saint-Denis, dans le Val-de-Marne, le Val-d'Oise, l'Essonne et les Hauts-de-Seine, pour les particuliers comme pour les professionnels.")
     html += f"""
 <section><div class="wrap">
   <div class="section-head"><h2>Nos villes prioritaires</h2><p>Une page dédiée pour chaque commune où nous intervenons le plus souvent.</p></div>
@@ -2887,7 +2943,7 @@ def write_llms():
 - Création : 1985 — plus de 1 500 chantiers réalisés
 - Certifications : ensemble des qualifications QUALIBAT en couverture, label RGE, garantie décennale
 - Avis Google : {BIZ['rating']}/5 ({BIZ['reviews_count']} avis)
-- Zone d'intervention : Seine-et-Marne (de Melun à Meaux), Val-d'Oise, Val-de-Marne, Seine-Saint-Denis, Hauts-de-Seine, Paris
+- Zone d'intervention : Seine-et-Marne (de Melun à Meaux), Val-d'Oise, Essonne, Val-de-Marne, Seine-Saint-Denis, Hauts-de-Seine, Paris
 - Points forts : structure et équipes issues de la promotion immobilière, suivi d'exécution, accès au toit pendant les travaux, PV de réception, équipe SAV et qualité interne, démarches en mairie gérées, devis gratuit
 - Réseaux : {BIZ['instagram']} · {BIZ['facebook']} · {BIZ['tiktok']}
 
