@@ -25,6 +25,13 @@ Bussy-Saint-Georges, Fontainebleau, Barbizon), 78 (Versailles, Le Vésinet, Sain
 /couvreur-seine-et-marne-77/, /couvreur-val-de-marne-94/, /couvreur-yvelines-78/,
 /couvreur-hauts-de-seine-92/, /couvreur-seine-saint-denis-93/, /couvreur-paris/ (données `DEPTS_PAGES`).
 
+## GEO (référencement dans les IA : ChatGPT, Perplexity, Gemini…)
+- `llms.txt` : présentation du site pour les assistants IA (généré par le build).
+- `robots.txt` : autorise explicitement les robots IA (GPTBot, OAI-SearchBot, PerplexityBot, ClaudeBot, Google-Extended…).
+- Encadré « En bref » (faits citables) et date de mise à jour sur chaque page ; WebPage + dateModified en JSON-LD.
+- Pages `/qui-sommes-nous/` (fiche d'identité) et `/questions-frequentes-toiture/` (toutes les FAQ).
+- IndexNow : après chaque mise en ligne, lancer `python3 _build/indexnow.py` (clé dans `<clé>.txt` à la racine).
+
 ## SEO intégré
 - Title / meta description uniques par page, ciblés « couvreur + ville / département ».
 - Un seul H1 par page, hiérarchie H2/H3, maillage interne entre services.

@@ -1,4 +1,57 @@
+# Moteurs de recherche et assistants IA : bienvenue
 User-agent: *
+Allow: /
+Disallow: /merci/
+
+User-agent: GPTBot
+Allow: /
+Disallow: /merci/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /merci/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /merci/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /merci/
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /merci/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /merci/
+
+User-agent: Claude-User
+Allow: /
+Disallow: /merci/
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /merci/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /merci/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /merci/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /merci/
+
+User-agent: CCBot
+Allow: /
+Disallow: /merci/
+
+User-agent: Meta-ExternalAgent
 Allow: /
 Disallow: /merci/
 

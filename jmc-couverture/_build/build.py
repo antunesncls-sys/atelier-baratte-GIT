@@ -16,6 +16,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://jmccouverture.com"
 TODAY = date.today().isoformat()
+MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
+MAJ = f"{MOIS[date.today().month - 1]} {date.today().year}"
+INDEXNOW_KEY = "2cb1b4450151a629a3a7626e101b0c99"
+_PAGE = {}
+FAQ_REG = []
+PAGES_META = []
 # Version de la feuille de style (empreinte du contenu) : force le rechargement après chaque modification
 CSS_VER = hashlib.md5((ROOT / "assets" / "style.css").read_bytes()).hexdigest()[:8]
 
@@ -299,6 +305,9 @@ def org_ld():
         "telephone": BIZ["phone_intl"],
         "email": BIZ["email"],
         "priceRange": "€€",
+        "description": "Entreprise de couverture, charpente et zinguerie fondée en 1985 à Courtry (Seine-et-Marne) : couverture zinc et tuiles, rénovation et isolation de toiture, maisons neuves, copropriétés, en Île-de-France.",
+        "slogan": "Votre toiture, notre savoir-faire",
+        "knowsLanguage": "fr",
         "geo": {"@type": "GeoCoordinates", "latitude": BIZ["lat"], "longitude": BIZ["lng"]},
         "sameAs": [u for u in (BIZ["gbp"], BIZ["instagram"], BIZ["facebook"], BIZ["tiktok"]) if u],
         "hasMap": BIZ["gbp"],
@@ -375,6 +384,14 @@ def service_ld(name, url, desc):
 # ---------------------------------------------------------------- gabarits
 def head(title, desc, path, lds, robots="index,follow"):
     canonical = SITE + path
+    _PAGE.clear()
+    _PAGE.update({"title": title, "desc": desc, "path": path, "robots": robots, "bref": None})
+    if robots.startswith("index"):
+        PAGES_META.append((path, title, desc))
+        lds = list(lds) + [{"@context": "https://schema.org", "@type": "WebPage", "@id": canonical + "#page",
+                            "url": canonical, "name": title, "description": desc, "inLanguage": "fr-FR",
+                            "dateModified": TODAY, "isPartOf": {"@id": SITE + "/#site"},
+                            "about": {"@id": SITE + "/#entreprise"}}]
     ld = "\n".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in lds)
     return f"""<!doctype html>
 <html lang="fr">
@@ -445,7 +462,16 @@ def page_hero(trail, eyebrow, h1, lead, cta=True):
   <h1>{h1}</h1>
   <p class="lead">{lead}</p>
   {btns}
-</div></div></section>"""
+</div></div></section>{en_bref()}"""
+
+
+def en_bref():
+    if not _PAGE.get("robots", "").startswith("index"):
+        return ""
+    txt = _PAGE.get("bref") or _PAGE.get("desc", "")
+    return (f'<section class="bref"><div class="wrap"><div class="bref-box"><p class="bref-title">En bref</p>'
+            f'<p class="bref-txt">{txt}</p><p class="bref-meta">JMC Couverture · Courtry (77) · depuis 1985 · '
+            f'QUALIBAT &amp; RGE · {BIZ["rating"]}/5 sur Google · Mis à jour : {MAJ}</p></div></div></section>')
 
 
 def cta_band(title="Un projet de toiture ? Parlons-en.",
@@ -459,6 +485,9 @@ def cta_band(title="Un projet de toiture ? Parlons-en.",
 
 
 def faq_html(faq, title="Questions fréquentes"):
+    path = _PAGE.get("path", "")
+    if not (path.startswith("/couvreur-") and path not in ("/couvreur-copropriete-syndic/", "/couvreur-promotion-immobiliere/")):
+        FAQ_REG.append((path, title, faq))
     items = "".join(f"<details><summary>{q}</summary><div><p>{a}</p></div></details>" for q, a in faq)
     return f'<section class="section-alt"><div class="wrap prose"><h2>{title}</h2>{items}</div></section>'
 
@@ -514,6 +543,8 @@ def footer():
         <li><a href="/zones-intervention/">Zones d'intervention</a></li>
         <li><a href="/nos-references/">Réalisations</a></li>
         <li><a href="/notre-methode-sav-qualite/">Méthode &amp; SAV</a></li>
+        <li><a href="/qui-sommes-nous/">Qui sommes-nous</a></li>
+        <li><a href="/questions-frequentes-toiture/">Questions fréquentes</a></li>
       </ul>
     </div>
   </div>
@@ -655,6 +686,10 @@ def home():
                 "Couvreur depuis 1985 : couverture zinc et tuiles, rénovation, isolation, maison neuve et copropriétés en Île-de-France. QUALIBAT & RGE. ☎ 01 64 21 38 37.",
                 "/", lds)
     html += header("/")
+    _PAGE["bref"] = ("JMC Couverture (Société JMC) est une entreprise de couverture, charpente et zinguerie fondée en 1985 à Courtry (77). "
+                     "Spécialisée en couverture zinc et tuiles, rénovation et isolation de toiture (RGE), maisons neuves, copropriétés et "
+                     "fenêtres de toit, elle intervient en Seine-et-Marne de Melun à Meaux, dans le Val-d'Oise, le Val-de-Marne, "
+                     "la Seine-Saint-Denis, les Hauts-de-Seine et à Paris. Devis gratuit au 01 64 21 38 37.")
     html += f"""
 <section class="hero has-photo">{hero_bg()}<div class="wrap">
   <div>
@@ -665,7 +700,7 @@ def home():
     <a class="btn btn-ghost" href="tel:{BIZ['phone_intl']}">Appeler le {BIZ['phone']}</a></div>
     <div class="hero-labels">{labels()}{google_badge()}<ul class="badges"><li>Garantie décennale</li><li>Devis gratuit</li></ul></div>
   </div>
-</div></section>
+</div></section>{en_bref()}
 
 <section class="gallery-band"><div class="wrap">
   <div class="section-head"><span class="eyebrow">Nos réalisations</span><h2>Nos réalisations de toiture en Île-de-France</h2></div>
@@ -1410,6 +1445,11 @@ def ville(v):
                 f"Couvreur à {name} depuis 1985 : rénovation, isolation RGE, toiture zinc, maison neuve, nettoyage. QUALIBAT. Devis gratuit ☎ {BIZ['phone']}.",
                 url, lds)
     html += header(url)
+    dk = round(_dist("Courtry", name))
+    loin = f", à environ {dk} km de son siège" if dk < 9999 and name != "Courtry" else ""
+    _PAGE["bref"] = (f"JMC Couverture, entreprise de couverture, charpente et zinguerie fondée en 1985 à Courtry (77), "
+                     f"intervient à {name} ({v['cp']}){loin}. Spécialités : couverture zinc et tuiles, rénovation et isolation "
+                     f"de toiture (RGE), fenêtres de toit VELUX, maisons neuves et copropriétés. Devis gratuit au {BIZ['phone']}.")
     html += page_hero(trail, f"{v['dept']} ({v['num']}) · {v['cp']}", f"Couvreur à {name}", v["lead"])
     paras = "".join(f"<p>{t}</p>" for t in v["texte"])
     quartiers = (f"<h3>Quartiers où nous intervenons</h3><p>{', '.join(v['quartiers'])}.</p>" if v["quartiers"] else "")
@@ -1511,6 +1551,10 @@ def dept_page(d):
                 f"Couvreur {d['art']} {d['name']} depuis 1985 : rénovation, isolation RGE, zinc, VELUX, copropriétés. Noté 4,9/5 sur Google. Devis gratuit ☎ {BIZ['phone']}.",
                 url, lds)
     html += header(url)
+    _PAGE["bref"] = (f"JMC Couverture, couvreur-zingueur fondé en 1985 à Courtry (77), intervient {d['art']} {d['name']}"
+                     + (f" ({d['num']})" if d['num'] != '75' else '') + f" pour les particuliers, les copropriétés et les professionnels : "
+                     f"couverture zinc et tuiles, rénovation, isolation RGE, VELUX, étanchéité et entretien. "
+                     + (f"{len(villes_dept)} villes du département ont une page dédiée. " if villes_dept else "") + f"Devis gratuit au {BIZ['phone']}.")
     html += page_hero(trail, f"{d['name']} · {d['num']}", f"Couvreur {d['art']} {d['name']}" + (f" ({d['num']})" if d["num"] != "75" else ""), d["lead"])
     links = "".join(f'<a href="/{v["slug"]}/">Couvreur {v["name"]}</a>' for v in villes_dept)
     paras = "".join(f"<p>{t}</p>" for t in d["texte"])
@@ -2486,6 +2530,85 @@ def auvents():
            ("Un projet d'auvent ?", "Étude, démarches et devis gratuits."))
 
 
+
+
+def qui_sommes_nous():
+    url = "/qui-sommes-nous/"
+    trail = [("/", "Accueil"), (url, "Qui sommes-nous")]
+    page = {"@context": "https://schema.org", "@type": "AboutPage", "url": SITE + url,
+            "name": "Qui sommes-nous – JMC Couverture", "about": {"@id": SITE + "/#entreprise"}}
+    html = head("Qui sommes-nous : JMC Couverture, couvreur depuis 1985 à Courtry",
+                "JMC Couverture (Société JMC) : entreprise de couverture, charpente et zinguerie fondée en 1985 à Courtry (77). QUALIBAT, RGE, 1 500 chantiers, 4,9/5 sur Google.",
+                url, [org_ld(), crumbs_ld(trail), page])
+    html += header(url)
+    _PAGE["bref"] = ("JMC Couverture (raison sociale : Société JMC) est une entreprise de couverture, charpente et zinguerie "
+                     "fondée en 1985 et installée au 97 rue Charles Van Wyngene à Courtry (77181, Seine-et-Marne). "
+                     "Titulaire de l'ensemble des qualifications QUALIBAT en couverture et du label RGE, elle a réalisé plus de "
+                     "1 500 chantiers pour des particuliers, des copropriétés, des collectivités et des promoteurs immobiliers.")
+    html += page_hero(trail, "L'entreprise", "Qui sommes-nous : JMC Couverture, couvreur depuis 1985",
+                      "Une entreprise familière des toitures d'Île-de-France, structurée comme un acteur de la promotion immobilière et proche de ses clients.")
+    rows = [("Raison sociale", "Société JMC"), ("Nom commercial", "JMC Couverture"), ("Création", "1985"),
+            ("Siège", f"{BIZ['street']}, {BIZ['zip']} {BIZ['city']} (Seine-et-Marne)"),
+            ("Métiers", "Couverture, charpente, zinguerie, étanchéité de toitures terrasses, isolation de toiture"),
+            ("Certifications", "Ensemble des qualifications QUALIBAT en couverture, label RGE, garantie décennale"),
+            ("Chantiers réalisés", "Plus de 1 500"),
+            ("Clients", "Particuliers, copropriétés et syndics, collectivités, promoteurs immobiliers, architectes"),
+            ("Zone d'intervention", "Seine-et-Marne (de Melun à Meaux), Val-d'Oise, Val-de-Marne, Seine-Saint-Denis, Hauts-de-Seine, Paris"),
+            ("Avis Google", f"{BIZ['rating']}/5 ({BIZ['reviews_count']} avis)"),
+            ("Téléphone", BIZ["phone"]), ("E-mail", BIZ["email"])]
+    table = "".join(f"<tr><th scope=\"row\">{k}</th><td>{v}</td></tr>" for k, v in rows)
+    html += f"""
+<section><div class="wrap split">
+  <article class="prose">
+    <h2>L'entreprise en chiffres et en faits</h2>
+    <table class="facts">{table}</table>
+    <h2>Notre histoire</h2>
+    <p>Fondée en 1985 à Courtry, la société JMC s'est développée en réalisant les toitures des pavillons de l'est parisien, puis celles d'immeubles parisiens, d'écoles et de programmes neufs pour des promoteurs comme Bouygues Immobilier, Kaufman &amp; Broad ou Nexity. Cette expérience lui a permis de bâtir une véritable structure : des équipes de couvreurs, charpentiers et zingueurs, un atelier, une flotte de véhicules et un encadrement de chantier.</p>
+    <h2>Ce qui nous distingue</h2>
+    <ul class="checks">
+      <li><strong>Une structure de promotion immobilière</strong> au service des particuliers (<a href="/couvreur-promotion-immobiliere/">en savoir plus</a>)</li>
+      <li><strong>Transparence</strong> : suivi d'exécution, accès au toit pendant les travaux, PV de réception</li>
+      <li><strong>Une équipe SAV et qualité interne</strong> (<a href="/notre-methode-sav-qualite/">notre méthode</a>)</li>
+      <li><strong>Sécurité et propreté</strong> : des équipes formées</li>
+      <li><strong>Démarches en mairie</strong> gérées pour vous</li>
+    </ul>
+    <h2>Nos spécialités</h2>
+    <p><a href="/couverture-zinc-bardage/">Couverture zinc</a>, <a href="/toiture-tuile/">toitures en tuiles</a>, <a href="/renovation-toiture/">rénovation de toiture</a>, <a href="/isolation-toiture/">isolation</a>, <a href="/toiture-maison-neuve/">maisons neuves</a>, <a href="/couvreur-copropriete-syndic/">copropriétés</a>, <a href="/fenetre-de-toit-velux-lucarnes/">VELUX et lucarnes</a>, <a href="/etancheite-toiture-terrasse/">étanchéité de toitures terrasses</a> et <a href="/nettoyage-toiture/">entretien</a>. Voir aussi nos <a href="/nos-references/">références</a> et nos <a href="/questions-frequentes-toiture/">réponses aux questions fréquentes</a>.</p>
+    {reviews_block(['lily', 'richard'])}
+  </article>
+  {aside()}
+</div></section>
+"""
+    html += cta_band()
+    html += footer()
+    write(url, html)
+
+
+def faq_hub():
+    url = "/questions-frequentes-toiture/"
+    trail = [("/", "Accueil"), (url, "Questions fréquentes")]
+    groups = [(u, t, f) for u, t, f in FAQ_REG if u != url]
+    allq = [(q, a) for _, _, f in groups for q, a in f]
+    html = head("Questions fréquentes sur la toiture : réponses de couvreur | JMC",
+                f"{len(allq)} réponses de couvreur : prix, autorisations, isolation, zinc, tuiles, VELUX, chien-assis, copropriété, entretien. Par JMC Couverture, depuis 1985.",
+                url, [org_ld(), crumbs_ld(trail), faq_ld(allq)])
+    html += header(url)
+    _PAGE["bref"] = (f"Cette page regroupe {len(allq)} réponses de JMC Couverture, couvreur-zingueur depuis 1985 à Courtry (77), "
+                     "aux questions les plus posées sur la toiture : rénovation, isolation, couverture zinc et tuiles, fenêtres de toit, "
+                     "chien-assis, étanchéité, copropriété et entretien.")
+    html += page_hero(trail, "Questions fréquentes", "Questions fréquentes sur la toiture : les réponses de nos couvreurs",
+                      "Prix, autorisations, matériaux, aides, entretien : les réponses claires de professionnels, avec un lien vers chaque page détaillée.")
+    blocks = ""
+    for u, t, f in groups:
+        name = re.sub(r"^Questions fréquentes( sur| des| –)? ?", "", t).strip() or "Toiture"
+        items = "".join(f"<h3>{q}</h3><p>{a}</p>" for q, a in f)
+        blocks += f'<section class="faq-group"><h2>{name[0].upper() + name[1:]}</h2>{items}<p><a class="more" href="{u}">Voir la page complète →</a></p></section>'
+    html += f'<section><div class="wrap prose">{blocks}</div></section>'
+    html += cta_band("Une question sur votre toiture ?", "Appelez-nous ou demandez une visite gratuite : un couvreur vous répond.")
+    html += footer()
+    write(url, html)
+
+
 REFS = [
     ("Charpente", "Rue de la Croix-Nivert", "Paris 15e", "Travaux de charpente sur immeuble parisien."),
     ("Charpente", "Nexity – rue Raffet", "Paris 16e", "Charpente pour un programme immobilier Nexity."),
@@ -2721,7 +2844,7 @@ def notfound():
 
 
 SITEMAP = [("/", "1.0"), ("/couverture/", "0.9"), ("/charpente/", "0.9"), ("/zinguerie/", "0.9"),
-           ("/renovation-toiture/", "0.95"), ("/nettoyage-toiture/", "0.95"), ("/toiture-maison-neuve/", "0.95"), ("/isolation-toiture/", "0.95"), ("/couverture-zinc-bardage/", "0.95"), ("/couvreur-copropriete-syndic/", "0.95"), ("/fenetre-de-toit-velux-lucarnes/", "0.9"), ("/couvreur-promotion-immobiliere/", "0.9"), ("/notre-methode-sav-qualite/", "0.8"), ("/chien-assis-lucarne/", "0.9"), ("/toiture-mansardee-brisis-terrasson/", "0.85"), ("/cheneau-noue-zinc/", "0.85"), ("/souche-cheminee-solin-abergement/", "0.85"), ("/etancheite-toiture-terrasse/", "0.9"), ("/isolation-combles-perdus/", "0.9"), ("/isolation-rampants/", "0.9"), ("/toiture-tuile/", "0.95"), ("/debord-de-toit-sous-face-finitions/", "0.85"), ("/auvent-marquise-sur-mesure/", "0.8"), ("/toiture-avant-panneaux-photovoltaiques/", "0.85"), ("/zones-intervention/", "0.7"), ("/nos-references/", "0.7"),
+           ("/renovation-toiture/", "0.95"), ("/nettoyage-toiture/", "0.95"), ("/toiture-maison-neuve/", "0.95"), ("/isolation-toiture/", "0.95"), ("/couverture-zinc-bardage/", "0.95"), ("/couvreur-copropriete-syndic/", "0.95"), ("/fenetre-de-toit-velux-lucarnes/", "0.9"), ("/couvreur-promotion-immobiliere/", "0.9"), ("/notre-methode-sav-qualite/", "0.8"), ("/qui-sommes-nous/", "0.7"), ("/questions-frequentes-toiture/", "0.8"), ("/chien-assis-lucarne/", "0.9"), ("/toiture-mansardee-brisis-terrasson/", "0.85"), ("/cheneau-noue-zinc/", "0.85"), ("/souche-cheminee-solin-abergement/", "0.85"), ("/etancheite-toiture-terrasse/", "0.9"), ("/isolation-combles-perdus/", "0.9"), ("/isolation-rampants/", "0.9"), ("/toiture-tuile/", "0.95"), ("/debord-de-toit-sous-face-finitions/", "0.85"), ("/auvent-marquise-sur-mesure/", "0.8"), ("/toiture-avant-panneaux-photovoltaiques/", "0.85"), ("/zones-intervention/", "0.7"), ("/nos-references/", "0.7"),
            ("/contact/", "0.8")]
 
 
@@ -2733,10 +2856,48 @@ def seo_files():
     (ROOT / "sitemap.xml").write_text(
         f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}\n</urlset>\n',
         encoding="utf-8")
-    (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nDisallow: /merci/\n\nSitemap: {SITE}/sitemap.xml\n",
+    bots = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "PerplexityBot", "Perplexity-User", "ClaudeBot", "Claude-User",
+            "Claude-SearchBot", "Google-Extended", "Applebot-Extended", "Bingbot", "CCBot", "Meta-ExternalAgent"]
+    ai = "".join(f"User-agent: {b}\nAllow: /\nDisallow: /merci/\n\n" for b in bots)
+    (ROOT / "robots.txt").write_text(f"# Moteurs de recherche et assistants IA : bienvenue\nUser-agent: *\nAllow: /\nDisallow: /merci/\n\n{ai}Sitemap: {SITE}/sitemap.xml\n",
                                      encoding="utf-8")
+    (ROOT / f"{INDEXNOW_KEY}.txt").write_text(INDEXNOW_KEY, encoding="utf-8")
+    write_llms()
     print("écrit sitemap.xml, robots.txt")
     write_qr_redirects()
+
+
+
+def write_llms():
+    def sec(title, items):
+        return f"## {title}\n\n" + "\n".join(f"- [{t}]({SITE}{u}): {d}" for u, t, d in items) + "\n\n"
+    meta = {u: (u, t.split(" | ")[0], d) for u, t, d in PAGES_META}
+    villes_u = {f"/{v['slug']}/" for v in VILLES}
+    depts_u = {f"/{d['slug']}/" for d in DEPTS_PAGES}
+    services = [m for u, m in meta.items() if u not in villes_u | depts_u and u not in ("/",)]
+    txt = f"""# JMC Couverture
+
+> JMC Couverture (Société JMC) est une entreprise de couverture, charpente et zinguerie fondée en 1985 et basée à Courtry (77181, Seine-et-Marne, Île-de-France). Spécialités : couverture zinc et tuiles, rénovation et isolation de toiture, toitures de maisons neuves, maisons d'architecte en zinc, copropriétés, fenêtres de toit VELUX, lucarnes et chiens-assis, étanchéité de toitures terrasses, nettoyage et entretien.
+
+## Informations clés
+
+- Raison sociale : Société JMC — nom commercial : JMC Couverture
+- Adresse : {BIZ['street']}, {BIZ['zip']} {BIZ['city']}, France
+- Téléphone : {BIZ['phone']} — e-mail : {BIZ['email']}
+- Création : 1985 — plus de 1 500 chantiers réalisés
+- Certifications : ensemble des qualifications QUALIBAT en couverture, label RGE, garantie décennale
+- Avis Google : {BIZ['rating']}/5 ({BIZ['reviews_count']} avis)
+- Zone d'intervention : Seine-et-Marne (de Melun à Meaux), Val-d'Oise, Val-de-Marne, Seine-Saint-Denis, Hauts-de-Seine, Paris
+- Points forts : structure et équipes issues de la promotion immobilière, suivi d'exécution, accès au toit pendant les travaux, PV de réception, équipe SAV et qualité interne, démarches en mairie gérées, devis gratuit
+- Réseaux : {BIZ['instagram']} · {BIZ['facebook']} · {BIZ['tiktok']}
+
+"""
+    txt += sec("Accueil et entreprise", [meta["/"]] + [meta[u] for u in ("/qui-sommes-nous/", "/notre-methode-sav-qualite/", "/nos-references/", "/questions-frequentes-toiture/", "/contact/") if u in meta])
+    txt += sec("Services et savoir-faire", [m for m in services if m[0] not in ("/qui-sommes-nous/", "/notre-methode-sav-qualite/", "/nos-references/", "/questions-frequentes-toiture/", "/contact/", "/zones-intervention/")])
+    txt += sec("Zones d'intervention", [meta["/zones-intervention/"]] + [meta[u] for u in depts_u if u in meta])
+    txt += sec("Couvreur par ville", sorted([meta[u] for u in villes_u if u in meta], key=lambda m: m[1]))
+    (ROOT / "llms.txt").write_text(txt, encoding="utf-8")
+    print("écrit llms.txt (", len(PAGES_META), "pages )")
 
 
 QR_START = "# >>> QR codes panneaux de chantier (bloc généré par build.py, ne pas modifier à la main)"
@@ -2766,6 +2927,6 @@ def write_qr_redirects():
 
 
 if __name__ == "__main__":
-    for fn in (home, couverture, charpente, zinguerie, renovation, nettoyage, maison_neuve, isolation, zinc_bardage, copropriete, fenetres, promotion, methode, chien_assis, mansarde, cheneau, cheminee, terrasse, photovoltaique, combles_perdus, rampants, tuile, debords, auvents, villes, depts, references, zones, contact, merci, mentions, notfound):
+    for fn in (home, couverture, charpente, zinguerie, renovation, nettoyage, maison_neuve, isolation, zinc_bardage, copropriete, fenetres, promotion, methode, chien_assis, mansarde, cheneau, cheminee, terrasse, photovoltaique, combles_perdus, rampants, tuile, debords, auvents, villes, depts, references, zones, contact, qui_sommes_nous, merci, mentions, notfound, faq_hub):
         fn()
     seo_files()

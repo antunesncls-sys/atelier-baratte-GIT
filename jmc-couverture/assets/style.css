@@ -317,3 +317,15 @@ form.quote input:focus,form.quote select:focus,form.quote textarea:focus{outline
 /* Bandeau d'accueil des visiteurs arrivés par QR code */
 .qr-welcome{background:var(--gold-light);color:var(--ink);text-align:center;padding:10px 16px;font-weight:700;font-size:.95rem}
 .qr-welcome a{color:var(--tile-dark)}
+/* GEO : encadré « En bref » et tableau de faits */
+.bref{padding:28px 0 0}
+.bref-box{border:1px solid var(--line);border-left:5px solid var(--gold);background:var(--bg-2);border-radius:var(--radius);padding:18px 22px}
+.bref-title{margin:0 0 .3em;font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:.8rem;color:var(--tile-dark)}
+.bref-txt{margin:0 0 .5em;font-size:1.02rem;color:var(--ink)}
+.bref-meta{margin:0;font-size:.82rem;color:var(--muted)}
+.bref + section{padding-top:44px}
+table.facts{width:100%;border-collapse:collapse;margin:0 0 1.4em;font-size:.97rem}
+table.facts th,table.facts td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+table.facts th{width:38%;color:var(--ink-2);font-weight:700;background:var(--bg-2)}
+.faq-group{margin-bottom:40px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.faq-group h3{font-size:1.08rem;margin-top:1.1em}
