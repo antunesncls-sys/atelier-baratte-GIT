@@ -308,3 +308,9 @@ form.quote input:focus,form.quote select:focus,form.quote textarea:focus{outline
 .site-footer .legal a{color:#b9c3cc;text-decoration:underline}
 @media (max-width:900px){.site-footer .footer-grid{grid-template-columns:1fr 1fr}.f-brand{grid-column:1/-1}}
 @media (max-width:560px){.site-footer .footer-grid{grid-template-columns:1fr}}
+.spot{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.spot-title{font-weight:800;margin:0 0 .4em}
+.spot ul{list-style:none;padding:0;margin:0 0 .4em;columns:2;column-gap:12px;font-size:.92rem}
+.spot li{margin-bottom:.3em;break-inside:avoid}
+.spot p{margin:0;font-size:.9rem}
+.more-link{background:transparent !important;border-style:dashed !important;color:var(--tile-dark) !important}

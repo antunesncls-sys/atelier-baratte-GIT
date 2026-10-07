@@ -409,6 +409,7 @@ def head(title, desc, path, lds, robots="index,follow"):
 
 
 def header(path):
+    _CURRENT[0] = path
     cur = ' aria-current="page"'
     links = "".join(f'<a href="{u}"{cur if u == path else ""}>{n}</a>' for u, n in NAV)
     return f"""
@@ -480,6 +481,7 @@ def aside(title="Pourquoi choisir JMC ?"):
   </ul>
   {google_badge(light=True)}
   <p><a class="btn btn-primary" href="/contact/">Devis gratuit</a></p>
+  {spotlight()}
   <p class="small">Ou par téléphone : <a href="tel:{BIZ['phone_intl']}"><strong>{BIZ['phone']}</strong></a></p>
 </aside>"""
 
@@ -630,7 +632,7 @@ def bouche_oreille():
 def home():
     faq = [
         ("Quelle zone couvre JMC Couverture ?",
-         "Notre entreprise est basée à Courtry (77181) et intervient en Île-de-France : Paris, Seine-et-Marne, Essonne, Hauts-de-Seine, Seine-Saint-Denis, Val-de-Marne et Val-d'Oise."),
+         "Notre entreprise est basée à Courtry (77181) et intervient en Île-de-France, de Melun à Meaux et jusqu'au Val-d'Oise : Paris, Seine-et-Marne, Essonne, Hauts-de-Seine, Seine-Saint-Denis, Val-de-Marne et Val-d'Oise."),
         ("Le devis est-il gratuit ?",
          "Oui. Nous nous déplaçons pour diagnostiquer votre toiture et nous vous remettons un devis détaillé, gratuit et sans engagement."),
         ("Faut-il nettoyer ou remplacer ma toiture ?",
@@ -742,7 +744,7 @@ def home():
 <section class="section-alt"><div class="wrap">
   <div class="section-head"><span class="eyebrow">Zone d'intervention</span>
   <h2>Couvreur en Île-de-France : nos zones d'intervention</h2>
-  <p>Depuis notre siège de Courtry, nos équipes interviennent à Paris et en Île-de-France, en particulier dans les communes des bords de Marne et de Seine-et-Marne.</p></div>
+  <p>Depuis notre siège de Courtry, nos équipes interviennent dans toute la Seine-et-Marne, de Melun à Meaux, dans le Val-d'Oise, le Val-de-Marne, la Seine-Saint-Denis, les Hauts-de-Seine et à Paris.</p></div>
   {city_groups()}
   <ul class="cities">{"".join(f"<li>{c}</li>" for c in CITIES[3:])}</ul>
   <p><a class="more" href="/zones-intervention/">Toutes nos zones d'intervention →</a></p>
@@ -1375,7 +1377,12 @@ VILLES += [
 def ville(v):
     url = f"/{v['slug']}/"
     name = v["name"]
-    trail = [("/", "Accueil"), ("/zones-intervention/", "Zones d'intervention"), (url, f"Couvreur {name}")]
+    dd = dept_of(v["num"])
+    trail = [("/", "Accueil"), (f"/{dd['slug']}/", f"Couvreur {dd['name']} ({v['num']})"), (url, f"Couvreur {name}")]
+    near = nearest_villes(v)
+    near_html = "".join(f'<a href="/{o["slug"]}/">Couvreur {o["name"]} <small>({round(_dist(name, o["name"]))} km)</small></a>' for o in near)
+    page_of = {o["name"]: o["slug"] for o in VILLES}
+    vois = ", ".join(f'<a href="/{page_of[c]}/">{c}</a>' if c in page_of else c for c in v["voisines"])
     faq = [
         (f"Intervenez-vous à {name} ?",
          f"Oui. Depuis notre siège de Courtry, nos équipes interviennent à {name} ({v['num']}) et dans les communes voisines : {', '.join(v['voisines'][:4])}. Le déplacement et le devis sont gratuits."),
@@ -1416,7 +1423,9 @@ def ville(v):
     {photo("mansarde")}
     {quartiers}
     <h3>Communes voisines</h3>
-    <p>Nous intervenons aussi à {', '.join(v['voisines'])} et dans toute l'<a href="/zones-intervention/">Île-de-France</a>.</p>
+    <p>Nous intervenons aussi à {vois}, et dans tout le département : voir notre page <a href="/{dd['slug']}/">couvreur {dd['art']} {dd['name']}</a>.</p>
+    <h2>Votre couvreur dans les villes proches de {name}</h2>
+    <div class="city-links">{near_html}</div>
   </article>
   {aside(f"Votre couvreur à {name}")}
 </div></section>
@@ -1442,10 +1451,10 @@ VILLES += [
 
 DEPTS_PAGES = [
     {"num": "77", "name": "Seine-et-Marne", "slug": "couvreur-seine-et-marne-77", "art": "en",
-     "lead": "Notre siège est à Courtry : la Seine-et-Marne est notre territoire depuis 1985. Rénovation, isolation, maisons neuves et nettoyage de toiture, de Chelles à Fontainebleau.",
+     "lead": "Notre siège est à Courtry : la Seine-et-Marne est notre territoire depuis 1985. Couverture zinc et tuiles, rénovation, isolation et maisons neuves, de Meaux à Melun et de Chelles à Fontainebleau.",
      "texte": ["Plus grand département d'Île-de-France, la Seine-et-Marne réunit des réalités très différentes : pavillons et maisons en meulière de l'ouest du département, villes nouvelles de Marne-la-Vallée aux nombreuses maisons récentes, bourgs anciens et belles propriétés du sud autour de Fontainebleau et de Barbizon.",
                "Basés à Courtry, nous intervenons rapidement dans tout le département avec nos équipes et notre flotte de véhicules : rénovation et isolation de toitures anciennes, toitures de maisons neuves dans les nouveaux quartiers, nettoyage et démoussage des toitures des années 1990-2000, travaux pour les copropriétés."],
-     "autres": ["Meaux", "Melun", "Torcy", "Pontault-Combault", "Roissy-en-Brie", "Claye-Souilly", "Mitry-Mory", "Villeparisis", "Vaires-sur-Marne", "Serris", "Montévrain", "Gretz-Armainvilliers", "Lésigny", "Ferrières-en-Brie", "Bois-le-Roi", "Samois-sur-Seine", "Avon", "Coupvray"]},
+     "autres": ["Torcy", "Noisiel", "Roissy-en-Brie", "Vaires-sur-Marne", "Serris", "Combs-la-Ville", "Savigny-le-Temple", "Le Mée-sur-Seine", "Gretz-Armainvilliers", "Lésigny", "Bois-le-Roi", "Avon"]},
     {"num": "94", "name": "Val-de-Marne", "slug": "couvreur-val-de-marne-94", "art": "dans le",
      "lead": "Maisons bourgeoises des bords de Marne, villas en meulière et copropriétés : votre couvreur dans le Val-de-Marne, de Saint-Maur-des-Fossés à Nogent-sur-Marne.",
      "texte": ["Le Val-de-Marne concentre certaines des plus belles communes résidentielles de l'est parisien : Saint-Maur-des-Fossés et La Varenne, Nogent-sur-Marne, Le Perreux-sur-Marne, Vincennes, Saint-Mandé, Bry-sur-Marne. Villas Belle Époque, maisons en meulière et immeubles de caractère y portent des toitures riches et complexes.",
@@ -1473,7 +1482,7 @@ def dept_page(d):
     url = f"/{d['slug']}/"
     label = f"{d['name']} ({d['num']})" if d["num"] != "75" else "Paris"
     trail = [("/", "Accueil"), ("/zones-intervention/", "Zones d'intervention"), (url, f"Couvreur {label}")]
-    villes_dept = [v for v in VILLES if v["num"] == d["num"]]
+    villes_dept = sorted([v for v in VILLES if v["num"] == d["num"]], key=lambda v: -VOL.get(v["name"], 50))
     faq = [
         (f"Intervenez-vous partout {d['art']} {d['name']} ?",
          (f"Oui. Depuis notre siège de Courtry, nos équipes interviennent dans tous les arrondissements de Paris" if d["num"] == "75" else f"Oui. Depuis notre siège de Courtry, nos équipes interviennent dans tout le département ({label})") + ", pour les particuliers, les copropriétés et les professionnels. Le déplacement et le devis sont gratuits."),
@@ -1531,15 +1540,206 @@ def depts():
 
 
 
-def city_groups():
-    order = [("94", "Val-de-Marne"), ("92", "Hauts-de-Seine"), ("77", "Seine-et-Marne"), ("93", "Seine-Saint-Denis")]
+VILLES += [
+    # ---------- Seine-et-Marne (77) : axe Melun – Meaux ----------
+    _v("Meaux", "Seine-et-Marne", "77", "77100",
+       "Centre historique, maisons bourgeoises des bords de Marne et pavillons : votre couvreur à Meaux pour la couverture zinc et tuiles, la rénovation et l'isolation.",
+       "Autour de sa cathédrale Saint-Étienne et de sa cité épiscopale, Meaux associe un centre ancien aux toitures en tuiles plates et en ardoise, des maisons bourgeoises des bords de Marne et de vastes quartiers pavillonnaires. Chaque époque a ses matériaux, et nos couvreurs les connaissent tous.",
+       "Nous intervenons à Meaux pour les particuliers comme pour les copropriétés : réfection de toiture en tuiles, couverture zinc, isolation des combles, fenêtres de toit et zinguerie, avec un suivi de chantier rigoureux.",
+       ["Trilport", "Nanteuil-lès-Meaux", "Crégy-lès-Meaux", "Villenoy", "Poincy", "Chauconin-Neufmontiers"]),
+    _v("Melun", "Seine-et-Marne", "77", "77000",
+       "Maisons de ville, demeures des bords de Seine et pavillons : votre couvreur à Melun, préfecture de Seine-et-Marne.",
+       "Préfecture de Seine-et-Marne, Melun s'est développée autour de l'île Saint-Étienne et des bords de Seine. Son centre ancien, ses maisons bourgeoises et ses quartiers pavillonnaires présentent des toitures très variées : tuiles mécaniques et plates, ardoise, zinc.",
+       "Rénovation complète, couverture zinc, isolation, nettoyage et entretien : nos équipes interviennent à Melun et dans toute son agglomération, avec les mêmes exigences de sécurité, de propreté et de suivi.",
+       ["Dammarie-les-Lys", "Le Mée-sur-Seine", "Vaux-le-Pénil", "Rubelles", "La Rochette", "Boissise-le-Roi"]),
+    _v("Pontault-Combault", "Seine-et-Marne", "77", "77340",
+       "Pavillons, maisons individuelles et résidences : votre couvreur à Pontault-Combault pour la rénovation, les tuiles et l'isolation.",
+       "Grande commune résidentielle née de la réunion des bourgs de Pontault et de Combault, Pontault-Combault est majoritairement composée de pavillons et de maisons individuelles, dont beaucoup de toitures en tuiles arrivent à l'âge de la rénovation.",
+       "Nous intervenons à Pontault-Combault pour la réfection de toitures en tuiles, l'isolation des combles, le remplacement de VELUX, le nettoyage et l'entretien, ainsi que pour les copropriétés de la commune.",
+       ["Roissy-en-Brie", "Émerainville", "Ozoir-la-Ferrière", "Lésigny", "Le Plessis-Trévise", "Chennevières-sur-Marne"]),
+    _v("Brie-Comte-Robert", "Seine-et-Marne", "77", "77170",
+       "Centre médiéval, maisons anciennes et pavillons : votre couvreur à Brie-Comte-Robert pour des toitures dans les règles de l'art.",
+       "Ville historique de la Brie, Brie-Comte-Robert a conservé les vestiges de son château fort, son église Saint-Étienne et un centre ancien aux toitures de tuiles plates. Autour, les quartiers pavillonnaires et les maisons plus récentes complètent un patrimoine varié.",
+       ABF, ["Servon", "Grisy-Suisnes", "Chevry-Cossigny", "Combs-la-Ville", "Coubert"]),
+    _v("Montévrain", "Seine-et-Marne", "77", "77144",
+       "Quartiers neufs, maisons individuelles et constructions récentes : votre couvreur à Montévrain, au cœur de Marne-la-Vallée.",
+       "Commune en plein essor du secteur de Marne-la-Vallée, Montévrain a vu naître de nombreux quartiers neufs à côté de son centre ancien. Maisons individuelles récentes, programmes neufs et extensions y composent l'essentiel du bâti.",
+       "Notre expérience de la promotion immobilière est un atout à Montévrain : toiture de maison neuve, extensions, couverture zinc, isolation, fenêtres de toit et entretien des toitures plus anciennes.",
+       ["Lagny-sur-Marne", "Chessy", "Chanteloup-en-Brie", "Serris", "Jossigny"]),
+    _v("Claye-Souilly", "Seine-et-Marne", "77", "77410",
+       "Pavillons, maisons de bourg et résidences : votre couvreur à Claye-Souilly, à quelques minutes de notre siège de Courtry.",
+       "Traversée par le canal de l'Ourcq et la Beuvronne, Claye-Souilly associe un bourg ancien, des quartiers pavillonnaires et des lotissements plus récents. Toitures en tuiles mécaniques ou plates, zinguerie et fenêtres de toit y sont nos interventions les plus fréquentes.",
+       "Toute proche de Courtry, la commune bénéficie de notre réactivité : visites et devis rapides, suivi de chantier attentif et SAV à proximité.",
+       ["Annet-sur-Marne", "Le Pin", "Mitry-Mory", "Villevaudé", "Fresnes-sur-Marne", "Gressy"]),
+    _v("Dammarie-les-Lys", "Seine-et-Marne", "77", "77190",
+       "Pavillons, maisons des bords de Seine et résidences : votre couvreur à Dammarie-les-Lys, aux portes de Melun.",
+       "Voisine de Melun, Dammarie-les-Lys s'étend entre les bords de Seine et la forêt, autour des vestiges de l'abbaye du Lys. On y trouve des maisons anciennes, de nombreux pavillons et des résidences en copropriété.",
+       "Nous y réalisons la rénovation et l'isolation des toitures, le remplacement des tuiles, la zinguerie et l'entretien, pour les particuliers comme pour les syndics.",
+       ["Melun", "Le Mée-sur-Seine", "Boissise-le-Roi", "Saint-Fargeau-Ponthierry", "Chartrettes", "Villiers-en-Bière"]),
+    _v("Coulommiers", "Seine-et-Marne", "77", "77120",
+       "Maisons briardes, centre ancien et pavillons : votre couvreur à Coulommiers, au cœur de la Brie.",
+       "Capitale de la Brie laitière, Coulommiers a conservé sa commanderie des Templiers et un centre ancien au bord du Grand Morin. Maisons briardes en tuiles plates, maisons de bourg et pavillons composent un patrimoine aux toitures variées.",
+       "Tuiles plates traditionnelles, tuiles mécaniques, zinguerie : nous rénovons ces toitures dans le respect du caractère des maisons de la Brie, avec une isolation adaptée.",
+       ["Mouroux", "Boissy-le-Châtel", "Saint-Augustin", "Aulnoy", "Chailly-en-Brie", "Pommeuse"]),
+    _v("Champs-sur-Marne", "Seine-et-Marne", "77", "77420",
+       "Maisons de bourg, pavillons et résidences : votre couvreur à Champs-sur-Marne, en bord de Marne.",
+       "Connue pour son château et ses jardins, ainsi que pour la cité Descartes, Champs-sur-Marne mêle un bourg ancien, des quartiers pavillonnaires et des résidences récentes de Marne-la-Vallée.",
+       "Nous intervenons à Champs-sur-Marne pour la rénovation des toitures en tuiles, la couverture zinc des extensions, l'isolation des combles et l'entretien, ainsi que pour les copropriétés.",
+       ["Noisiel", "Torcy", "Noisy-le-Grand", "Émerainville", "Croissy-Beaubourg"]),
+    _v("Villeparisis", "Seine-et-Marne", "77", "77270",
+       "Pavillons et maisons individuelles : votre couvreur à Villeparisis, à deux pas de notre siège de Courtry.",
+       "Commune résidentielle traversée par le canal de l'Ourcq, Villeparisis est composée en grande partie de pavillons, des maisons anciennes en meulière aux constructions plus récentes. Beaucoup de leurs toitures en tuiles demandent aujourd'hui rénovation ou isolation.",
+       "Voisins de Villeparisis, nous y intervenons très régulièrement : réfection de toiture, isolation, remplacement de VELUX, nettoyage et entretien, avec un SAV tout proche.",
+       ["Courtry", "Mitry-Mory", "Vaujours", "Le Pin", "Claye-Souilly", "Tremblay-en-France"]),
+    _v("Esbly", "Seine-et-Marne", "77", "77450",
+       "Maisons de bourg, pavillons et maisons de caractère : votre couvreur à Esbly, entre Marne et Grand Morin.",
+       "Située près de la confluence du Grand Morin et de la Marne, Esbly est une commune résidentielle appréciée pour son cadre et sa gare. Ses maisons de bourg et ses pavillons sont couverts en majorité de tuiles plates ou mécaniques.",
+       "Nous y réalisons la rénovation complète des toitures, le remplacement des tuiles, l'isolation, la zinguerie et l'entretien, avec un interlocuteur unique.",
+       ["Coupvray", "Montry", "Condé-Sainte-Libiaire", "Couilly-Pont-aux-Dames", "Isles-lès-Villenoy", "Saint-Germain-sur-Morin"]),
+    _v("Mitry-Mory", "Seine-et-Marne", "77", "77290",
+       "Pavillons, maisons anciennes et résidences : votre couvreur à Mitry-Mory, tout près de Courtry.",
+       "Formée des bourgs de Mitry et de Mory, la commune associe maisons anciennes, quartiers pavillonnaires et résidences. Les toitures en tuiles y dominent, souvent accompagnées de fenêtres de toit et de lucarnes.",
+       "À quelques minutes de notre siège, nous y assurons rénovation, isolation des combles, remplacement de VELUX, zinguerie et entretien régulier.",
+       ["Villeparisis", "Claye-Souilly", "Compans", "Tremblay-en-France", "Gressy"]),
+    # ---------- Val-d'Oise (95) ----------
+    _v("Argenteuil", "Val-d'Oise", "95", "95100",
+       "Pavillons, maisons en meulière et copropriétés : votre couvreur à Argenteuil, première ville du Val-d'Oise.",
+       "Ville des bords de Seine chère à Claude Monet, Argenteuil est la commune la plus peuplée du Val-d'Oise. Des coteaux d'Orgemont aux quartiers pavillonnaires, on y trouve des maisons en meulière, des pavillons en tuiles et de nombreuses copropriétés.",
+       "Nous intervenons à Argenteuil pour la rénovation et l'isolation des toitures, la couverture zinc, les fenêtres de toit et la zinguerie, pour les particuliers comme pour les syndics de copropriété.",
+       ["Sannois", "Bezons", "Cormeilles-en-Parisis", "Épinay-sur-Seine", "Colombes", "Gennevilliers"]),
+    _v("Pontoise", "Val-d'Oise", "95", "95000",
+       "Centre historique, maisons de caractère et pavillons : votre couvreur à Pontoise, ville d'art et d'histoire.",
+       "Ville d'art et d'histoire chère à Camille Pissarro, Pontoise a gardé autour de sa cathédrale Saint-Maclou un centre ancien aux toitures de tuiles plates et d'ardoise, entouré de maisons de caractère et de quartiers pavillonnaires.",
+       ABF, ["Cergy", "Osny", "Saint-Ouen-l'Aumône", "Ennery", "Éragny", "Auvers-sur-Oise"]),
+    _v("Ermont", "Val-d'Oise", "95", "95120",
+       "Pavillons et maisons de la vallée de Montmorency : votre couvreur à Ermont.",
+       "Au cœur de la vallée de Montmorency, Ermont est une commune résidentielle où dominent les pavillons et les maisons individuelles, des maisons en meulière du début du XXe siècle aux constructions plus récentes.",
+       "Rénovation de toiture en tuiles, isolation des combles, remplacement de VELUX, nettoyage et entretien : nous intervenons à Ermont et dans toute la vallée de Montmorency.",
+       ["Eaubonne", "Franconville", "Sannois", "Saint-Gratien", "Le Plessis-Bouchard"]),
+    _v("Eaubonne", "Val-d'Oise", "95", "95600",
+       "Maisons bourgeoises, villas et pavillons : votre couvreur à Eaubonne, dans la vallée de Montmorency.",
+       "Commune verdoyante de la vallée de Montmorency, Eaubonne compte de belles maisons bourgeoises, des villas entourées de jardins et des quartiers pavillonnaires. L'environnement arboré favorise mousses et encrassement des gouttières.",
+       "Nous assurons la rénovation des toitures, l'isolation, la zinguerie, mais aussi le nettoyage, le démoussage et l'entretien régulier des couvertures.",
+       ["Ermont", "Montmorency", "Soisy-sous-Montmorency", "Margency", "Saint-Prix", "Andilly"]),
+    _v("Herblay-sur-Seine", "Val-d'Oise", "95", "95220",
+       "Maisons des bords de Seine, pavillons et maisons récentes : votre couvreur à Herblay-sur-Seine.",
+       "Entre Seine et plateau, Herblay-sur-Seine est une commune résidentielle appréciée pour ses bords de Seine et son cadre préservé. Maisons anciennes, pavillons et constructions récentes y présentent des toitures en tuiles, en ardoise ou en zinc.",
+       "Nous intervenons à Herblay-sur-Seine pour la rénovation, l'isolation, la couverture zinc des extensions, les fenêtres de toit et l'entretien.",
+       ["Montigny-lès-Cormeilles", "Pierrelaye", "Beauchamp", "Cormeilles-en-Parisis", "La Frette-sur-Seine"]),
+    _v("Cergy", "Val-d'Oise", "95", "95000",
+       "Maisons individuelles, quartiers récents et copropriétés : votre couvreur à Cergy, préfecture du Val-d'Oise.",
+       "Préfecture du Val-d'Oise et cœur de la ville nouvelle de Cergy-Pontoise, Cergy s'est développée dans la boucle de l'Oise avec de nombreux quartiers de maisons individuelles et de copropriétés construits depuis les années 1970.",
+       "Ces toitures arrivent à l'âge du premier gros entretien ou de la rénovation : réfection, isolation des combles, remplacement de VELUX, nettoyage et travaux pour les copropriétés.",
+       ["Pontoise", "Osny", "Éragny", "Vauréal", "Jouy-le-Moutier", "Saint-Ouen-l'Aumône"]),
+    _v("Montmorency", "Val-d'Oise", "95", "95160",
+       "Maisons anciennes du centre, villas et propriétés de coteau : votre couvreur à Montmorency.",
+       "Perchée sur son coteau au pied de la forêt, Montmorency a conservé sa collégiale Saint-Martin, la maison de Jean-Jacques Rousseau et un centre ancien aux toitures de tuiles plates, entouré de villas et de belles propriétés.",
+       ABF, ["Enghien-les-Bains", "Soisy-sous-Montmorency", "Deuil-la-Barre", "Groslay", "Andilly", "Eaubonne"]),
+    _v("Franconville", "Val-d'Oise", "95", "95130",
+       "Pavillons et maisons individuelles : votre couvreur à Franconville, dans la vallée de Montmorency.",
+       "Commune résidentielle de la vallée de Montmorency, Franconville est composée en grande partie de pavillons et de maisons individuelles, dont de nombreuses toitures en tuiles mécaniques à rénover ou à isoler.",
+       "Réfection de toiture, isolation des combles et des rampants, VELUX, zinguerie et entretien : nous intervenons à Franconville avec un suivi de chantier complet.",
+       ["Ermont", "Sannois", "Cormeilles-en-Parisis", "Montigny-lès-Cormeilles", "Le Plessis-Bouchard"]),
+    _v("L'Isle-Adam", "Val-d'Oise", "95", "95290",
+       "Villas des bords de l'Oise et maisons de caractère : votre couvreur à L'Isle-Adam.",
+       "Réputée pour sa plage fluviale, ses bords de l'Oise et sa forêt, L'Isle-Adam est une commune résidentielle prisée, riche en villas, maisons bourgeoises et propriétés aux toitures d'ardoise, de tuiles plates et de zinc.",
+       ABF, ["Parmain", "Mériel", "Villiers-Adam", "Presles", "Champagne-sur-Oise"]),
+    _v("Osny", "Val-d'Oise", "95", "95520",
+       "Maisons individuelles et quartiers résidentiels : votre couvreur à Osny, aux portes de Pontoise.",
+       "Commune résidentielle de l'agglomération de Cergy-Pontoise, Osny associe un bourg ancien et des quartiers de maisons individuelles plus récents, entourés de verdure.",
+       "Rénovation et isolation des toitures, remplacement de tuiles et de VELUX, nettoyage et entretien : nous intervenons à Osny pour tous vos travaux de couverture.",
+       ["Pontoise", "Cergy", "Boissy-l'Aillerie", "Puiseux-Pontoise", "Ennery"]),
+    _v("Taverny", "Val-d'Oise", "95", "95150",
+       "Pavillons et maisons au pied de la forêt : votre couvreur à Taverny.",
+       "Au pied de la forêt de Montmorency, Taverny est une commune résidentielle composée de pavillons et de maisons individuelles, autour de son église Notre-Dame. L'environnement boisé rend l'entretien des toitures et des gouttières particulièrement important.",
+       "Nous y réalisons la rénovation des toitures en tuiles, l'isolation, la zinguerie, le nettoyage et l'entretien régulier.",
+       ["Saint-Leu-la-Forêt", "Bessancourt", "Beauchamp", "Frépillon", "Le Plessis-Bouchard"]),
+    _v("Sannois", "Val-d'Oise", "95", "95110",
+       "Pavillons et maisons de la butte : votre couvreur à Sannois.",
+       "Dominée par sa butte et son célèbre moulin, Sannois est une commune résidentielle où les pavillons et les maisons individuelles côtoient des résidences en copropriété.",
+       "Rénovation de toiture, isolation, fenêtres de toit, zinguerie et entretien : nous intervenons à Sannois pour les particuliers comme pour les syndics.",
+       ["Argenteuil", "Ermont", "Franconville", "Saint-Gratien", "Cormeilles-en-Parisis"]),
+    _v("Deuil-la-Barre", "Val-d'Oise", "95", "95170",
+       "Maisons de coteau, villas et pavillons : votre couvreur à Deuil-la-Barre.",
+       "Sur les coteaux de la vallée de Montmorency, Deuil-la-Barre associe maisons anciennes, villas et quartiers pavillonnaires. Toitures en tuiles plates et mécaniques, lucarnes et zinguerie y sont fréquentes.",
+       "Nous y intervenons pour la rénovation et l'isolation des toitures, la restauration de lucarnes, le remplacement de VELUX et l'entretien.",
+       ["Montmorency", "Enghien-les-Bains", "Montmagny", "Groslay", "Épinay-sur-Seine"]),
+    _v("Cormeilles-en-Parisis", "Val-d'Oise", "95", "95240",
+       "Pavillons, maisons de la butte et constructions récentes : votre couvreur à Cormeilles-en-Parisis.",
+       "Ville natale de Louis Daguerre, Cormeilles-en-Parisis s'étend au pied de sa butte, avec un centre ancien, des quartiers pavillonnaires et de nombreux programmes de logements récents.",
+       "Notre expérience de la promotion immobilière nous rend aussi à l'aise sur les maisons neuves que sur la rénovation : réfection, isolation, couverture zinc, fenêtres de toit et entretien.",
+       ["Argenteuil", "Montigny-lès-Cormeilles", "La Frette-sur-Seine", "Sannois", "Franconville", "Herblay-sur-Seine"]),
+]
+
+VOL = {"Argenteuil": 720, "Saint-Maur-des-Fossés": 590, "Fontainebleau": 590, "Meaux": 480, "Melun": 480,
+       "Chelles": 390, "Le Perreux-sur-Marne": 320, "Pontault-Combault": 260, "Brie-Comte-Robert": 210,
+       "Pontoise": 210, "Ermont": 210, "Nogent-sur-Marne": 170, "Neuilly-sur-Seine": 170, "Montévrain": 170,
+       "Eaubonne": 170, "Herblay-sur-Seine": 170, "Lagny-sur-Marne": 140, "Claye-Souilly": 140,
+       "Dammarie-les-Lys": 140, "Coulommiers": 140, "Cergy": 140, "Montmorency": 140, "Champs-sur-Marne": 110,
+       "Franconville": 110, "L'Isle-Adam": 110, "Osny": 110, "Villeparisis": 90, "Esbly": 90, "Taverny": 90,
+       "Sannois": 90, "Deuil-la-Barre": 90, "Cormeilles-en-Parisis": 90, "Mitry-Mory": 70}
+
+
+DEPTS_PAGES.append(
+    {"num": "95", "name": "Val-d'Oise", "slug": "couvreur-val-d-oise-95", "art": "dans le",
+     "lead": "Pavillons de la vallée de Montmorency, maisons en meulière d'Argenteuil, centre historique de Pontoise : votre couvreur dans le Val-d'Oise.",
+     "texte": ["Le Val-d'Oise offre une grande diversité de toitures : maisons en meulière et pavillons d'Argenteuil et de la vallée de Montmorency (Ermont, Eaubonne, Franconville, Sannois), centres anciens de Pontoise et de Montmorency, villas des bords de l'Oise à L'Isle-Adam, quartiers plus récents de Cergy et d'Osny.",
+               "Nos équipes y interviennent pour les particuliers, les copropriétés et les professionnels : couverture zinc et tuiles, rénovation et isolation, fenêtres de toit VELUX, zinguerie, nettoyage et entretien, avec suivi d'exécution et SAV dédié."],
+     "autres": ["Sarcelles", "Gonesse", "Goussainville", "Garges-lès-Gonesse", "Saint-Gratien", "Enghien-les-Bains", "Soisy-sous-Montmorency", "Saint-Leu-la-Forêt", "Domont", "Saint-Ouen-l'Aumône", "Beaumont-sur-Oise", "Luzarches"]})
+
+# ---------------------------------------------------------------- maillage interne
+import math
+GEO = json.loads((ROOT / "_build" / "geo.json").read_text(encoding="utf-8")) if (ROOT / "_build" / "geo.json").exists() else {}
+_CURRENT = [""]
+
+
+def _dist(a, b):
+    ga, gb = GEO.get(a), GEO.get(b)
+    if not ga or not gb:
+        return 9999
+    la1, lo1, la2, lo2 = map(math.radians, (ga["lat"], ga["lon"], gb["lat"], gb["lon"]))
+    h = math.sin((la2 - la1) / 2) ** 2 + math.cos(la1) * math.cos(la2) * math.sin((lo2 - lo1) / 2) ** 2
+    return 6371 * 2 * math.asin(math.sqrt(h))
+
+
+def nearest_villes(v, k=4):
+    others = [o for o in VILLES if o["slug"] != v["slug"] and _dist(v["name"], o["name"]) < 9999]
+    return sorted(others, key=lambda o: _dist(v["name"], o["name"]))[:k]
+
+
+def dept_of(num):
+    return next((d for d in DEPTS_PAGES if d["num"] == num), None)
+
+
+def top_villes(num=None, n=8):
+    vs = [v for v in VILLES if num is None or v["num"] == num]
+    return sorted(vs, key=lambda v: -VOL.get(v["name"], 50))[:n]
+
+
+def spotlight():
+    """Sur les pages services : 6 villes à fort potentiel, différentes selon la page (répartit les liens)."""
+    cur = _CURRENT[0]
+    if not cur or cur.startswith("/couvreur-") and any(cur == f"/{v['slug']}/" for v in VILLES):
+        return ""
+    pool = top_villes(n=24)
+    start = int(hashlib.md5(cur.encode()).hexdigest(), 16) % len(pool)
+    pick = (pool[start:] + pool[:start])[:6]
+    links = "".join(f'<li><a href="/{v["slug"]}/">Couvreur {v["name"]}</a></li>' for v in pick)
+    return f'<div class="spot"><p class="spot-title">Nous intervenons notamment à</p><ul>{links}</ul><p><a href="/zones-intervention/">Toutes nos zones →</a></p></div>'
+
+
+def city_groups(full=False):
+    order = [("77", "Seine-et-Marne"), ("95", "Val-d'Oise"), ("94", "Val-de-Marne"), ("93", "Seine-Saint-Denis"), ("92", "Hauts-de-Seine")]
     out = ""
     for num, dept in order:
-        links = "".join(f'<a href="/{v["slug"]}/">Couvreur {v["name"]}</a>' for v in VILLES if v["num"] == num)
-        dslug = next(d["slug"] for d in DEPTS_PAGES if d["num"] == num)
+        vs = sorted([v for v in VILLES if v["num"] == num], key=lambda v: -VOL.get(v["name"], 50))
+        shown = vs if full else vs[:8]
+        dslug = dept_of(num)["slug"]
+        links = "".join(f'<a href="/{v["slug"]}/">Couvreur {v["name"]}</a>' for v in shown)
+        more = f'<a class="more-link" href="/{dslug}/">Toutes les villes ({len(vs)}) →</a>' if len(vs) > len(shown) else ""
         if links:
             out += (f'<h3 class="city-dept"><a href="/{dslug}/">Couvreur {dept} ({num})</a></h3>'
-                    f'<div class="city-links">{links}</div>')
+                    f'<div class="city-links">{links}{more}</div>')
     out += ('<h3 class="city-dept"><a href="/couvreur-paris/">Couvreur zingueur à Paris (75)</a></h3>'
             '<div class="city-links"><a href="/couvreur-paris/">Toitures zinc et ardoise à Paris</a></div>')
     return out
@@ -2337,10 +2537,10 @@ def zones():
     trail = [("/", "Accueil"), ("/zones-intervention/", "Zones d'intervention")]
     lds = [org_ld(), crumbs_ld(trail)]
     groups = [
-        ("Seine-et-Marne (77)", ["Lagny-sur-Marne", "Ozoir-la-Ferrière", "Bussy-Saint-Georges", "Gretz-Armainvilliers",
-                                 "Lésigny", "Ferrières-en-Brie", "Serris", "Montévrain", "Thorigny-sur-Marne",
-                                 "Saint-Thibault-des-Vignes", "Coupvray", "Fontainebleau", "Bois-le-Roi", "Samois-sur-Seine",
-                                 "Barbizon", "Courtry", "Chelles", "Le Pin", "Annet-sur-Marne", "Claye-Souilly"]),
+        ("Seine-et-Marne (77)", ["Torcy", "Noisiel", "Lognes", "Serris", "Chessy", "Thorigny-sur-Marne", "Vaires-sur-Marne",
+                                 "Roissy-en-Brie", "Tournan-en-Brie", "Combs-la-Ville", "Savigny-le-Temple", "Lieusaint",
+                                 "Le Mée-sur-Seine", "Vaux-le-Pénil", "Nanteuil-lès-Meaux", "Trilport", "Crécy-la-Chapelle",
+                                 "La Ferté-sous-Jouarre", "Gretz-Armainvilliers", "Lésigny", "Le Pin", "Annet-sur-Marne"]),
         ("Seine-Saint-Denis (93)", ["Vaujours", "Coubron", "Montfermeil", "Clichy-sous-Bois", "Livry-Gargan",
                                     "Sevran", "Le Raincy", "Villemomble", "Gagny", "Neuilly-sur-Marne",
                                     "Noisy-le-Grand", "Noisy-le-Sec", "Aulnay-sous-Bois", "Tremblay-en-France"]),
@@ -2351,8 +2551,9 @@ def zones():
         ("Hauts-de-Seine (92)", ["Neuilly-sur-Seine", "Boulogne-Billancourt", "Saint-Cloud", "Sceaux", "Ville-d'Avray",
                                  "Marnes-la-Coquette", "Vaucresson", "Garches", "Rueil-Malmaison", "Meudon", "Sèvres",
                                  "Chaville", "Bourg-la-Reine", "Levallois-Perret", "Issy-les-Moulineaux", "Antony"]),
-        ("Val-d'Oise (95)", ["Cergy", "Argenteuil", "Enghien-les-Bains", "Montmorency", "Roissy-en-France",
-                             "Sarcelles", "Pontoise", "L'Isle-Adam"]),
+        ("Val-d'Oise (95)", ["Sarcelles", "Gonesse", "Goussainville", "Garges-lès-Gonesse", "Saint-Gratien",
+                             "Enghien-les-Bains", "Soisy-sous-Montmorency", "Saint-Leu-la-Forêt", "Domont",
+                             "Saint-Ouen-l'Aumône", "Montigny-lès-Cormeilles", "Beauchamp", "Roissy-en-France"]),
         ("Essonne (91)", ["Évry-Courcouronnes", "Massy", "Palaiseau", "Corbeil-Essonnes",
                           "Brunoy", "Yerres", "Savigny-sur-Orge", "Étampes"]),
     ]
@@ -2368,7 +2569,7 @@ def zones():
     html += f"""
 <section><div class="wrap">
   <div class="section-head"><h2>Nos villes prioritaires</h2><p>Une page dédiée pour chaque commune où nous intervenons le plus souvent.</p></div>
-  <div style="margin-bottom:40px">{city_groups()}</div>
+  <div style="margin-bottom:40px">{city_groups(full=True)}</div>
   <h2>Toutes nos communes d'intervention par département</h2>
   <div class="grid g3">{blocks}</div>
   <div class="prose" style="margin-top:48px">

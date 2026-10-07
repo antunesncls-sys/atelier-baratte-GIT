@@ -1,0 +1,104 @@
+{
+ "Melun": {
+  "nom": "Melun",
+  "cp": "77000",
+  "lat": 48.541332,
+  "lon": 2.655743
+ },
+ "Pontault-Combault": {
+  "nom": "Pontault-Combault",
+  "cp": "77340",
+  "lat": 48.793811,
+  "lon": 2.609096
+ },
+ "Brie-Comte-Robert": {
+  "nom": "Brie-Comte-Robert",
+  "cp": "77170",
+  "lat": 48.68978,
+  "lon": 2.616586
+ },
+ "Montévrain": {
+  "nom": "Montévrain",
+  "cp": "77144",
+  "lat": 48.867105,
+  "lon": 2.74974
+ },
+ "Claye-Souilly": {
+  "nom": "Claye-Souilly",
+  "cp": "77410",
+  "lat": 48.943181,
+  "lon": 2.668776
+ },
+ "Dammarie-les-Lys": {
+  "nom": "Dammarie-les-Lys",
+  "cp": "77190",
+  "lat": 48.515139,
+  "lon": 2.62042
+ },
+ "Coulommiers": {
+  "nom": "Coulommiers",
+  "cp": "77120",
+  "lat": 48.813927,
+  "lon": 3.091115
+ },
+ "Champs-sur-Marne": {
+  "nom": "Champs-sur-Marne",
+  "cp": "77420",
+  "lat": 48.851394,
+  "lon": 2.593974
+ },
+ "Esbly": {
+  "nom": "Esbly",
+  "cp": "77450",
+  "lat": 48.900953,
+  "lon": 2.811975
+ },
+ "Meaux": {
+  "nom": "Meaux",
+  "cp": "77100",
+  "lat": 48.959417,
+  "lon": 2.900232
+ },
+ "Villeparisis": {
+  "nom": "Villeparisis",
+  "cp": "77270",
+  "lat": 48.943536,
+  "lon": 2.614745
+ },
+ "Mitry-Mory": {
+  "nom": "Mitry-Mory",
+  "cp": "77290",
+  "lat": 48.963211,
+  "lon": 2.604405
+ },
+ "Chelles": {
+  "nom": "Chelles",
+  "cp": "77500",
+  "lat": 48.88646,
+  "lon": 2.600366
+ },
+ "Lagny-sur-Marne": {
+  "nom": "Lagny-sur-Marne",
+  "cp": "77400",
+  "lat": 48.873876,
+  "lon": 2.705794
+ },
+ "Ozoir-la-Ferrière": {
+  "nom": "Ozoir-la-Ferrière",
+  "cp": "77330",
+  "lat": 48.767283,
+  "lon": 2.673278
+ },
+ "Bussy-Saint-Georges": {
+  "nom": "Bussy-Saint-Georges",
+  "cp": "77600",
+  "lat": 48.839438,
+  "lon": 2.715338
+ },
+ "Fontainebleau": {
+  "nom": "Fontainebleau",
+  "cp": "77300",
+  "lat": 48.40781,
+  "lon": 2.70278
+ }
+}
