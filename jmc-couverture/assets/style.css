@@ -314,3 +314,6 @@ form.quote input:focus,form.quote select:focus,form.quote textarea:focus{outline
 .spot li{margin-bottom:.3em;break-inside:avoid}
 .spot p{margin:0;font-size:.9rem}
 .more-link{background:transparent !important;border-style:dashed !important;color:var(--tile-dark) !important}
+/* Bandeau d'accueil des visiteurs arrivés par QR code */
+.qr-welcome{background:var(--gold-light);color:var(--ink);text-align:center;padding:10px 16px;font-weight:700;font-size:.95rem}
+.qr-welcome a{color:var(--tile-dark)}

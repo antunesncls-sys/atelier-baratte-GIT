@@ -23,7 +23,7 @@
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="/assets/photos/toiture-ardoise-lucarnes-zinc-vue-drone-jmc.jpg" imagesrcset="/assets/photos/toiture-ardoise-lucarnes-zinc-vue-drone-jmc-800.jpg 800w, /assets/photos/toiture-ardoise-lucarnes-zinc-vue-drone-jmc.jpg 1605w" imagesizes="100vw">
-<link rel="stylesheet" href="/assets/style.css?v=5506e52c">
+<link rel="stylesheet" href="/assets/style.css?v=38d554c3">
 
 </head>
 <body>
@@ -80,6 +80,14 @@
 <script>
 (function(){var b=document.querySelector('.menu-toggle'),n=document.getElementById('nav');
 if(b&&n)b.addEventListener('click',function(){var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o)});})();
+(function(){try{var q=new URLSearchParams(location.search),src=q.get('utm_source'),camp=q.get('utm_campaign');
+if(src==='panneau'){sessionStorage.setItem('jmc_prov','QR panneau – '+camp);
+var bar=document.createElement('div');bar.className='qr-welcome';
+bar.innerHTML='Vous avez vu notre panneau de chantier près de chez vous ? <a href="/contact/">Demandez votre devis gratuit</a>';
+document.body.insertBefore(bar,document.body.firstChild);
+history.replaceState(null,'',location.pathname);}
+var f=document.getElementById('provenance'),pv=sessionStorage.getItem('jmc_prov');
+if(f&&pv){f.value=pv;var o=document.querySelector('select[name=origine]');if(o)o.value='Panneau de chantier JMC';}}catch(e){}})();
 </script>
 </body>
 </html>

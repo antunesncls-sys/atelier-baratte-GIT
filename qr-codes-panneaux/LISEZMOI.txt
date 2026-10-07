@@ -1,0 +1,25 @@
+QR CODES DES PANNEAUX DE CHANTIER — JMC COUVERTURE
+==================================================
+
+Fichiers
+- QR-codes-panneaux-JMC-A4.pdf : une page A4 par ville, prête à imprimer (logo, QR, téléphone).
+- Recapitulatif-QR-codes.pdf   : les 48 QR codes sur une page, pour choisir.
+- svg/ : QR codes vectoriels (net à toutes les tailles) -> à donner à l'imprimeur du panneau.
+- png/ : QR codes en image (1640 px) pour un usage rapide.
+
+Quel QR code utiliser ?
+- Chantier dans une ville : qr-jmc-<ville> (ex. qr-jmc-meaux) -> page « Couvreur à Meaux ».
+- Ville sans QR dédié : qr-jmc-<ville la plus proche> ou qr-jmc-jmc (site général).
+- Camions / véhicules : qr-jmc-camion.   Cartes de visite, flyers : qr-jmc-jmc.
+
+Conseils d'impression
+- Taille minimale du QR : 15 cm de côté sur un panneau lu depuis la rue (20 cm+ si lu à plus de 2 m).
+- Toujours noir sur fond blanc, avec une marge blanche autour (déjà incluse).
+- Support mat de préférence (les reflets gênent le scan).
+- Tester le scan avec un téléphone avant d'imprimer en série.
+
+Suivi des résultats
+- Chaque QR code passe par une adresse courte (jmccouverture.com/p/meaux) qui redirige vers la page de la ville.
+- Les demandes de devis arrivées par un QR code sont marquées « QR panneau – meaux » dans le champ
+  « provenance » du formulaire (visible dans Netlify > Forms).
+- La destination d'un QR code peut être changée sans réimprimer : fichier _redirects du site.

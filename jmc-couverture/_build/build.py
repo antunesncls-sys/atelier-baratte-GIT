@@ -523,6 +523,14 @@ def footer():
 <script>
 (function(){{var b=document.querySelector('.menu-toggle'),n=document.getElementById('nav');
 if(b&&n)b.addEventListener('click',function(){{var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o)}});}})();
+(function(){{try{{var q=new URLSearchParams(location.search),src=q.get('utm_source'),camp=q.get('utm_campaign');
+if(src==='panneau'){{sessionStorage.setItem('jmc_prov','QR panneau – '+camp);
+var bar=document.createElement('div');bar.className='qr-welcome';
+bar.innerHTML='Vous avez vu notre panneau de chantier près de chez vous ? <a href="/contact/">Demandez votre devis gratuit</a>';
+document.body.insertBefore(bar,document.body.firstChild);
+history.replaceState(null,'',location.pathname);}}
+var f=document.getElementById('provenance'),pv=sessionStorage.getItem('jmc_prov');
+if(f&&pv){{f.value=pv;var o=document.querySelector('select[name=origine]');if(o)o.value='Panneau de chantier JMC';}}}}catch(e){{}}}})();
 </script>
 </body>
 </html>
@@ -2606,6 +2614,7 @@ def contact():
     <h2>Formulaire de demande de devis</h2>
     <form class="quote" name="devis" method="POST" action="/merci/" data-netlify="true" netlify-honeypot="societe-web">
       <input type="hidden" name="form-name" value="devis">
+      <input type="hidden" name="provenance" id="provenance" value="">
       <p class="skip"><label>Ne pas remplir : <input name="societe-web"></label></p>
       <div class="form-row">
         <label>Nom et prénom *<input name="nom" autocomplete="name" required></label>
@@ -2727,6 +2736,33 @@ def seo_files():
     (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\nDisallow: /merci/\n\nSitemap: {SITE}/sitemap.xml\n",
                                      encoding="utf-8")
     print("écrit sitemap.xml, robots.txt")
+    write_qr_redirects()
+
+
+QR_START = "# >>> QR codes panneaux de chantier (bloc généré par build.py, ne pas modifier à la main)"
+QR_END = "# <<< QR codes panneaux de chantier"
+
+
+def qr_links():
+    """Adresses courtes /p/<ville> imprimées en QR code sur les panneaux de chantier."""
+    links = [("jmc", "/", "general"), ("camion", "/", "camion")]
+    for v in VILLES:
+        short = v["slug"].replace("couvreur-", "", 1)
+        links.append((short, f"/{v['slug']}/", short))
+    return links
+
+
+def write_qr_redirects():
+    f = ROOT / "_redirects"
+    txt = f.read_text(encoding="utf-8") if f.exists() else ""
+    if QR_START in txt:
+        txt = txt[:txt.index(QR_START)].rstrip() + "\n"
+    lines = [QR_START]
+    for short, dest, camp in qr_links():
+        lines.append(f"/p/{short}  {dest}?utm_source=panneau&utm_medium=qr&utm_campaign={camp}  302")
+    lines.append(QR_END)
+    f.write_text(txt.rstrip() + "\n\n" + "\n".join(lines) + "\n", encoding="utf-8")
+    print("écrit _redirects (", len(lines) - 2, "liens QR )")
 
 
 if __name__ == "__main__":
