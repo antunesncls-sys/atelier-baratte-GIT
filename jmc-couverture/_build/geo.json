@@ -124,5 +124,29 @@
   "cp": "77630",
   "lat": 48.445751,
   "lon": 2.607752
+ },
+ "Argenteuil": {
+  "nom": "Argenteuil",
+  "cp": "95100",
+  "lat": 48.948465,
+  "lon": 2.248202
+ },
+ "Herblay-sur-Seine": {
+  "nom": "Herblay-sur-Seine",
+  "cp": "95220",
+  "lat": 49.004061,
+  "lon": 2.152445
+ },
+ "Cergy": {
+  "nom": "Cergy",
+  "cp": "95000",
+  "lat": 49.04227,
+  "lon": 2.045547
+ },
+ "Montmorency": {
+  "nom": "Montmorency",
+  "cp": "95160",
+  "lat": 48.989397,
+  "lon": 2.321988
  }
 }
