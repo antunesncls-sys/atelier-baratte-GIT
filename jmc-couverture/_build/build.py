@@ -1101,6 +1101,7 @@ def maison_neuve():
       <li><strong>Fenêtres de toit</strong> et lucarnes</li>
       <li><strong>Isolation de toiture</strong> par une entreprise RGE, en cohérence avec la RE2020</li>
       <li><strong>Mise hors d'eau</strong> rapide pour ne pas retarder les autres corps de métier</li>
+      <li><strong>Finitions</strong> : débords de toit, sous-faces et <a href="/auvent-marquise-sur-mesure/">auvent sur mesure</a> pour l'entrée</li>
     </ul>
 
     <h2>Pourquoi nous confier la toiture de votre construction</h2>
@@ -1172,7 +1173,7 @@ def isolation():
     <p>Pour des combles non aménagés, l'isolant est déroulé ou soufflé sur le plancher : une solution rapide et très rentable. Voir notre page dédiée à l'<a href="/isolation-combles-perdus/">isolation des combles perdus par soufflage</a>.</p>
 
     <h2>Isolation et rénovation : le bon moment</h2>
-    <p>Le meilleur moment pour isoler, c'est quand on refait la couverture. L'échafaudage est déjà en place, la charpente est accessible et l'isolation par l'extérieur devient possible. C'est aussi vrai pour une <a href="/toiture-maison-neuve/">maison neuve</a>, où nous intégrons l'isolation de la toiture aux exigences de la RE2020.</p>
+    <p>Le meilleur moment pour isoler, c'est quand on refait la couverture. L'échafaudage est déjà en place, la charpente est accessible et l'isolation par l'extérieur devient possible. C'est aussi le cas avant l'installation de <a href="/toiture-avant-panneaux-photovoltaiques/">panneaux photovoltaïques</a>, ou pour une <a href="/toiture-maison-neuve/">maison neuve</a>, où nous intégrons l'isolation de la toiture aux exigences de la RE2020.</p>
 
     {reviews_block(['richard', 'lily'])}
     <h2>Aides financières</h2>
@@ -1215,7 +1216,7 @@ def zinc_bardage():
     {photo("mansarde", eager=True)}
     <h2>Le zinc, matériau de prédilection des architectes</h2>
     <p>Durable, léger, recyclable, le zinc se plie à toutes les formes : toitures à faible pente, monopentes, courbes, brisis de mansardes, façades entières. Sa patine naturelle, ou ses versions prépatinées gris clair et anthracite, s'accordent aussi bien avec une maison bourgeoise qu'avec une architecture contemporaine.</p>
-    <p>C'est aussi un savoir-faire profondément francilien : celui des couvreurs-zingueurs parisiens est inscrit depuis 2024 au patrimoine culturel immatériel de l'UNESCO.</p>
+    <p>C'est aussi un savoir-faire profondément francilien : celui des <a href="/couvreur-paris/">couvreurs-zingueurs parisiens</a> est inscrit depuis 2024 au patrimoine culturel immatériel de l'UNESCO.</p>
 
     <h2>Nos réalisations en zinc</h2>
     <h3>Couverture zinc à joint debout ou à tasseaux</h3>
@@ -1702,7 +1703,7 @@ def _dist(a, b):
     return 6371 * 2 * math.asin(math.sqrt(h))
 
 
-def nearest_villes(v, k=4):
+def nearest_villes(v, k=5):
     others = [o for o in VILLES if o["slug"] != v["slug"] and _dist(v["name"], o["name"]) < 9999]
     return sorted(others, key=lambda o: _dist(v["name"], o["name"]))[:k]
 
@@ -1781,11 +1782,11 @@ def copropriete():
   <article class="prose">
     {photo("drone", eager=True)}
     <h2>Un partenaire fiable pour les syndics</h2>
-    <p>Depuis 1985, JMC intervient sur des immeubles, des résidences et des bâtiments publics en Île-de-France : immeubles parisiens rue de la Croix-Nivert ou boulevard de Sébastopol, programmes pour des promoteurs, écoles et équipements communaux. Nous savons ce qu'attend un gestionnaire de copropriété : des devis clairs, des délais tenus, un chantier propre et un interlocuteur joignable.</p>
+    <p>Depuis 1985, JMC intervient sur des immeubles, des résidences et des bâtiments publics en Île-de-France : immeubles <a href="/couvreur-paris/">parisiens</a> rue de la Croix-Nivert ou boulevard de Sébastopol, programmes pour des promoteurs, écoles et équipements communaux. Nous savons ce qu'attend un gestionnaire de copropriété : des devis clairs, des délais tenus, un chantier propre et un interlocuteur joignable.</p>
 
     <h2>Travaux de toiture en copropriété</h2>
     <h3>Réfection et réparation de couverture</h3>
-    <p>Réfection complète de toiture d'immeuble en tuiles, ardoise ou zinc, réparations ponctuelles, remplacement de tuiles et d'ardoises, reprise de faîtages, de solins et d'abergements de cheminées.</p>
+    <p>Réfection complète de toiture d'immeuble en tuiles, ardoise ou zinc, réparations ponctuelles, remplacement de tuiles et d'ardoises, reprise de faîtages, de <a href="/souche-cheminee-solin-abergement/">souches, solins et abergements de cheminées</a>.</p>
     <h3>Isolation des combles</h3>
     <p><a href="/isolation-combles-perdus/">Isolation des combles perdus</a> par soufflage ou déroulage, <a href="/isolation-rampants/">isolation sous rampants</a> des lots aménagés sous les toits, isolation par l'extérieur lors d'une réfection : des travaux RGE qui améliorent le DPE collectif et le confort des derniers étages. Voir aussi notre page <a href="/isolation-toiture/">isolation de toiture</a>.</p>
     <h3>Fenêtres de toit VELUX</h3>
@@ -1920,7 +1921,7 @@ def promotion():
     </ul>
 
     <h2>Ils nous font confiance</h2>
-    <p>Bouygues Immobilier, Kaufman &amp; Broad, Nexity, Archicrea, des architectes et des collectivités d'Île-de-France : rue de la Croix-Nivert et rue Raffet à Paris, boulevard de Sébastopol, groupes scolaires de Montfermeil… Voir <a href="/nos-references/">nos références</a>.</p>
+    <p>Bouygues Immobilier, Kaufman &amp; Broad, Nexity, Archicrea, des architectes et des collectivités d'Île-de-France : rue de la Croix-Nivert et rue Raffet à <a href="/couvreur-paris/">Paris</a>, boulevard de Sébastopol, groupes scolaires de Montfermeil… Voir <a href="/nos-references/">nos références</a>.</p>
 
     <h2>Et pour les particuliers : la même structure</h2>
     <p>Les particuliers bénéficient exactement des mêmes équipes et des mêmes méthodes : diagnostic précis, devis détaillé, planning tenu, chantier encadré et propre. Que vous fassiez <a href="/toiture-maison-neuve/">construire votre maison</a>, <a href="/renovation-toiture/">rénover votre toiture</a>, <a href="/isolation-toiture/">l'isoler</a> ou réaliser une <a href="/couverture-zinc-bardage/">maison d'architecte en zinc</a>, vous êtes accompagné par une entreprise capable de mener des chantiers d'envergure.</p>
@@ -2389,7 +2390,8 @@ def tuile():
     <ul class="checks">
       <li><strong>Réfection complète</strong> : dépose, écran sous-toiture, liteaunage et tuiles neuves (voir <a href="/renovation-toiture/">rénovation de toiture</a>)</li>
       <li><strong>Remaniage</strong> : dépose et repose des tuiles saines, remplacement des liteaux et des tuiles abîmées</li>
-      <li><strong>Remplacement de tuiles cassées</strong>, faîtages, rives et closoirs</li>
+      <li><strong>Remplacement de tuiles cassées</strong>, faîtages, rives et closoirs, <a href="/souche-cheminee-solin-abergement/">souches de cheminée et solins</a></li>
+      <li><strong>Préparation de la toiture avant la pose de <a href="/toiture-avant-panneaux-photovoltaiques/">panneaux photovoltaïques</a></strong></li>
       <li><strong>Changement de tuiles pour un nouvel aspect</strong> : passage d'une tuile rouge à une tuile anthracite, par exemple</li>
       <li><strong>Nettoyage et traitement</strong> des tuiles (voir <a href="/nettoyage-toiture/">nettoyage et démoussage</a>)</li>
       <li><strong>Finitions</strong> : <a href="/debord-de-toit-sous-face-finitions/">débords de toit et sous-faces</a>, zinguerie, <a href="/fenetre-de-toit-velux-lucarnes/">fenêtres de toit</a></li>
