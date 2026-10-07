@@ -52,10 +52,10 @@ CITIES = [
     "Villemomble", "Gagny", "Paris",
 ]
 
-FOOTER_CITIES = {"Saint-Maur-des-Fossés", "Nogent-sur-Marne", "Le Perreux-sur-Marne", "Versailles", "Neuilly-sur-Seine",
-                 "Saint-Germain-en-Laye", "Le Vésinet", "Fontainebleau", "Lagny-sur-Marne"}
+FOOTER_CITIES = {"Saint-Maur-des-Fossés", "Nogent-sur-Marne", "Le Perreux-sur-Marne", "Neuilly-sur-Seine",
+                 "Saint-Cloud", "Fontainebleau", "Lagny-sur-Marne"}
 
-DEPTS = ("Paris", "Seine-et-Marne", "Yvelines", "Essonne", "Hauts-de-Seine", "Seine-Saint-Denis", "Val-de-Marne", "Val-d'Oise")
+DEPTS = ("Paris", "Seine-et-Marne", "Essonne", "Hauts-de-Seine", "Seine-Saint-Denis", "Val-de-Marne", "Val-d'Oise")
 
 SAVOIR_FAIRE = [
     ("/toiture-tuile/", "Toiture en tuiles"),
@@ -75,7 +75,8 @@ NAV = [
     ("/renovation-toiture/", "Rénovation"),
     ("/isolation-toiture/", "Isolation"),
     ("/toiture-maison-neuve/", "Maison neuve"),
-    ("/couverture-zinc-bardage/", "Zinc &amp; bardage"),
+    ("/couverture-zinc-bardage/", "Couverture zinc"),
+    ("/toiture-tuile/", "Tuiles"),
     ("/couvreur-copropriete-syndic/", "Copropriétés"),
     ("/nos-references/", "Réalisations"),
 ]
@@ -227,7 +228,7 @@ def engagement_local():
   <div class="engage-box">
     <div><span class="eyebrow">Engagés à Courtry</span>
     <h2>Une entreprise de couverture ancrée à Courtry</h2>
-    <p>Implantée à Courtry depuis 40 ans, JMC est fière de soutenir la vie locale et les jeunes de la commune.</p></div>
+    <p>Implantée à Courtry depuis 1985, JMC est fière de soutenir la vie locale et les jeunes de la commune.</p></div>
     <ul class="checks">{items}</ul>
   </div>
 </div></section>"""
@@ -243,7 +244,7 @@ def partenaires_footer():
 VIDEO = {"src": "/assets/video/jmc-couverture-video-savoir-faire.mp4",
          "poster": "/assets/video/jmc-couverture-video-savoir-faire.jpg",
          "name": "JMC Couverture : votre toiture, notre savoir-faire",
-         "desc": "Toitures réalisées par JMC Couverture en Île-de-France, filmées par drone : tradition, savoir-faire, qualité, sécurité et fiabilité. 40 ans d'expérience, entreprise QUALIBAT RGE.",
+         "desc": "Toitures réalisées par JMC Couverture en Île-de-France, filmées par drone : tradition, savoir-faire, qualité, sécurité et fiabilité. Couvreur depuis 1985, entreprise QUALIBAT RGE.",
          "duration": "PT24S", "date": "2026-10-03"}
 
 
@@ -260,9 +261,9 @@ def video_section():
   <div>
     <span class="eyebrow">En vidéo</span>
     <h2>Votre toiture, notre savoir-faire de couvreur-zingueur</h2>
-    <p>Des toitures réalisées par nos équipes, filmées par drone : tuiles, ardoise, zinc, mansardes et maisons neuves, partout en Île-de-France.</p>
+    <p>Des toitures réalisées par nos équipes, filmées par drone : tuiles, ardoise, zinc, mansardes et maisons neuves, en Île-de-France.</p>
     <ul class="checks values">
-      <li><strong>Tradition</strong> : 40 ans de métier de couvreur-zingueur</li>
+      <li><strong>Tradition</strong> : couvreurs-zingueurs depuis 1985</li>
       <li><strong>Savoir-faire</strong> : couverture, charpente, zinguerie</li>
       <li><strong>Qualité</strong> : certifiés QUALIBAT et RGE</li>
       <li><strong>Sécurité</strong> : des équipes formées</li>
@@ -315,7 +316,7 @@ def org_ld():
         "knowsAbout": ["Couverture", "Charpente", "Zinguerie", "Rénovation de toiture",
                        "Remplacement de toiture", "Nettoyage de toiture", "Démoussage", "Isolation de toiture", "Couverture zinc", "Bardage zinc", "Maison d'architecte", "Toiture maison neuve", "Isolation des combles", "Isolation des combles perdus", "Isolation des rampants", "Soufflage", "Tuile mécanique", "Tuile plate", "Remaniage", "Débord de toit", "Sous-face", "Auvent", "Fenêtre de toit", "VELUX", "Lucarnes", "Copropriété", "Promotion immobilière", "Chien-assis", "Toiture mansardée", "Chéneau", "Noue", "Souche de cheminée", "Étanchéité toiture terrasse", "EPDM", "Descentes d'eaux pluviales", "Photovoltaïque", "Gouttières", "Toiture zinc", "Ardoise", "Tuiles"],
         "hasCredential": [
-            {"@type": "EducationalOccupationalCredential", "credentialCategory": "Qualification", "name": "QUALIBAT"},
+            {"@type": "EducationalOccupationalCredential", "credentialCategory": "Qualification", "name": "QUALIBAT – ensemble des qualifications couverture"},
             {"@type": "EducationalOccupationalCredential", "credentialCategory": "Label", "name": "RGE - Reconnu Garant de l'Environnement"},
         ],
         "hasOfferCatalog": {
@@ -412,11 +413,11 @@ def header(path):
     links = "".join(f'<a href="{u}"{cur if u == path else ""}>{n}</a>' for u, n in NAV)
     return f"""
 <div class="topbar"><div class="wrap">
-  <span>Couvreur certifié QUALIBAT &amp; RGE · Intervention dans toute l'Île-de-France{insta_top()}</span>
+  <span>Couvreur certifié QUALIBAT &amp; RGE · Intervention en Île-de-France{insta_top()}</span>
   <span>Devis gratuit : <a href="tel:{BIZ['phone_intl']}"><strong>{BIZ['phone']}</strong></a></span>
 </div></div>
 <header class="site-header"><div class="wrap">
-  <a class="logo" href="/" aria-label="JMC Couverture, accueil"><img src="/assets/logo-jmc-40ans.svg" alt="JMC Couverture – 40 ans, 1985-2025" width="141" height="63"></a>
+  <a class="logo" href="/" aria-label="JMC Couverture, accueil"><img src="/assets/logo-jmc-40ans.svg" alt="JMC Couverture, couvreur depuis 1985" width="141" height="63"></a>
   <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
   <nav class="nav" id="nav" aria-label="Navigation principale">{links}<a class="btn btn-primary" href="/contact/">Devis gratuit</a></nav>
 </div></header>
@@ -467,16 +468,14 @@ def aside(title="Pourquoi choisir JMC ?"):
   <p class="aside-title">{title}</p>
   {labels()}
   <ul class="checks">
-    <li>40 ans d'expérience (depuis 1985)</li>
-    <li>Entreprise certifiée QUALIBAT et RGE</li>
+    <li>Couvreur depuis 1985, plus de 1 500 chantiers</li>
+    <li>Toutes les qualifications QUALIBAT couverture, RGE</li>
     <li>Garantie décennale et responsabilité civile</li>
-    <li>Plus de 1 500 chantiers réalisés</li>
     <li>Les équipes et la structure de la promotion immobilière</li>
+    <li>Suivi d'exécution, accès au toit pendant les travaux, PV de réception</li>
     <li>Équipe SAV et qualité dédiée, en interne</li>
     <li>Équipes formées à la sécurité et à la propreté</li>
-    <li>Démarches en mairie gérées pour vous</li>
-    <li>Toutes les finitions : sous-faces, peintures, auvents</li>
-    <li>Isolation RGE : aides possibles</li>
+    <li>Démarches en mairie et toutes les finitions</li>
     <li>Devis gratuit et détaillé</li>
   </ul>
   {google_badge(light=True)}
@@ -631,7 +630,7 @@ def bouche_oreille():
 def home():
     faq = [
         ("Quelle zone couvre JMC Couverture ?",
-         "Notre entreprise est basée à Courtry (77181) et intervient dans toute l'Île-de-France : Paris, Seine-et-Marne, Yvelines, Essonne, Hauts-de-Seine, Seine-Saint-Denis, Val-de-Marne et Val-d'Oise."),
+         "Notre entreprise est basée à Courtry (77181) et intervient en Île-de-France : Paris, Seine-et-Marne, Essonne, Hauts-de-Seine, Seine-Saint-Denis, Val-de-Marne et Val-d'Oise."),
         ("Le devis est-il gratuit ?",
          "Oui. Nous nous déplaçons pour diagnostiquer votre toiture et nous vous remettons un devis détaillé, gratuit et sans engagement."),
         ("Faut-il nettoyer ou remplacer ma toiture ?",
@@ -642,16 +641,16 @@ def home():
          "Le label RGE (Reconnu Garant de l'Environnement) est exigé pour que vos travaux d'isolation de toiture puissent bénéficier des aides publiques à la rénovation énergétique, sous réserve des conditions d'éligibilité en vigueur."),
     ]
     lds = [org_ld(), website_ld(), faq_ld(faq), video_ld()]
-    html = head("Couvreur Île-de-France : rénovation, isolation, toiture zinc | JMC",
-                "Couvreur depuis 1985 en Île-de-France : rénovation, isolation, maison neuve, zinc et bardage d'architecte. QUALIBAT & RGE. Devis gratuit ☎ 01 64 21 38 37.",
+    html = head("Couverture zinc et tuiles en Île-de-France | Couvreur JMC",
+                "Couvreur depuis 1985 : couverture zinc et tuiles, rénovation, isolation, maison neuve et copropriétés en Île-de-France. QUALIBAT & RGE. ☎ 01 64 21 38 37.",
                 "/", lds)
     html += header("/")
     html += f"""
 <section class="hero has-photo">{hero_bg()}<div class="wrap">
   <div>
-    <span class="eyebrow">40 ans · 1985–2025 · Couvreur charpentier zingueur</span>
-    <h1>Couvreur en Île-de-France : rénovation, isolation et toitures zinc</h1>
-    <p class="lead">Rénovation, isolation, maisons neuves, zinc et bardage d'architecte : depuis 1985, JMC met au service des particuliers la structure et les équipes qui réalisent les toitures des programmes de promotion immobilière, partout en Île-de-France.</p>
+    <span class="eyebrow">Depuis 1985</span>
+    <h1>Couverture zinc et tuiles en Île-de-France : votre couvreur depuis 1985</h1>
+    <p class="lead">Couverture zinc, toitures en tuiles, rénovation, isolation et maisons neuves : depuis 1985, JMC met au service des particuliers la structure et les équipes qui réalisent les toitures des programmes de promotion immobilière, en Île-de-France.</p>
     <div class="hero-cta"><a class="btn btn-primary" href="/contact/">Demander un devis gratuit</a>
     <a class="btn btn-ghost" href="tel:{BIZ['phone_intl']}">Appeler le {BIZ['phone']}</a></div>
     <div class="hero-labels">{labels()}{google_badge()}<ul class="badges"><li>Garantie décennale</li><li>Devis gratuit</li></ul></div>
@@ -679,10 +678,10 @@ def home():
                 ["Charpente, couverture, zinguerie", "Mise hors d'eau rapide", "Coordination avec l'architecte", "Attestations dommages-ouvrage"])}
   {service_card("doc", "Maison d'architecte : zinc et bardage", "/couverture-zinc-bardage/", "Couverture zinc à joint debout, bardage de façade et habillages sur mesure.",
                 ["Toitures faible pente et courbes", "Bardage zinc ventilé", "Lucarnes et brisis", "Calepinage avec l'architecte"])}
-  {service_card("leaf", "Nettoyage et démoussage", "/nettoyage-toiture/", "Redonnez à votre toit son aspect d'origine et prolongez sa durée de vie.",
+  {service_card("leaf", "Nettoyage, démoussage et entretien", "/nettoyage-toiture/", "Redonnez à votre toit son aspect d'origine et prolongez sa durée de vie.",
                 ["Démoussage adapté au matériau", "Remplacement des tuiles abîmées", "Traitement hydrofuge", "Nettoyage des gouttières"])}
   {service_card("doc", "Copropriétés et syndics", "/couvreur-copropriete-syndic/", "Réfection, réparation et isolation des combles pour les immeubles.",
-                ["Devis détaillés pour l'AG", "Isolation des combles RGE", "Travaux en site occupé", "Suivi avec le syndic"])}
+                ["Devis détaillés pour l'assemblée générale", "Isolation des combles RGE", "Travaux en site occupé", "Suivi avec le syndic"])}
   {service_card("roof", "Fenêtres de toit VELUX et lucarnes", "/fenetre-de-toit-velux-lucarnes/", "Plus de lumière et de confort sous les toits.",
                 ["Remplacement de VELUX", "Création de fenêtres de toit", "Restauration de lucarnes", "Habillage zinc"])}
   {service_card("drop", "Couverture, charpente, zinguerie", "/couverture/", "Tous les métiers du toit, maîtrisés par nos propres équipes.",
@@ -699,7 +698,7 @@ def home():
 
 <section class="section-dark"><div class="wrap">
   <div class="stats">
-    <div><strong>40</strong><span>ans d'expérience</span></div>
+    <div><strong>1985</strong><span>couvreurs depuis</span></div>
     <div><strong>1 500+</strong><span>chantiers réalisés</span></div>
     <div><strong>1 000+</strong><span>clients, promoteurs et particuliers</span></div>
     <div><strong>10 ans</strong><span>garantie décennale</span></div>
@@ -716,9 +715,10 @@ def home():
     <p>Notre approche est simple : <strong>confier vos travaux à des professionnels</strong>. Chaque chantier commence par un diagnostic honnête de votre toiture. Nous vous expliquons ce qui doit être fait tout de suite, ce qui peut attendre, et nous vous remettons un devis clair, poste par poste.</p>
     <h3>Nos engagements</h3>
     <ul class="checks">
-      <li><strong>Qualité certifiée</strong> : qualification QUALIBAT et label RGE.</li>
+      <li><strong>Qualité certifiée</strong> : titulaire de l'ensemble des qualifications QUALIBAT en couverture, et label RGE.</li>
       <li><strong>Sécurité</strong> : garantie décennale et responsabilité civile professionnelle.</li>
       <li><strong>Conseil honnête</strong> : nettoyage ou remplacement, nous vous recommandons la solution adaptée.</li>
+      <li><strong>Transparence</strong> : suivi d'exécution, accès au toit pendant les travaux pour constater le travail réalisé, PV de réception.</li>
       <li><strong>Transparence</strong> : devis gratuit, détaillé et sans engagement.</li>
       <li><strong>Sécurité</strong> : des équipes formées pour intervenir chez vous en toute sécurité.</li>
       <li><strong>Propreté</strong> : chantier protégé, nettoyé chaque jour, gravats évacués.</li>
@@ -741,8 +741,8 @@ def home():
 {engagement_local()}
 <section class="section-alt"><div class="wrap">
   <div class="section-head"><span class="eyebrow">Zone d'intervention</span>
-  <h2>Couvreur dans toute l'Île-de-France</h2>
-  <p>Depuis notre siège de Courtry, nos équipes interviennent à Paris et dans les huit départements franciliens, en particulier dans les communes des bords de Marne et de Seine-et-Marne.</p></div>
+  <h2>Couvreur en Île-de-France : nos zones d'intervention</h2>
+  <p>Depuis notre siège de Courtry, nos équipes interviennent à Paris et en Île-de-France, en particulier dans les communes des bords de Marne et de Seine-et-Marne.</p></div>
   {city_groups()}
   <ul class="cities">{"".join(f"<li>{c}</li>" for c in CITIES[3:])}</ul>
   <p><a class="more" href="/zones-intervention/">Toutes nos zones d'intervention →</a></p>
@@ -940,7 +940,7 @@ def renovation():
     desc = "Remplacement et réfection complète de toiture : dépose, contrôle de charpente, écran sous-toiture, couverture neuve, zinguerie et isolation RGE."
     lds = [org_ld(), crumbs_ld(trail), service_ld("Rénovation et remplacement de toiture", "/renovation-toiture/", desc), faq_ld(faq)]
     html = head("Rénovation et remplacement de toiture en Île-de-France | JMC",
-                "Remplacement et réfection complète de toiture en Île-de-France : tuiles, ardoise, zinc, isolation RGE. 40 ans d'expérience. Devis gratuit.",
+                "Remplacement et réfection complète de toiture en Île-de-France : tuiles, ardoise, zinc, isolation RGE. Couvreur depuis 1985. Devis gratuit.",
                 "/renovation-toiture/", lds)
     html += header("/renovation-toiture/")
     html += page_hero(trail, "Rénovation de toiture", "Rénovation et remplacement de toiture en Île-de-France",
@@ -1002,16 +1002,18 @@ def nettoyage():
          "Un jet trop puissant peut décaper la surface des tuiles en terre cuite et les rendre plus poreuses. Nous adaptons la méthode au matériau : brossage, pression modérée et produits adaptés, puis traitement."),
         ("Le démoussage suffit-il à prolonger la vie d'une toiture ?",
          "Sur une couverture saine, oui : un toit entretenu peut gagner de nombreuses années. Si les tuiles sont déjà poreuses, cassées ou si la toiture s'affaisse, un nettoyage ne suffira pas et nous vous conseillerons plutôt une rénovation."),
+        ("Proposez-vous un entretien régulier de la toiture ?",
+         "Oui. Nous réalisons des visites d'entretien : contrôle de la couverture et de la zinguerie, remplacement des tuiles abîmées, nettoyage des gouttières et démoussage si nécessaire, avec un compte rendu photo. La fréquence est adaptée à votre toiture."),
         ("Quelle est la meilleure période pour nettoyer son toit ?",
          "Le printemps et le début de l'automne sont idéaux : temps sec et températures douces permettent au traitement anti-mousse et à l'hydrofuge d'agir correctement."),
     ]
-    desc = "Nettoyage de toiture, démoussage, traitement anti-mousse et hydrofuge, nettoyage des gouttières par des couvreurs professionnels."
-    lds = [org_ld(), crumbs_ld(trail), service_ld("Nettoyage et démoussage de toiture", "/nettoyage-toiture/", desc), faq_ld(faq)]
-    html = head("Nettoyage et démoussage de toiture en Île-de-France | JMC",
-                "Nettoyage de toit, démoussage, traitement anti-mousse et hydrofuge en Île-de-France, par de vrais couvreurs. 40 ans d'expérience. Devis gratuit.",
+    desc = "Nettoyage de toiture, démoussage, traitement anti-mousse et hydrofuge, nettoyage des gouttières et entretien régulier par des couvreurs professionnels."
+    lds = [org_ld(), crumbs_ld(trail), service_ld("Nettoyage, démoussage et entretien de toiture", "/nettoyage-toiture/", desc), faq_ld(faq)]
+    html = head("Nettoyage, démoussage et entretien de toiture en Île-de-France | JMC",
+                "Nettoyage de toit, démoussage, traitement hydrofuge et entretien régulier de toiture en Île-de-France, par de vrais couvreurs depuis 1985. Devis gratuit.",
                 "/nettoyage-toiture/", lds)
     html += header("/nettoyage-toiture/")
-    html += page_hero(trail, "Nettoyage de toiture", "Nettoyage et démoussage de toiture par des couvreurs professionnels",
+    html += page_hero(trail, "Nettoyage et entretien", "Nettoyage, démoussage et entretien de toiture par des couvreurs",
                       "Mousses, lichens, traces noires : redonnez à votre toit son aspect d'origine et prolongez sa durée de vie, avec une entreprise de couverture qui sait aussi vérifier et remplacer les tuiles abîmées.")
     html += f"""
 <section><div class="wrap split">
@@ -1034,6 +1036,16 @@ def nettoyage():
       <li><strong>Nettoyage des gouttières</strong><br>Évacuation des débris, contrôle des descentes et des fixations.</li>
     </ol>
 
+    <h2>L'entretien régulier de votre toiture</h2>
+    <p>Une toiture bien entretenue dure beaucoup plus longtemps. Nous proposons un entretien régulier, à la fréquence adaptée à votre toiture et à son environnement :</p>
+    <ul class="checks">
+      <li>Visite de contrôle de la couverture, des faîtages, des rives et des fenêtres de toit</li>
+      <li>Remplacement des tuiles ou ardoises cassées ou déplacées</li>
+      <li>Nettoyage des gouttières, chéneaux et descentes</li>
+      <li>Vérification de la zinguerie : noues, solins, abergements</li>
+      <li>Démoussage et traitement lorsque c'est nécessaire</li>
+      <li>Compte rendu avec photos et conseils pour anticiper les travaux</li>
+    </ul>
     <h2>Tous types de toitures</h2>
     <p>Tuiles mécaniques ou plates en terre cuite, tuiles béton, ardoises, toitures terrasses : chaque matériau demande une méthode et des produits spécifiques. Nos couvreurs les connaissent tous (voir nos <a href="/couverture/">types de couverture</a>).</p>
 
@@ -1095,7 +1107,7 @@ def maison_neuve():
       <li><strong>Des délais tenus</strong> : nos équipes et notre flotte de véhicules sont dimensionnées pour les plannings exigeants de la promotion immobilière</li>
       <li><strong>Une coordination facilitée</strong> avec votre architecte, votre maçon et votre menuisier</li>
       <li><strong>Des garanties solides</strong> : assurance décennale, QUALIBAT et RGE, attestations fournies pour votre dommages-ouvrage</li>
-      <li><strong>40 ans d'expérience</strong> et plus de 1 500 chantiers réalisés</li>
+      <li><strong>Couvreur depuis 1985</strong> et plus de 1 500 chantiers réalisés</li>
     </ul>
 
     <h2>Comment ça se passe ?</h2>
@@ -1189,11 +1201,11 @@ def zinc_bardage():
     ]
     desc = "Couverture zinc à joint debout, bardage zinc de façade et habillages pour maisons d'architecte, en neuf comme en rénovation."
     lds = [org_ld(), crumbs_ld(trail), service_ld("Couverture zinc et bardage zinc", "/couverture-zinc-bardage/", desc), faq_ld(faq)]
-    html = head("Toiture zinc joint debout et bardage, maison d'architecte | JMC",
-                "Couvreur-zingueur pour maisons d'architecte : couverture zinc à joint debout, bardage de façade, lucarnes et habillages, partout en Île-de-France.",
+    html = head("Couverture zinc et toiture en zinc joint debout, bardage | JMC",
+                "Couvreur-zingueur pour maisons d'architecte : couverture zinc à joint debout, bardage de façade, lucarnes et habillages, en Île-de-France.",
                 "/couverture-zinc-bardage/", lds)
     html += header("/couverture-zinc-bardage/")
-    html += page_hero(trail, "Maison d'architecte", "Maison d'architecte : couverture zinc et bardage",
+    html += page_hero(trail, "Maison d'architecte", "Couverture zinc : toitures en zinc et bardage pour maisons d'architecte",
                       "Toitures à joint debout, façades en zinc, lucarnes et habillages sur mesure : nos couvreurs-zingueurs donnent forme aux projets des architectes, en neuf comme en rénovation.")
     html += f"""
 <section><div class="wrap split">
@@ -1310,51 +1322,6 @@ VILLES += [
        "Maisons en pierre, longères et propriétés du village des peintres : votre couvreur à Barbizon pour rénover et préserver les toitures anciennes.",
        "Village des peintres de l'École de Barbizon, à l'orée de la forêt de Fontainebleau, Barbizon a conservé ses maisons en pierre, ses longères et ses belles propriétés aux toitures de tuiles plates anciennes. Leur rénovation exige de respecter le caractère des lieux, des matériaux à la pose.",
        ABF, ["Fontainebleau", "Chailly-en-Bière", "Saint-Martin-en-Bière", "Arbonne-la-Forêt", "Cély"]),
-    _v("Versailles", "Yvelines", "78", "78000",
-       "Hôtels particuliers, immeubles anciens et villas des quartiers résidentiels : votre couvreur à Versailles pour la rénovation, l'isolation et les toitures en ardoise et zinc.",
-       "Des quartiers Notre-Dame et Saint-Louis aux villas de Montreuil, Clagny-Glatigny ou Porchefontaine, Versailles réunit un patrimoine bâti exceptionnel : hôtels particuliers des XVIIe et XVIIIe siècles, immeubles à combles mansardés, maisons bourgeoises. Ardoise, zinc, lucarnes et brisis y sont la règle.",
-       ABF, ["Le Chesnay-Rocquencourt", "Viroflay", "Buc", "Saint-Cyr-l'École", "Vélizy-Villacoublay"]),
-    _v("Le Vésinet", "Yvelines", "78", "78110",
-       "Villas de la ville-parc, maisons de maître et demeures du XIXe siècle : votre couvreur au Vésinet pour des toitures à la hauteur de ce cadre unique.",
-       "Conçu au XIXe siècle comme une ville-parc, avec ses lacs, ses rivières et ses grandes pelouses, Le Vésinet est l'une des communes résidentielles les plus prisées de l'ouest parisien. Ses villas présentent des toitures variées et souvent complexes : ardoise, tuiles, épis de faîtage, lucarnes et zinguerie décorative.",
-       ABF, ["Chatou", "Croissy-sur-Seine", "Le Pecq", "Montesson", "Saint-Germain-en-Laye"]),
-    _v("Saint-Germain-en-Laye", "Yvelines", "78", "78100",
-       "Hôtels particuliers du centre historique, villas et maisons bourgeoises : votre couvreur à Saint-Germain-en-Laye pour la rénovation et l'isolation de votre toiture.",
-       "Entre son château, sa terrasse dessinée par Le Nôtre et sa forêt domaniale, Saint-Germain-en-Laye offre un patrimoine résidentiel remarquable : hôtels particuliers du centre ancien, immeubles de caractère et grandes villas. Couvertures en ardoise et en tuile plate, combles mansardés et lucarnes y demandent un savoir-faire traditionnel.",
-       ABF, ["Le Pecq", "Le Vésinet", "Chambourcy", "Mareil-Marly", "Maisons-Laffitte"]),
-    _v("Maisons-Laffitte", "Yvelines", "78", "78600",
-       "Villas du Parc, maisons de maître et propriétés de la cité du cheval : votre couvreur à Maisons-Laffitte.",
-       "Autour de son château et de son célèbre Parc loti au XIXe siècle, Maisons-Laffitte, la « cité du cheval », alterne grandes villas, maisons de maître et propriétés arborées le long de larges avenues. Les toitures y sont souvent anciennes, en ardoise ou en tuiles, avec lucarnes et ornements de zinc.",
-       "Nous rénovons ces couvertures en respectant leur caractère, en y intégrant une isolation performante et une zinguerie neuve, pour des maisons plus confortables et mieux valorisées.",
-       ["Sartrouville", "Le Mesnil-le-Roi", "Saint-Germain-en-Laye", "Montesson", "Herblay-sur-Seine"]),
-    _v("Le Chesnay-Rocquencourt", "Yvelines", "78", "78150",
-       "Maisons individuelles, villas et résidences aux portes de Versailles : votre couvreur au Chesnay-Rocquencourt.",
-       "Aux portes de Versailles, Le Chesnay-Rocquencourt associe quartiers pavillonnaires recherchés, villas et résidences en copropriété. Beaucoup de toitures datent des années 1960 à 1990 et arrivent à l'âge de la rénovation ou de l'isolation.",
-       "Nous intervenons aussi bien pour les propriétaires de maisons que pour les syndics de copropriété : réfection de couverture, isolation des combles, fenêtres de toit et zinguerie.",
-       ["Versailles", "La Celle-Saint-Cloud", "Bailly", "Louveciennes", "Vaucresson"]),
-    _v("Chatou", "Yvelines", "78", "78400",
-       "Villas des bords de Seine, maisons bourgeoises et pavillons : votre couvreur à Chatou pour rénover, isoler et entretenir votre toiture.",
-       "Ville des Impressionnistes, célèbre pour son île et la Maison Fournaise, Chatou a gardé de belles villas des bords de Seine et des maisons bourgeoises du début du XXe siècle, aux toitures en tuiles mécaniques, en ardoise ou en zinc.",
-       "L'humidité des bords de Seine sollicite fortement les couvertures et la zinguerie : nous assurons leur rénovation complète, leur isolation et leur entretien.",
-       ["Croissy-sur-Seine", "Le Vésinet", "Rueil-Malmaison", "Montesson", "Carrières-sur-Seine"]),
-    _v("Croissy-sur-Seine", "Yvelines", "78", "78290",
-       "Villas, maisons bourgeoises et propriétés des bords de Seine : votre couvreur à Croissy-sur-Seine.",
-       "Commune résidentielle nichée dans une boucle de la Seine, Croissy-sur-Seine compte de nombreuses villas et maisons bourgeoises entourées de jardins. Leurs toitures, souvent anciennes, mêlent tuiles, ardoises, lucarnes et zinguerie travaillée.",
-       "Nous les rénovons dans les règles de l'art, avec la possibilité d'isoler la toiture par l'extérieur lors de la réfection, sans perdre de volume dans les combles.",
-       ["Chatou", "Le Vésinet", "Bougival", "Le Pecq", "Rueil-Malmaison"]),
-    _v("Louveciennes", "Yvelines", "78", "78430",
-       "Propriétés de caractère et villas des coteaux de Seine : votre couvreur à Louveciennes.",
-       "Sur les coteaux qui dominent la Seine, Louveciennes conserve un cadre exceptionnel : grandes propriétés, maisons de caractère et villas, à l'ombre de son aqueduc et du pavillon de Madame du Barry. Les toitures, anciennes et souvent complexes, demandent un savoir-faire traditionnel.",
-       ABF, ["Marly-le-Roi", "Bougival", "Le Chesnay-Rocquencourt", "Port-Marly", "La Celle-Saint-Cloud"]),
-    _v("Marly-le-Roi", "Yvelines", "78", "78160",
-       "Maisons de caractère du centre ancien, villas et propriétés : votre couvreur à Marly-le-Roi.",
-       "Riche de son domaine national et de son centre ancien, Marly-le-Roi est une commune résidentielle où se côtoient maisons de caractère, villas et propriétés boisées. Toitures en tuile plate, en ardoise et lucarnes anciennes y sont fréquentes.",
-       ABF, ["Louveciennes", "Le Port-Marly", "Mareil-Marly", "L'Étang-la-Ville", "Saint-Germain-en-Laye"]),
-    _v("Bougival", "Yvelines", "78", "78380",
-       "Villas des bords de Seine et maisons de coteau : votre couvreur à Bougival pour rénover et isoler votre toiture.",
-       "Entre Seine et coteaux, Bougival a inspiré les peintres impressionnistes et conserve de belles villas, des maisons de bord de Seine et des propriétés étagées sur la pente. Leurs toitures exposées au vent et à l'humidité méritent une attention particulière.",
-       "Nous intervenons pour la rénovation complète de ces couvertures, leur isolation, la reprise de la zinguerie et la création ou le remplacement de fenêtres de toit et de lucarnes.",
-       ["Louveciennes", "La Celle-Saint-Cloud", "Croissy-sur-Seine", "Rueil-Malmaison", "Le Port-Marly"]),
     _v("Neuilly-sur-Seine", "Hauts-de-Seine", "92", "92200",
        "Hôtels particuliers, villas et immeubles haussmanniens : votre couvreur-zingueur à Neuilly-sur-Seine pour les particuliers et les copropriétés.",
        "Entre le bois de Boulogne et la Seine, Neuilly-sur-Seine réunit hôtels particuliers, villas et immeubles de standing aux toitures en zinc et en ardoise, avec combles mansardés, lucarnes et terrassons. Ces couvertures exigent le savoir-faire des couvreurs-zingueurs parisiens.",
@@ -1377,17 +1344,17 @@ VILLES += [
        "Villas et propriétés entre étangs et forêt : votre couvreur à Ville-d'Avray.",
        "Nichée entre la forêt de Fausses-Reposes et les étangs peints par Corot, Ville-d'Avray est une commune résidentielle et boisée, faite de villas et de propriétés aux toitures souvent anciennes. L'environnement forestier favorise mousses et encrassement des gouttières.",
        "Nous assurons la rénovation de ces toitures, leur isolation, mais aussi leur nettoyage et l'entretien de la zinguerie, pour préserver durablement votre maison.",
-       ["Sèvres", "Chaville", "Marnes-la-Coquette", "Saint-Cloud", "Versailles"]),
+       ["Sèvres", "Chaville", "Marnes-la-Coquette", "Saint-Cloud"]),
     _v("Marnes-la-Coquette", "Hauts-de-Seine", "92", "92430",
        "Grandes propriétés et villas en lisière du parc de Saint-Cloud : votre couvreur à Marnes-la-Coquette.",
        "Petite commune très résidentielle en lisière du domaine national de Saint-Cloud, Marnes-la-Coquette se compose de grandes propriétés et de villas entourées de verdure. Leurs toitures, souvent d'exception, demandent une exécution irréprochable.",
        "Ardoise, zinc, tuile plate, lucarnes et zinguerie décorative : nous réalisons des travaux soignés, avec un interlocuteur unique du diagnostic à la réception.",
-       ["Vaucresson", "Garches", "Ville-d'Avray", "Saint-Cloud", "La Celle-Saint-Cloud"]),
+       ["Vaucresson", "Garches", "Ville-d'Avray", "Saint-Cloud"]),
     _v("Vaucresson", "Hauts-de-Seine", "92", "92420",
        "Villas, maisons individuelles et propriétés arborées : votre couvreur à Vaucresson.",
        "Commune résidentielle et verdoyante de l'ouest parisien, Vaucresson est composée majoritairement de villas et de maisons individuelles entourées de jardins. Ces toitures, de la villa ancienne à la maison d'architecte, appellent des travaux de qualité.",
        "Rénovation, isolation par l'extérieur, couverture zinc pour extensions contemporaines, fenêtres de toit : nous prenons en charge l'ensemble de votre projet de toiture.",
-       ["Garches", "Marnes-la-Coquette", "La Celle-Saint-Cloud", "Le Chesnay-Rocquencourt", "Rueil-Malmaison"]),
+       ["Garches", "Marnes-la-Coquette", "Rueil-Malmaison"]),
     _v("Garches", "Hauts-de-Seine", "92", "92380",
        "Villas, maisons bourgeoises et résidences : votre couvreur à Garches.",
        "Entre le domaine de Saint-Cloud et le golf de Saint-Cloud situé sur son territoire, Garches est une commune résidentielle où dominent villas, maisons bourgeoises et petites résidences. Les toitures y sont souvent en tuiles ou en ardoise, avec lucarnes et zinguerie.",
@@ -1397,12 +1364,12 @@ VILLES += [
        "Villas de Buzenval, maisons de caractère et résidences : votre couvreur à Rueil-Malmaison.",
        "Ville de l'impératrice Joséphine et de son château de Malmaison, Rueil-Malmaison mêle quartiers résidentiels recherchés comme Buzenval ou la Malmaison, villas des bords de Seine et nombreuses copropriétés. Une grande diversité de toitures, de la tuile à l'ardoise et au zinc.",
        "Nous accompagnons les propriétaires et les syndics de Rueil-Malmaison dans la rénovation, l'isolation et l'entretien de leurs toitures.",
-       ["Nanterre", "Suresnes", "Garches", "Bougival", "Chatou"]),
+       ["Nanterre", "Suresnes", "Garches"]),
     _v("Meudon", "Hauts-de-Seine", "92", "92190",
        "Villas de Bellevue, maisons en meulière et résidences : votre couvreur à Meudon.",
        "Entre la forêt de Meudon et les coteaux de Seine, Meudon offre des quartiers résidentiels prisés comme Bellevue ou Meudon-sur-Seine, avec leurs villas, leurs maisons en meulière et de nombreuses résidences. Les toitures anciennes y sont nombreuses.",
        "Rénovation de couverture, isolation des combles, lucarnes et fenêtres de toit : nous intervenons pour les particuliers et les copropriétés de Meudon.",
-       ["Sèvres", "Issy-les-Moulineaux", "Clamart", "Chaville", "Vélizy-Villacoublay"]),
+       ["Sèvres", "Issy-les-Moulineaux", "Clamart", "Chaville"]),
 ]
 
 def ville(v):
@@ -1484,11 +1451,6 @@ DEPTS_PAGES = [
      "texte": ["Le Val-de-Marne concentre certaines des plus belles communes résidentielles de l'est parisien : Saint-Maur-des-Fossés et La Varenne, Nogent-sur-Marne, Le Perreux-sur-Marne, Vincennes, Saint-Mandé, Bry-sur-Marne. Villas Belle Époque, maisons en meulière et immeubles de caractère y portent des toitures riches et complexes.",
                "Ardoise, tuile plate, brisis et lucarnes en zinc, chéneaux et ornements : nous rénovons ces toitures dans le respect de leur architecture, avec une isolation performante et une zinguerie neuve. Nous intervenons aussi pour les syndics des nombreuses copropriétés du département."],
      "autres": ["Vincennes", "Saint-Mandé", "Bry-sur-Marne", "Joinville-le-Pont", "Champigny-sur-Marne", "Le Plessis-Trévise", "Chennevières-sur-Marne", "Fontenay-sous-Bois", "Maisons-Alfort", "Créteil", "Charenton-le-Pont", "Villiers-sur-Marne"]},
-    {"num": "78", "name": "Yvelines", "slug": "couvreur-yvelines-78", "art": "dans les",
-     "lead": "Hôtels particuliers de Versailles, villas du Vésinet et de Saint-Germain-en-Laye : votre couvreur dans les Yvelines pour des toitures d'exception.",
-     "texte": ["Les Yvelines abritent un patrimoine résidentiel remarquable : Versailles et ses hôtels particuliers, la ville-parc du Vésinet, Saint-Germain-en-Laye, Maisons-Laffitte, Chatou, Croissy-sur-Seine ou Louveciennes. Une grande partie de ces communes est protégée, et les travaux de toiture y relèvent souvent de l'Architecte des Bâtiments de France.",
-               "Couvreurs-zingueurs expérimentés, nous intervenons sur ces toitures exigeantes : ardoise, tuile plate, combles mansardés, lucarnes et zinguerie fine, rénovation et isolation, sans oublier les maisons d'architecte en zinc et les copropriétés."],
-     "autres": ["La Celle-Saint-Cloud", "L'Étang-la-Ville", "Chambourcy", "Le Pecq", "Montesson", "Viroflay", "Rambouillet", "Poissy", "Saint-Nom-la-Bretèche", "Le Port-Marly", "Mareil-Marly", "Bailly"]},
     {"num": "92", "name": "Hauts-de-Seine", "slug": "couvreur-hauts-de-seine-92", "art": "dans les",
      "lead": "Hôtels particuliers de Neuilly, villas de Saint-Cloud et Ville-d'Avray, immeubles en zinc : votre couvreur-zingueur dans les Hauts-de-Seine.",
      "texte": ["Des immeubles haussmanniens de Neuilly-sur-Seine aux villas modernistes de Boulogne-Billancourt, des coteaux de Saint-Cloud aux propriétés de Marnes-la-Coquette, de Vaucresson ou de Ville-d'Avray, les Hauts-de-Seine offrent une grande variété de toitures, souvent en zinc et en ardoise.",
@@ -1570,7 +1532,7 @@ def depts():
 
 
 def city_groups():
-    order = [("94", "Val-de-Marne"), ("78", "Yvelines"), ("92", "Hauts-de-Seine"), ("77", "Seine-et-Marne"), ("93", "Seine-Saint-Denis")]
+    order = [("94", "Val-de-Marne"), ("92", "Hauts-de-Seine"), ("77", "Seine-et-Marne"), ("93", "Seine-Saint-Denis")]
     out = ""
     for num, dept in order:
         links = "".join(f'<a href="/{v["slug"]}/">Couvreur {v["name"]}</a>' for v in VILLES if v["num"] == num)
@@ -1609,7 +1571,7 @@ def copropriete():
     svc["audience"] = {"@type": "BusinessAudience", "audienceType": "Syndics de copropriété et conseils syndicaux"}
     lds = [org_ld(), crumbs_ld(trail), svc, faq_ld(faq)]
     html = head("Couvreur copropriété et syndic en Île-de-France : toiture, isolation | JMC",
-                "Couvreur pour syndics et copropriétés : réfection et réparation de toiture, isolation des combles RGE, fenêtres de toit VELUX, lucarnes, zinguerie. Devis pour AG.",
+                "Couvreur pour syndics et copropriétés : réfection et réparation de toiture, isolation des combles RGE, VELUX, lucarnes. Devis pour l'assemblée générale.",
                 "/couvreur-copropriete-syndic/", lds)
     html += header("/couvreur-copropriete-syndic/")
     html += page_hero(trail, "Copropriétés · Syndics", "Couvreur pour copropriétés et syndics en Île-de-France",
@@ -1738,11 +1700,11 @@ def promotion():
   <article class="prose">
     {photo("depot", eager=True)}
     <h2>Une structure taillée pour la promotion immobilière</h2>
-    <p>Travailler pour la promotion immobilière impose une organisation que peu d'entreprises de couverture possèdent : des équipes nombreuses et qualifiées, un atelier de façonnage, une flotte de véhicules, un encadrement de chantier et une capacité à mener plusieurs opérations en parallèle. C'est la structure que JMC a construite depuis 40 ans à Courtry.</p>
+    <p>Travailler pour la promotion immobilière impose une organisation que peu d'entreprises de couverture possèdent : des équipes nombreuses et qualifiées, un atelier de façonnage, une flotte de véhicules, un encadrement de chantier et une capacité à mener plusieurs opérations en parallèle. C'est la structure que JMC a construite depuis 1985 à Courtry.</p>
     <ul class="checks">
       <li><strong>Des équipes dédiées</strong> : couvreurs, charpentiers et zingueurs salariés de l'entreprise</li>
       <li><strong>Un atelier</strong> pour façonner la zinguerie et préparer les chantiers</li>
-      <li><strong>Une flotte de véhicules</strong> pour intervenir partout en Île-de-France</li>
+      <li><strong>Une flotte de véhicules</strong> pour intervenir en Île-de-France</li>
       <li><strong>Un encadrement de chantier</strong> et un interlocuteur unique pour le maître d'ouvrage</li>
       <li><strong>Des garanties solides</strong> : décennale, responsabilité civile, QUALIBAT, RGE</li>
       <li><strong>Une <a href="/notre-methode-sav-qualite/">équipe SAV et qualité interne</a></strong> pour le contrôle avant réception et la levée des réserves</li>
@@ -1777,8 +1739,8 @@ PROCESS = [
     ("Visite technique et diagnostic", "Un professionnel inspecte la couverture, la charpente, la zinguerie et l'isolation, photos à l'appui."),
     ("Devis détaillé et conseil", "Un devis clair, poste par poste, avec nos recommandations, les variantes possibles et les aides mobilisables."),
     ("Démarches et préparation", "Nous pouvons gérer les démarches en mairie, travailler avec votre maître d'œuvre et vous recommander des prestataires compétents pour préparer au mieux les travaux, puis planifier et préparer le chantier en atelier."),
-    ("Chantier sûr, propre et encadré", "Des équipes formées à la sécurité et à la propreté, un chef de chantier, une maison protégée, un chantier nettoyé chaque jour et des points d'avancement réguliers."),
-    ("Contrôle qualité et réception", "Les travaux sont vérifiés par notre équipe qualité avant la réception, réalisée avec vous. Photos et attestations vous sont remises."),
+    ("Chantier sûr, propre et suivi", "Des équipes formées à la sécurité et à la propreté, un chef de chantier, un suivi d'exécution tout au long des travaux, et la possibilité d'accéder au toit, accompagné et en sécurité, pour constater le savoir-faire et l'avancement des travaux."),
+    ("Contrôle qualité et PV de réception", "Les travaux sont vérifiés par notre équipe qualité, puis réceptionnés avec vous : un procès-verbal de réception est signé, photos et attestations vous sont remises."),
     ("SAV et suivi dans la durée", "Après le chantier, notre équipe SAV interne reste votre interlocutrice pour toute question ou intervention liée à nos travaux."),
 ]
 
@@ -1825,6 +1787,12 @@ def methode():
       <li><strong>Un interlocuteur SAV identifié</strong> après le chantier, au sein de l'entreprise</li>
       <li><strong>Intervention de nos propres équipes</strong> pour toute demande liée à nos travaux</li>
       <li><strong>Garanties légales</strong> : parfait achèvement, biennale et décennale</li>
+    </ul>
+    <h2>Transparence pendant les travaux</h2>
+    <ul class="checks">
+      <li><strong>Accès au toit pendant les travaux</strong> : accompagné par notre chef de chantier et en toute sécurité, vous pouvez monter constater le savoir-faire de nos équipes et voir où va votre argent</li>
+      <li><strong>Suivi d'exécution</strong> : points d'avancement réguliers et photos à chaque étape clé</li>
+      <li><strong>PV de réception</strong> : un procès-verbal de réception signé ensemble à la fin du chantier, point de départ de vos garanties</li>
     </ul>
     <h2>Démarches, maîtres d'œuvre et prestataires</h2>
     <ul class="checks">
@@ -1910,7 +1878,7 @@ def chien_assis():
            "Chien-assis et lucarne : création, types, prix | Couvreur JMC",
            "Création de chien-assis et de lucarnes (jacobine, capucine, rampante) en zinc ou ardoise, en Île-de-France. Démarches, étapes et devis gratuit par un couvreur-charpentier.",
            "Chien-assis · Lucarnes", "Chien-assis et lucarnes : création et rénovation",
-           "Jacobine, capucine, rampante ou chien-assis : nous créons et restaurons vos lucarnes, de la charpente à l'habillage en zinc ou en ardoise, partout en Île-de-France.",
+           "Jacobine, capucine, rampante ou chien-assis : nous créons et restaurons vos lucarnes, de la charpente à l'habillage en zinc ou en ardoise, en Île-de-France.",
            body, faq, "Création de chien-assis et de lucarnes",
            ("Un projet de chien-assis ?", "Étude, aide aux démarches et devis gratuits."))
 
@@ -1928,7 +1896,7 @@ def mansarde():
     ]
     body = f"""    {photo("mansarde", eager=True)}
     <h2>La toiture mansardée, signature des maisons bourgeoises</h2>
-    <p>Popularisée par l'architecte François Mansart au XVIIe siècle puis généralisée par l'architecture haussmannienne, la toiture à la Mansart permet de créer un étage habitable sous les combles. On la retrouve sur les immeubles parisiens comme sur les maisons bourgeoises de Saint-Maur-des-Fossés, de Versailles ou du Vésinet.</p>
+    <p>Popularisée par l'architecte François Mansart au XVIIe siècle puis généralisée par l'architecture haussmannienne, la toiture à la Mansart permet de créer un étage habitable sous les combles. On la retrouve sur les immeubles parisiens comme sur les maisons bourgeoises de Saint-Maur-des-Fossés, de Nogent-sur-Marne ou de Neuilly-sur-Seine.</p>
 
     <h2>Le brisis : ardoise ou zinc</h2>
     <p>Partie basse et très pentue de la mansarde, le brisis porte les fenêtres et les <a href="/chien-assis-lucarne/">lucarnes</a>. Il est traditionnellement couvert d'ardoise naturelle posée au crochet ou au clou, ou habillé de zinc. Nous refaisons les brisis à l'identique ou dans le matériau autorisé par votre commune.</p>
@@ -2385,9 +2353,6 @@ def zones():
                                  "Chaville", "Bourg-la-Reine", "Levallois-Perret", "Issy-les-Moulineaux", "Antony"]),
         ("Val-d'Oise (95)", ["Cergy", "Argenteuil", "Enghien-les-Bains", "Montmorency", "Roissy-en-France",
                              "Sarcelles", "Pontoise", "L'Isle-Adam"]),
-        ("Yvelines (78)", ["Versailles", "Le Vésinet", "Saint-Germain-en-Laye", "Maisons-Laffitte",
-                           "Le Chesnay-Rocquencourt", "Chatou", "Croissy-sur-Seine", "Louveciennes", "Marly-le-Roi",
-                           "Bougival", "La Celle-Saint-Cloud", "L'Étang-la-Ville", "Chambourcy", "Viroflay", "Rambouillet"]),
         ("Essonne (91)", ["Évry-Courcouronnes", "Massy", "Palaiseau", "Corbeil-Essonnes",
                           "Brunoy", "Yerres", "Savigny-sur-Orge", "Étampes"]),
     ]
@@ -2395,11 +2360,11 @@ def zones():
         f'<div class="card"><h3>{g}</h3><ul class="cities" style="columns:2 140px">'
         + "".join(f"<li>{c}</li>" for c in cs) + "</ul></div>" for g, cs in groups)
     html = head("Couvreur en Île-de-France : 94, 78, 92, 77 et Paris | JMC",
-                "Couvreur dans toute l'Île-de-France : Saint-Maur, Nogent, Versailles, Le Vésinet, Neuilly, Saint-Cloud, Fontainebleau, Paris et les 8 départements.",
+                "Couvreur en Île-de-France : Saint-Maur, Nogent, Le Perreux, Neuilly, Saint-Cloud, Fontainebleau, Chelles, Paris et les départements 77, 93, 94, 92.",
                 "/zones-intervention/", lds)
     html += header("/zones-intervention/")
-    html += page_hero(trail, "Zones d'intervention", "Couvreur dans toute l'Île-de-France",
-                      "Depuis notre siège de Courtry (77), nos équipes et notre flotte de véhicules interviennent à Paris et dans les huit départements franciliens, pour les particuliers comme pour les professionnels.")
+    html += page_hero(trail, "Zones d'intervention", "Couvreur en Île-de-France : nos zones d'intervention",
+                      "Depuis notre siège de Courtry (77), nos équipes et notre flotte de véhicules interviennent à Paris, en Seine-et-Marne, en Seine-Saint-Denis, dans le Val-de-Marne et les Hauts-de-Seine, pour les particuliers comme pour les professionnels.")
     html += f"""
 <section><div class="wrap">
   <div class="section-head"><h2>Nos villes prioritaires</h2><p>Une page dédiée pour chaque commune où nous intervenons le plus souvent.</p></div>
@@ -2408,8 +2373,8 @@ def zones():
   <div class="grid g3">{blocks}</div>
   <div class="prose" style="margin-top:48px">
     <h2>Un couvreur francilien depuis 1985</h2>
-    <p>Travailler en Île-de-France depuis 40 ans, c'est connaître les maisons du secteur : pavillons en meulière et tuiles mécaniques de Chelles et du Raincy, maisons de ville de Gagny et Villemomble, résidences récentes de Villeparisis et Claye-Souilly, immeubles en zinc de Paris et de la petite couronne. C'est aussi pouvoir suivre de près chaque <a href="/renovation-toiture/">rénovation de toiture</a> et chaque <a href="/nettoyage-toiture/">nettoyage de toit</a>.</p>
-    <p>Votre commune n'apparaît pas dans la liste ? Pas d'inquiétude : ces villes ne sont que des exemples, <a href="/contact/">contactez-nous</a>, nous intervenons partout en Île-de-France pour vos chantiers de <a href="/couverture/">couverture</a>, de <a href="/charpente/">charpente</a> et de <a href="/zinguerie/">zinguerie</a>.</p>
+    <p>Travailler en Île-de-France depuis 1985, c'est connaître les maisons du secteur : pavillons en meulière et tuiles mécaniques de Chelles et du Raincy, maisons de ville de Gagny et Villemomble, résidences récentes de Villeparisis et Claye-Souilly, immeubles en zinc de Paris et de la petite couronne. C'est aussi pouvoir suivre de près chaque <a href="/renovation-toiture/">rénovation de toiture</a> et chaque <a href="/nettoyage-toiture/">nettoyage de toit</a>.</p>
+    <p>Votre commune n'apparaît pas dans la liste ? Pas d'inquiétude : ces villes ne sont que des exemples, <a href="/contact/">contactez-nous</a>, nous intervenons en Île-de-France pour vos chantiers de <a href="/couverture/">couverture</a>, de <a href="/charpente/">charpente</a> et de <a href="/zinguerie/">zinguerie</a>.</p>
   </div>
 </div></section>
 <section class="section-alt" style="padding:0"><iframe class="map" style="border-radius:0;height:380px" title="Localisation de JMC Couverture à Courtry"
@@ -2459,7 +2424,7 @@ def contact():
       <label>Type de travaux
         <select name="travaux">
           <option>Remplacement / rénovation de toiture</option>
-          <option>Nettoyage / démoussage de toiture</option>
+          <option>Nettoyage / démoussage / entretien de toiture</option>
           <option>Toiture de maison neuve / extension</option>
           <option>Isolation de toiture</option>
           <option>Isolation des rampants / combles aménagés</option>

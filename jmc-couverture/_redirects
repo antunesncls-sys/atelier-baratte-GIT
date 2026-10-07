@@ -19,3 +19,16 @@
 /wp-admin/*                           /404.html          410
 /wp-login.php                         /404.html          410
 /wp-content/*                         /404.html          410
+
+# Pages des Yvelines (78) retirées : zone d'intervention recentrée
+/couvreur-versailles/*                 /zones-intervention/   301
+/couvreur-le-vesinet/*                 /zones-intervention/   301
+/couvreur-saint-germain-en-laye/*      /zones-intervention/   301
+/couvreur-maisons-laffitte/*           /zones-intervention/   301
+/couvreur-le-chesnay-rocquencourt/*    /zones-intervention/   301
+/couvreur-chatou/*                     /zones-intervention/   301
+/couvreur-croissy-sur-seine/*          /zones-intervention/   301
+/couvreur-louveciennes/*               /zones-intervention/   301
+/couvreur-marly-le-roi/*               /zones-intervention/   301
+/couvreur-bougival/*                   /zones-intervention/   301
+/couvreur-yvelines-78/*                /zones-intervention/   301
