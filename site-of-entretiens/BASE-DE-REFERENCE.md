@@ -94,7 +94,10 @@ en slogans. Interdits : « excellence opérationnelle », « solutions innovante
 
 - Accroche : « Le travail bien fait, du chantier à l'entrepôt. »
 - Promesse de méthode : « Comprendre d'abord, intervenir ensuite. »
-- Preuve : fiche entreprise vérifiable (SIREN, RCS, NAF, IDCC) au lieu de statistiques.
+- Preuve : des engagements concrets (interlocuteur direct, devis après visite, consignes
+  respectées, franchise) plutôt que des statistiques ou un étalage de statut juridique.
+  Consigne du dirigeant (oct. 2026) : ne pas mettre le statut/registre en avant ; les
+  mentions légales restent en pied de page uniquement.
 - Logistique : « Intervenir sans jamais gêner l'exploitation. »
 
 ## 10. Opportunités de développement identifiées

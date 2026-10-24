@@ -12,7 +12,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,500;0,650;0,800;1,800;1,900&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,500;0,650;0,800;1,800;1,900&family=Public+Sans:wght@400;500;600&display=swap">
 <style>
 /* Layout : page institutionnelle en bandes pleine largeur ; la crédibilité passe par
    la « fiche entreprise » (données réelles du registre) plutôt que par des chiffres inventés. */
@@ -27,7 +27,6 @@
   --ok:#0E8A4C;
   --display:"Archivo","Arial Narrow",Arial,sans-serif;
   --body:"Public Sans","Segoe UI",Arial,sans-serif;
-  --mono:"IBM Plex Mono","Courier New",monospace;
 }
 *{box-sizing:border-box;margin:0}
 html{scroll-behavior:smooth}
@@ -90,7 +89,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 }
 .hero .fields span{border:1.5px solid var(--brand-deep);border-radius:999px;padding:.22rem .8rem;background:var(--surface)}
 
-/* fiche entreprise — données du registre, pas de chiffres inventés */
+/* carte de confiance du hero : des engagements concrets plutôt que des slogans */
 .fiche{
   background:var(--surface);border:1px solid var(--line);border-radius:10px;
   box-shadow:0 14px 34px rgba(10,26,82,.10);overflow:hidden;
@@ -100,16 +99,18 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   background:var(--brand-deep);color:#fff;padding:.7rem 1.1rem;
   font-family:var(--display);font-weight:650;font-size:.92rem;
 }
-.fiche-head .tampon{
-  font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;
-  border:1.5px solid #6FE3A5;color:#6FE3A5;border-radius:3px;padding:.1rem .45rem;
-  transform:rotate(-2deg);white-space:nowrap;
+.promesses{list-style:none;padding:1.1rem 1.2rem .4rem;display:flex;flex-direction:column;gap:.4rem}
+.promesses li{
+  position:relative;padding:.45rem 0 .45rem 1.9rem;font-size:.93rem;color:var(--ink-soft);
+  border-bottom:1px dashed var(--line);
 }
-.fiche dl{padding:1rem 1.1rem .4rem;font-family:var(--mono);font-size:.84rem}
-.fiche .row{display:flex;gap:1rem;justify-content:space-between;border-bottom:1px dashed var(--line);padding-block:.5rem;flex-wrap:wrap}
-.fiche dt{color:var(--ink-soft)}
-.fiche dd{font-weight:500;text-align:right}
-.fiche footer{padding:.7rem 1.1rem 1rem;font-size:.78rem;color:var(--ink-soft)}
+.promesses li:last-child{border-bottom:0}
+.promesses li::before{
+  content:"✓";position:absolute;left:.2rem;top:.38rem;
+  font-family:var(--display);font-weight:900;color:var(--brand);font-size:1.05rem;
+}
+.promesses b{color:var(--ink);font-weight:600}
+.fiche footer{padding:.7rem 1.2rem 1.1rem;font-size:.8rem;color:var(--ink-soft)}
 
 /* ---------- bandes de section ---------- */
 section{padding-block:4rem}
@@ -241,21 +242,17 @@ footer.site p{max-width:72em}
         </div>
       </div>
 
-      <aside class="fiche" aria-label="Fiche entreprise : informations vérifiables au registre">
+      <aside class="fiche" aria-label="Ce que vous pouvez attendre de nous">
         <div class="fiche-head">
-          <span>Fiche entreprise</span>
-          <span class="tampon">RCS · INSCRIT ✓</span>
+          <span>Ce que vous pouvez attendre de nous</span>
         </div>
-        <dl>
-          <div class="row"><dt>Dénomination</dt><dd>OF ENTRETIENS</dd></div>
-          <div class="row"><dt>SIREN</dt><dd>927 491 357</dd></div>
-          <div class="row"><dt>Forme</dt><dd>SASU — créée le 22/03/2024</dd></div>
-          <div class="row"><dt>RCS</dt><dd>Bobigny</dd></div>
-          <div class="row"><dt>Activité (NAF 81.21Z)</dt><dd>Nettoyage courant des bâtiments</dd></div>
-          <div class="row"><dt>Convention collective</dt><dd>Propreté — IDCC 3043</dd></div>
-          <div class="row"><dt>Siège</dt><dd>8 av. des Frères Lumière<br>93370 Montfermeil</dd></div>
-        </dl>
-        <footer>Données publiques issues du registre national des entreprises. Nous préférons des faits vérifiables aux promesses.</footer>
+        <ul class="promesses">
+          <li><b>Un interlocuteur direct.</b> Vous parlez au dirigeant, qui connaît votre site et votre dossier.</li>
+          <li><b>Un devis après visite, pas avant.</b> Nous venons voir sur place avant de chiffrer quoi que ce soit.</li>
+          <li><b>Vos règles respectées.</b> Consignes de sécurité, accès, horaires : nos intervenants arrivent préparés.</li>
+          <li><b>La franchise.</b> Ce qui est fait est fait ; ce qui pose problème est dit, et traité.</li>
+        </ul>
+        <footer>Basés à Montfermeil (93), nous intervenons auprès des entreprises, des promoteurs et des sites logistiques.</footer>
       </aside>
     </div>
   </section>
@@ -428,15 +425,16 @@ footer.site p{max-width:72em}
           <p class="eyebrow">L’entreprise</p>
           <h2>Une structure à taille humaine, un engagement direct.</h2>
         </div>
-        <p>OF ENTRETIENS est une entreprise de propreté et de services créée en mars 2024 et
-        installée à <b>Montfermeil, en Seine-Saint-Denis</b>. Elle est dirigée par
-        <b>Frédéric Oz</b>, votre interlocuteur direct.</p>
-        <p>Nous relevons de la convention collective des <b>entreprises de propreté et services
-        associés (IDCC 3043)</b> et exerçons une activité de nettoyage courant des bâtiments
-        (NAF 81.21Z), complétée par le nettoyage de véhicules de tous types.</p>
-        <p>Être une jeune entreprise à taille humaine, c’est notre réalité — et c’est aussi ce qui
-        fait que chaque client compte, que chaque chantier est suivi de près, et que vous parlez
-        toujours à quelqu’un qui connaît votre dossier.</p>
+        <p>OF ENTRETIENS est une entreprise de propreté et de services installée à
+        <b>Montfermeil, en Seine-Saint-Denis</b>, dirigée par <b>Frédéric Oz</b> — votre
+        interlocuteur direct, du premier échange au suivi des prestations.</p>
+        <p>Être une entreprise à taille humaine, c’est ce qui fait que chaque client compte :
+        votre site est connu de la personne qui vous répond, les engagements pris sont suivis de
+        près, et quand quelque chose doit être ajusté, cela se règle en direct, sans
+        intermédiaire.</p>
+        <p>Du nettoyage de bureaux au lever de réserves, en passant par les base-vie, les
+        entrepôts et les véhicules, la même exigence s’applique partout : un travail propre,
+        annoncé clairement, et tenu.</p>
       </div>
       <div class="logo-carte">
         <img src="assets/logo.jpg" alt="Logo OF ENTRETIENS — convoyage, lever de réserves, partenaire des promoteurs et plateforme logistique" width="1170" height="873">
