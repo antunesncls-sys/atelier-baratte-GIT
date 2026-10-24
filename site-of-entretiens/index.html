@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>OF ENTRETIENS — Nettoyage de locaux, base-vie, lever de réserves · Montfermeil (93)</title>
+<meta name="description" content="OF ENTRETIENS, entreprise de propreté et de services à Montfermeil (Seine-Saint-Denis) : nettoyage de locaux, bureaux et base-vie, lever de réserves pour les promoteurs, entretien des plateformes logistiques, nettoyage et convoyage de véhicules.">
+<meta property="og:title" content="OF ENTRETIENS — Le travail bien fait, du chantier à l’entrepôt">
+<meta property="og:description" content="Nettoyage de locaux, bureaux et base-vie · Lever de réserves · Plateformes logistiques · Nettoyage et convoyage de véhicules. Montfermeil (93).">
+<meta property="og:image" content="assets/logo.jpg">
+<meta property="og:type" content="website">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,500;0,650;0,800;1,800;1,900&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout : page institutionnelle en bandes pleine largeur ; la crédibilité passe par
+   la « fiche entreprise » (données réelles du registre) plutôt que par des chiffres inventés. */
+:root{
+  --bg:#F1F2F6;          /* fond exact du logo */
+  --surface:#FFFFFF;
+  --ink:#0B1538;         /* marine du logo, légèrement éclaircie pour le texte */
+  --ink-soft:#44506F;
+  --brand:#095EF9;       /* bleu du logo */
+  --brand-deep:#0A1A52;
+  --line:#D8DCE8;
+  --ok:#0E8A4C;
+  --display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --body:"Public Sans","Segoe UI",Arial,sans-serif;
+  --mono:"IBM Plex Mono","Courier New",monospace;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:var(--body);font-size:16.5px;line-height:1.65;
+}
+img{max-width:100%}
+.wrap{
+  max-width:1120px;margin:0 auto;
+  padding-left:max(20px, env(safe-area-inset-left, 0px));
+  padding-right:max(20px, env(safe-area-inset-right, 0px));
+}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.08}
+a{color:var(--brand)}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px;border-radius:2px}
+
+.eyebrow{
+  font-family:var(--body);font-weight:600;font-size:.78rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--brand);
+}
+.btn{
+  display:inline-block;font-family:var(--display);font-weight:650;font-size:1rem;
+  padding:.8rem 1.5rem;border-radius:4px;text-decoration:none;border:2px solid var(--brand-deep);
+}
+.btn-primary{background:var(--brand);border-color:var(--brand);color:#fff}
+.btn-primary:hover{background:#0450DC;border-color:#0450DC}
+.btn-ghost{color:var(--brand-deep)}
+.btn-ghost:hover{background:#E2E7F5}
+
+/* ---------- header ---------- */
+header{
+  background:var(--bg);border-bottom:1px solid var(--line);
+  position:sticky;top:env(safe-area-inset-top, 0px);z-index:20;
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+.nav{display:flex;align-items:center;gap:1.4rem;padding-block:.65rem;flex-wrap:wrap}
+.brand{display:flex;align-items:baseline;gap:.4rem;text-decoration:none;color:var(--ink);font-family:var(--display)}
+.brand b{font-style:italic;font-weight:900;font-size:1.25rem;color:var(--brand)}
+.brand span{font-style:italic;font-weight:800;font-size:1.25rem;color:var(--brand-deep);letter-spacing:.01em}
+.nav nav{display:flex;gap:1.15rem;flex-wrap:wrap;margin-left:auto}
+.nav nav a{color:var(--ink-soft);text-decoration:none;font-weight:500;font-size:.95rem}
+.nav nav a:hover{color:var(--brand)}
+.nav .btn{padding:.45rem 1rem;font-size:.92rem}
+
+/* ---------- hero ---------- */
+.hero{padding-block:4.2rem 3.4rem}
+.hero-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:3rem;align-items:center}
+.hero h1{
+  font-size:clamp(2.3rem,5.2vw,3.7rem);font-weight:800;font-style:italic;
+  letter-spacing:-.015em;color:var(--brand-deep);
+}
+.hero h1 em{font-style:italic;color:var(--brand)}
+.hero p.lead{margin-top:1.2rem;max-width:34em;color:var(--ink-soft);font-size:1.08rem}
+.hero .actions{margin-top:1.8rem;display:flex;gap:.9rem;flex-wrap:wrap}
+.hero .fields{
+  margin-top:2.2rem;display:flex;gap:.55rem .6rem;flex-wrap:wrap;
+  font-family:var(--display);font-weight:650;font-size:.88rem;color:var(--brand-deep);
+}
+.hero .fields span{border:1.5px solid var(--brand-deep);border-radius:999px;padding:.22rem .8rem;background:var(--surface)}
+
+/* fiche entreprise — données du registre, pas de chiffres inventés */
+.fiche{
+  background:var(--surface);border:1px solid var(--line);border-radius:10px;
+  box-shadow:0 14px 34px rgba(10,26,82,.10);overflow:hidden;
+}
+.fiche-head{
+  display:flex;justify-content:space-between;align-items:center;gap:1rem;
+  background:var(--brand-deep);color:#fff;padding:.7rem 1.1rem;
+  font-family:var(--display);font-weight:650;font-size:.92rem;
+}
+.fiche-head .tampon{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;
+  border:1.5px solid #6FE3A5;color:#6FE3A5;border-radius:3px;padding:.1rem .45rem;
+  transform:rotate(-2deg);white-space:nowrap;
+}
+.fiche dl{padding:1rem 1.1rem .4rem;font-family:var(--mono);font-size:.84rem}
+.fiche .row{display:flex;gap:1rem;justify-content:space-between;border-bottom:1px dashed var(--line);padding-block:.5rem;flex-wrap:wrap}
+.fiche dt{color:var(--ink-soft)}
+.fiche dd{font-weight:500;text-align:right}
+.fiche footer{padding:.7rem 1.1rem 1rem;font-size:.78rem;color:var(--ink-soft)}
+
+/* ---------- bandes de section ---------- */
+section{padding-block:4rem}
+.section-head{max-width:46em;margin-bottom:2.4rem}
+.section-head h2{font-size:clamp(1.7rem,3.4vw,2.4rem);font-weight:800;font-style:italic;color:var(--brand-deep);margin-top:.45rem}
+.section-head p{margin-top:.9rem;color:var(--ink-soft)}
+
+/* prestations */
+.prestations{background:var(--surface);border-block:1px solid var(--line)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
+.card{
+  background:var(--bg);border:1px solid var(--line);border-radius:8px;
+  padding:1.5rem 1.4rem;display:flex;flex-direction:column;gap:.7rem;
+}
+.card .pour{font-family:var(--body);font-weight:600;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}
+.card h3{font-size:1.22rem;font-weight:800;color:var(--brand-deep)}
+.card p{font-size:.95rem;color:var(--ink-soft)}
+.card.phare{background:var(--brand-deep);border-color:var(--brand-deep)}
+.card.phare .pour{color:#8FB5FF}
+.card.phare h3{color:#fff}
+.card.phare p{color:#C9D4F2}
+.card.phare a{color:#8FB5FF;font-weight:600}
+
+/* logistique */
+.logistique .deux-cols{display:grid;grid-template-columns:1fr 1fr;gap:2.6rem;align-items:start}
+.bloc-liste h3{font-size:1.1rem;font-weight:800;color:var(--brand-deep);margin-bottom:.8rem}
+.bloc-liste ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:.65rem}
+.bloc-liste li{
+  background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--brand);
+  border-radius:0 6px 6px 0;padding:.7rem .95rem;font-size:.95rem;color:var(--ink-soft);
+}
+.bloc-liste li b{color:var(--ink);font-weight:600}
+.methode-pas{counter-reset:pas;list-style:none;padding:0;display:flex;flex-direction:column;gap:.9rem}
+.methode-pas li{display:flex;gap:.95rem;align-items:baseline}
+.methode-pas li::before{
+  counter-increment:pas;content:counter(pas);
+  font-family:var(--display);font-weight:900;font-style:italic;font-size:1.25rem;color:var(--brand);
+  min-width:1.4em;
+}
+.methode-pas li p{font-size:.97rem;color:var(--ink-soft)}
+.methode-pas li b{color:var(--ink);font-weight:600}
+
+/* humain */
+.humain{background:var(--brand-deep);color:#E7ECFA}
+.humain .eyebrow{color:#8FB5FF}
+.humain h2{color:#fff}
+.humain .section-head p{color:#B9C6EA}
+.engagements{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem 2.4rem}
+.engagements article{border-top:2px solid rgba(143,181,255,.45);padding-top:1rem}
+.engagements h3{font-size:1.12rem;font-weight:800;color:#fff;margin-bottom:.4rem}
+.engagements p{font-size:.95rem;color:#B9C6EA}
+
+/* entreprise + contact */
+.entreprise .deux-cols{display:grid;grid-template-columns:1.1fr .9fr;gap:2.6rem;align-items:start}
+.entreprise p + p{margin-top:.9rem}
+.entreprise .texte p{color:var(--ink-soft)}
+.entreprise .texte b{color:var(--ink)}
+.logo-carte{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:1.2rem;display:flex;justify-content:center}
+.logo-carte img{max-width:360px;width:100%;height:auto}
+
+.contact{background:var(--surface);border-top:1px solid var(--line)}
+.contact .deux-cols{display:grid;grid-template-columns:1fr 1fr;gap:2.6rem;align-items:start}
+.coord{list-style:none;padding:0;display:flex;flex-direction:column;gap:.9rem;font-size:.98rem}
+.coord li{display:flex;flex-direction:column;gap:.15rem}
+.coord .label{font-weight:600;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}
+.coord .a-completer{
+  border:1.5px dashed var(--line);border-radius:6px;padding:.45rem .8rem;
+  color:var(--ink-soft);font-style:italic;background:var(--bg);
+}
+
+/* footer */
+footer.site{background:var(--brand-deep);color:#AEBBE3;padding-block:2.4rem;font-size:.85rem}
+footer.site .wrap{display:flex;flex-direction:column;gap:1.1rem}
+footer.site .devise{font-family:var(--display);font-weight:650;color:#fff;font-size:.95rem;display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+footer.site .devise i{font-style:normal;color:#8FB5FF}
+footer.site p{max-width:72em}
+
+@media (max-width:860px){
+  .hero-grid,.logistique .deux-cols,.entreprise .deux-cols,.contact .deux-cols{grid-template-columns:1fr;gap:2.2rem}
+  .cards{grid-template-columns:1fr 1fr}
+  .engagements{grid-template-columns:1fr}
+  section{padding-block:3rem}
+}
+@media (max-width:580px){
+  .cards{grid-template-columns:1fr}
+  .nav nav{display:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#haut" aria-label="OF ENTRETIENS — retour en haut de page"><b>OF</b><span>ENTRETIENS</span></a>
+    <nav aria-label="Navigation principale">
+      <a href="#prestations">Prestations</a>
+      <a href="#logistique">Plateformes logistiques</a>
+      <a href="#methode">Notre méthode</a>
+      <a href="#entreprise">L’entreprise</a>
+    </nav>
+    <a class="btn btn-primary" href="#contact">Demander un devis</a>
+  </div>
+</header>
+
+<main id="haut">
+
+  <!-- ======================= HERO ======================= -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Entreprise de propreté et de services · Montfermeil, Seine-Saint-Denis</p>
+        <h1>Le travail bien fait, <em>du chantier à l’entrepôt.</em></h1>
+        <p class="lead">
+          OF ENTRETIENS intervient auprès des entreprises, des promoteurs immobiliers et des
+          plateformes logistiques : nettoyage de locaux, de bureaux et de base-vie, lever de
+          réserves, nettoyage et convoyage de véhicules. Une équipe à taille humaine, qui écoute
+          avant d’intervenir et qui tient ce qu’elle annonce.
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#contact">Parler de votre besoin</a>
+          <a class="btn btn-ghost" href="#prestations">Voir nos prestations</a>
+        </div>
+        <div class="fields" aria-label="Nos domaines d’intervention">
+          <span>Locaux &amp; bureaux</span>
+          <span>Base-vie de chantier</span>
+          <span>Lever de réserves</span>
+          <span>Plateformes logistiques</span>
+          <span>Véhicules</span>
+        </div>
+      </div>
+
+      <aside class="fiche" aria-label="Fiche entreprise : informations vérifiables au registre">
+        <div class="fiche-head">
+          <span>Fiche entreprise</span>
+          <span class="tampon">RCS · INSCRIT ✓</span>
+        </div>
+        <dl>
+          <div class="row"><dt>Dénomination</dt><dd>OF ENTRETIENS</dd></div>
+          <div class="row"><dt>SIREN</dt><dd>927 491 357</dd></div>
+          <div class="row"><dt>Forme</dt><dd>SASU — créée le 22/03/2024</dd></div>
+          <div class="row"><dt>RCS</dt><dd>Bobigny</dd></div>
+          <div class="row"><dt>Activité (NAF 81.21Z)</dt><dd>Nettoyage courant des bâtiments</dd></div>
+          <div class="row"><dt>Convention collective</dt><dd>Propreté — IDCC 3043</dd></div>
+          <div class="row"><dt>Siège</dt><dd>8 av. des Frères Lumière<br>93370 Montfermeil</dd></div>
+        </dl>
+        <footer>Données publiques issues du registre national des entreprises. Nous préférons des faits vérifiables aux promesses.</footer>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ======================= PRESTATIONS ======================= -->
+  <section class="prestations" id="prestations">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Ce que nous faisons</p>
+        <h2>Des prestations concrètes, pour des besoins concrets.</h2>
+        <p>Chaque prestation répond à un problème précis de nos clients : des locaux agréables à
+        occuper, un chantier livrable dans les délais, un site logistique qui tourne sans accroc,
+        des véhicules prêts à l’emploi.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <p class="pour">Entreprises · Gestionnaires de sites</p>
+          <h3>Nettoyage de locaux et de bureaux</h3>
+          <p>Entretien courant de vos espaces de travail : bureaux, sanitaires, parties communes,
+          zones de passage. En régulier ou en ponctuel, selon un périmètre défini ensemble et
+          respecté dans la durée.</p>
+        </article>
+        <article class="card">
+          <p class="pour">Chantiers · Entreprises du BTP</p>
+          <h3>Nettoyage de base-vie</h3>
+          <p>Des vestiaires, réfectoires et sanitaires de chantier propres, pour que les équipes
+          travaillent dans des conditions correctes. C’est une question de respect des personnes
+          autant que d’hygiène.</p>
+        </article>
+        <article class="card">
+          <p class="pour">Promoteurs immobiliers</p>
+          <h3>Lever de réserves</h3>
+          <p>Après les visites de réception, nous intervenons pour traiter les réserves constatées
+          et vous permettre de livrer dans de bonnes conditions. Périmètre d’intervention défini
+          précisément avec vous, opération par opération.</p>
+        </article>
+        <article class="card">
+          <p class="pour">Professionnels · Particuliers</p>
+          <h3>Nettoyage de véhicules</h3>
+          <p>Nettoyage de véhicules de tous types, de toutes marques et de tous modèles. Intérieur
+          comme extérieur, avec le même soin que pour le reste : un véhicule rendu propre, prêt à
+          rouler ou à être présenté.</p>
+        </article>
+        <article class="card">
+          <p class="pour">Sur demande</p>
+          <h3>Convoyage de véhicules</h3>
+          <p>Prise en charge et acheminement de véhicules d’un point à un autre. Les conditions et
+          le périmètre sont précisés ensemble, en fonction de votre besoin.</p>
+        </article>
+        <article class="card phare">
+          <p class="pour">Notre offre dédiée</p>
+          <h3>Plateformes logistiques</h3>
+          <p>Une offre construite pour les entrepôts et sites logistiques : propreté continue,
+          interventions organisées autour de vos flux, respect strict des consignes du site.</p>
+          <a href="#logistique">Découvrir l’offre ↓</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= PLATEFORMES LOGISTIQUES ======================= -->
+  <section class="logistique" id="logistique">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Offre dédiée</p>
+        <h2>Plateformes logistiques : intervenir sans jamais gêner l’exploitation.</h2>
+        <p>Sur une plateforme logistique, chaque heure compte et chaque zone a ses règles. Un
+        prestataire de propreté qui ne comprend pas cela devient un problème de plus. Notre offre
+        part de vos contraintes d’exploitation, pas de notre planning.</p>
+      </div>
+      <div class="deux-cols">
+        <div class="bloc-liste">
+          <h3>Ce que vivent les responsables de site</h3>
+          <ul>
+            <li><b>La continuité d’activité avant tout.</b> Les quais, les allées et les locaux
+            doivent rester exploitables pendant les interventions.</li>
+            <li><b>De la co-activité permanente.</b> Caristes, préparateurs, transporteurs : toute
+            intervention extérieure doit composer avec les équipes et les flux en place.</li>
+            <li><b>Des règles de sécurité strictes.</b> Plan de circulation, équipements, consignes
+            d’accès : un intervenant qui ne les respecte pas met le site en risque.</li>
+            <li><b>Des horaires contraints.</b> Les créneaux utiles sont ceux qui ne perturbent pas
+            l’exploitation — et ils ne sont pas toujours confortables pour le prestataire.</li>
+            <li><b>Besoin d’un interlocuteur fiable.</b> Un responsable d’exploitation n’a pas de
+            temps à perdre à courir après son prestataire.</li>
+          </ul>
+        </div>
+        <div class="bloc-liste">
+          <h3>Ce que nous proposons</h3>
+          <ul>
+            <li><b>Nettoyage et entretien courant</b> des bureaux, locaux sociaux, sanitaires,
+            vestiaires et zones de passage du site.</li>
+            <li><b>Des interventions planifiées avec vous,</b> sur les créneaux qui respectent vos
+            pics d’activité et vos flux.</li>
+            <li><b>Le respect des consignes du site :</b> vos règles de sécurité, d’accès et de
+            circulation sont intégrées avant la première intervention.</li>
+            <li><b>Un interlocuteur direct,</b> qui connaît votre site, répond, et ajuste la
+            prestation quand votre activité évolue.</li>
+            <li><b>Un suivi honnête :</b> ce qui est fait est fait, ce qui pose problème est dit —
+            et traité.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= MÉTHODE ======================= -->
+  <section class="methode" id="methode" style="background:var(--surface);border-block:1px solid var(--line)">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Notre méthode</p>
+        <h2>Comprendre d’abord, intervenir ensuite.</h2>
+        <p>La même démarche s’applique à toutes nos prestations, du bureau de 100&nbsp;m² à la
+        plateforme logistique.</p>
+      </div>
+      <ol class="methode-pas">
+        <li><p><b>Nous visitons votre site et nous vous écoutons.</b> Le besoin réel se comprend sur
+        place : les lieux, les usages, les contraintes, les horaires, les personnes.</p></li>
+        <li><p><b>Nous définissons ensemble un périmètre clair.</b> Ce qui est inclus, ce qui ne
+        l’est pas, à quelle fréquence, sur quels créneaux. Pas de zone grise.</p></li>
+        <li><p><b>Nous intégrons vos règles avant d’intervenir.</b> Consignes de sécurité, accès,
+        circulation, présence des équipes : nos intervenants arrivent préparés.</p></li>
+        <li><p><b>Nous faisons le travail, et nous le suivons.</b> Un interlocuteur direct, des
+        points réguliers, et des ajustements quand votre activité change.</p></li>
+        <li><p><b>Quand il y a un imprévu, nous le disons.</b> Un problème signalé tôt et traité
+        franchement vaut mieux qu’une promesse intenable.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ======================= HUMAIN ======================= -->
+  <section class="humain">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Ce qui nous tient</p>
+        <h2>Derrière chaque prestation, il y a des personnes.</h2>
+        <p>Des responsables qui doivent tenir leurs engagements, des équipes qui méritent des
+        locaux corrects, des intervenants qui font un vrai travail. Notre manière de travailler
+        part de là.</p>
+      </div>
+      <div class="engagements">
+        <article>
+          <h3>L’écoute avant le devis</h3>
+          <p>Nous ne vendons pas un forfait standard. Nous commençons par comprendre votre site,
+          vos contraintes et ce qui compte vraiment pour vous.</p>
+        </article>
+        <article>
+          <h3>Le respect des gens sur le terrain</h3>
+          <p>Vos équipes comme les nôtres. Une base-vie propre, un entrepôt bien tenu, ce sont des
+          conditions de travail dignes pour ceux qui y passent leurs journées.</p>
+        </article>
+        <article>
+          <h3>La transparence</h3>
+          <p>Nous disons ce que nous faisons, et nous faisons ce que nous disons. Si quelque chose
+          ne peut pas être tenu, vous l’apprenez de nous, tout de suite.</p>
+        </article>
+        <article>
+          <h3>La relation dans la durée</h3>
+          <p>Un client bien servi reste. Nous préférons construire des partenariats durables que
+          multiplier les interventions sans lendemain.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= ENTREPRISE ======================= -->
+  <section class="entreprise" id="entreprise">
+    <div class="wrap deux-cols">
+      <div class="texte">
+        <div class="section-head" style="margin-bottom:1.4rem">
+          <p class="eyebrow">L’entreprise</p>
+          <h2>Une structure à taille humaine, un engagement direct.</h2>
+        </div>
+        <p>OF ENTRETIENS est une entreprise de propreté et de services créée en mars 2024 et
+        installée à <b>Montfermeil, en Seine-Saint-Denis</b>. Elle est dirigée par
+        <b>Frédéric Oz</b>, votre interlocuteur direct.</p>
+        <p>Nous relevons de la convention collective des <b>entreprises de propreté et services
+        associés (IDCC 3043)</b> et exerçons une activité de nettoyage courant des bâtiments
+        (NAF 81.21Z), complétée par le nettoyage de véhicules de tous types.</p>
+        <p>Être une jeune entreprise à taille humaine, c’est notre réalité — et c’est aussi ce qui
+        fait que chaque client compte, que chaque chantier est suivi de près, et que vous parlez
+        toujours à quelqu’un qui connaît votre dossier.</p>
+      </div>
+      <div class="logo-carte">
+        <img src="assets/logo.jpg" alt="Logo OF ENTRETIENS — convoyage, lever de réserves, partenaire des promoteurs et plateforme logistique" width="1170" height="873">
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= CONTACT ======================= -->
+  <section class="contact" id="contact">
+    <div class="wrap deux-cols">
+      <div class="section-head" style="margin-bottom:0">
+        <p class="eyebrow">Contact</p>
+        <h2>Parlons de votre besoin.</h2>
+        <p>Décrivez-nous votre site, vos locaux ou votre opération : nous revenons vers vous pour
+        en parler concrètement, puis nous venons voir sur place avant de chiffrer quoi que ce
+        soit.</p>
+      </div>
+      <ul class="coord">
+        <li>
+          <span class="label">Adresse</span>
+          <span>OF ENTRETIENS<br>8 avenue des Frères Lumière<br>93370 Montfermeil</span>
+        </li>
+        <li>
+          <span class="label">Téléphone</span>
+          <span class="a-completer">À compléter — numéro à fournir</span>
+        </li>
+        <li>
+          <span class="label">E-mail</span>
+          <span class="a-completer">À compléter — adresse à fournir</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p class="devise">OF ENTRETIENS <i>·</i> Convoyage <i>·</i> Lever de réserves <i>·</i> Partenaire des promoteurs et plateforme logistique</p>
+    <p>OF ENTRETIENS — SASU au capital de 500&nbsp;€ · SIREN 927&nbsp;491&nbsp;357 · RCS Bobigny ·
+    TVA intracommunautaire FR80927491357 · Siège social : 8 avenue des Frères Lumière,
+    93370 Montfermeil · Code NAF 81.21Z — Nettoyage courant des bâtiments · Convention collective :
+    Entreprises de propreté et services associés (IDCC 3043).</p>
+  </div>
+</footer>
+
+</body>
+</html>
