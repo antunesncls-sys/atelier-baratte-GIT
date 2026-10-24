@@ -33,7 +33,17 @@
       <span>@ofentretiens</span>
     </a>
     <a class="btn btn-primary" href="#contact">Demander un devis</a>
+    <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu-mobile">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+    </button>
   </div>
+  <nav id="menu-mobile" class="menu-mobile" aria-label="Menu mobile" hidden>
+    <a href="index.html">Accueil</a>
+    <a href="corvoyage.html">Corvoyage</a>
+    <a href="promoteurs.html">Promoteurs</a>
+    <a href="plateformes-logistiques.html">Plateformes logistiques</a>
+    <a class="btn btn-primary" href="#contact">Demander un devis</a>
+  </nav>
 </header>
 
 <main>
@@ -408,6 +418,22 @@
     location.href = "mailto:mike.ofentretiens@gmail.com?subject=" +
       encodeURIComponent("Demande de devis (" + g('fc-objet') + ") — " + g('fc-nom')) +
       "&body=" + encodeURIComponent(corps);
+  });
+})();
+</script>
+<script>
+(function(){
+  var b = document.querySelector('.burger');
+  var m = document.getElementById('menu-mobile');
+  if(!b || !m) return;
+  b.addEventListener('click', function(){
+    var ouvrir = m.hidden;
+    m.hidden = !ouvrir;
+    b.setAttribute('aria-expanded', String(ouvrir));
+    b.setAttribute('aria-label', ouvrir ? 'Fermer le menu' : 'Ouvrir le menu');
+  });
+  m.addEventListener('click', function(e){
+    if(e.target.closest('a')){ m.hidden = true; b.setAttribute('aria-expanded','false'); }
   });
 })();
 </script>
