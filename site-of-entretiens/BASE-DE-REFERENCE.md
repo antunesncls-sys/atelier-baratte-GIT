@@ -63,7 +63,8 @@ référence ou certification ne doit être inventée.**
 - **[CONFIRMÉ par la devise/le brief]** Promoteurs immobiliers · plateformes logistiques.
 - **[CONFIRMÉ — dirigeant, oct. 2026]** Référence client : **Bouygues Immobilier**
   (promoteur, opérations en Île-de-France). Logo fourni par le dirigeant et affiché sur le
-  site à sa demande.
+  site à sa demande. Programme en cours : **SCCV « Un Balcon en Forêt »** — les photos de
+  programme du site (allée, coursives, jardin) y ont été prises.
 - **[DÉDUIT des activités déclarées]** Entreprises (bureaux/locaux), entreprises du BTP
   (base-vie).
 - **[CONFIRMÉ]** Zone d'intervention : Île-de-France.
