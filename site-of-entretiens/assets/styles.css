@@ -306,3 +306,13 @@ footer.site p{max-width:72em}
   margin:-1.5rem -1.4rem .45rem;width:calc(100% + 2.8rem);max-width:none;
   height:150px;object-fit:cover;border-radius:7px 7px 0 0;display:block;
 }
+
+/* formulaire de contact */
+.form-contact{display:flex;flex-direction:column;gap:.9rem;margin-top:1.5rem;max-width:34em}
+.form-contact .champs{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.form-contact label{display:flex;flex-direction:column;gap:.3rem;font-weight:600;font-size:.85rem;color:var(--brand-deep)}
+.form-contact input,.form-contact textarea{font:inherit;padding:.6rem .75rem;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)}
+.form-contact input:focus,.form-contact textarea:focus{outline:2px solid var(--brand);border-color:var(--brand)}
+.form-contact button{align-self:flex-start;cursor:pointer}
+.form-note{font-size:.78rem;color:var(--ink-soft)}
+@media (max-width:580px){.form-contact .champs{grid-template-columns:1fr}}

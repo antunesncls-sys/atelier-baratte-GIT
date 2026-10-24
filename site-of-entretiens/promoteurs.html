@@ -248,6 +248,19 @@
         <h2>Parlons de votre opération.</h2>
         <p>Décrivez-nous votre programme et son calendrier : nous venons voir sur place avant de
         chiffrer quoi que ce soit.</p>
+      
+        <form class="form-contact" id="devis-form">
+          <div class="champs">
+            <label>Nom *<input type="text" id="fc-nom" name="nom" autocomplete="name" required></label>
+            <label>Société<input type="text" id="fc-societe" name="societe" autocomplete="organization"></label>
+            <label>Téléphone<input type="tel" id="fc-tel" name="tel" autocomplete="tel"></label>
+            <label>E-mail *<input type="email" id="fc-email" name="email" autocomplete="email" required></label>
+          </div>
+          <label>Votre besoin *<textarea id="fc-msg" name="message" rows="4" required placeholder="Décrivez votre site, votre opération ou votre besoin"></textarea></label>
+          <button class="btn btn-primary" type="submit">Envoyer la demande</button>
+          <p class="form-note">L’envoi ouvre votre messagerie avec la demande pré-remplie, adressée à
+          mike.ofentretiens@gmail.com. Vous pouvez aussi nous appeler directement au 06 62 06 93 22.</p>
+        </form>
       </div>
       <ul class="coord">
         <li><span class="label">Téléphone</span><span><a href="tel:+33662069322" style="font-weight:600">06 62 06 93 22</a></span></li>
@@ -323,5 +336,21 @@
 }
 </script>
 
+<script>
+(function(){
+  var f = document.getElementById('devis-form');
+  if(!f) return;
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    function g(id){ var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+    var corps = "Nom : " + g('fc-nom') + "\nSociété : " + g('fc-societe') +
+      "\nTéléphone : " + g('fc-tel') + "\nE-mail : " + g('fc-email') +
+      "\n\nBesoin :\n" + g('fc-msg');
+    location.href = "mailto:mike.ofentretiens@gmail.com?subject=" +
+      encodeURIComponent("Demande de devis — " + g('fc-nom')) +
+      "&body=" + encodeURIComponent(corps);
+  });
+})();
+</script>
 </body>
 </html>
