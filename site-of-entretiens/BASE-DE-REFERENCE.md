@@ -138,8 +138,8 @@ en slogans. Interdits : « excellence opérationnelle », « solutions innovante
 1. ~~« Corvoyage » vs « convoyage »~~ **Résolu (oct. 2026)** : corvoyage est bien le terme
    métier (préparation des logements / levée de réserves), attesté chez Quitus et
    Timing AMO. Le site affiche « Corvoyage ».
-2. ~~E-mail~~ **Résolu (oct. 2026)** : mike.ofentretiens@gmail.com (sur le site). Téléphone
-   toujours manquant (placeholder sur le site).
+2. ~~Téléphone et e-mail~~ **Résolu (oct. 2026)** : mike.ofentretiens@gmail.com et
+   06 62 06 93 22 (tous deux sur le site).
 2 bis. ENEDIS apparaît dans un post du dirigeant (contexte d'une intervention d'urgence) :
    ne pas le citer comme référence client sur les supports sans son accord explicite.
 3. Contenu exact du lever de réserves (corps d'état, limites).
