@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>OF ENTRETIENS — Nettoyage de locaux, base-vie, lever de réserves · Montfermeil (93)</title>
-<meta name="description" content="OF ENTRETIENS, entreprise de propreté et de services à Montfermeil (Seine-Saint-Denis) : nettoyage de locaux, bureaux et base-vie, lever de réserves pour les promoteurs, entretien des plateformes logistiques, nettoyage et convoyage de véhicules.">
+<meta name="description" content="OF ENTRETIENS, entreprise de propreté et de services à Montfermeil (Seine-Saint-Denis) : corvoyage et lever de réserves pour les promoteurs, nettoyage de locaux, bureaux et base-vie, entretien des plateformes logistiques, nettoyage de véhicules.">
 <meta property="og:title" content="OF ENTRETIENS — Le travail bien fait, du chantier à l’entrepôt">
-<meta property="og:description" content="Nettoyage de locaux, bureaux et base-vie · Lever de réserves · Plateformes logistiques · Nettoyage et convoyage de véhicules. Montfermeil (93).">
+<meta property="og:description" content="Corvoyage · Lever de réserves · Nettoyage de locaux, bureaux et base-vie · Plateformes logistiques · Nettoyage de véhicules. Montfermeil (93).">
 <meta property="og:image" content="assets/logo.jpg">
 <meta property="og:type" content="website">
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -153,6 +153,17 @@ section{padding-block:4rem}
 .methode-pas li p{font-size:.97rem;color:var(--ink-soft)}
 .methode-pas li b{color:var(--ink);font-weight:600}
 
+/* galerie terrain */
+.terrain .galerie{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem}
+.terrain figure{position:relative;border-radius:8px;overflow:hidden;aspect-ratio:4/3;background:var(--line)}
+.terrain figure.large{grid-column:span 2}
+.terrain img{width:100%;height:100%;object-fit:cover;display:block}
+.terrain figcaption{
+  position:absolute;inset:auto 0 0 0;padding:.55rem .85rem;
+  background:linear-gradient(transparent,rgba(2,19,71,.78));
+  color:#fff;font-size:.82rem;font-weight:500;
+}
+
 /* humain */
 .humain{background:var(--brand-deep);color:#E7ECFA}
 .humain .eyebrow{color:#8FB5FF}
@@ -192,6 +203,8 @@ footer.site p{max-width:72em}
   .hero-grid,.logistique .deux-cols,.entreprise .deux-cols,.contact .deux-cols{grid-template-columns:1fr;gap:2.2rem}
   .cards{grid-template-columns:1fr 1fr}
   .engagements{grid-template-columns:1fr}
+  .terrain .galerie{grid-template-columns:1fr 1fr}
+  .terrain figure.large{grid-column:span 2}
   section{padding-block:3rem}
 }
 @media (max-width:580px){
@@ -224,9 +237,9 @@ footer.site p{max-width:72em}
         <p class="eyebrow">Entreprise de propreté et de services · Montfermeil, Seine-Saint-Denis</p>
         <h1>Le travail bien fait, <em>du chantier à l’entrepôt.</em></h1>
         <p class="lead">
-          OF ENTRETIENS intervient auprès des entreprises, des promoteurs immobiliers et des
-          plateformes logistiques : nettoyage de locaux, de bureaux et de base-vie, lever de
-          réserves, nettoyage et convoyage de véhicules. Une équipe à taille humaine, qui écoute
+          OF ENTRETIENS intervient auprès des promoteurs immobiliers, des entreprises et des
+          plateformes logistiques : corvoyage et lever de réserves, nettoyage de locaux, de
+          bureaux et de base-vie, nettoyage de véhicules. Une équipe à taille humaine, qui écoute
           avant d’intervenir et qui tient ce qu’elle annonce.
         </p>
         <div class="actions">
@@ -234,9 +247,10 @@ footer.site p{max-width:72em}
           <a class="btn btn-ghost" href="#prestations">Voir nos prestations</a>
         </div>
         <div class="fields" aria-label="Nos domaines d’intervention">
+          <span>Corvoyage</span>
+          <span>Lever de réserves</span>
           <span>Locaux &amp; bureaux</span>
           <span>Base-vie de chantier</span>
-          <span>Lever de réserves</span>
           <span>Plateformes logistiques</span>
           <span>Véhicules</span>
         </div>
@@ -285,9 +299,9 @@ footer.site p{max-width:72em}
         <article class="card">
           <p class="pour">Promoteurs immobiliers</p>
           <h3>Lever de réserves</h3>
-          <p>Après les visites de réception, nous intervenons pour traiter les réserves constatées
-          et vous permettre de livrer dans de bonnes conditions. Périmètre d’intervention défini
-          précisément avec vous, opération par opération.</p>
+          <p>Après les visites de réception, nous traitons les réserves constatées — du constat à
+          la reprise, jusqu’au contrôle final — pour vous permettre de livrer dans de bonnes
+          conditions. Périmètre défini avec vous, opération par opération.</p>
         </article>
         <article class="card">
           <p class="pour">Professionnels · Particuliers</p>
@@ -297,10 +311,11 @@ footer.site p{max-width:72em}
           rouler ou à être présenté.</p>
         </article>
         <article class="card">
-          <p class="pour">Sur demande</p>
-          <h3>Convoyage de véhicules</h3>
-          <p>Prise en charge et acheminement de véhicules d’un point à un autre. Les conditions et
-          le périmètre sont précisés ensemble, en fonction de votre besoin.</p>
+          <p class="pour">Promoteurs immobiliers</p>
+          <h3>Corvoyage</h3>
+          <p>Préparation et suivi des logements avant livraison : reprises de finitions,
+          coordination sur place, contrôle du résultat et suivi des réserves jusqu’à leur levée.
+          Pour des réceptions qui se passent bien.</p>
         </article>
         <article class="card phare">
           <p class="pour">Notre offre dédiée</p>
@@ -382,6 +397,41 @@ footer.site p{max-width:72em}
     </div>
   </section>
 
+  <!-- ======================= SUR LE TERRAIN ======================= -->
+  <section class="terrain" id="terrain">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Sur le terrain</p>
+        <h2>Nos interventions, en vrai.</h2>
+        <p>Des photos prises sur nos chantiers et nos sites d’intervention, sans mise en scène :
+        des logements en fin de chantier, des reprises de finitions, des locaux techniques et des
+        extérieurs.</p>
+      </div>
+      <div class="galerie">
+        <figure class="large">
+          <img src="assets/corvoyage-logement.jpg" alt="Intervenant préparant un logement neuf : échelle, enduit et reprises en cours" loading="lazy" width="1600" height="1200">
+          <figcaption>Corvoyage : préparation d’un logement avant livraison</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/reprise-platrerie.jpg" alt="Reprise de plâtrerie autour de gaines techniques, rebouchage et bandes" loading="lazy" width="1200" height="1600">
+          <figcaption>Reprises de plâtrerie avant mise en peinture</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/reserve-detail.jpg" alt="Réserve constatée au-dessus d’une menuiserie, en attente de reprise" loading="lazy" width="1200" height="1600">
+          <figcaption>Réserves : constat, reprise, contrôle</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/local-technique.jpg" alt="Poteau béton et gaine électrique dans un local technique" loading="lazy" width="1200" height="1600">
+          <figcaption>Volumes et locaux techniques</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/residence-exterieurs.jpg" alt="Espaces verts et terrasse d’une résidence, le long de la clôture" loading="lazy" width="1200" height="1600">
+          <figcaption>Extérieurs et abords de résidence</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <!-- ======================= HUMAIN ======================= -->
   <section class="humain">
     <div class="wrap">
@@ -437,7 +487,7 @@ footer.site p{max-width:72em}
         annoncé clairement, et tenu.</p>
       </div>
       <div class="logo-carte">
-        <img src="assets/logo.jpg" alt="Logo OF ENTRETIENS — convoyage, lever de réserves, partenaire des promoteurs et plateforme logistique" width="1170" height="873">
+        <img src="assets/logo.jpg" alt="Logo OF ENTRETIENS — corvoyage, lever de réserves, partenaire des promoteurs et plateforme logistique" width="1170" height="873">
       </div>
     </div>
   </section>
@@ -476,7 +526,7 @@ footer.site p{max-width:72em}
 
 <footer class="site">
   <div class="wrap">
-    <p class="devise">OF ENTRETIENS <i>·</i> Convoyage <i>·</i> Lever de réserves <i>·</i> Partenaire des promoteurs et plateforme logistique</p>
+    <p class="devise">OF ENTRETIENS <i>·</i> Corvoyage <i>·</i> Lever de réserves <i>·</i> Partenaire des promoteurs et plateforme logistique</p>
     <p>OF ENTRETIENS — SASU au capital de 500&nbsp;€ · SIREN 927&nbsp;491&nbsp;357 · RCS Bobigny ·
     TVA intracommunautaire FR80927491357 · Siège social : 8 avenue des Frères Lumière,
     93370 Montfermeil · Code NAF 81.21Z — Nettoyage courant des bâtiments · Convention collective :

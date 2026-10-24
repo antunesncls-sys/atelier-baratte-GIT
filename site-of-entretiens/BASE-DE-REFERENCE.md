@@ -40,9 +40,9 @@ raisonnable à valider), **[À VALIDER]** (hypothèse ou information manquante).
 |---|---|---|---|---|
 | Nettoyage de locaux et bureaux | [CONFIRMÉ] (activité déclarée) | Entretien courant, régulier ou ponctuel | Entreprises, gestionnaires de sites | Fréquences types, prestations incluses/exclues |
 | Nettoyage de base-vie | [CONFIRMÉ] (activité déclarée) | Vestiaires, réfectoires, sanitaires de chantier | Entreprises du BTP, chantiers | Périmètre exact, modalités |
-| Lever de réserves | [CONFIRMÉ] (devise du logo) | Traitement des réserves après visites de réception | Promoteurs immobiliers | Contenu exact : nettoyage fin de chantier seul ? retouches ? corps d'état couverts ? |
+| Corvoyage | [CONFIRMÉ] (devise du logo ; terme métier attesté chez les concurrents Quitus et Timing AMO) | Préparation et suivi des logements avant livraison : reprises, contrôle, suivi des réserves jusqu'à leur levée (quitus) | Promoteurs immobiliers | Corps d'état couverts, outils de suivi utilisés, capacité (nb de logements) |
+| Lever de réserves | [CONFIRMÉ] (devise du logo) | Traitement des réserves après visites de réception, du constat au contrôle final | Promoteurs immobiliers | Contenu exact : nettoyage fin de chantier seul ? retouches ? corps d'état couverts ? |
 | Nettoyage de véhicules | [CONFIRMÉ] (activité déclarée) | Tous types de marques et de modèles | Professionnels, particuliers | Lieu (sur site client ?), intérieur/extérieur, gammes |
-| Convoyage de véhicules | [À VALIDER] (« corvoyage » sur le logo) | Prise en charge et acheminement de véhicules | Inconnu | Confirmer le terme, le périmètre, les conditions (assurance, permis, distances) |
 | Offre plateformes logistiques | [CONFIRMÉ] (devise du logo + brief) | Propreté et entretien courant des entrepôts : bureaux, locaux sociaux, sanitaires, zones de passage ; interventions organisées autour des flux | Responsables de site, d'exploitation, services généraux, achats | Prestations au-delà du nettoyage courant (quais ? racks ? mécanisation ?) — NE RIEN AFFIRMER sans confirmation |
 
 **Règle : aucune prestation secondaire ne doit être supprimée ; aucune prestation, capacité,
@@ -100,6 +100,24 @@ en slogans. Interdits : « excellence opérationnelle », « solutions innovante
   mentions légales restent en pied de page uniquement.
 - Logistique : « Intervenir sans jamais gêner l'exploitation. »
 
+## 9 bis. Concurrence identifiée
+
+- **Quitus (quitus.immo)** — désigné par le dirigeant comme LE concurrent (oct. 2026).
+  Montereau-Fault-Yonne (77), ~10 ans d'expérience. Offre : corvoyage (préparation et
+  réception des logements, levée de réserves TCE), SAV immobilier (suivi des réserves,
+  pointage, GPA), relation client (livraisons, TMA), « site facilities » (nettoyage de
+  chantier, logistique). Cibles : promoteurs et bailleurs, Île-de-France. Preuves : logos
+  de groupes (Nexity, Vinci, Cogedim, Pitch) mais descriptions de projets génériques et
+  aucun chiffre de performance. Faiblesses exploitables : références peu détaillées, pas
+  d'ancrage 93/Est parisien spécifique, pas de dimension humaine incarnée.
+- **Timing AMO (timing-amo.com)** — propose une « mission de corvoyage » : suivi de
+  planning, gestion des travaux, récupération des quitus de levée ; IDF, Normandie,
+  Picardie. Confirme que « corvoyage » est le terme métier établi.
+- **Conséquence pour notre discours** : parler le langage des promoteurs (corvoyage,
+  réserves, quitus, GPA, réceptions) ; se différencier par la proximité (93), la taille
+  humaine, l'interlocuteur direct et le couple corvoyage + propreté (base-vie, fin de
+  chantier, entretien après livraison) que Quitus ne met pas en avant.
+
 ## 10. Opportunités de développement identifiées
 
 - Synergie promoteur : base-vie pendant le chantier → lever de réserves à la livraison →
@@ -111,16 +129,20 @@ en slogans. Interdits : « excellence opérationnelle », « solutions innovante
 
 ## 11. Informations manquantes ou à valider
 
-1. **« Corvoyage » vs « convoyage »** sur le logo — coquille à confirmer d'urgence (le site
-   affiche « Convoyage »).
+1. ~~« Corvoyage » vs « convoyage »~~ **Résolu (oct. 2026)** : corvoyage est bien le terme
+   métier (préparation des logements / levée de réserves), attesté chez Quitus et
+   Timing AMO. Le site affiche « Corvoyage ».
 2. Téléphone et e-mail de contact (placeholders sur le site).
 3. Contenu exact du lever de réserves (corps d'état, limites).
 4. Périmètre réel de l'offre logistique au-delà du nettoyage courant.
 5. Zone géographique d'intervention.
 6. Références clients publiables (avec accord écrit).
 7. Effectif réel et organisation des équipes.
-8. Assurances (RC pro, spécifique convoyage) — nécessaires avant de vendre le convoyage.
+8. Assurances et garanties (RC pro, décennale si reprises de second œuvre en corvoyage).
 9. Nom de domaine et hébergement souhaités pour le site.
+10. Photos : une dizaine d'images supplémentaires (équipe en intervention dans une cuisine
+    professionnelle, façades, détails de réserves) ont été montrées en conversation mais
+    jamais reçues en fichiers — à renvoyer en pièces jointes pour enrichir la galerie.
 
 ## 12. À ne jamais affirmer sans preuve
 
