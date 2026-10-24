@@ -117,9 +117,7 @@ section{padding-block:4rem}
 .card .pour{font-family:var(--body);font-weight:600;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}
 .card h3{font-size:1.22rem;font-weight:800;color:var(--brand-deep)}
 .card p{font-size:.95rem;color:var(--ink-soft)}
-.card.phare{background:var(--brand-deep);border-color:var(--brand-deep);grid-column:span 2}
-@media (max-width:860px){.card.phare{grid-column:span 2}}
-@media (max-width:580px){.card.phare{grid-column:span 1}}
+.card.phare{background:var(--brand-deep);border-color:var(--brand-deep)}
 .card.phare .pour{color:#8FB5FF}
 .card.phare h3{color:#fff}
 .card.phare p{color:#C9D4F2}
