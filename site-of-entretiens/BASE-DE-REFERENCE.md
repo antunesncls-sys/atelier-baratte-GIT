@@ -42,7 +42,7 @@ raisonnable à valider), **[À VALIDER]** (hypothèse ou information manquante).
 | Nettoyage de base-vie | [CONFIRMÉ] (activité déclarée) | Vestiaires, réfectoires, sanitaires de chantier | Entreprises du BTP, chantiers | Périmètre exact, modalités |
 | Corvoyage | [CONFIRMÉ] (devise du logo ; terme métier attesté chez les concurrents Quitus et Timing AMO) | Préparation et suivi des logements avant livraison : reprises, contrôle, suivi des réserves jusqu'à leur levée (quitus) | Promoteurs immobiliers | Corps d'état couverts, outils de suivi utilisés, capacité (nb de logements) |
 | Lever de réserves | [CONFIRMÉ] (devise du logo) | Traitement des réserves après visites de réception, du constat au contrôle final | Promoteurs immobiliers | Contenu exact : nettoyage fin de chantier seul ? retouches ? corps d'état couverts ? |
-| Nettoyage de véhicules | [CONFIRMÉ] (activité déclarée) | Tous types de marques et de modèles | Professionnels, particuliers | Lieu (sur site client ?), intérieur/extérieur, gammes |
+| Nettoyage de véhicules | [CONFIRMÉ] (activité déclarée) — **retiré du site sur décision du dirigeant (oct. 2026)** | Tous types de marques et de modèles | — | Reste au registre ; ne plus le mentionner sur les supports commerciaux sauf instruction contraire |
 | Offre plateformes logistiques | [CONFIRMÉ] (devise du logo + brief) | Propreté et entretien courant des entrepôts : bureaux, locaux sociaux, sanitaires, zones de passage ; interventions organisées autour des flux | Responsables de site, d'exploitation, services généraux, achats | Prestations au-delà du nettoyage courant (quais ? racks ? mécanisation ?) — NE RIEN AFFIRMER sans confirmation |
 
 **Règle : aucune prestation secondaire ne doit être supprimée ; aucune prestation, capacité,

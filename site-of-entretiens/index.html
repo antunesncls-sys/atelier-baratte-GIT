@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>OF ENTRETIENS — Nettoyage de locaux, base-vie, lever de réserves · Montfermeil (93)</title>
-<meta name="description" content="OF ENTRETIENS, entreprise de propreté et de services à Montfermeil (Seine-Saint-Denis) : corvoyage et lever de réserves pour les promoteurs, nettoyage de locaux, bureaux et base-vie, entretien des plateformes logistiques, nettoyage de véhicules.">
+<meta name="description" content="OF ENTRETIENS, entreprise de propreté et de services à Montfermeil (Seine-Saint-Denis) : corvoyage et lever de réserves pour les promoteurs, nettoyage de locaux, bureaux et base-vie, entretien des plateformes logistiques.">
 <meta property="og:title" content="OF ENTRETIENS — Le travail bien fait, du chantier à l’entrepôt">
-<meta property="og:description" content="Corvoyage · Lever de réserves · Nettoyage de locaux, bureaux et base-vie · Plateformes logistiques · Nettoyage de véhicules. Montfermeil (93).">
+<meta property="og:description" content="Corvoyage · Lever de réserves · Nettoyage de locaux, bureaux et base-vie · Plateformes logistiques. Montfermeil (93).">
 <meta property="og:image" content="assets/logo.jpg">
 <meta property="og:type" content="website">
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -128,7 +128,7 @@ section{padding-block:4rem}
 .card .pour{font-family:var(--body);font-weight:600;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}
 .card h3{font-size:1.22rem;font-weight:800;color:var(--brand-deep)}
 .card p{font-size:.95rem;color:var(--ink-soft)}
-.card.phare{background:var(--brand-deep);border-color:var(--brand-deep)}
+.card.phare{background:var(--brand-deep);border-color:var(--brand-deep);grid-column:span 2}
 .card.phare .pour{color:#8FB5FF}
 .card.phare h3{color:#fff}
 .card.phare p{color:#C9D4F2}
@@ -209,6 +209,7 @@ footer.site p{max-width:72em}
 }
 @media (max-width:580px){
   .cards{grid-template-columns:1fr}
+  .card.phare{grid-column:span 1}
   .nav nav{display:none}
 }
 </style>
@@ -239,7 +240,7 @@ footer.site p{max-width:72em}
         <p class="lead">
           OF ENTRETIENS intervient auprès des promoteurs immobiliers, des entreprises et des
           plateformes logistiques : corvoyage et lever de réserves, nettoyage de locaux, de
-          bureaux et de base-vie, nettoyage de véhicules. Une équipe à taille humaine, qui écoute
+          bureaux et de base-vie. Une équipe à taille humaine, qui écoute
           avant d’intervenir et qui tient ce qu’elle annonce.
         </p>
         <div class="actions">
@@ -252,7 +253,6 @@ footer.site p{max-width:72em}
           <span>Locaux &amp; bureaux</span>
           <span>Base-vie de chantier</span>
           <span>Plateformes logistiques</span>
-          <span>Véhicules</span>
         </div>
       </div>
 
@@ -298,24 +298,17 @@ footer.site p{max-width:72em}
         </article>
         <article class="card">
           <p class="pour">Promoteurs immobiliers</p>
-          <h3>Lever de réserves</h3>
-          <p>Après les visites de réception, nous traitons les réserves constatées — du constat à
-          la reprise, jusqu’au contrôle final — pour vous permettre de livrer dans de bonnes
-          conditions. Périmètre défini avec vous, opération par opération.</p>
-        </article>
-        <article class="card">
-          <p class="pour">Professionnels · Particuliers</p>
-          <h3>Nettoyage de véhicules</h3>
-          <p>Nettoyage de véhicules de tous types, de toutes marques et de tous modèles. Intérieur
-          comme extérieur, avec le même soin que pour le reste : un véhicule rendu propre, prêt à
-          rouler ou à être présenté.</p>
-        </article>
-        <article class="card">
-          <p class="pour">Promoteurs immobiliers</p>
           <h3>Corvoyage</h3>
           <p>Préparation et suivi des logements avant livraison : reprises de finitions,
           coordination sur place, contrôle du résultat et suivi des réserves jusqu’à leur levée.
           Pour des réceptions qui se passent bien.</p>
+        </article>
+        <article class="card">
+          <p class="pour">Promoteurs immobiliers</p>
+          <h3>Lever de réserves</h3>
+          <p>Après les visites de réception, nous traitons les réserves constatées — du constat à
+          la reprise, jusqu’au contrôle final — pour vous permettre de livrer dans de bonnes
+          conditions. Périmètre défini avec vous, opération par opération.</p>
         </article>
         <article class="card phare">
           <p class="pour">Notre offre dédiée</p>
@@ -482,9 +475,9 @@ footer.site p{max-width:72em}
         votre site est connu de la personne qui vous répond, les engagements pris sont suivis de
         près, et quand quelque chose doit être ajusté, cela se règle en direct, sans
         intermédiaire.</p>
-        <p>Du nettoyage de bureaux au lever de réserves, en passant par les base-vie, les
-        entrepôts et les véhicules, la même exigence s’applique partout : un travail propre,
-        annoncé clairement, et tenu.</p>
+        <p>Du nettoyage de bureaux au lever de réserves, en passant par les base-vie et les
+        entrepôts, la même exigence s’applique partout : un travail propre, annoncé clairement,
+        et tenu.</p>
       </div>
       <div class="logo-carte">
         <img src="assets/logo.jpg" alt="Logo OF ENTRETIENS — corvoyage, lever de réserves, partenaire des promoteurs et plateforme logistique" width="1170" height="873">
