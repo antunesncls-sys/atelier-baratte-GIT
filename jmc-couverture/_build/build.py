@@ -127,7 +127,7 @@ PHOTOS = {
 
 def photo_src(key):
     base = PHOTOS[key][0]
-    for ext in ("webp", "jpg", "jpeg", "png"):
+    for ext in ("jpg", "jpeg", "png", "webp"):
         if (ROOT / "assets" / "photos" / f"{base}.{ext}").exists():
             return f"/assets/photos/{base}.{ext}"
     return None
@@ -140,8 +140,14 @@ def photo(key, eager=False):
     _, alt, cap = PHOTOS[key]
     load = 'fetchpriority="high"' if eager else 'loading="lazy"'
     w, h = photo_dims(src)
-    return (f'<figure class="photo"><img src="{src}" alt="{alt}" {load} decoding="async" width="{w}" height="{h}">'
+    return (f'<figure class="photo">{webp_source(src)}<img src="{src}" alt="{alt}" {load} decoding="async" width="{w}" height="{h}"></picture>'
             f'<figcaption>{cap}</figcaption></figure>')
+
+
+def webp_source(src):
+    """Ouvre un <picture> avec la version WebP si elle existe (à refermer par </picture>)."""
+    w = src.rsplit(".", 1)[0] + ".webp"
+    return f'<picture><source srcset="{w}" type="image/webp">' if (ROOT / w.lstrip("/")).exists() else "<picture>"
 
 
 def photo_dims(src):
@@ -154,8 +160,8 @@ def hero_mosaic():
     if not keys:
         return ""
     items = "".join(
-        f'<figure><img src="{photo_src(k)}" alt="{PHOTOS[k][1]}" loading="lazy" decoding="async" '
-        f'width="{photo_dims(photo_src(k))[0]}" height="{photo_dims(photo_src(k))[1]}"><figcaption>{PHOTOS[k][2]}</figcaption></figure>'
+        f'<figure>{webp_source(photo_src(k))}<img src="{photo_src(k)}" alt="{PHOTOS[k][1]}" loading="lazy" decoding="async" '
+        f'width="{photo_dims(photo_src(k))[0]}" height="{photo_dims(photo_src(k))[1]}"></picture><figcaption>{PHOTOS[k][2]}</figcaption></figure>'
         for k in keys)
     return f'<div class="mosaic">{items}</div>'
 
@@ -203,9 +209,11 @@ def hero_bg():
     src = photo_src("drone")
     if not src:
         return ""
-    small = src.replace(".jpg", "-800.jpg")
-    return (f'<img class="hero-bg" src="{src}" srcset="{small} 800w, {src} 1605w" sizes="100vw" '
-            f'alt="{PHOTOS["drone"][1]}" fetchpriority="high" decoding="async" width="1605" height="857">')
+    base = src.rsplit(".", 1)[0]
+    return (f'<picture><source media="(max-width:700px)" srcset="{base}-mobile.webp" type="image/webp">'
+            f'<source srcset="{base}-800.webp 800w, {base}.webp 1605w" sizes="100vw" type="image/webp">'
+            f'<img class="hero-bg" src="{src}" srcset="{base}-800.jpg 800w, {src} 1605w" sizes="100vw" '
+            f'alt="{PHOTOS["drone"][1]}" fetchpriority="high" decoding="async" width="1605" height="857"></picture>')
 
 
 INSTA_SVG = ('<svg class="ig" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" '
@@ -418,7 +426,8 @@ def head(title, desc, path, lds, robots="index,follow"):
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" href="/assets/photos/toiture-ardoise-lucarnes-zinc-vue-drone-jmc.jpg" imagesrcset="/assets/photos/toiture-ardoise-lucarnes-zinc-vue-drone-jmc-800.jpg 800w, /assets/photos/toiture-ardoise-lucarnes-zinc-vue-drone-jmc.jpg 1605w" imagesizes="100vw">
+<link rel="preload" as="image" type="image/webp" media="(max-width:700px)" href="/assets/photos/toiture-ardoise-lucarnes-zinc-vue-drone-jmc-mobile.webp" fetchpriority="high">
+<link rel="preload" as="image" type="image/webp" media="(min-width:701px)" imagesrcset="/assets/photos/toiture-ardoise-lucarnes-zinc-vue-drone-jmc-800.webp 800w, /assets/photos/toiture-ardoise-lucarnes-zinc-vue-drone-jmc.webp 1605w" imagesizes="100vw" fetchpriority="high">
 <link rel="stylesheet" href="/assets/style.css?v={CSS_VER}">
 {ld}
 </head>
