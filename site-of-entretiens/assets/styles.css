@@ -361,3 +361,19 @@ footer.site .pied-legal{border-top:1px solid rgba(143,181,255,.25);padding-top:1
   .nav > .btn{display:none}
   .nav > .insta-top{display:none}
 }
+
+/* avant / après */
+.avant-apres{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-top:2rem}
+.avant-apres figure{position:relative;border-radius:8px;overflow:hidden;background:var(--line);margin:0;height:300px}
+.avant-apres img{width:100%;height:100%;object-fit:cover;display:block}
+.avant-apres .tag{
+  position:absolute;top:12px;left:12px;font-family:var(--display);font-weight:800;font-style:italic;
+  font-size:.85rem;letter-spacing:.06em;padding:.3rem .8rem;border-radius:4px;color:#fff;
+}
+.avant-apres .tag.avant{background:#44506F}
+.avant-apres .tag.apres{background:var(--brand)}
+.avant-apres figcaption{
+  position:absolute;inset:auto 0 0 0;padding:.55rem .85rem;
+  background:linear-gradient(transparent,rgba(2,19,71,.78));color:#fff;font-size:.82rem;font-weight:500;
+}
+@media (max-width:580px){.avant-apres{grid-template-columns:1fr}.avant-apres figure{height:220px}}
