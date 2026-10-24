@@ -263,3 +263,8 @@ footer.site p{max-width:72em}
 .faq-liste summary::after{content:"+";color:var(--brand);font-family:var(--display);font-weight:800;font-size:1.15rem;flex:none}
 .faq-liste details[open] summary::after{content:"–"}
 .faq-liste .rep{padding:0 1.15rem 1rem;color:var(--ink-soft);font-size:.96rem}
+
+/* bandeau photo de page */
+.page-photo{border-radius:10px;overflow:hidden;box-shadow:0 14px 34px rgba(10,26,82,.10)}
+.page-photo img{width:100%;height:clamp(220px,38vw,430px);object-fit:cover;display:block}
+.page-photo figcaption{background:var(--brand-deep);color:#C9D4F2;font-size:.82rem;padding:.55rem 1rem}

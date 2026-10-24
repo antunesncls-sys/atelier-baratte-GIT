@@ -50,7 +50,7 @@ raisonnable à valider), **[À VALIDER]** (hypothèse ou information manquante).
 | Nettoyage de façade | [CONFIRMÉ — dirigeant, oct. 2026] | Remise en propreté de façades | Bâtiments, résidences, promoteurs | Techniques employées (HP, nacelle ?), hauteurs couvertes |
 | Interventions techniques en urgence | [CONFIRMÉ] (post du dirigeant, oct. 2026 : intervention réelle) | Carottages, pose de doublage avec bandes, rectification de seuil d'ascenseur, traitement coupe-feu de gaines — mobilisation en délai court | Chantiers, entreprises du BTP | Périmètre complet du second œuvre couvert, qualifications coupe-feu |
 | Maintenance & urgences plateformes logistiques | [CONFIRMÉ — dirigeant, oct. 2026] | Intervention d'urgence après sinistre avec documentation pour la demande d'assurance ; reprise de défauts d'étanchéité ; fixation de spots/luminaires et petits travaux d'électricité ; aménagement de bureaux et de cafétéria ; pose de signalétique ; installations | Plateformes logistiques, entrepôts | Étanchéité : toiture comprise [CONFIRMÉ — dirigeant, oct. 2026]. Reste à préciser : électricité (habilitations ?) |
-| Visites promoteurs / bailleurs | [CONFIRMÉ — dirigeant, oct. 2026] | Visites de pré-livraison et de livraison, accompagnement des promoteurs et des bailleurs | Promoteurs immobiliers, bailleurs | Contenu exact des visites (avec acquéreurs ? états des lieux ?) |
+| Visites promoteurs / bailleurs | [CONFIRMÉ — dirigeant, oct. 2026] | Visites cloisons, de pré-livraison et de livraison ; parcours complet affiché sur le site : visite cloisons → pré-livraison → livraison → levée des réserves jusqu'au quitus | Promoteurs immobiliers, bailleurs | Contenu exact des visites (avec acquéreurs ? états des lieux ?) |
 | Travaux liés aux réseaux ENEDIS | [CONFIRMÉ — post + dirigeant, oct. 2026] | Carottages, traitement coupe-feu de gaines techniques sur chantiers liés à ENEDIS | Chantiers, promoteurs | Habilitations/qualifications éventuelles |
 | Offre plateformes logistiques | [CONFIRMÉ] (devise du logo + brief) | Propreté et entretien courant des entrepôts : bureaux, locaux sociaux, sanitaires, zones de passage ; interventions organisées autour des flux | Responsables de site, d'exploitation, services généraux, achats | Prestations au-delà du nettoyage courant (quais ? racks ? mécanisation ?) — NE RIEN AFFIRMER sans confirmation |
 
@@ -171,7 +171,9 @@ en slogans. Interdits : « excellence opérationnelle », « solutions innovante
     catalogue de prestations, zone Île-de-France, SIREN, TVA) lisibles par les moteurs et les
     IA. À compléter au moment de la mise en ligne : nom de domaine (balise canonical, sitemap,
     URL dans le JSON-LD), Google Business Profile.
-12. Photos : une dizaine d'images supplémentaires (équipe en intervention dans une cuisine
+12. Photo d'entrepôt de la page logistique : image d'illustration libre de droits (Unsplash) —
+    à remplacer par une vraie photo d'intervention dès que possible.
+13. Photos : une dizaine d'images supplémentaires (équipe en intervention dans une cuisine
     professionnelle, façades, détails de réserves) ont été montrées en conversation mais
     jamais reçues en fichiers — à renvoyer en pièces jointes pour enrichir la galerie.
 
