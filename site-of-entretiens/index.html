@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>OF ENTRETIENS — Corvoyage, lever de réserves et propreté · Île-de-France</title>
-<meta name="description" content="OF ENTRETIENS, entreprise de propreté et de services basée à Courtry (77), intervient dans toute l'Île-de-France : corvoyage et lever de réserves pour les promoteurs immobiliers, nettoyage de locaux, bureaux et base-vie, entretien des plateformes logistiques.">
+<title>OF ENTRETIENS — Corvoyage, levée de réserves, travaux TCE et propreté · Île-de-France</title>
+<meta name="description" content="OF ENTRETIENS, partenaire des promoteurs immobiliers en Île-de-France (bureau à Courtry, 77) : corvoyage et accompagnement à la livraison, levée de réserves, travaux tous corps d'état (maçonnerie, plâtrerie, serrurerie, carottage), nettoyage de façade, de locaux, de bureaux et de base-vie, entretien de plateformes logistiques, interventions d'urgence. Devis après visite : 06 62 06 93 22.">
 <meta property="og:title" content="OF ENTRETIENS — Le travail bien fait, du chantier à l’entrepôt">
-<meta property="og:description" content="Corvoyage · Lever de réserves · Nettoyage de locaux, bureaux et base-vie · Plateformes logistiques. Courtry (77) · Île-de-France.">
+<meta property="og:description" content="Corvoyage · Levée de réserves · Travaux tous corps d'état · Nettoyage de façade, locaux et base-vie · Plateformes logistiques. Courtry (77) · Île-de-France.">
 <meta property="og:image" content="assets/logo.jpg">
 <meta property="og:type" content="website">
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -133,7 +133,9 @@ section{padding-block:4rem}
 .card .pour{font-family:var(--body);font-weight:600;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}
 .card h3{font-size:1.22rem;font-weight:800;color:var(--brand-deep)}
 .card p{font-size:.95rem;color:var(--ink-soft)}
-.card.phare{background:var(--brand-deep);border-color:var(--brand-deep)}
+.card.phare{background:var(--brand-deep);border-color:var(--brand-deep);grid-column:span 2}
+@media (max-width:860px){.card.phare{grid-column:span 2}}
+@media (max-width:580px){.card.phare{grid-column:span 1}}
 .card.phare .pour{color:#8FB5FF}
 .card.phare h3{color:#fff}
 .card.phare p{color:#C9D4F2}
@@ -269,11 +271,11 @@ footer.site p{max-width:72em}
         <p class="eyebrow">Entreprise de propreté et de services · Courtry (77) · Toute l’Île-de-France</p>
         <h1>Le travail bien fait, <em>du chantier à l’entrepôt.</em></h1>
         <p class="lead">
-          OF ENTRETIENS intervient auprès des promoteurs immobiliers, des entreprises et des
-          plateformes logistiques : corvoyage et lever de réserves, nettoyage de locaux, de
-          bureaux et de base-vie, interventions techniques en urgence. Une équipe à taille
-          humaine, qui écoute
-          avant d’intervenir et qui tient ce qu’elle annonce.
+          OF ENTRETIENS accompagne les promoteurs immobiliers, les entreprises et les
+          plateformes logistiques partout en Île-de-France : corvoyage et accompagnement à la
+          livraison, levée de réserves, travaux tous corps d’état, nettoyage de façade, de
+          locaux et de base-vie. Une équipe à taille humaine, qui écoute avant d’intervenir et
+          qui tient ce qu’elle annonce.
         </p>
         <div class="actions">
           <a class="btn btn-primary" href="#contact">Parler de votre besoin</a>
@@ -281,9 +283,10 @@ footer.site p{max-width:72em}
         </div>
         <div class="fields" aria-label="Nos domaines d’intervention">
           <span>Corvoyage</span>
-          <span>Lever de réserves</span>
-          <span>Locaux &amp; bureaux</span>
-          <span>Base-vie de chantier</span>
+          <span>Levée de réserves</span>
+          <span>Tous corps d’état</span>
+          <span>Nettoyage de façade</span>
+          <span>Locaux &amp; base-vie</span>
           <span>Plateformes logistiques</span>
           <span>Urgences techniques</span>
         </div>
@@ -310,9 +313,10 @@ footer.site p{max-width:72em}
       <div class="section-head">
         <p class="eyebrow">Ce que nous faisons</p>
         <h2>Des prestations concrètes, pour des besoins concrets.</h2>
-        <p>Chaque prestation répond à un problème précis de nos clients : des locaux agréables à
-        occuper, un chantier livrable dans les délais, un site logistique qui tourne sans accroc,
-        des véhicules prêts à l’emploi.</p>
+        <p>Chaque prestation répond à un problème précis de nos clients : un logement livrable
+        dans les délais, des réserves levées proprement, des locaux agréables à occuper, un site
+        logistique qui tourne sans accroc. Et quand il faut reprendre un ouvrage, l’ensemble des
+        corps d’état est maîtrisé.</p>
       </div>
       <div class="cards">
         <article class="card">
@@ -331,17 +335,30 @@ footer.site p{max-width:72em}
         </article>
         <article class="card">
           <p class="pour">Promoteurs immobiliers</p>
-          <h3>Corvoyage</h3>
-          <p>Préparation et suivi des logements avant livraison : reprises de finitions,
-          coordination sur place, contrôle du résultat et suivi des réserves jusqu’à leur levée.
-          Pour des réceptions qui se passent bien.</p>
+          <h3>Corvoyage &amp; accompagnement à la livraison</h3>
+          <p>Préparation et suivi des logements avant livraison, accompagnement le jour de la
+          livraison, suivi des réserves jusqu’à leur levée, et prise en charge des démarches
+          liées aux demandes de mairie. Pour des réceptions qui se passent bien.</p>
         </article>
         <article class="card">
           <p class="pour">Promoteurs immobiliers</p>
-          <h3>Lever de réserves</h3>
+          <h3>Levée de réserves</h3>
           <p>Après les visites de réception, nous traitons les réserves constatées — du constat à
           la reprise, jusqu’au contrôle final — pour vous permettre de livrer dans de bonnes
           conditions. Périmètre défini avec vous, opération par opération.</p>
+        </article>
+        <article class="card">
+          <p class="pour">Promoteurs · Entreprises</p>
+          <h3>Travaux tous corps d’état</h3>
+          <p>Maçonnerie, plâtrerie, serrurerie, carottage : nous maîtrisons l’ensemble des corps
+          d’état pour les reprises et les petits travaux. Un seul interlocuteur, du constat à la
+          réception.</p>
+        </article>
+        <article class="card">
+          <p class="pour">Bâtiments · Résidences</p>
+          <h3>Nettoyage de façade</h3>
+          <p>Remise en propreté des façades, pour rendre un aspect net à un bâtiment avant sa
+          livraison ou dans le cadre de son entretien courant.</p>
         </article>
         <article class="card">
           <p class="pour">Chantiers · Délais courts</p>
@@ -523,9 +540,9 @@ footer.site p{max-width:72em}
         votre site est connu de la personne qui vous répond, les engagements pris sont suivis de
         près, et quand quelque chose doit être ajusté, cela se règle en direct, sans
         intermédiaire.</p>
-        <p>Du nettoyage de bureaux au lever de réserves, en passant par les base-vie et les
-        entrepôts, la même exigence s’applique partout : un travail propre, annoncé clairement,
-        et tenu.</p>
+        <p>Du nettoyage de bureaux à la levée de réserves, en passant par les base-vie, les
+        façades, les travaux tous corps d’état et les entrepôts, la même exigence s’applique
+        partout : un travail propre, annoncé clairement, et tenu.</p>
         <div class="refs">
           <span class="refs-label">Ils nous font confiance</span>
           <div class="refs-logos">
@@ -588,6 +605,65 @@ footer.site p{max-width:72em}
       Suivez-nous sur Instagram — @ofentretiens</a></p>
   </div>
 </footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "OF ENTRETIENS",
+  "legalName": "OF ENTRETIENS",
+  "description": "Entreprise de propreté, de services et de travaux tous corps d'état, partenaire des promoteurs immobiliers en Île-de-France : corvoyage et accompagnement à la livraison, levée de réserves, travaux de maçonnerie, plâtrerie, serrurerie et carottage, nettoyage de façade, nettoyage de locaux, de bureaux et de base-vie, entretien de plateformes logistiques, interventions techniques en urgence.",
+  "slogan": "Le travail bien fait, du chantier à l'entrepôt",
+  "telephone": "+33662069322",
+  "email": "mike.ofentretiens@gmail.com",
+  "image": "assets/logo.jpg",
+  "logo": "assets/logo.jpg",
+  "sameAs": ["https://www.instagram.com/ofentretiens/"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Courtry",
+    "postalCode": "77181",
+    "addressRegion": "Île-de-France",
+    "addressCountry": "FR"
+  },
+  "areaServed": { "@type": "AdministrativeArea", "name": "Île-de-France, France" },
+  "founder": { "@type": "Person", "name": "Frédéric Oz" },
+  "foundingDate": "2024-03-22",
+  "vatID": "FR80927491357",
+  "identifier": { "@type": "PropertyValue", "propertyID": "SIREN", "value": "927491357" },
+  "naics": "561720",
+  "knowsAbout": [
+    "corvoyage",
+    "levée de réserves",
+    "accompagnement à la livraison de logements neufs",
+    "travaux tous corps d'état",
+    "maçonnerie",
+    "plâtrerie",
+    "serrurerie",
+    "carottage",
+    "traitement coupe-feu de gaines",
+    "nettoyage de façade",
+    "nettoyage de locaux et de bureaux",
+    "nettoyage de base-vie de chantier",
+    "entretien de plateformes logistiques",
+    "démarches liées aux demandes de mairie pour les promoteurs"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Prestations OF ENTRETIENS",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Corvoyage et accompagnement à la livraison", "description": "Préparation et suivi des logements avant livraison, accompagnement le jour de la livraison, suivi des réserves jusqu'à leur levée, démarches liées aux demandes de mairie. Pour les promoteurs immobiliers.", "areaServed": "Île-de-France" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Levée de réserves", "description": "Traitement des réserves constatées lors des visites de réception, du constat à la reprise jusqu'au contrôle final.", "areaServed": "Île-de-France" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Travaux tous corps d'état", "description": "Maçonnerie, plâtrerie, serrurerie, carottage : reprises et petits travaux, tous corps d'état maîtrisés.", "areaServed": "Île-de-France" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Nettoyage de façade", "description": "Remise en propreté des façades de bâtiments et de résidences.", "areaServed": "Île-de-France" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Nettoyage de locaux et de bureaux", "description": "Entretien courant des espaces de travail, en régulier ou en ponctuel.", "areaServed": "Île-de-France" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Nettoyage de base-vie de chantier", "description": "Vestiaires, réfectoires et sanitaires de chantier propres pour les équipes du BTP.", "areaServed": "Île-de-France" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Entretien de plateformes logistiques", "description": "Nettoyage et entretien courant des entrepôts : interventions planifiées autour des flux, dans le respect des consignes du site.", "areaServed": "Île-de-France" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Interventions techniques en urgence", "description": "Mobilisation en délai court sur chantier : carottages, doublages avec bandes, rectification de seuils, traitement coupe-feu de gaines.", "areaServed": "Île-de-France" } }
+    ]
+  }
+}
+</script>
 
 </body>
 </html>

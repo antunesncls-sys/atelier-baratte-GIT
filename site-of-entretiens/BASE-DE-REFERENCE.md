@@ -45,6 +45,9 @@ raisonnable à valider), **[À VALIDER]** (hypothèse ou information manquante).
 | Corvoyage | [CONFIRMÉ] (devise du logo ; terme métier attesté chez les concurrents Quitus et Timing AMO) | Préparation et suivi des logements avant livraison : reprises, contrôle, suivi des réserves jusqu'à leur levée (quitus) | Promoteurs immobiliers | Corps d'état couverts, outils de suivi utilisés, capacité (nb de logements) |
 | Lever de réserves | [CONFIRMÉ] (devise du logo) | Traitement des réserves après visites de réception, du constat au contrôle final | Promoteurs immobiliers | Contenu exact : nettoyage fin de chantier seul ? retouches ? corps d'état couverts ? |
 | Nettoyage de véhicules | [CONFIRMÉ] (activité déclarée) — **retiré du site sur décision du dirigeant (oct. 2026)** | Tous types de marques et de modèles | — | Reste au registre ; ne plus le mentionner sur les supports commerciaux sauf instruction contraire |
+| Corvoyage — volet livraison | [CONFIRMÉ — dirigeant, oct. 2026] | Accompagnement à la livraison des logements ; démarches liées aux demandes de mairie pour les promoteurs | Promoteurs immobiliers | Préciser la nature exacte des « demandes de mairie » (autorisations ? interventions demandées par la mairie ?) |
+| Travaux tous corps d'état | [CONFIRMÉ — dirigeant, oct. 2026 : « l'ensemble des corps d'état sont maîtrisés »] | Maçonnerie, plâtrerie, serrurerie, carottage ; reprises et petits travaux | Promoteurs, entreprises | Limites du périmètre TCE (électricité ? plomberie ? CVC ?), qualifications |
+| Nettoyage de façade | [CONFIRMÉ — dirigeant, oct. 2026] | Remise en propreté de façades | Bâtiments, résidences, promoteurs | Techniques employées (HP, nacelle ?), hauteurs couvertes |
 | Interventions techniques en urgence | [CONFIRMÉ] (post du dirigeant, oct. 2026 : intervention réelle) | Carottages, pose de doublage avec bandes, rectification de seuil d'ascenseur, traitement coupe-feu de gaines — mobilisation en délai court | Chantiers, entreprises du BTP | Périmètre complet du second œuvre couvert, qualifications coupe-feu |
 | Offre plateformes logistiques | [CONFIRMÉ] (devise du logo + brief) | Propreté et entretien courant des entrepôts : bureaux, locaux sociaux, sanitaires, zones de passage ; interventions organisées autour des flux | Responsables de site, d'exploitation, services généraux, achats | Prestations au-delà du nettoyage courant (quais ? racks ? mécanisation ?) — NE RIEN AFFIRMER sans confirmation |
 
@@ -151,7 +154,14 @@ en slogans. Interdits : « excellence opérationnelle », « solutions innovante
 7. Effectif réel et organisation des équipes.
 8. Assurances et garanties (RC pro, décennale si reprises de second œuvre en corvoyage).
 9. Nom de domaine et hébergement souhaités pour le site.
-10. Photos : une dizaine d'images supplémentaires (équipe en intervention dans une cuisine
+10. « Demandes de mairie » : préciser s'il s'agit de démarches administratives pour le compte
+    des promoteurs ou d'interventions demandées par les mairies — la formulation du site
+    (« démarches liées aux demandes de mairie ») reste volontairement neutre.
+11. SEO/GEO : le site embarque des données structurées schema.org (ProfessionalService,
+    catalogue de prestations, zone Île-de-France, SIREN, TVA) lisibles par les moteurs et les
+    IA. À compléter au moment de la mise en ligne : nom de domaine (balise canonical, sitemap,
+    URL dans le JSON-LD), Google Business Profile.
+12. Photos : une dizaine d'images supplémentaires (équipe en intervention dans une cuisine
     professionnelle, façades, détails de réserves) ont été montrées en conversation mais
     jamais reçues en fichiers — à renvoyer en pièces jointes pour enrichir la galerie.
 
