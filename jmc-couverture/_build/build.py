@@ -2876,10 +2876,12 @@ def mentions():
 <section><div class="wrap prose">
   <h2>Éditeur du site</h2>
   <p>{BIZ['legal']}<br>{BIZ['street']}, {BIZ['zip']} {BIZ['city']}<br>Téléphone : {BIZ['phone']} – E-mail : {BIZ['email']}<br>
-  SIRET : <em>[à compléter]</em> – RCS : <em>[à compléter]</em> – Directeur de la publication : <em>[à compléter]</em></p>
-  <p>Assurance décennale : <em>[assureur et numéro de contrat à compléter]</em>, couverture géographique : France métropolitaine.</p>
+  SARL JMC – SIREN 380 660 779 – SIRET du siège 380 660 779 00048 – RCS Meaux 380 660 779<br>
+  N° TVA intracommunautaire : FR88380660779<br>
+  Directeur de la publication : Anthony Da Silva, gérant</p>
+  <p>Assurance décennale : les coordonnées de notre assureur et le numéro de contrat figurent sur chacun de nos devis et factures.</p>
   <h2>Hébergement</h2>
-  <p><em>[Nom, adresse et téléphone de l'hébergeur à compléter]</em></p>
+  <p>Netlify, Inc.<br>101 2nd Street, Suite 575, San Francisco, CA 94105, États-Unis<br>Site : <a href="https://www.netlify.com" rel="nofollow">www.netlify.com</a></p>
   <h2>Données personnelles</h2>
   <p>Les informations transmises via le formulaire de contact sont utilisées uniquement pour répondre à votre demande de devis. Elles ne sont ni cédées ni vendues et sont conservées au maximum 3 ans après le dernier contact. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression en écrivant à {BIZ['email']}.</p>
   <h2>Cookies</h2>
