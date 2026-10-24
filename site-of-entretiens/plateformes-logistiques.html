@@ -258,6 +258,18 @@
             <label>Téléphone<input type="tel" id="fc-tel" name="tel" autocomplete="tel"></label>
             <label>E-mail *<input type="email" id="fc-email" name="email" autocomplete="email" required></label>
           </div>
+          <label>Prestation concernée *<select id="fc-objet" name="prestation" required>
+            <option>Corvoyage</option>
+            <option>Levée de réserves</option>
+            <option>SAV &amp; GPA</option>
+            <option>Visites (cloisons, pré-livraison, livraison)</option>
+            <option>Travaux tous corps d’état</option>
+            <option>Intervention d’urgence</option>
+            <option>Nettoyage de façade</option>
+            <option>Nettoyage de locaux / bureaux / base-vie</option>
+            <option selected>Plateforme logistique — entretien &amp; maintenance</option>
+            <option>Autre demande</option>
+          </select></label>
           <label>Votre besoin *<textarea id="fc-msg" name="message" rows="4" required placeholder="Décrivez votre site, votre opération ou votre besoin"></textarea></label>
           <button class="btn btn-primary" type="submit">Envoyer la demande</button>
           <p class="form-note">L’envoi ouvre votre messagerie avec la demande pré-remplie, adressée à
@@ -370,11 +382,11 @@
   f.addEventListener('submit', function(e){
     e.preventDefault();
     function g(id){ var el = document.getElementById(id); return el ? el.value.trim() : ''; }
-    var corps = "Nom : " + g('fc-nom') + "\nSociété : " + g('fc-societe') +
+    var corps = "Prestation : " + g('fc-objet') + "\nNom : " + g('fc-nom') + "\nSociété : " + g('fc-societe') +
       "\nTéléphone : " + g('fc-tel') + "\nE-mail : " + g('fc-email') +
       "\n\nBesoin :\n" + g('fc-msg');
     location.href = "mailto:mike.ofentretiens@gmail.com?subject=" +
-      encodeURIComponent("Demande de devis — " + g('fc-nom')) +
+      encodeURIComponent("Demande de devis (" + g('fc-objet') + ") — " + g('fc-nom')) +
       "&body=" + encodeURIComponent(corps);
   });
 })();
