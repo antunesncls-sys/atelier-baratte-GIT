@@ -128,7 +128,7 @@ section{padding-block:4rem}
 .card .pour{font-family:var(--body);font-weight:600;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}
 .card h3{font-size:1.22rem;font-weight:800;color:var(--brand-deep)}
 .card p{font-size:.95rem;color:var(--ink-soft)}
-.card.phare{background:var(--brand-deep);border-color:var(--brand-deep);grid-column:span 2}
+.card.phare{background:var(--brand-deep);border-color:var(--brand-deep)}
 .card.phare .pour{color:#8FB5FF}
 .card.phare h3{color:#fff}
 .card.phare p{color:#C9D4F2}
@@ -163,6 +163,15 @@ section{padding-block:4rem}
   background:linear-gradient(transparent,rgba(2,19,71,.78));
   color:#fff;font-size:.82rem;font-weight:500;
 }
+
+/* intervention récente */
+.recente{
+  margin-top:1.6rem;background:var(--surface);border:1px solid var(--line);
+  border-left:4px solid var(--brand);border-radius:0 8px 8px 0;padding:1.1rem 1.3rem;
+}
+.recente p{font-size:.95rem;color:var(--ink-soft)}
+.recente b{color:var(--ink);font-weight:600}
+.recente .quand{font-family:var(--body);font-weight:600;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--brand);display:block;margin-bottom:.35rem}
 
 /* humain */
 .humain{background:var(--brand-deep);color:#E7ECFA}
@@ -209,7 +218,6 @@ footer.site p{max-width:72em}
 }
 @media (max-width:580px){
   .cards{grid-template-columns:1fr}
-  .card.phare{grid-column:span 1}
   .nav nav{display:none}
 }
 </style>
@@ -240,7 +248,8 @@ footer.site p{max-width:72em}
         <p class="lead">
           OF ENTRETIENS intervient auprès des promoteurs immobiliers, des entreprises et des
           plateformes logistiques : corvoyage et lever de réserves, nettoyage de locaux, de
-          bureaux et de base-vie. Une équipe à taille humaine, qui écoute
+          bureaux et de base-vie, interventions techniques en urgence. Une équipe à taille
+          humaine, qui écoute
           avant d’intervenir et qui tient ce qu’elle annonce.
         </p>
         <div class="actions">
@@ -253,6 +262,7 @@ footer.site p{max-width:72em}
           <span>Locaux &amp; bureaux</span>
           <span>Base-vie de chantier</span>
           <span>Plateformes logistiques</span>
+          <span>Urgences techniques</span>
         </div>
       </div>
 
@@ -309,6 +319,13 @@ footer.site p{max-width:72em}
           <p>Après les visites de réception, nous traitons les réserves constatées — du constat à
           la reprise, jusqu’au contrôle final — pour vous permettre de livrer dans de bonnes
           conditions. Périmètre défini avec vous, opération par opération.</p>
+        </article>
+        <article class="card">
+          <p class="pour">Chantiers · Délais courts</p>
+          <h3>Interventions techniques en urgence</h3>
+          <p>Quand un imprévu bloque un chantier, nous nous mobilisons vite : carottages, pose de
+          doublages avec bandes, rectification de seuils, traitement coupe-feu de gaines. Des
+          interventions précises, pour que le chantier continue d’avancer.</p>
         </article>
         <article class="card phare">
           <p class="pour">Notre offre dédiée</p>
@@ -422,6 +439,13 @@ footer.site p{max-width:72em}
           <figcaption>Extérieurs et abords de résidence</figcaption>
         </figure>
       </div>
+      <div class="recente">
+        <span class="quand">Exemple récent — intervention d’urgence</span>
+        <p>Un imprévu bloquait l’avancement d’un chantier : notre équipe s’est mobilisée en délai
+        court pour réaliser <b>5 carottages</b>, poser un <b>panneau de doublage avec bandes</b>,
+        rectifier un <b>seuil d’ascenseur</b> et traiter le <b>coupe-feu de plusieurs gaines</b>.
+        Le chantier a pu continuer d’avancer dans de bonnes conditions.</p>
+      </div>
     </div>
   </section>
 
@@ -506,7 +530,7 @@ footer.site p{max-width:72em}
         </li>
         <li>
           <span class="label">E-mail</span>
-          <span class="a-completer">À compléter — adresse à fournir</span>
+          <span><a href="mailto:mike.ofentretiens@gmail.com">mike.ofentretiens@gmail.com</a></span>
         </li>
         <li>
           <span class="label">Instagram</span>

@@ -43,6 +43,7 @@ raisonnable à valider), **[À VALIDER]** (hypothèse ou information manquante).
 | Corvoyage | [CONFIRMÉ] (devise du logo ; terme métier attesté chez les concurrents Quitus et Timing AMO) | Préparation et suivi des logements avant livraison : reprises, contrôle, suivi des réserves jusqu'à leur levée (quitus) | Promoteurs immobiliers | Corps d'état couverts, outils de suivi utilisés, capacité (nb de logements) |
 | Lever de réserves | [CONFIRMÉ] (devise du logo) | Traitement des réserves après visites de réception, du constat au contrôle final | Promoteurs immobiliers | Contenu exact : nettoyage fin de chantier seul ? retouches ? corps d'état couverts ? |
 | Nettoyage de véhicules | [CONFIRMÉ] (activité déclarée) — **retiré du site sur décision du dirigeant (oct. 2026)** | Tous types de marques et de modèles | — | Reste au registre ; ne plus le mentionner sur les supports commerciaux sauf instruction contraire |
+| Interventions techniques en urgence | [CONFIRMÉ] (post du dirigeant, oct. 2026 : intervention réelle) | Carottages, pose de doublage avec bandes, rectification de seuil d'ascenseur, traitement coupe-feu de gaines — mobilisation en délai court | Chantiers, entreprises du BTP | Périmètre complet du second œuvre couvert, qualifications coupe-feu |
 | Offre plateformes logistiques | [CONFIRMÉ] (devise du logo + brief) | Propreté et entretien courant des entrepôts : bureaux, locaux sociaux, sanitaires, zones de passage ; interventions organisées autour des flux | Responsables de site, d'exploitation, services généraux, achats | Prestations au-delà du nettoyage courant (quais ? racks ? mécanisation ?) — NE RIEN AFFIRMER sans confirmation |
 
 **Règle : aucune prestation secondaire ne doit être supprimée ; aucune prestation, capacité,
@@ -132,7 +133,10 @@ en slogans. Interdits : « excellence opérationnelle », « solutions innovante
 1. ~~« Corvoyage » vs « convoyage »~~ **Résolu (oct. 2026)** : corvoyage est bien le terme
    métier (préparation des logements / levée de réserves), attesté chez Quitus et
    Timing AMO. Le site affiche « Corvoyage ».
-2. Téléphone et e-mail de contact (placeholders sur le site).
+2. ~~E-mail~~ **Résolu (oct. 2026)** : mike.ofentretiens@gmail.com (sur le site). Téléphone
+   toujours manquant (placeholder sur le site).
+2 bis. ENEDIS apparaît dans un post du dirigeant (contexte d'une intervention d'urgence) :
+   ne pas le citer comme référence client sur les supports sans son accord explicite.
 3. Contenu exact du lever de réserves (corps d'état, limites).
 4. Périmètre réel de l'offre logistique au-delà du nettoyage courant.
 5. Zone géographique d'intervention.
