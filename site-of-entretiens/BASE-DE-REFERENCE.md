@@ -11,7 +11,9 @@ raisonnable à valider), **[À VALIDER]** (hypothèse ou information manquante).
 - **[CONFIRMÉ]** Dénomination : OF ENTRETIENS — SASU au capital de 500 €.
 - **[CONFIRMÉ]** SIREN 927 491 357 · SIRET siège 927 491 357 00012 · RCS Bobigny ·
   TVA FR80927491357 · Inscrite au RCS et au RNE le 10/04/2024 · Créée le 22/03/2024.
-- **[CONFIRMÉ]** Siège : 8 avenue des Frères Lumière, 93370 Montfermeil.
+- **[CONFIRMÉ]** Siège social (registre) : 8 avenue des Frères Lumière, 93370 Montfermeil.
+- **[CONFIRMÉ — dirigeant, oct. 2026]** Bureau : Courtry (Seine-et-Marne). Zone
+  d'intervention : toute l'Île-de-France.
 - **[CONFIRMÉ]** Dirigeant : Frédéric Oz.
 - **[CONFIRMÉ]** Activité principale déclarée : nettoyage de locaux, de bureaux, de base-vie
   (NAF 81.21Z — nettoyage courant des bâtiments). Autre activité déclarée : nettoyage de
@@ -52,9 +54,12 @@ référence ou certification ne doit être inventée.**
 ## 4. Clients et secteurs ciblés
 
 - **[CONFIRMÉ par la devise/le brief]** Promoteurs immobiliers · plateformes logistiques.
+- **[CONFIRMÉ — dirigeant, oct. 2026]** Référence client : **Bouygues Immobilier**
+  (promoteur, opérations en Île-de-France). Logo fourni par le dirigeant et affiché sur le
+  site à sa demande.
 - **[DÉDUIT des activités déclarées]** Entreprises (bureaux/locaux), entreprises du BTP
-  (base-vie), détenteurs de véhicules.
-- **[À VALIDER]** Clients actuels réels, zone d'intervention géographique.
+  (base-vie).
+- **[CONFIRMÉ]** Zone d'intervention : Île-de-France.
 
 ## 5. Méthode de travail (telle que présentée sur le site)
 
@@ -139,8 +144,10 @@ en slogans. Interdits : « excellence opérationnelle », « solutions innovante
    ne pas le citer comme référence client sur les supports sans son accord explicite.
 3. Contenu exact du lever de réserves (corps d'état, limites).
 4. Périmètre réel de l'offre logistique au-delà du nettoyage courant.
-5. Zone géographique d'intervention.
-6. Références clients publiables (avec accord écrit).
+5. ~~Zone géographique~~ **Résolu (oct. 2026)** : bureau à Courtry (77), interventions dans
+   toute l'Île-de-France. Adresse postale précise du bureau à fournir si souhaitée sur le site.
+6. Références clients : Bouygues Immobilier affiché (fourni par le dirigeant). Autres
+   références publiables à confirmer (avec accord écrit).
 7. Effectif réel et organisation des équipes.
 8. Assurances et garanties (RC pro, décennale si reprises de second œuvre en corvoyage).
 9. Nom de domaine et hébergement souhaités pour le site.
