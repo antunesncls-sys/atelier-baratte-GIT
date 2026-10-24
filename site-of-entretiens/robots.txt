@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ofentretiens.fr/sitemap.xml
+Sitemap: https://ofentretiens.netlify.app/sitemap.xml
