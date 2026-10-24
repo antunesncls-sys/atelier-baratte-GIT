@@ -68,8 +68,9 @@ référence ou certification ne doit être inventée.**
   (promoteur, opérations en Île-de-France). Logo fourni par le dirigeant et affiché sur le
   site à sa demande. Programme en cours : **SCCV « Un Balcon en Forêt »** — les photos de
   programme du site (allée, coursives, jardin) y ont été prises.
-- **[DÉDUIT des activités déclarées]** Entreprises (bureaux/locaux), entreprises du BTP
-  (base-vie).
+- **[CONFIRMÉ — dirigeant, oct. 2026]** Entreprises générales du bâtiment (base-vie,
+  travaux en limite de prestation, urgences, TCE).
+- **[DÉDUIT des activités déclarées]** Entreprises (bureaux/locaux).
 - **[CONFIRMÉ]** Zone d'intervention : Île-de-France.
 
 ## 5. Méthode de travail (telle que présentée sur le site)
