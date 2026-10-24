@@ -398,6 +398,7 @@ def head(title, desc, path, lds, robots="index,follow"):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="google-site-verification" content="dmEIfDn6YX8uxP1WAaUoobiSRGeIXLa6l4NWgSO_hXw">
 <title>{title}</title>
 <meta name="description" content="{desc}">
 <meta name="robots" content="{robots}">
