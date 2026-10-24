@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Plaquette JMC Couverture</title>
+<style>
+@font-face{font-family:Archivo;src:url(../jmc-couverture/assets/fonts/archivo-latin.woff2) format("woff2");font-weight:100 900}
+@page{size:A4;margin:0}
+*{box-sizing:border-box}
+:root{--red:#d41d22;--red-d:#a8151a;--gold:#af9317;--ink:#111417;--mut:#4a5058;--line:#e4e1da;--paper:#f6f4ef}
+html,body{margin:0;padding:0}
+body{font-family:Archivo,Arial,Helvetica,sans-serif;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact;font-size:9.6pt;line-height:1.38}
+.page{width:210mm;height:297mm;position:relative;overflow:hidden;page-break-after:always;background:#fff}
+.page:last-child{page-break-after:auto}
+h1,h2,h3,p{margin:0}
+
+/* ---------- RECTO ---------- */
+.top{height:27mm;display:flex;align-items:center;justify-content:space-between;padding:0 12mm;border-bottom:1.2mm solid var(--red)}
+.top img{height:19mm}
+.top .trade{text-align:right;font-size:8.5pt;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:600;line-height:1.6}
+.top .trade b{display:block;color:var(--ink);font-size:13pt;letter-spacing:.02em;text-transform:none;font-weight:800}
+.hero{height:103mm;position:relative;background:url(../jmc-couverture/assets/photos/toiture-ardoise-lucarnes-zinc-vue-drone-jmc.jpg) center 38%/cover}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,12,14,.86) 0%,rgba(10,12,14,.62) 52%,rgba(10,12,14,.08) 100%)}
+.hero .in{position:absolute;z-index:1;left:12mm;top:14mm;width:122mm;color:#fff}
+.eyebrow{display:inline-block;background:var(--red);color:#fff;font-weight:700;font-size:8.2pt;letter-spacing:.14em;text-transform:uppercase;padding:1.4mm 3mm;margin-bottom:5mm}
+.hero h1{font-size:26pt;line-height:1.08;font-weight:800;letter-spacing:-.01em}
+.hero h1 em{font-style:normal;color:#f0d35a}
+.hero p.lead{margin-top:5mm;font-size:10.6pt;line-height:1.45;color:#eceae4;width:112mm}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);background:var(--ink);color:#fff}
+.stats div{padding:4.2mm 3mm 4mm;text-align:center;border-right:1px solid rgba(255,255,255,.14)}
+.stats div:last-child{border-right:0}
+.stats b{display:block;font-size:15pt;font-weight:800;color:#fff;line-height:1.1}
+.stats b span{color:#f0d35a}
+.stats small{font-size:7.6pt;letter-spacing:.06em;text-transform:uppercase;color:#c9c6bf}
+.services{padding:7mm 12mm 0}
+.sec-title{font-size:15pt;font-weight:800;margin-bottom:1.5mm}
+.sec-title:after{content:"";display:block;width:14mm;height:1mm;background:var(--red);margin-top:2mm}
+.sec-sub{color:var(--mut);margin:2.5mm 0 4.5mm;font-size:9.4pt}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:4.6mm 7mm}
+.svc{display:flex;gap:3mm;align-items:flex-start}
+.svc .n{flex:0 0 7mm;height:7mm;border-radius:50%;background:var(--red);color:#fff;font-weight:800;font-size:8.5pt;display:flex;align-items:center;justify-content:center;margin-top:.4mm}
+.svc h3{font-size:10.2pt;font-weight:800;line-height:1.2}
+.svc p{font-size:8.7pt;color:var(--mut);margin-top:.7mm;line-height:1.35}
+.cible{margin:8mm 12mm 0;padding:3.6mm 5mm;background:var(--paper);border-left:1.2mm solid var(--gold);font-size:9pt}
+.cible b{color:var(--ink)}
+.foot{position:absolute;left:0;right:0;bottom:0;height:21mm;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 12mm}
+.foot .tel{font-size:22pt;font-weight:800;letter-spacing:.01em;line-height:1}
+.foot .tel small{display:block;font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;opacity:.9;margin-bottom:1.3mm}
+.foot .web{text-align:right;font-size:9.6pt;line-height:1.5}
+.foot .web b{font-size:12pt}
+
+/* ---------- VERSO ---------- */
+.v-head{padding:10mm 12mm 0;display:flex;justify-content:space-between;align-items:flex-end}
+.v-head h2{font-size:19pt;font-weight:800;line-height:1.1}
+.v-head h2 em{font-style:normal;color:var(--red)}
+.v-head img{height:13mm}
+.why{padding:5mm 12mm 0;display:grid;grid-template-columns:1fr 1fr;gap:3mm}
+.card{border:1px solid var(--line);border-top:1mm solid var(--red);padding:2.8mm 4mm 3mm;background:#fff}
+.card h3{font-size:10pt;font-weight:800;margin-bottom:1mm}
+.card p{font-size:8.6pt;color:var(--mut);line-height:1.36}
+.band{margin:5mm 0 0;background:var(--paper);padding:4.5mm 12mm 5mm}
+.band .sec-title{font-size:13pt}
+.steps{display:grid;grid-template-columns:repeat(7,1fr);gap:2mm;margin-top:3.5mm;counter-reset:s}
+.steps div{counter-increment:s;font-size:7.7pt;line-height:1.28;color:var(--ink);font-weight:600}
+.steps div:before{content:counter(s);display:flex;width:7.5mm;height:7.5mm;border-radius:50%;background:var(--ink);color:#fff;font-weight:800;font-size:9pt;align-items:center;justify-content:center;margin-bottom:1.8mm}
+.steps div:nth-child(5):before,.steps div:nth-child(6):before{background:var(--red)}
+.mid{display:grid;grid-template-columns:58mm 1fr;gap:6mm;padding:5mm 12mm 0}
+.photos{display:grid;grid-template-rows:1fr 1fr;gap:3mm;height:68mm}
+.photos div{background-size:cover;background-position:center}
+.review{border-left:1.2mm solid var(--gold);padding:1mm 0 0 5mm}
+.stars{color:#e3a400;font-size:11pt;letter-spacing:.08em}
+.review p{font-size:9.2pt;line-height:1.4;margin-top:1mm;font-style:italic}
+.review cite{display:block;margin-top:2mm;font-style:normal;font-weight:700;font-size:8.8pt}
+.review cite span{font-weight:400;color:var(--mut)}
+.zones{margin-top:4mm}
+.zones h3{font-size:11pt;font-weight:800;margin-bottom:1.5mm}
+.zones p{font-size:8.8pt;color:var(--mut);line-height:1.42}
+.zones p b{color:var(--ink)}
+.contact{position:absolute;left:12mm;right:12mm;bottom:10mm;height:44mm;background:var(--ink);color:#fff;display:grid;grid-template-columns:37mm 1fr 30mm;gap:6mm;align-items:center;padding:0 6mm}
+.contact .qr{background:#fff;padding:1.5mm;width:35mm;height:35mm}
+.contact .qr img{width:100%;height:100%;display:block}
+.contact h3{font-size:14pt;font-weight:800;line-height:1.15}
+.contact h3 em{font-style:normal;color:#f0d35a}
+.contact .tel{font-size:19pt;font-weight:800;margin-top:2.5mm;color:#fff}
+.contact .info{font-size:8.6pt;color:#d2cfc8;margin-top:1.5mm;line-height:1.5}
+.labels{display:flex;flex-direction:column;align-items:center;gap:2.5mm;background:#fff;padding:3mm 2mm;border-radius:1.5mm}
+.labels img{height:15mm}
+.labels small{font-size:6.6pt;color:var(--mut);text-align:center;line-height:1.2}
+.legal{position:absolute;left:12mm;right:12mm;bottom:4mm;font-size:6.6pt;color:#8a8f96;text-align:center}
+</style>
+</head>
+<body>
+
+<!-- ======================= RECTO ======================= -->
+<section class="page">
+  <header class="top">
+    <img src="../jmc-couverture/assets/logo-jmc-40ans.svg" alt="JMC Couverture">
+    <div class="trade">Couverture · Charpente · Zinguerie<b>Depuis 1985 en Île-de-France</b></div>
+  </header>
+
+  <div class="hero">
+    <div class="in">
+      <span class="eyebrow">Couvreur-zingueur à Courtry (77)</span>
+      <h1>Votre toiture mérite un <em>savoir-faire</em> de couvreur depuis 1985</h1>
+      <p class="lead">Couverture zinc et tuiles, rénovation, isolation : JMC Couverture met au service des particuliers la structure, les équipes et la rigueur d'une entreprise qui travaille aussi pour la promotion immobilière.</p>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div><b>Depuis 1985</b><small>En Île-de-France</small></div>
+    <div><b>1 500<span>+</span></b><small>Chantiers réalisés</small></div>
+    <div><b>4,9<span>/5</span></b><small>29 avis Google</small></div>
+    <div><b>QUALIBAT</b><small>&amp; RGE · décennale</small></div>
+  </div>
+
+  <div class="services">
+    <h2 class="sec-title">Nos savoir-faire</h2>
+    <p class="sec-sub">Un seul interlocuteur pour tous vos travaux de toiture, de la visite gratuite jusqu'au procès-verbal de réception.</p>
+    <div class="grid2">
+      <div class="svc"><span class="n">1</span><div><h3>Couverture zinc et tuiles</h3><p>Réfection complète en zinc, tuiles plates ou mécaniques, ardoise. Notre spécialité : le zinc, du brisis au terrasson.</p></div></div>
+      <div class="svc"><span class="n">2</span><div><h3>Rénovation et remplacement de toiture</h3><p>Dépose, contrôle de la charpente, écran sous-toiture, couverture neuve et zinguerie.</p></div></div>
+      <div class="svc"><span class="n">3</span><div><h3>Isolation des combles et des rampants</h3><p>Combles perdus et rampants, sarking. Entreprise RGE, pour les aides à la rénovation énergétique.</p></div></div>
+      <div class="svc"><span class="n">4</span><div><h3>Fenêtres de toit VELUX et lucarnes</h3><p>Pose et remplacement de VELUX, création et restauration de lucarnes et de chiens-assis.</p></div></div>
+      <div class="svc"><span class="n">5</span><div><h3>Charpente et zinguerie</h3><p>Chéneaux, noues, gouttières et descentes d'eaux pluviales, habillages de cheminée en zinc.</p></div></div>
+      <div class="svc"><span class="n">6</span><div><h3>Étanchéité des toitures terrasses</h3><p>Reprise d'étanchéité, relevés et évacuations, couverture avant pose de panneaux photovoltaïques.</p></div></div>
+      <div class="svc"><span class="n">7</span><div><h3>Nettoyage, démoussage et entretien</h3><p>Nettoyage, traitement hydrofuge et contrats d'entretien pour prolonger la vie de votre toit.</p></div></div>
+      <div class="svc"><span class="n">8</span><div><h3>Maisons neuves et d'architecte</h3><p>Couverture et bardage zinc, finitions des dessous de toit, auvents et marquises en serrurerie.</p></div></div>
+    </div>
+  </div>
+
+  <p class="cible"><b>Copropriétés et syndics :</b> diagnostic, devis détaillé pour l'assemblée générale, suivi des travaux et compte rendu au conseil syndical.</p>
+
+  <footer class="foot">
+    <div class="tel"><small>Visite et devis gratuits</small>01 64 21 38 37</div>
+    <div class="web"><b>jmccouverture.com</b><br>contact@jmccouverture.com</div>
+  </footer>
+</section>
+
+<!-- ======================= VERSO ======================= -->
+<section class="page">
+  <div class="v-head">
+    <h2>Pourquoi confier votre toiture<br>à <em>JMC Couverture</em> ?</h2>
+    <img src="../jmc-couverture/assets/logo-jmc-40ans.svg" alt="JMC Couverture">
+  </div>
+
+  <div class="why">
+    <div class="card"><h3>La structure d'un promoteur, pour les particuliers</h3><p>Équipes, flotte de véhicules, atelier et méthodes de la promotion immobilière, mis au service de votre maison.</p></div>
+    <div class="card"><h3>Ensemble des qualifications QUALIBAT en couverture</h3><p>Entreprise RGE et garantie décennale : des travaux reconnus, assurés et éligibles aux aides.</p></div>
+    <div class="card"><h3>Un chantier sûr et propre</h3><p>Des équipes formées à la sécurité et à la propreté. Chantier protégé et nettoyé chaque soir.</p></div>
+    <div class="card"><h3>Accès au toit pendant les travaux</h3><p>Accompagné et en sécurité, vous constatez l'avancement et la qualité du travail. Suivi d'exécution tout au long du chantier.</p></div>
+    <div class="card"><h3>Démarches et partenaires</h3><p>Démarches en mairie gérées pour vous, travail avec votre maître d'œuvre, prestataires compétents recommandés.</p></div>
+    <div class="card"><h3>Qualité contrôlée, SAV interne</h3><p>Contrôle par notre équipe qualité, procès-verbal de réception signé avec vous, puis une équipe SAV dédiée.</p></div>
+  </div>
+
+  <div class="band">
+    <h2 class="sec-title">Notre méthode en 7 étapes</h2>
+    <div class="steps">
+      <div>Écoute et premier contact</div>
+      <div>Visite technique et diagnostic</div>
+      <div>Devis détaillé et conseil</div>
+      <div>Démarches et préparation</div>
+      <div>Chantier sûr, propre et suivi</div>
+      <div>Contrôle qualité et PV de réception</div>
+      <div>SAV et suivi dans la durée</div>
+    </div>
+  </div>
+
+  <div class="mid">
+    <div class="photos">
+      <div style="background-image:url(../jmc-couverture/assets/photos/toiture-mansardee-lucarnes-zinc-jmc.jpg)"></div>
+      <div style="background-image:url(../jmc-couverture/assets/photos/maison-meuliere-couverture-tuiles-jmc.jpg)"></div>
+    </div>
+    <div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>« Le devis est clair, détaillé et le tarif est compétitif. Les délais sont respectés avec une organisation sans faille […] respectueux des lieux (le chantier est protégé et nettoyé chaque soir). Je recommande vivement cette société. »</p>
+        <cite>Lily <span>· Réfection complète de toiture · avis Google</span></cite>
+      </div>
+      <div class="review" style="margin-top:3mm">
+        <div class="stars">★★★★★</div>
+        <p>« Réfection totale de la toiture avec remplacement de 3 velux et isolation. Équipe ponctuelle, agréable et serviable. Chantier toujours très propre à la fin de la journée. »</p>
+        <cite>Richard K. <span>· avis Google</span></cite>
+      </div>
+      <div class="zones">
+        <h3>Nos zones d'intervention</h3>
+        <p><b>Seine-et-Marne</b>, de Melun à Meaux · <b>Val-de-Marne</b> · <b>Seine-Saint-Denis</b> · <b>Val-d'Oise</b> · <b>Essonne</b> · <b>Hauts-de-Seine</b> · <b>Paris</b>. Une grande partie de nos clients nous vient du bouche-à-oreille.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact">
+    <div class="qr"><img src="qr-flyer.svg" alt="QR code jmccouverture.com"></div>
+    <div>
+      <h3>Votre projet de toiture ?<br><em>Visite et devis gratuits</em></h3>
+      <div class="tel">01 64 21 38 37</div>
+      <div class="info">contact@jmccouverture.com · jmccouverture.com<br>97 rue Charles Van Wyngene, 77181 Courtry<br>Scannez le QR code pour demander votre devis en ligne.</div>
+    </div>
+    <div class="labels">
+      <img src="../jmc-couverture/assets/logo-qualibat.svg" alt="QUALIBAT">
+      <img src="../jmc-couverture/assets/logo-rge.png" alt="RGE">
+      <small>Garantie décennale</small>
+    </div>
+  </div>
+  <p class="legal">SARL JMC · SIRET 380 660 779 00048 · RCS Meaux · Document non contractuel · Ne pas jeter sur la voie publique</p>
+</section>
+
+</body>
+</html>

@@ -36,6 +36,7 @@
 # >>> QR codes panneaux de chantier (bloc généré par build.py, ne pas modifier à la main)
 /p/jmc  /?utm_source=panneau&utm_medium=qr&utm_campaign=general  302
 /p/camion  /?utm_source=panneau&utm_medium=qr&utm_campaign=camion  302
+/p/flyer  /?utm_source=panneau&utm_medium=qr&utm_campaign=flyer  302
 /p/saint-maur-des-fosses  /couvreur-saint-maur-des-fosses/?utm_source=panneau&utm_medium=qr&utm_campaign=saint-maur-des-fosses  302
 /p/nogent-sur-marne  /couvreur-nogent-sur-marne/?utm_source=panneau&utm_medium=qr&utm_campaign=nogent-sur-marne  302
 /p/le-perreux-sur-marne  /couvreur-le-perreux-sur-marne/?utm_source=panneau&utm_medium=qr&utm_campaign=le-perreux-sur-marne  302

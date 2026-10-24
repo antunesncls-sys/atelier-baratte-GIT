@@ -556,13 +556,13 @@ def footer():
 (function(){{var b=document.querySelector('.menu-toggle'),n=document.getElementById('nav');
 if(b&&n)b.addEventListener('click',function(){{var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o)}});}})();
 (function(){{try{{var q=new URLSearchParams(location.search),src=q.get('utm_source'),camp=q.get('utm_campaign');
-if(src==='panneau'){{sessionStorage.setItem('jmc_prov','QR panneau – '+camp);
+if(src==='panneau'){{var fl=camp==='flyer';sessionStorage.setItem('jmc_prov',fl?'Flyer JMC':'QR panneau – '+camp);
 var bar=document.createElement('div');bar.className='qr-welcome';
-bar.innerHTML='Vous avez vu notre panneau de chantier près de chez vous ? <a href="/contact/">Demandez votre devis gratuit</a>';
+bar.innerHTML=fl?'Merci d’avoir scanné notre plaquette ! <a href="/contact/">Demandez votre devis gratuit</a>':'Vous avez vu notre panneau de chantier près de chez vous ? <a href="/contact/">Demandez votre devis gratuit</a>';
 document.body.insertBefore(bar,document.body.firstChild);
 history.replaceState(null,'',location.pathname);}}
 var f=document.getElementById('provenance'),pv=sessionStorage.getItem('jmc_prov');
-if(f&&pv){{f.value=pv;var o=document.querySelector('select[name=origine]');if(o)o.value='Panneau de chantier JMC';}}}}catch(e){{}}}})();
+if(f&&pv){{f.value=pv;var o=document.querySelector('select[name=origine]');if(o&&pv.indexOf('QR')===0)o.value='Panneau de chantier JMC';}}}}catch(e){{}}}})();
 </script>
 </body>
 </html>
@@ -2965,7 +2965,7 @@ QR_END = "# <<< QR codes panneaux de chantier"
 
 def qr_links():
     """Adresses courtes /p/<ville> imprimées en QR code sur les panneaux de chantier."""
-    links = [("jmc", "/", "general"), ("camion", "/", "camion")]
+    links = [("jmc", "/", "general"), ("camion", "/", "camion"), ("flyer", "/", "flyer")]
     for v in VILLES:
         short = v["slug"].replace("couvreur-", "", 1)
         links.append((short, f"/{v['slug']}/", short))
