@@ -177,9 +177,10 @@ en slogans. Interdits : « excellence opérationnelle », « solutions innovante
     catalogue de prestations, zone Île-de-France, SIREN, TVA) lisibles par les moteurs et les
     IA. À compléter au moment de la mise en ligne : nom de domaine (balise canonical, sitemap,
     URL dans le JSON-LD), Google Business Profile.
-12. Photos d'illustration libres de droits (Unsplash) : entrepôt (fond du hero logistique) et
-    tuiles de prestations (nettoyage, chantier, maçonnerie, façade, bureaux, serrurerie,
-    entrepôt) — à remplacer progressivement par de vraies photos d'interventions.
+12. Photos d'illustration libres de droits (Unsplash) restantes : entrepôt (fond du hero
+    logistique + carte accueil), nettoyage, chantier, maçonnerie, façade — à remplacer
+    progressivement. Deux vraies photos de site logistique reçues (oct. 2026) : bardage
+    encrassé avec réparation repérée, cuve à nettoyer — utilisées sur la page logistique.
 13. Photos : une dizaine d'images supplémentaires (équipe en intervention dans une cuisine
     professionnelle, façades, détails de réserves) ont été montrées en conversation mais
     jamais reçues en fichiers — à renvoyer en pièces jointes pour enrichir la galerie.
