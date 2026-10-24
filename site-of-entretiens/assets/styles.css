@@ -268,3 +268,35 @@ footer.site p{max-width:72em}
 .page-photo{border-radius:10px;overflow:hidden;box-shadow:0 14px 34px rgba(10,26,82,.10)}
 .page-photo img{width:100%;height:clamp(220px,38vw,430px);object-fit:cover;display:block}
 .page-photo figcaption{background:var(--brand-deep);color:#C9D4F2;font-size:.82rem;padding:.55rem 1rem}
+
+/* fonds photo */
+.hero.avec-photo{
+  background:
+    linear-gradient(100deg, var(--bg) 38%, rgba(241,242,246,.86) 58%, rgba(241,242,246,.42) 100%),
+    url("programme-jardin.jpg") center/cover no-repeat;
+}
+.page-hero.avec-photo-promo{
+  background:
+    linear-gradient(100deg, var(--bg) 32%, rgba(241,242,246,.86) 55%, rgba(241,242,246,.38) 100%),
+    url("programme-allee.jpg") center/cover no-repeat;
+}
+.page-hero.avec-photo-entrepot{
+  background:
+    linear-gradient(100deg, var(--bg) 32%, rgba(241,242,246,.86) 55%, rgba(241,242,246,.38) 100%),
+    url("entrepot-logistique.jpg") center/cover no-repeat;
+}
+.humain{
+  background:
+    linear-gradient(rgba(3,15,62,.90), rgba(3,15,62,.92)),
+    url("programme-coursives.jpg") center/cover no-repeat;
+}
+@media (max-width:860px){
+  .hero.avec-photo,.page-hero.avec-photo-promo,.page-hero.avec-photo-entrepot{
+    background:
+      linear-gradient(rgba(241,242,246,.93), rgba(241,242,246,.93)),
+      var(--photo, none) center/cover no-repeat;
+  }
+  .hero.avec-photo{--photo:url("programme-jardin.jpg")}
+  .page-hero.avec-photo-promo{--photo:url("programme-allee.jpg")}
+  .page-hero.avec-photo-entrepot{--photo:url("entrepot-logistique.jpg")}
+}
