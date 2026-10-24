@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NA Studio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<!-- À remplacer avant mise en ligne : canonical + og:url avec le vrai domaine -->
+<meta name="description" content="NA Studio conçoit des sites internet pour artisans, TPE et PME en Île-de-France : rapides, trouvables sur Google et prêts pour les recherches par IA. Devis après un premier échange.">
+<meta property="og:site_name" content="NA Studio">
+<meta property="og:title" content="NA Studio · Sites internet pour artisans et TPE en Île-de-France">
+<meta property="og:description" content="Des sites qui font sonner le téléphone : design sur mesure, textes rédigés, SEO local et référencement IA inclus.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Public+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Spline+Sans+Mono:wght@400;500&display=swap">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "#nastudio",
+      "name": "NA Studio",
+      "description": "Studio de création de sites internet pour artisans, TPE et PME en Île-de-France. Design sur mesure, textes rédigés, référencement local et optimisation pour les moteurs de recherche IA.",
+      "email": "contact@na-studio.fr",
+      "telephone": "+33600000000",
+      "areaServed": { "@type": "AdministrativeArea", "name": "Île-de-France" },
+      "address": { "@type": "PostalAddress", "addressRegion": "Île-de-France", "addressCountry": "FR" },
+      "priceRange": "Sur devis",
+      "knowsAbout": ["Création de site internet", "Référencement local", "SEO", "Optimisation pour moteurs IA", "Google Business Profile"]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Combien coûte un site NA Studio ?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Chaque projet est chiffré après un premier échange d'une vingtaine de minutes, en fonction du nombre de pages, des contenus à rédiger et du référencement visé. Vous recevez un devis précis, sans engagement, sous 48 h." }
+        },
+        {
+          "@type": "Question",
+          "name": "En combien de temps le site est-il en ligne ?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Un site vitrine complet est généralement en ligne en deux à trois semaines après réception de vos éléments (logo, photos, informations). Le délai exact figure sur le devis." }
+        },
+        {
+          "@type": "Question",
+          "name": "Le référencement Google est-il inclus ?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Oui. Chaque site est livré avec son référencement local de base : balises optimisées, données structurées schema.org, sitemap, et accompagnement sur la fiche Google Business Profile. C'est compris dans le devis, pas une option." }
+        },
+        {
+          "@type": "Question",
+          "name": "Serai-je propriétaire de mon site ?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Oui, entièrement. Le nom de domaine est enregistré à votre nom, le code et les contenus vous sont remis, et tout est documenté. Si vous partez un jour, vous partez avec tout." }
+        },
+        {
+          "@type": "Question",
+          "name": "Qu'est-ce que le référencement IA (GEO) ?",
+          "acceptedAnswer": { "@type": "Answer", "text": "De plus en plus de clients trouvent leurs prestataires en interrogeant ChatGPT, Perplexity ou les réponses IA de Google. Ces moteurs lisent les sites comme les humains : structure claire, données vérifiables, entreprise identifiable. Chaque site NA Studio est construit pour être compris et cité par ces moteurs." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+/* Layout : fiche technique d'atelier — grille gauche stricte, annotations mono, filets de mesure */
+:root{
+  --paper:#f6f5f1;
+  --paper-deep:#edebe4;
+  --ink:#1b211d;
+  --muted:#565d56;
+  --accent:#1c6a4a;
+  --accent-ink:#15543b;
+  --line:#c9c7bd;
+  --card:#fffefb;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{
+  max-width:1140px;
+  margin-inline:auto;
+  padding-left:max(20px, env(safe-area-inset-left, 0px));
+  padding-right:max(20px, env(safe-area-inset-right, 0px));
+}
+h1,h2,h3{font-family:"Bricolage Grotesque","Public Sans",sans-serif;line-height:1.08;text-wrap:balance;margin:0}
+.mono{font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+a{color:var(--accent-ink)}
+img{max-width:100%;display:block}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:2px}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+/* ---------- header ---------- */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--paper)}
+header{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:50;
+  background:var(--paper);border-bottom:1px solid var(--line);
+}
+.bar{display:flex;align-items:center;gap:24px;padding-block:14px}
+.brand{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-.01em;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:10px;padding:8px 0}
+.brand .dot{width:11px;height:11px;background:var(--accent);border-radius:50%;flex:none}
+nav{margin-left:auto;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{color:var(--muted);text-decoration:none;font-size:.92rem;font-weight:500;padding:12px 12px;border-radius:6px;white-space:nowrap}
+nav a:hover{color:var(--ink);background:var(--paper-deep)}
+.cta{
+  flex:none;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.95rem;
+  padding:13px 22px;border-radius:999px;border:none;cursor:pointer;
+}
+.cta:hover{background:var(--accent-ink)}
+@media (max-width:760px){ nav{display:none} }
+
+/* ---------- hero ---------- */
+.hero{padding-block:72px 56px;border-bottom:1px solid var(--line)}
+.eyebrow{display:flex;align-items:center;gap:12px;color:var(--accent-ink);margin-bottom:22px}
+.eyebrow::before{content:"";width:34px;height:2px;background:var(--accent)}
+.hero h1{font-size:clamp(2.5rem,6.4vw,4.4rem);font-weight:800;letter-spacing:-.025em;max-width:13ch}
+.hero h1 em{font-style:normal;color:var(--accent-ink);position:relative}
+.hero p.lede{max-width:56ch;font-size:1.12rem;color:var(--muted);margin:26px 0 34px}
+.hero p.lede strong{color:var(--ink)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.btn-ghost{
+  color:var(--ink);text-decoration:none;font-weight:600;font-size:.95rem;
+  padding:13px 22px;border-radius:999px;border:1.5px solid var(--ink);
+}
+.btn-ghost:hover{background:var(--ink);color:var(--paper)}
+.spec-strip{display:flex;flex-wrap:wrap;gap:10px 32px;margin-top:46px;color:var(--muted)}
+.spec-strip span b{color:var(--ink);font-weight:500}
+
+/* ---------- sections ---------- */
+section{padding-block:76px}
+.sec-head{display:flex;flex-direction:column;gap:16px;margin-bottom:44px}
+.sec-head h2{font-size:clamp(1.8rem,4vw,2.7rem);font-weight:800;letter-spacing:-.02em;max-width:22ch}
+.sec-head .mono{color:var(--accent-ink)}
+.sec-head p{max-width:60ch;color:var(--muted);margin:0}
+
+/* ---------- réalisations ---------- */
+#realisations{border-bottom:1px solid var(--line)}
+.works{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+@media (max-width:860px){.works{grid-template-columns:1fr}}
+.work{
+  background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.work .shot{aspect-ratio:1280/860;max-width:100%;overflow:hidden;border-bottom:1px solid var(--line);background:var(--paper-deep)}
+.work .shot img{width:100%;height:100%;object-fit:cover;object-position:top}
+.work .body{padding:22px 24px 24px;display:flex;flex-direction:column;gap:12px;flex:1}
+.work .meta{display:flex;justify-content:space-between;gap:12px;color:var(--muted)}
+.work h3{font-size:1.35rem;font-weight:800;letter-spacing:-.01em}
+.work p{margin:0;color:var(--muted);font-size:.98rem}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.72rem;letter-spacing:.05em;color:var(--accent-ink);border:1px solid var(--accent);border-radius:999px;padding:5px 11px}
+.work .visit{margin-top:auto;padding-top:6px}
+.work .visit a{font-weight:600;text-decoration:none;display:inline-block;padding:8px 0}
+.work .visit a:hover{text-decoration:underline}
+
+/* ---------- offre ---------- */
+#offre{background:var(--ink);color:var(--paper);border-bottom:1px solid var(--line)}
+#offre .sec-head h2,#offre h3{color:var(--paper)}
+#offre .sec-head .mono{color:#8fd1ae}
+#offre .sec-head p{color:#b9beb4}
+.offer-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start}
+@media (max-width:860px){.offer-grid{grid-template-columns:1fr}}
+.includes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.includes li{display:flex;gap:14px;padding:15px 0;border-bottom:1px solid #39413a;font-size:1.02rem;color:#dfe2da}
+.includes li::before{content:"✓";color:#8fd1ae;font-weight:700;flex:none}
+.includes li b{color:var(--paper);font-weight:600}
+.quote-card{background:#242b25;border:1px solid #39413a;border-radius:10px;padding:30px 28px}
+.quote-card .mono{color:#8fd1ae}
+.quote-card .price{font-family:"Bricolage Grotesque",sans-serif;font-size:2rem;font-weight:800;margin:10px 0 8px}
+.quote-card p{color:#b9beb4;font-size:.98rem;margin:0 0 22px}
+.quote-card .cta{display:inline-block}
+
+/* ---------- méthode ---------- */
+#methode{border-bottom:1px solid var(--line)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;counter-reset:step}
+@media (max-width:980px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.steps{grid-template-columns:1fr}}
+.step{counter-increment:step;border-top:3px solid var(--accent);padding-top:18px}
+.step::before{content:counter(step,decimal-leading-zero);font-family:"Spline Sans Mono",ui-monospace,monospace;color:var(--accent-ink);font-size:.85rem;letter-spacing:.1em}
+.step h3{font-size:1.12rem;font-weight:800;margin:8px 0 10px}
+.step p{margin:0;color:var(--muted);font-size:.95rem}
+
+/* ---------- visibilité (SEO + IA) ---------- */
+#visibilite{border-bottom:1px solid var(--line)}
+.vis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+@media (max-width:860px){.vis-grid{grid-template-columns:1fr}}
+.vis{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:26px 24px}
+.vis h3{font-size:1.1rem;font-weight:800;margin-bottom:10px}
+.vis p{margin:0;color:var(--muted);font-size:.95rem}
+.vis .mono{color:var(--accent-ink);display:block;margin-bottom:14px}
+
+/* ---------- FAQ ---------- */
+#questions{border-bottom:1px solid var(--line)}
+.faq{max-width:760px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{
+  cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:20px 4px;font-weight:600;font-size:1.05rem;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:"Bricolage Grotesque",sans-serif;font-size:1.5rem;color:var(--accent-ink);flex:none;line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq details p{margin:0 0 22px;padding:0 4px;color:var(--muted);max-width:62ch}
+
+/* ---------- contact ---------- */
+#contact .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+@media (max-width:860px){#contact .contact-grid{grid-template-columns:1fr}}
+.coord{display:flex;flex-direction:column;gap:6px;margin-top:28px}
+.coord a{font-size:1.25rem;font-weight:700;text-decoration:none;color:var(--ink);padding:6px 0;display:inline-block}
+.coord a:hover{color:var(--accent-ink)}
+.coord .mono{color:var(--muted)}
+form{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:30px 28px;display:flex;flex-direction:column;gap:18px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field label{font-size:.85rem;font-weight:600;letter-spacing:.02em}
+.field input,.field select,.field textarea{
+  font:inherit;color:var(--ink);background:var(--paper);
+  border:1px solid var(--line);border-radius:7px;padding:12px 14px;width:100%;
+}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent);outline:2px solid var(--accent);outline-offset:0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:560px){.two{grid-template-columns:1fr}}
+form .cta{align-self:flex-start}
+form .note{font-size:.84rem;color:var(--muted);margin:0}
+#form-ok{background:var(--accent);color:#fff;border-radius:7px;padding:14px 16px;font-weight:600}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line);padding-block:34px;color:var(--muted);font-size:.9rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;align-items:center;justify-content:space-between}
+footer a{color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#"><span class="dot"></span>NA&nbsp;Studio</a>
+    <nav aria-label="Navigation principale">
+      <a href="#realisations">Réalisations</a>
+      <a href="#offre">L'offre</a>
+      <a href="#methode">Méthode</a>
+      <a href="#questions">Questions</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="cta" href="#contact">Demander un devis</a>
+  </div>
+</header>
+
+<main>
+
+<div class="hero">
+  <div class="wrap">
+    <p class="eyebrow mono">Studio web · artisans, TPE &amp; PME · Île-de-France</p>
+    <h1>Des sites qui font <em>sonner le téléphone.</em></h1>
+    <p class="lede">NA Studio conçoit des sites pour les artisans et les petites entreprises d'Île-de-France : <strong>rapides, trouvables sur Google</strong> et prêts pour les recherches par IA. Pas de gabarit recyclé — chaque site est dessiné et rédigé pour votre métier.</p>
+    <div class="hero-actions">
+      <a class="cta" href="#contact">Demander un devis</a>
+      <a class="btn-ghost" href="#realisations">Voir les réalisations</a>
+    </div>
+    <p class="spec-strip mono">
+      <span><b>4 sites</b> en ligne</span>
+      <span>chargement <b>&lt; 1 s</b></span>
+      <span>SEO local <b>inclus</b></span>
+      <span>vous restez <b>propriétaire</b></span>
+    </p>
+  </div>
+</div>
+
+<section id="realisations">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="mono">Réalisations · sites en ligne, visitables aujourd'hui</p>
+      <h2>Quatre métiers, quatre sites. Aucun ne ressemble aux autres.</h2>
+      <p>Chaque client repart avec sa propre identité : couleurs, typographies et textes pensés pour son métier et sa clientèle. Cliquez, comparez — c'est la meilleure preuve.</p>
+    </div>
+    <div class="works">
+      <article class="work">
+        <div class="shot"><img src="assets/shot-atelierbaratte.jpg" width="1280" height="860" loading="lazy" alt="Page d'accueil du site Atelier Baratte : bijouterie et horlogerie à Saint-Maur-des-Fossés"></div>
+        <div class="body">
+          <p class="meta mono"><span>Bijouterie · horlogerie</span><span>Saint-Maur-des-Fossés (94)</span></p>
+          <h3>Atelier Baratte</h3>
+          <p>Bijouterie familiale depuis 1992. Site vitrine avec pages métier (réparation montres, horloges, rachat d'or) et référencement local sur Saint-Maur.</p>
+          <div class="chips"><span class="chip">5,0/5 · 30 avis Google</span><span class="chip">4 pages locales SEO</span></div>
+          <p class="visit"><a href="https://www.atelierbaratte.fr" target="_blank" rel="noopener">Visiter atelierbaratte.fr →</a></p>
+        </div>
+      </article>
+      <article class="work">
+        <div class="shot"><img src="assets/shot-jmccouverture.jpg" width="1280" height="860" loading="lazy" alt="Page d'accueil du site JMC Couverture : couvreur zinc et tuiles en Île-de-France"></div>
+        <div class="body">
+          <p class="meta mono"><span>Couverture · BTP</span><span>Île-de-France</span></p>
+          <h3>JMC Couverture</h3>
+          <p>Couvreur depuis 1985, certifié QUALIBAT &amp; RGE. Site avec vidéo drone des chantiers, pages par prestation et avis Google mis en avant.</p>
+          <div class="chips"><span class="chip">4,9/5 · 29 avis Google</span><span class="chip">QUALIBAT · RGE</span></div>
+          <p class="visit"><a href="https://jmccouverture.com" target="_blank" rel="noopener">Visiter jmccouverture.com →</a></p>
+        </div>
+      </article>
+      <article class="work">
+        <div class="shot"><img src="assets/shot-construisez.jpg" width="1280" height="860" loading="lazy" alt="Page d'accueil du site Construisez : permis de construire et déclaration préalable en Île-de-France"></div>
+        <div class="body">
+          <p class="meta mono"><span>Permis de construire</span><span>Île-de-France</span></p>
+          <h3>Construisez</h3>
+          <p>Dessinateur en autorisations d'urbanisme depuis 2018. Site éditorial sobre : services, réalisations, secteurs et parcours professionnel.</p>
+          <div class="chips"><span class="chip">Étude PLU · plans · 3D</span></div>
+          <p class="visit"><a href="https://www.construisez.fr" target="_blank" rel="noopener">Visiter construisez.fr →</a></p>
+        </div>
+      </article>
+      <article class="work">
+        <div class="shot"><img src="assets/shot-ofentretiens.jpg" width="1280" height="860" loading="lazy" alt="Page d'accueil du site OF Entretiens : corvoyage, visites de livraison et interventions en Île-de-France"></div>
+        <div class="body">
+          <p class="meta mono"><span>Services au BTP</span><span>Courtry (77) · Île-de-France</span></p>
+          <h3>OF Entretiens</h3>
+          <p>Partenaire des promoteurs et plateformes logistiques : corvoyage, levée de réserves, urgences. Site orienté devis, pensé pour une clientèle B2B.</p>
+          <div class="chips"><span class="chip">B2B · promoteurs</span><span class="chip">8 départements couverts</span></div>
+          <p class="visit"><a href="https://ofentretiens.netlify.app" target="_blank" rel="noopener">Visiter le site →</a></p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="offre">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="mono">L'offre · tout est compris, rien n'est une option</p>
+      <h2>Un site complet, livré clé en main.</h2>
+      <p>Le même soin pour un couvreur que pour une bijouterie : ce qui change, c'est votre métier, pas la qualité.</p>
+    </div>
+    <div class="offer-grid">
+      <ul class="includes">
+        <li><span><b>Design sur mesure</b> — aux couleurs de votre activité, jamais un template</span></li>
+        <li><span><b>Textes rédigés pour vos clients</b> — vous validez, vous ne rédigez pas</span></li>
+        <li><span><b>Référencement local</b> — balises, données structurées, sitemap, fiche Google</span></li>
+        <li><span><b>Prêt pour les recherches par IA</b> — lisible et citable par ChatGPT, Perplexity et les réponses IA de Google</span></li>
+        <li><span><b>Rapide sur mobile</b> — moins d'une seconde de chargement, comme les quatre sites ci-dessus</span></li>
+        <li><span><b>Formulaire + téléphone cliquable</b> — chaque visite peut devenir un appel</span></li>
+        <li><span><b>Vous restez propriétaire</b> — domaine à votre nom, code et accès remis, tout documenté</span></li>
+      </ul>
+      <div class="quote-card">
+        <p class="mono">Tarification</p>
+        <p class="price">Sur devis</p>
+        <p>Chaque projet est chiffré après un premier échange d'une vingtaine de minutes : nombre de pages, contenus, référencement visé. Devis précis sous 48&nbsp;h, sans engagement.</p>
+        <a class="cta" href="#contact">Décrire mon projet</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="methode">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="mono">Méthode · du premier appel à la mise en ligne</p>
+      <h2>Quatre étapes, un seul interlocuteur.</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <h3>Premier échange</h3>
+        <p>Vingt minutes au téléphone pour comprendre votre métier, votre clientèle et ce que le site doit rapporter. Sans engagement.</p>
+      </div>
+      <div class="step">
+        <h3>Maquette &amp; textes</h3>
+        <p>Vous recevez une maquette réelle de votre future page d'accueil, textes compris. Vous corrigez, on ajuste.</p>
+      </div>
+      <div class="step">
+        <h3>Mise en ligne</h3>
+        <p>Domaine, hébergement, référencement de base et fiche Google : tout est installé et vérifié ensemble, page par page.</p>
+      </div>
+      <div class="step">
+        <h3>Transfert &amp; suivi</h3>
+        <p>Les accès et la documentation vous sont remis. Vous êtes autonome, et joignable reste joignable : un interlocuteur, pas un ticket.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="visibilite">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="mono">Visibilité · être trouvé en 2026</p>
+      <h2>Un beau site que personne ne trouve ne sert à rien.</h2>
+      <p>Vos clients vous cherchent sur Google, sur Maps, et de plus en plus en posant une question à une IA. Chaque site NA Studio est construit pour les trois.</p>
+    </div>
+    <div class="vis-grid">
+      <div class="vis">
+        <span class="mono">Google · recherche classique</span>
+        <h3>Référencement local</h3>
+        <p>Pages dédiées par prestation et par ville, balises propres, sitemap : la structure que Google récompense, celle des quatre sites du portfolio.</p>
+      </div>
+      <div class="vis">
+        <span class="mono">Google Maps · fiche établissement</span>
+        <h3>Fiche Google optimisée</h3>
+        <p>Création ou reprise de votre fiche Google Business Profile, cohérente avec le site (nom, adresse, téléphone), et stratégie d'avis clients.</p>
+      </div>
+      <div class="vis">
+        <span class="mono">ChatGPT · Perplexity · AI Overviews</span>
+        <h3>Référencement IA</h3>
+        <p>Données structurées schema.org, contenu en questions-réponses, entreprise identifiable : ce que les moteurs IA lisent avant de recommander un prestataire.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="questions">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="mono">Questions fréquentes</p>
+      <h2>Ce qu'on nous demande avant de se lancer.</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Combien coûte un site NA Studio ?</summary>
+        <p>Chaque projet est chiffré après un premier échange d'une vingtaine de minutes, selon le nombre de pages, les contenus à rédiger et le référencement visé. Vous recevez un devis précis sous 48&nbsp;h, sans engagement.</p>
+      </details>
+      <details>
+        <summary>En combien de temps le site est-il en ligne ?</summary>
+        <p>Un site vitrine complet est généralement en ligne en deux à trois semaines après réception de vos éléments (logo, photos, informations). Le délai exact figure sur le devis.</p>
+      </details>
+      <details>
+        <summary>Le référencement Google est-il inclus ?</summary>
+        <p>Oui. Balises optimisées, données structurées, sitemap et accompagnement sur votre fiche Google : c'est compris dans le devis, pas une option facturée ensuite.</p>
+      </details>
+      <details>
+        <summary>Serai-je propriétaire de mon site ?</summary>
+        <p>Oui, entièrement. Le nom de domaine est enregistré à votre nom, le code et les contenus vous sont remis, et tout est documenté. Si vous partez un jour, vous partez avec tout.</p>
+      </details>
+      <details>
+        <summary>Qu'est-ce que le référencement IA ?</summary>
+        <p>De plus en plus de clients trouvent leurs prestataires en interrogeant ChatGPT, Perplexity ou les réponses IA de Google. Ces moteurs lisent les sites comme les humains : structure claire, données vérifiables, entreprise identifiable. Vos concurrents n'y sont pas encore — c'est le moment d'y être.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <div class="sec-head">
+          <p class="mono">Contact · réponse sous un jour ouvré</p>
+          <h2>Parlez-nous de votre métier.</h2>
+          <p>Décrivez votre activité et ce qui vous manque aujourd'hui : être trouvé, rassurer, recevoir plus d'appels. On vous dit franchement ce qu'un site peut changer — et ce qu'il ne changera pas.</p>
+        </div>
+        <div class="coord">
+          <span class="mono">Téléphone</span>
+          <a href="tel:+33600000000">06 00 00 00 00</a>
+          <span class="mono" style="margin-top:14px">Email</span>
+          <a href="mailto:contact@na-studio.fr">contact@na-studio.fr</a>
+          <span class="mono" style="margin-top:14px">Zone d'intervention</span>
+          <span>Île-de-France · déplacement sur site possible</span>
+        </div>
+      </div>
+      <form name="devis" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <p style="display:none"><label>Ne pas remplir : <input name="bot-field"></label></p>
+        <div class="two">
+          <div class="field"><label for="f-nom">Nom *</label><input id="f-nom" name="nom" required autocomplete="name"></div>
+          <div class="field"><label for="f-activite">Métier / activité *</label><input id="f-activite" name="activite" required placeholder="Ex. : couvreur, fleuriste…"></div>
+        </div>
+        <div class="two">
+          <div class="field"><label for="f-email">Email *</label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
+          <div class="field"><label for="f-tel">Téléphone</label><input id="f-tel" name="telephone" type="tel" autocomplete="tel"></div>
+        </div>
+        <div class="field">
+          <label for="f-besoin">Votre besoin</label>
+          <select id="f-besoin" name="besoin">
+            <option>Créer un premier site</option>
+            <option>Refaire un site existant</option>
+            <option>Être mieux trouvé sur Google</option>
+            <option>Autre / je ne sais pas encore</option>
+          </select>
+        </div>
+        <div class="field"><label for="f-msg">Votre situation, en quelques lignes *</label><textarea id="f-msg" name="message" rows="4" required></textarea></div>
+        <button class="cta" type="submit">Envoyer ma demande</button>
+        <p id="form-ok" hidden>Merci ! Votre demande est bien partie — réponse sous un jour ouvré.</p>
+        <p class="note">En envoyant ce formulaire, vous acceptez d'être recontacté au sujet de votre demande. Rien d'autre.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span><strong style="color:var(--ink)">NA Studio</strong> · création de sites internet · Île-de-France</span>
+    <span><a href="mailto:contact@na-studio.fr">contact@na-studio.fr</a> · <a href="tel:+33600000000">06 00 00 00 00</a></span>
+    <span>© 2026 NA Studio · <a href="#">Mentions légales</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
