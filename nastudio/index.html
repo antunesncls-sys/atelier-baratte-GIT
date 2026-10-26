@@ -6,7 +6,7 @@
 <title>NA Studio</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <!-- À remplacer avant mise en ligne : canonical + og:url avec le vrai domaine -->
-<meta name="description" content="NA Studio conçoit des sites internet et applications pour artisans, TPE et PME en Île-de-France, et améliore vos fichiers Excel (devis, suivi, tableaux de bord). Rendez-vous sur place, devis sous 48 h.">
+<meta name="description" content="NA Studio conçoit des sites internet et des outils de gestion sur mesure pour artisans, TPE et PME en Île-de-France : flotte de véhicules, bons de commande, dépôts, livraisons, fichiers Excel. Audit gratuit sur place.">
 <meta property="og:site_name" content="NA Studio">
 <meta property="og:title" content="NA Studio · Sites internet pour artisans et TPE en Île-de-France">
 <meta property="og:description" content="Des sites qui font sonner le téléphone : design sur mesure, textes rédigés, SEO local et référencement IA inclus.">
@@ -28,12 +28,17 @@
       "areaServed": { "@type": "AdministrativeArea", "name": "Île-de-France" },
       "address": { "@type": "PostalAddress", "addressRegion": "Île-de-France", "addressCountry": "FR" },
       "priceRange": "Sur devis",
-      "knowsAbout": ["Création de site internet", "Création d'application web", "Référencement local", "SEO", "Optimisation pour moteurs IA", "Google Business Profile", "Amélioration et automatisation de fichiers Excel", "Tableaux de bord"],
+      "knowsAbout": ["Création de site internet", "Création d'application web", "Gestion de flotte de véhicules", "Édition de bons de commande", "Gestion de stock et de dépôts", "Suivi des livraisons et preuve de livraison", "Référencement local", "SEO", "Optimisation pour moteurs IA", "Google Business Profile", "Amélioration et automatisation de fichiers Excel", "Tableaux de bord"],
       "slogan": "Plus de 50 sites réalisés pour des artisans, TPE et PME"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Vos outils remplacent-ils un logiciel de gestion ?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Chaque outil (flotte de véhicules, bons de commande, gestion de dépôt, livraisons) est construit sur les process du client, sans abonnement par utilisateur ni fonctions inutiles, et le client reste propriétaire. Si un logiciel existant convient, NA Studio s'y connecte au lieu de le remplacer." }
+        },
         {
           "@type": "Question",
           "name": "Travaillez-vous à distance ?",
@@ -208,6 +213,40 @@ section{padding-block:76px}
 .step h3{font-size:1.12rem;font-weight:800;margin:8px 0 10px}
 .step p{margin:0;color:var(--muted);font-size:.95rem}
 
+/* ---------- outils de gestion ---------- */
+#outils{border-bottom:1px solid var(--line)}
+.tools{display:flex;flex-direction:column;gap:72px}
+.tool{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
+.tool.rev .mockwrap{order:-1}
+@media (max-width:860px){
+  .tool{grid-template-columns:1fr;gap:28px}
+  .tool.rev .mockwrap{order:0}
+}
+.tool .mono{color:var(--brass);display:block;margin-bottom:12px}
+.tool h3{font-size:1.5rem;font-weight:800;letter-spacing:-.015em;margin-bottom:12px}
+.tool .lead{color:var(--muted);margin:0 0 20px;max-width:52ch}
+.feat{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.feat li{display:flex;gap:12px;font-size:.97rem;min-width:0}
+.feat li::before{content:"✓";color:var(--accent);font-weight:700;flex:none}
+.mockwrap{min-width:0}
+.mock{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;box-shadow:0 10px 30px rgba(15,16,19,.06)}
+.mock .mhead{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:4px}
+.mock .mhead b{font-size:.95rem}
+.mock .mhead .mono{color:var(--muted)}
+.mrow{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--paper-deep);font-size:.92rem;min-width:0}
+.mrow:last-child{border-bottom:none}
+.mrow .ml{display:flex;flex-direction:column;gap:2px;min-width:0}
+.mrow .ml small{color:var(--muted);font-size:.78rem}
+.mchip{flex:none;font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.7rem;letter-spacing:.04em;border-radius:999px;padding:4px 10px}
+.mchip.ok{color:#0b6b3c;background:#e3f3e9}
+.mchip.warn{color:#8a5200;background:#faeeda}
+.mchip.alert{color:#9f1d1d;background:#fbe5e5}
+.mchip.info{color:var(--accent-ink);background:#e7eafc}
+.mtotal{display:flex;justify-content:space-between;padding-top:12px;font-weight:700}
+.tools-outro{margin-top:56px;border-left:3px solid var(--accent);padding:4px 0 4px 22px;max-width:62ch}
+.tools-outro p{margin:0;font-size:1.05rem}
+.tools-outro p b{color:var(--accent-ink)}
+
 /* ---------- excel & visibilité (SEO + IA) ---------- */
 #excel{border-bottom:1px solid var(--line);background:var(--paper-deep)}
 #excel .vis{background:var(--card)}
@@ -266,9 +305,9 @@ footer a{color:var(--muted)}
     <a class="brand" href="#"><span class="dot"></span>NA&nbsp;Studio</a>
     <nav aria-label="Navigation principale">
       <a href="#realisations">Réalisations</a>
-      <a href="#offre">L'offre</a>
+      <a href="#offre">Sites web</a>
+      <a href="#outils">Outils de gestion</a>
       <a href="#methode">Méthode</a>
-      <a href="#excel">Excel</a>
       <a href="#questions">Questions</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -281,17 +320,17 @@ footer a{color:var(--muted)}
 <div class="hero">
   <div class="wrap">
     <p class="eyebrow mono">Studio web · artisans, TPE &amp; PME · Île-de-France</p>
-    <h1>Des sites qui font <em>sonner le téléphone.</em></h1>
-    <p class="lede">NA Studio conçoit des sites pour les artisans et les patrons d'Île-de-France : <strong>rapides, trouvables sur Google</strong> et prêts pour les recherches par IA. Et rien ne se fait à distance : <strong>on se déplace chez vous</strong>, on parle de votre métier et de vos process, et le site se construit sur ce qu'on a compris sur place.</p>
+    <h1>Des sites qui vendent. <em>Des outils qui gèrent.</em></h1>
+    <p class="lede">NA Studio conçoit des sites <strong>rapides et trouvables sur Google</strong> pour les artisans et patrons d'Île-de-France — et des outils de gestion sur mesure : <strong>flotte de véhicules, bons de commande, dépôts, livraisons</strong>. Rien ne se fait à distance : on se déplace chez vous, on regarde vos process, et tout se construit sur ce qu'on a compris sur place.</p>
     <div class="hero-actions">
       <a class="cta" href="#contact">Audit gratuit sur place</a>
       <a class="btn-ghost" href="#realisations">Voir les réalisations</a>
     </div>
     <p class="spec-strip mono">
       <span><b>+50 sites</b> réalisés</span>
-      <span>chargement <b>&lt; 1 s</b></span>
+      <span>outils <b>sur mesure</b></span>
       <span>SEO local <b>inclus</b></span>
-      <span>rendez-vous <b>sur place</b></span>
+      <span>audit gratuit <b>sur place</b></span>
       <span>vous restez <b>propriétaire</b></span>
     </p>
   </div>
@@ -411,12 +450,124 @@ footer a{color:var(--muted)}
   </div>
 </section>
 
+<section id="outils">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="mono">Outils de gestion · construits sur vos process</p>
+      <h2>Les outils qui font tourner la boîte, sans les usines à gaz.</h2>
+      <p>Pas un logiciel générique avec 200 menus dont vous utilisez 10 : des outils construits sur votre façon de travailler, constatée sur place. Chacun fonctionne seul, et ils se parlent entre eux.</p>
+    </div>
+    <div class="tools">
+
+      <article class="tool">
+        <div>
+          <span class="mono">Outil · Flotte de véhicules</span>
+          <h3>Tout votre parc dans un seul écran.</h3>
+          <p class="lead">Camions, utilitaires, engins : fini le carnet d'entretien dans la boîte à gants et le contrôle technique découvert en retard.</p>
+          <ul class="feat">
+            <li>Carnet par véhicule : entretiens, contrôles techniques, assurances, kilométrage</li>
+            <li>Alertes automatiques avant chaque échéance — CT, révision, assurance</li>
+            <li>Affectation chauffeur et chantier : qui a quel véhicule, aujourd'hui et demain</li>
+            <li>Coûts par véhicule : carburant, réparations, coût au kilomètre</li>
+            <li>Historique complet, utile en cas de contrôle ou à la revente</li>
+          </ul>
+        </div>
+        <div class="mockwrap">
+          <div class="mock" role="img" aria-label="Aperçu de l'outil de gestion de flotte : liste de véhicules avec alertes d'échéances">
+            <div class="mhead"><b>Parc · 7 véhicules</b><span class="mono">Aujourd'hui</span></div>
+            <div class="mrow"><span class="ml">Master L2 · ED-482-PM<small>Chauffeur : Karim · chantier Nogent</small></span><span class="mchip warn">CT dans 12 j</span></div>
+            <div class="mrow"><span class="ml">Kangoo 3 · FT-209-KL<small>Chauffeur : David · dépôt</small></span><span class="mchip ok">À jour</span></div>
+            <div class="mrow"><span class="ml">Iveco 3,5 t · GC-114-RE<small>84 500 km</small></span><span class="mchip warn">Révision 85 000 km</span></div>
+            <div class="mrow"><span class="ml">Berlingo · EK-771-AD<small>Assurance : 03/12</small></span><span class="mchip ok">À jour</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="tool rev">
+        <div>
+          <span class="mono">Outil · Bons de commande</span>
+          <h3>Un bon de commande propre, envoyé avant de quitter le client.</h3>
+          <p class="lead">Trois clics sur le téléphone : le PDF part par email, numéroté, calculé, à votre image. Plus rien ne se perd entre la prise de commande et la facture.</p>
+          <ul class="feat">
+            <li>Catalogue de vos produits et prestations, prix toujours à jour</li>
+            <li>Numérotation automatique, TVA et totaux calculés sans erreur</li>
+            <li>PDF à votre image, envoyé par email depuis le chantier</li>
+            <li>Statuts suivis : émis, validé, livré, facturé — rien n'attend dans un coin</li>
+            <li>Lié au stock : un bon validé réserve la marchandise au dépôt</li>
+          </ul>
+        </div>
+        <div class="mockwrap">
+          <div class="mock" role="img" aria-label="Aperçu de l'outil bons de commande : document avec lignes, total et statut">
+            <div class="mhead"><b>BC-2026-0142 · SARL Renaudin</b><span class="mchip info">Validé</span></div>
+            <div class="mrow"><span class="ml">Tuiles canal rouge<small>280 u × 2,10 €</small></span><span>588,00&nbsp;€</span></div>
+            <div class="mrow"><span class="ml">Liteaux 27×40<small>120 ml × 1,85 €</small></span><span>222,00&nbsp;€</span></div>
+            <div class="mrow"><span class="ml">Écran sous-toiture HPV<small>4 rouleaux × 86,00 €</small></span><span>344,00&nbsp;€</span></div>
+            <div class="mtotal"><span>Total HT</span><span>1 154,00&nbsp;€</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="tool">
+        <div>
+          <span class="mono">Outil · Dépôts de marchandise</span>
+          <h3>Le stock juste, dans chaque dépôt, sans inventaire surprise.</h3>
+          <p class="lead">Vous savez ce qu'il reste, où, et pour qui — avant la rupture, pas après. Multi-dépôts, multi-références, sans double saisie.</p>
+          <ul class="feat">
+            <li>Entrées et sorties saisies en deux gestes, ou scannées</li>
+            <li>Stock en temps réel par dépôt, par référence, par chantier</li>
+            <li>Seuils d'alerte : prévenu avant la rupture, commande passée à temps</li>
+            <li>Inventaires rapides : seul l'écart s'affiche, pas besoin de tout recompter</li>
+            <li>Traçabilité : qui a sorti quoi, quand, pour quel client</li>
+          </ul>
+        </div>
+        <div class="mockwrap">
+          <div class="mock" role="img" aria-label="Aperçu de l'outil de gestion de dépôt : stock par référence avec alertes de seuil">
+            <div class="mhead"><b>Dépôt Courtry</b><span class="mono">Temps réel</span></div>
+            <div class="mrow"><span class="ml">Tuiles canal rouge<small>Réservé : 280 u (BC-0142)</small></span><span class="mchip ok">1 240 u</span></div>
+            <div class="mrow"><span class="ml">Zinc 0,65 · bobine 500<small>Seuil : 20</small></span><span class="mchip warn">18 rouleaux</span></div>
+            <div class="mrow"><span class="ml">Écran sous-toiture HPV<small>Seuil : 10</small></span><span class="mchip alert">6 rouleaux</span></div>
+            <div class="mrow"><span class="ml">Liteaux 27×40<small>Entrée ce matin : +600 ml</small></span><span class="mchip ok">2 150 ml</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="tool rev">
+        <div>
+          <span class="mono">Outil · Livraisons client</span>
+          <h3>De la tournée du matin à la preuve de livraison signée.</h3>
+          <p class="lead">Le chauffeur a sa tournée sur le téléphone, le client signe du doigt, la photo fait foi. Fini les bons papier perdus et les litiges sans preuve.</p>
+          <ul class="feat">
+            <li>Tournées planifiées : adresses, créneaux, ordre de passage</li>
+            <li>Bon de livraison sur le téléphone du chauffeur, signé du doigt</li>
+            <li>Photo + signature horodatées : la preuve de livraison qui clôt les litiges</li>
+            <li>Le client est prévenu par email, avec son bon en pièce jointe</li>
+            <li>Écarts et retours remontent directement au dépôt et à la facturation</li>
+          </ul>
+        </div>
+        <div class="mockwrap">
+          <div class="mock" role="img" aria-label="Aperçu de l'outil livraisons : tournée du jour avec étapes livrées et signées">
+            <div class="mhead"><b>Tournée · mardi</b><span class="mono">Karim · Master L2</span></div>
+            <div class="mrow"><span class="ml">08:10 · Dépôt Courtry<small>Chargement BC-0142, BC-0145</small></span><span class="mchip ok">Fait</span></div>
+            <div class="mrow"><span class="ml">09:35 · SARL Renaudin, Nogent<small>Signé M. Renaudin · photo jointe</small></span><span class="mchip ok">Livré 09:41</span></div>
+            <div class="mrow"><span class="ml">11:20 · SCI Bellevue, Chelles<small>Créneau 11 h – 12 h</small></span><span class="mchip info">En route</span></div>
+            <div class="mrow"><span class="ml">14:00 · Chantier Grosjean, Meaux<small>2 palettes</small></span><span class="mchip warn">À livrer</span></div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+    <div class="tools-outro">
+      <p><b>Chaque outil fonctionne seul — et ils se parlent entre eux.</b> Un bon de commande validé réserve le stock au dépôt ; une livraison signée part en facturation. On construit uniquement ce dont vous avez besoin, dans l'ordre qui vous rapporte le plus.</p>
+    </div>
+  </div>
+</section>
+
 <section id="excel">
   <div class="wrap">
     <div class="sec-head">
-      <p class="mono">Excel &amp; outils internes · en plus des sites et applications</p>
-      <h2>Vos fichiers Excel aussi méritent un coup de propre.</h2>
-      <p>Devis, suivi de chantier, planning, trésorerie : la plupart des entreprises tournent sur des fichiers Excel bricolés au fil des années. On les reprend, on les fiabilise, on les automatise — et quand Excel atteint ses limites, on le transforme en application web simple, accessible par toute l'équipe.</p>
+      <p class="mono">Excel · souvent le point de départ</p>
+      <h2>Déjà tout sur Excel ? C'est un bon début.</h2>
+      <p>Devis, suivi de chantier, planning, trésorerie : la plupart des entreprises tournent sur des fichiers Excel bricolés au fil des années. On les reprend, on les fiabilise, on les automatise — et quand Excel atteint ses limites, on bascule vers les outils ci-dessus, en gardant vos données.</p>
     </div>
     <div class="vis-grid">
       <div class="vis">
@@ -472,6 +623,10 @@ footer a{color:var(--muted)}
       <h2>Ce qu'on nous demande avant de se lancer.</h2>
     </div>
     <div class="faq">
+      <details>
+        <summary>Vos outils remplacent-ils un logiciel de gestion ?</summary>
+        <p>Ils remplacent surtout ce qui vous fait perdre du temps : le carnet papier, les fichiers éparpillés, le logiciel générique dont vous n'utilisez qu'un dixième. Chaque outil est construit sur vos process — pas d'abonnement par utilisateur, pas de fonctions inutiles, et vous restez propriétaire. Si un logiciel existant vous convient, on s'y connecte au lieu de le remplacer.</p>
+      </details>
       <details>
         <summary>Travaillez-vous à distance ?</summary>
         <p>Non. Le premier rendez-vous se fait chez vous — à l'atelier, au dépôt ou au bureau. On échange sur votre business, vos process et vos clients avant d'écrire la moindre page : c'est ce qui fait la différence entre un site générique et un site qui vous ressemble.</p>
@@ -532,6 +687,7 @@ footer a{color:var(--muted)}
             <option>Créer un premier site</option>
             <option>Refaire un site existant</option>
             <option>Être mieux trouvé sur Google</option>
+            <option>Outil de gestion (flotte, commandes, dépôt, livraisons)</option>
             <option>Améliorer un fichier Excel / un outil interne</option>
             <option>Créer une application</option>
             <option>Autre / je ne sais pas encore</option>
