@@ -4,10 +4,10 @@
   --paper-deep:#f0f0ed;
   --ink:#0f1013;
   --muted:#5a5e66;
-  --accent:#2336e0;
-  --accent-ink:#1a29ad;
-  --brass:#1f33d6;
-  --brass-soft:#9aa5ff;
+  --accent:#002fa7;
+  --accent-ink:#00216f;
+  --brass:#0030a8;
+  --brass-soft:#8fa6ff;
   --line:#e0e0db;
   --card:#ffffff;
 }
@@ -186,7 +186,7 @@ section{padding-block:76px}
 .cases{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
 @media (max-width:980px){.cases{grid-template-columns:1fr}}
 .case{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:26px 24px;display:flex;flex-direction:column;gap:14px;min-width:0}
-.case .shot-app{width:min(100%,270px);margin-inline:auto;border-radius:20px;border:1px solid var(--line);box-shadow:0 16px 36px rgba(15,16,19,.14)}
+.case .shot-app{width:100%;max-width:250px;height:auto;aspect-ratio:295/640;object-fit:cover;object-position:top center;display:block;margin-inline:auto;border-radius:20px;border:1px solid var(--line);box-shadow:0 16px 36px rgba(15,16,19,.14)}
 .case .mono{color:var(--brass)}
 .case h3{font-size:1.2rem;font-weight:800;letter-spacing:-.01em}
 .case .feat li{font-size:.92rem}
@@ -195,7 +195,6 @@ section{padding-block:76px}
 
 /* ---------- excel & visibilité (SEO + IA) ---------- */
 #excel{border-bottom:1px solid var(--line);background:var(--paper-deep)}
-#gratuit{border-bottom:1px solid var(--line)}
 #excel .vis{background:var(--card)}
 #visibilite{border-bottom:1px solid var(--line)}
 .vis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}

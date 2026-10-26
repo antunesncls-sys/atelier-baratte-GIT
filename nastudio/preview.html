@@ -123,34 +123,6 @@
   </div>
 </section>
 
-<section id="gratuit">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="mono">Outils gratuits · sans inscription, sans publicité</p>
-      <h2>Des outils offerts, pour vous faire une idée.</h2>
-      <p>On construit des applications toute la journée — en voici en accès libre. Elles s'installent sur téléphone et ordinateur, fonctionnent hors connexion, et vos données restent sur votre appareil.</p>
-    </div>
-    <div class="vis-grid">
-      <div class="vis">
-        <span class="mono">Gratuit · téléphone &amp; ordinateur</span>
-        <h3>Mes Cigarettes</h3>
-        <p>Suivi de tabac à rouler : roulées du jour, coût, quota personnalisé, rythme conseillé, suivi des pochons et historique sur 14 jours. Installé en deux gestes depuis le navigateur.</p>
-        <p style="margin-top:14px"><a href="outils/mes-cigarettes.html"><strong>Ouvrir l'outil →</strong></a></p>
-      </div>
-      <div class="vis">
-        <span class="mono">À venir</span>
-        <h3>D'autres outils arrivent</h3>
-        <p>Calculatrice de marge chantier, suivi de consommation carburant… Une idée d'outil simple qui vous rendrait service ? Dites-le-nous, le prochain sera peut-être le vôtre.</p>
-      </div>
-      <div class="vis">
-        <span class="mono">Pourquoi gratuit ?</span>
-        <h3>C'est notre vitrine</h3>
-        <p>Ces outils montrent comment on travaille : simple, rapide, sans compte ni pub. Un outil de ce genre, adapté à votre métier et relié à vos données ? <a href="#contact">Parlons-en →</a></p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <div class="statement">
   <div class="wrap">
     <span class="mono">Notre façon de travailler</span>
@@ -478,7 +450,6 @@
           <li><a href="applications.html#etudes-de-cas">Études de cas</a></li>
           <li><a href="./#methode">Notre méthode</a></li>
           <li><a href="./#questions">Questions fréquentes</a></li>
-          <li><a href="outils/mes-cigarettes.html">Outil gratuit · Mes Cigarettes</a></li>
           <li><a href="#contact">Contact &amp; audit gratuit</a></li>
           <li><a href="mailto:contact@atelier-na.fr">contact@atelier-na.fr</a></li>
         </ul>
@@ -487,6 +458,7 @@
     <p class="fseo">Création de site internet, applications de gestion (devis-facturation, bons de commande, suivi d'outillage de chantier, levée de réserves et garantie de parfait achèvement, planning d'interventions, gestion locative) et gestion de fiche Google pour artisans, commerçants, promoteurs, TPE et PME à Paris et en Île-de-France : Seine-et-Marne (77), Seine-Saint-Denis (93), Val-de-Marne (94), Essonne (91) — Meaux, Chelles, Torcy, Lagny-sur-Marne, Saint-Maur-des-Fossés, Nogent-sur-Marne, Créteil.</p>
     <div class="fbot">
       <span>© 2026 Atelier NA · Île-de-France · <a href="#">Mentions légales</a></span>
+      <span>Site publié le 26 octobre 2026<span id="visites-wrap" hidden> · <span id="visites">0</span> visites depuis l’ouverture</span></span>
       <span>Site conçu et réalisé par Atelier NA — comme ceux de nos clients.</span>
     </div>
   </div>
@@ -505,6 +477,18 @@
   n.addEventListener('click', function(e){
     if (e.target.tagName === 'A') { n.classList.remove('open'); b.setAttribute('aria-expanded','false'); }
   });
+})();
+(function(){
+  try {
+    fetch('https://abacus.jasoncameron.dev/hit/atelier-na/visites')
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if (d && d.value) {
+          document.getElementById('visites').textContent = d.value.toLocaleString('fr-FR');
+          document.getElementById('visites-wrap').hidden = false;
+        }
+      }).catch(function(){});
+  } catch(e) {}
 })();
 </script>
 
