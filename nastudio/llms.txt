@@ -17,6 +17,10 @@
 - Écrans de suivi en temps réel dans les entrepôts (préparations, arrivages, expéditions, retards)
 - Suivi de flotte de véhicules avec suivi des réparations (échéances CT/révision/assurance, historique et coûts par véhicule)
 
+## Gestion de fiche Google (Google Business Profile)
+
+Service mensuel : création ou reprise de la fiche, publications régulières, collecte et réponse aux avis, cohérence NAP, rapport mensuel (vues, appels, position dans le pack local).
+
 ## Réalisations vérifiables
 
 - [Atelier Baratte](https://www.atelierbaratte.fr) — bijouterie-horlogerie à Saint-Maur-des-Fossés (5,0/5, 30 avis Google)
