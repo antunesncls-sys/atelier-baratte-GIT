@@ -6,14 +6,16 @@
 <style>
 /* Layout : fiche technique d'atelier — grille gauche stricte, annotations mono, filets de mesure */
 :root{
-  --paper:#f6f5f1;
-  --paper-deep:#edebe4;
-  --ink:#1b211d;
-  --muted:#565d56;
-  --accent:#1c6a4a;
-  --accent-ink:#15543b;
-  --line:#c9c7bd;
-  --card:#fffefb;
+  --paper:#f4f1e9;
+  --paper-deep:#eae5d8;
+  --ink:#141a14;
+  --muted:#5b6153;
+  --accent:#163f2e;
+  --accent-ink:#0f2e21;
+  --brass:#8a6a28;
+  --brass-soft:#cfae62;
+  --line:#d3cdbc;
+  --card:#fdfcf8;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -34,7 +36,7 @@ body{
 }
 h1,h2,h3{font-family:"Bricolage Grotesque","Public Sans",sans-serif;line-height:1.08;text-wrap:balance;margin:0}
 .mono{font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
-a{color:var(--accent-ink)}
+a{color:var(--brass)}
 img{max-width:100%;display:block}
 :focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:2px}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
@@ -47,7 +49,7 @@ header{
 }
 .bar{display:flex;align-items:center;gap:24px;padding-block:14px}
 .brand{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-.01em;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:10px;padding:8px 0}
-.brand .dot{width:11px;height:11px;background:var(--accent);border-radius:50%;flex:none}
+.brand .dot{width:11px;height:11px;background:var(--brass);border-radius:50%;flex:none}
 nav{margin-left:auto;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
 nav::-webkit-scrollbar{display:none}
 nav a{color:var(--muted);text-decoration:none;font-size:.92rem;font-weight:500;padding:12px 12px;border-radius:6px;white-space:nowrap}
@@ -61,10 +63,10 @@ nav a:hover{color:var(--ink);background:var(--paper-deep)}
 
 /* ---------- hero ---------- */
 .hero{padding-block:72px 56px;border-bottom:1px solid var(--line)}
-.eyebrow{display:flex;align-items:center;gap:12px;color:var(--accent-ink);margin-bottom:22px}
-.eyebrow::before{content:"";width:34px;height:2px;background:var(--accent)}
+.eyebrow{display:flex;align-items:center;gap:12px;color:var(--brass);margin-bottom:22px}
+.eyebrow::before{content:"";width:34px;height:2px;background:var(--brass)}
 .hero h1{font-size:clamp(2.5rem,6.4vw,4.4rem);font-weight:800;letter-spacing:-.025em;max-width:13ch}
-.hero h1 em{font-style:normal;color:var(--accent-ink);position:relative}
+.hero h1 em{font-style:normal;color:var(--brass);position:relative}
 .hero p.lede{max-width:56ch;font-size:1.12rem;color:var(--muted);margin:26px 0 34px}
 .hero p.lede strong{color:var(--ink)}
 .hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
@@ -80,7 +82,7 @@ nav a:hover{color:var(--ink);background:var(--paper-deep)}
 section{padding-block:76px}
 .sec-head{display:flex;flex-direction:column;gap:16px;margin-bottom:44px}
 .sec-head h2{font-size:clamp(1.8rem,4vw,2.7rem);font-weight:800;letter-spacing:-.02em;max-width:22ch}
-.sec-head .mono{color:var(--accent-ink)}
+.sec-head .mono{color:var(--brass)}
 .sec-head p{max-width:60ch;color:var(--muted);margin:0}
 
 /* ---------- réalisations ---------- */
@@ -98,27 +100,37 @@ section{padding-block:76px}
 .work h3{font-size:1.35rem;font-weight:800;letter-spacing:-.01em}
 .work p{margin:0;color:var(--muted);font-size:.98rem}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.72rem;letter-spacing:.05em;color:var(--accent-ink);border:1px solid var(--accent);border-radius:999px;padding:5px 11px}
+.chip{font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.72rem;letter-spacing:.05em;color:var(--brass);border:1px solid var(--brass-soft);border-radius:999px;padding:5px 11px}
 .work .visit{margin-top:auto;padding-top:6px}
 .work .visit a{font-weight:600;text-decoration:none;display:inline-block;padding:8px 0}
 .work .visit a:hover{text-decoration:underline}
 
 /* ---------- offre ---------- */
-#offre{background:var(--ink);color:var(--paper);border-bottom:1px solid var(--line)}
-#offre .sec-head h2,#offre h3{color:var(--paper)}
-#offre .sec-head .mono{color:#8fd1ae}
-#offre .sec-head p{color:#b9beb4}
+#offre{background:#0f1d16;color:var(--paper);border-bottom:1px solid var(--line)}
+#offre .sec-head h2,#offre h3{color:#f6f3ea}
+#offre .sec-head .mono{color:var(--brass-soft)}
+#offre .sec-head p{color:#b9bfae}
 .offer-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start}
 @media (max-width:860px){.offer-grid{grid-template-columns:1fr}}
 .includes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
-.includes li{display:flex;gap:14px;padding:15px 0;border-bottom:1px solid #39413a;font-size:1.02rem;color:#dfe2da}
-.includes li::before{content:"✓";color:#8fd1ae;font-weight:700;flex:none}
-.includes li b{color:var(--paper);font-weight:600}
-.quote-card{background:#242b25;border:1px solid #39413a;border-radius:10px;padding:30px 28px}
-.quote-card .mono{color:#8fd1ae}
+.includes li{display:flex;gap:14px;padding:15px 0;border-bottom:1px solid #2c4033;font-size:1.02rem;color:#dfe2d5}
+.includes li::before{content:"✓";color:var(--brass-soft);font-weight:700;flex:none}
+.includes li b{color:#f6f3ea;font-weight:600}
+.quote-card{background:#15291e;border:1px solid #2c4033;border-radius:10px;padding:30px 28px}
+.quote-card .mono{color:var(--brass-soft)}
 .quote-card .price{font-family:"Bricolage Grotesque",sans-serif;font-size:2rem;font-weight:800;margin:10px 0 8px}
-.quote-card p{color:#b9beb4;font-size:.98rem;margin:0 0 22px}
+.quote-card p{color:#b9bfae;font-size:.98rem;margin:0 0 22px}
 .quote-card .cta{display:inline-block}
+
+/* ---------- bandeau sur-place ---------- */
+.statement{border-bottom:1px solid var(--line);background:var(--paper-deep)}
+.statement .wrap{padding-block:64px}
+.statement p.big{
+  font-family:"Bricolage Grotesque",sans-serif;font-weight:600;letter-spacing:-.01em;
+  font-size:clamp(1.4rem,3.2vw,2.1rem);line-height:1.3;max-width:34ch;margin:0;text-wrap:balance;
+}
+.statement p.big em{font-style:normal;color:var(--brass)}
+.statement .mono{color:var(--brass);display:block;margin-bottom:18px}
 
 /* ---------- méthode ---------- */
 #methode{border-bottom:1px solid var(--line)}
@@ -126,7 +138,7 @@ section{padding-block:76px}
 @media (max-width:980px){.steps{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:560px){.steps{grid-template-columns:1fr}}
 .step{counter-increment:step;border-top:3px solid var(--accent);padding-top:18px}
-.step::before{content:counter(step,decimal-leading-zero);font-family:"Spline Sans Mono",ui-monospace,monospace;color:var(--accent-ink);font-size:.85rem;letter-spacing:.1em}
+.step::before{content:counter(step,decimal-leading-zero);font-family:"Spline Sans Mono",ui-monospace,monospace;color:var(--brass);font-size:.85rem;letter-spacing:.1em}
 .step h3{font-size:1.12rem;font-weight:800;margin:8px 0 10px}
 .step p{margin:0;color:var(--muted);font-size:.95rem}
 
@@ -137,7 +149,7 @@ section{padding-block:76px}
 .vis{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:26px 24px}
 .vis h3{font-size:1.1rem;font-weight:800;margin-bottom:10px}
 .vis p{margin:0;color:var(--muted);font-size:.95rem}
-.vis .mono{color:var(--accent-ink);display:block;margin-bottom:14px}
+.vis .mono{color:var(--brass);display:block;margin-bottom:14px}
 
 /* ---------- FAQ ---------- */
 #questions{border-bottom:1px solid var(--line)}
@@ -148,7 +160,7 @@ section{padding-block:76px}
   padding:20px 4px;font-weight:600;font-size:1.05rem;
 }
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-family:"Bricolage Grotesque",sans-serif;font-size:1.5rem;color:var(--accent-ink);flex:none;line-height:1}
+.faq summary::after{content:"+";font-family:"Bricolage Grotesque",sans-serif;font-size:1.5rem;color:var(--brass);flex:none;line-height:1}
 .faq details[open] summary::after{content:"–"}
 .faq details p{margin:0 0 22px;padding:0 4px;color:var(--muted);max-width:62ch}
 
@@ -200,7 +212,7 @@ footer a{color:var(--muted)}
   <div class="wrap">
     <p class="eyebrow mono">Studio web · artisans, TPE &amp; PME · Île-de-France</p>
     <h1>Des sites qui font <em>sonner le téléphone.</em></h1>
-    <p class="lede">NA Studio conçoit des sites pour les artisans et les petites entreprises d'Île-de-France : <strong>rapides, trouvables sur Google</strong> et prêts pour les recherches par IA. Pas de gabarit recyclé — chaque site est dessiné et rédigé pour votre métier.</p>
+    <p class="lede">NA Studio conçoit des sites pour les artisans et les patrons d'Île-de-France : <strong>rapides, trouvables sur Google</strong> et prêts pour les recherches par IA. Et rien ne se fait à distance : <strong>on se déplace chez vous</strong>, on parle de votre métier et de vos process, et le site se construit sur ce qu'on a compris sur place.</p>
     <div class="hero-actions">
       <a class="cta" href="#contact">Demander un devis</a>
       <a class="btn-ghost" href="#realisations">Voir les réalisations</a>
@@ -209,6 +221,7 @@ footer a{color:var(--muted)}
       <span><b>4 sites</b> en ligne</span>
       <span>chargement <b>&lt; 1 s</b></span>
       <span>SEO local <b>inclus</b></span>
+      <span>rendez-vous <b>sur place</b></span>
       <span>vous restez <b>propriétaire</b></span>
     </p>
   </div>
@@ -275,6 +288,7 @@ footer a{color:var(--muted)}
     </div>
     <div class="offer-grid">
       <ul class="includes">
+        <li><span><b>Un vrai rendez-vous sur place</b> — on se déplace partout en Île-de-France, le site se construit sur ce qu'on voit chez vous</span></li>
         <li><span><b>Design sur mesure</b> — aux couleurs de votre activité, jamais un template</span></li>
         <li><span><b>Textes rédigés pour vos clients</b> — vous validez, vous ne rédigez pas</span></li>
         <li><span><b>Référencement local</b> — balises, données structurées, sitemap, fiche Google</span></li>
@@ -286,23 +300,30 @@ footer a{color:var(--muted)}
       <div class="quote-card">
         <p class="mono">Tarification</p>
         <p class="price">Sur devis</p>
-        <p>Chaque projet est chiffré après un premier échange d'une vingtaine de minutes : nombre de pages, contenus, référencement visé. Devis précis sous 48&nbsp;h, sans engagement.</p>
-        <a class="cta" href="#contact">Décrire mon projet</a>
+        <p>Chaque projet est chiffré après un rendez-vous sur place : nombre de pages, contenus, référencement visé. Devis précis sous 48&nbsp;h, sans engagement.</p>
+        <a class="cta" href="#contact">Prendre rendez-vous</a>
       </div>
     </div>
   </div>
 </section>
 
+<div class="statement">
+  <div class="wrap">
+    <span class="mono">Notre façon de travailler</span>
+    <p class="big">Pas une agence à distance. <em>On vient vous voir</em> — à l'atelier, au dépôt, au bureau. On échange sur votre business, vos process, vos clients. C'est là que le site se décide, pas derrière un écran.</p>
+  </div>
+</div>
+
 <section id="methode">
   <div class="wrap">
     <div class="sec-head">
-      <p class="mono">Méthode · du premier appel à la mise en ligne</p>
+      <p class="mono">Méthode · de la rencontre à la mise en ligne</p>
       <h2>Quatre étapes, un seul interlocuteur.</h2>
     </div>
     <div class="steps">
       <div class="step">
-        <h3>Premier échange</h3>
-        <p>Vingt minutes au téléphone pour comprendre votre métier, votre clientèle et ce que le site doit rapporter. Sans engagement.</p>
+        <h3>Rencontre sur place</h3>
+        <p>On se déplace chez vous : une heure pour comprendre votre métier, vos process, votre clientèle et ce que le site doit rapporter. Sans engagement.</p>
       </div>
       <div class="step">
         <h3>Maquette &amp; textes</h3>
@@ -314,7 +335,7 @@ footer a{color:var(--muted)}
       </div>
       <div class="step">
         <h3>Transfert &amp; suivi</h3>
-        <p>Les accès et la documentation vous sont remis. Vous êtes autonome, et joignable reste joignable : un interlocuteur, pas un ticket.</p>
+        <p>Les accès et la documentation vous sont remis : vous êtes autonome. Et après la livraison, vous gardez un interlocuteur direct — pas un ticket.</p>
       </div>
     </div>
   </div>
@@ -355,8 +376,12 @@ footer a{color:var(--muted)}
     </div>
     <div class="faq">
       <details>
+        <summary>Travaillez-vous à distance ?</summary>
+        <p>Non. Le premier rendez-vous se fait chez vous — à l'atelier, au dépôt ou au bureau. On échange sur votre business, vos process et vos clients avant d'écrire la moindre page : c'est ce qui fait la différence entre un site générique et un site qui vous ressemble.</p>
+      </details>
+      <details>
         <summary>Combien coûte un site NA Studio ?</summary>
-        <p>Chaque projet est chiffré après un premier échange d'une vingtaine de minutes, selon le nombre de pages, les contenus à rédiger et le référencement visé. Vous recevez un devis précis sous 48&nbsp;h, sans engagement.</p>
+        <p>Chaque projet est chiffré après un rendez-vous sur place, selon le nombre de pages, les contenus à rédiger et le référencement visé. Vous recevez un devis précis sous 48&nbsp;h, sans engagement.</p>
       </details>
       <details>
         <summary>En combien de temps le site est-il en ligne ?</summary>
@@ -385,7 +410,7 @@ footer a{color:var(--muted)}
         <div class="sec-head">
           <p class="mono">Contact · réponse sous un jour ouvré</p>
           <h2>Parlez-nous de votre métier.</h2>
-          <p>Décrivez votre activité et ce qui vous manque aujourd'hui : être trouvé, rassurer, recevoir plus d'appels. On vous dit franchement ce qu'un site peut changer — et ce qu'il ne changera pas.</p>
+          <p>Décrivez votre activité et ce qui vous manque aujourd'hui : être trouvé, rassurer, recevoir plus d'appels. On convient d'un rendez-vous sur place, et on vous dit franchement ce qu'un site peut changer — et ce qu'il ne changera pas.</p>
         </div>
         <div class="coord">
           <span class="mono">Téléphone</span>
@@ -393,7 +418,7 @@ footer a{color:var(--muted)}
           <span class="mono" style="margin-top:14px">Email</span>
           <a href="mailto:contact@na-studio.fr">contact@na-studio.fr</a>
           <span class="mono" style="margin-top:14px">Zone d'intervention</span>
-          <span>Île-de-France · déplacement sur site possible</span>
+          <span>Île-de-France · on se déplace à l'atelier, au dépôt ou au bureau</span>
         </div>
       </div>
       <form name="devis" method="POST" data-netlify="true" netlify-honeypot="bot-field">
