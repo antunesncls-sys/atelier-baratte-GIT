@@ -142,7 +142,9 @@ section{padding-block:76px}
 .step h3{font-size:1.12rem;font-weight:800;margin:8px 0 10px}
 .step p{margin:0;color:var(--muted);font-size:.95rem}
 
-/* ---------- visibilité (SEO + IA) ---------- */
+/* ---------- excel & visibilité (SEO + IA) ---------- */
+#excel{border-bottom:1px solid var(--line);background:var(--paper-deep)}
+#excel .vis{background:var(--card)}
 #visibilite{border-bottom:1px solid var(--line)}
 .vis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
 @media (max-width:860px){.vis-grid{grid-template-columns:1fr}}
@@ -199,6 +201,7 @@ footer a{color:var(--muted)}
       <a href="#realisations">Réalisations</a>
       <a href="#offre">L'offre</a>
       <a href="#methode">Méthode</a>
+      <a href="#excel">Excel</a>
       <a href="#questions">Questions</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -341,6 +344,33 @@ footer a{color:var(--muted)}
   </div>
 </section>
 
+<section id="excel">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="mono">Excel &amp; outils internes · en plus des sites et applications</p>
+      <h2>Vos fichiers Excel aussi méritent un coup de propre.</h2>
+      <p>Devis, suivi de chantier, planning, trésorerie : la plupart des entreprises tournent sur des fichiers Excel bricolés au fil des années. On les reprend, on les fiabilise, on les automatise — et quand Excel atteint ses limites, on le transforme en application web simple, accessible par toute l'équipe.</p>
+    </div>
+    <div class="vis-grid">
+      <div class="vis">
+        <span class="mono">Devis · factures</span>
+        <h3>Des fichiers qui calculent seuls</h3>
+        <p>Formules fiables, menus déroulants, totaux automatiques, mise en page prête à envoyer : vous remplissez trois cases, le fichier fait le reste.</p>
+      </div>
+      <div class="vis">
+        <span class="mono">Suivi · tableaux de bord</span>
+        <h3>Vos chiffres lisibles d'un coup d'œil</h3>
+        <p>Chantiers, marges, trésorerie, stocks : un tableau de bord clair construit sur vos données existantes, sans changer vos habitudes.</p>
+      </div>
+      <div class="vis">
+        <span class="mono">Automatisation</span>
+        <h3>Fini la double saisie</h3>
+        <p>Macros, imports automatiques, fichiers qui se parlent entre eux. Et si le besoin dépasse Excel, on bascule vers une petite application web.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="visibilite">
   <div class="wrap">
     <div class="sec-head">
@@ -437,6 +467,8 @@ footer a{color:var(--muted)}
             <option>Créer un premier site</option>
             <option>Refaire un site existant</option>
             <option>Être mieux trouvé sur Google</option>
+            <option>Améliorer un fichier Excel / un outil interne</option>
+            <option>Créer une application</option>
             <option>Autre / je ne sais pas encore</option>
           </select>
         </div>
