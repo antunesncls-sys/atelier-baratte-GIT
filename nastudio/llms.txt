@@ -16,6 +16,7 @@
 - Fichiers Excel communicants : plusieurs fichiers Excel reliés à une base de données commune
 - Écrans de suivi en temps réel dans les entrepôts (préparations, arrivages, expéditions, retards)
 - Suivi de flotte de véhicules avec suivi des réparations (échéances CT/révision/assurance, historique et coûts par véhicule)
+- Gestion locative : suivi des loyers et encaissements, quittances automatiques, plateforme d'échange propriétaire-locataire, déclaration de sinistre en ligne
 
 ## Gestion de fiche Google (Google Business Profile)
 
