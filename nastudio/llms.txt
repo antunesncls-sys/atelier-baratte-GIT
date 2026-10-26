@@ -11,7 +11,9 @@
 
 ## Applications livrées
 
-- Application de devis et facturation avec suivi des réparations, réalisée pour la bijouterie Atelier Baratte (Saint-Maur-des-Fossés)
+- Application de caisse et suivi des réparations pour la bijouterie Atelier Baratte (Saint-Maur-des-Fossés) : dépôts de réparation, objectifs du jour et du mois, caisse, achats et frais, tableau de bord
+- Application d'équipes chantier pour JMC Couverture (couvreur QUALIBAT RGE, Île-de-France) : chantier du jour, planning de la semaine par chef de chantier, demandes de matériel et d'échafaudage, bons de fabrication, synchronisation hors connexion
+- Application de devis et factures avec Devis IA : devis rédigé par IA à partir de la description du chantier, factures, tableau de bord
 - Application d'édition de bons de commande (catalogue, PDF, statuts, lien au stock)
 - Fichiers Excel communicants : plusieurs fichiers Excel reliés à une base de données commune
 - Écrans de suivi en temps réel dans les entrepôts (préparations, arrivages, expéditions, retards)
