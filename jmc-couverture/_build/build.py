@@ -119,6 +119,9 @@ PHOTOS = {
     "pavillon": ("toiture-pavillon-renovation-jmc",
                  "Pavillon avec toiture rénovée en tuiles anthracite, VELUX et gouttières remplacés par JMC Couverture, panneau de chantier sur le portail",
                  "Rénovation de toiture avec remplacement des VELUX et des gouttières."),
+    "equipe": ("equipe-jmc-couverture-40-ans",
+               "L'équipe de JMC Couverture réunie devant un mur aux couleurs de l'entreprise pour ses 40 ans : couvreurs, charpentiers, zingueurs, encadrement et direction",
+               "L'équipe JMC réunie pour les 40 ans de l'entreprise."),
     "depot": ("depot-flotte-vehicules-jmc-couverture",
               "Siège de l'entreprise JMC Couverture avec atelier et flotte de camionnettes d'intervention",
               "Notre siège, notre atelier et notre flotte de véhicules."),
@@ -390,7 +393,7 @@ def service_ld(name, url, desc):
 
 
 # ---------------------------------------------------------------- gabarits
-def head(title, desc, path, lds, robots="index,follow"):
+def head(title, desc, path, lds, robots="index,follow", og_image="/assets/og-jmc-couverture.jpg"):
     canonical = SITE + path
     _PAGE.clear()
     _PAGE.update({"title": title, "desc": desc, "path": path, "robots": robots, "bref": None})
@@ -420,7 +423,7 @@ def head(title, desc, path, lds, robots="index,follow"):
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{canonical}">
-<meta property="og:image" content="{SITE}/assets/og-jmc-couverture.jpg">
+<meta property="og:image" content="{SITE}{og_image}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
@@ -764,7 +767,7 @@ def home():
   <div class="prose">
     <span class="eyebrow">L'entreprise</span>
     <h2>La structure de la promotion immobilière, au service des particuliers</h2>
-    {photo("depot")}
+    {photo("equipe")}
     <p>Depuis 1985, la société JMC réalise la charpente, la couverture et la zinguerie de programmes de <a href="/couvreur-promotion-immobiliere/">promotion immobilière</a> pour Bouygues Immobilier, Kaufman &amp; Broad, Nexity ou Archicrea, ainsi que pour des architectes et des collectivités. Pour tenir ces chantiers, nous avons bâti à Courtry une vraie structure : <strong>des équipes de couvreurs, charpentiers et zingueurs, un atelier, une flotte de véhicules et un encadrement de chantier</strong>.</p>
     <p>Cette organisation, nous la mettons aussi au service des <strong>particuliers</strong> : vous bénéficiez de la capacité et de la rigueur d'une entreprise habituée aux grands chantiers, avec un interlocuteur dédié et l'écoute d'une entreprise familiale. Nous travaillons aussi avec les <strong>maîtres d'œuvre</strong> et les architectes, pouvons <strong>gérer vos démarches en mairie</strong> et vous recommander des prestataires compétents pour préparer au mieux vos travaux.</p>
     <p>Notre approche est simple : <strong>confier vos travaux à des professionnels</strong>. Chaque chantier commence par un diagnostic honnête de votre toiture. Nous vous expliquons ce qui doit être fait tout de suite, ce qui peut attendre, et nous vous remettons un devis clair, poste par poste.</p>
@@ -1141,7 +1144,7 @@ def maison_neuve():
     html += f"""
 <section><div class="wrap split">
   <article class="prose">
-    {photo("depot", eager=True)}
+    {photo("equipe", eager=True)}
     <h2>Le savoir-faire de la promotion immobilière, pour votre maison</h2>
     <p>Bouygues Immobilier, Kaufman &amp; Broad, Nexity : la société JMC intervient depuis des années dans la <a href="/couvreur-promotion-immobiliere/">promotion immobilière</a>, pour des promoteurs et des architectes, sur des programmes de logements neufs en Île-de-France. Ces chantiers exigent une rigueur particulière : respect strict des plannings, conformité aux normes, contrôles de bureaux de contrôle, finitions irréprochables.</p>
     <p>C'est cette même organisation que nous mettons au service des <strong>particuliers qui font construire leur maison</strong>. Vous bénéficiez d'une entreprise structurée, équipée et assurée, avec l'écoute et la souplesse d'une entreprise familiale.</p>
@@ -1932,6 +1935,7 @@ def courtry(v):
     {reviews_block(["lily", "richard"], "Ce que nos clients en disent")}
     <h2>Engagés dans la vie de Courtry</h2>
     <p>Implantée à Courtry depuis 1985, JMC soutient la vie locale, notamment le club de football <a href="{BIZ['partenaires'][0][2]}" target="_blank" rel="noopener">CS Courtry Académie</a>. Une grande partie de nos clients nous vient du bouche-à-oreille.</p>
+    {photo("equipe")}
     <h3>Communes proches de Courtry</h3>
     <p>Nous intervenons aussi à {vois}, et dans toute la Seine-et-Marne : voir notre page <a href="/{dd['slug']}/">couvreur {dd['art']} {dd['name']}</a>.</p>
     <h2>Votre couvreur dans les villes autour de Courtry</h2>
@@ -2687,7 +2691,7 @@ def qui_sommes_nous():
             "name": "Qui sommes-nous – JMC Couverture", "about": {"@id": SITE + "/#entreprise"}}
     html = head("Qui sommes-nous : JMC Couverture, couvreur depuis 1985 à Courtry",
                 "JMC Couverture (Société JMC) : entreprise de couverture, charpente et zinguerie fondée en 1985 à Courtry (77). QUALIBAT, RGE, 1 500 chantiers, 4,9/5 sur Google.",
-                url, [org_ld(), crumbs_ld(trail), page])
+                url, [org_ld(), crumbs_ld(trail), page], og_image="/assets/og-jmc-equipe.jpg")
     html += header(url)
     _PAGE["bref"] = ("JMC Couverture (raison sociale : Société JMC) est une entreprise de couverture, charpente et zinguerie "
                      "fondée en 1985 et installée au 97 rue Charles Van Wyngene à Courtry (77181, Seine-et-Marne). "
@@ -2708,10 +2712,14 @@ def qui_sommes_nous():
     html += f"""
 <section><div class="wrap split">
   <article class="prose">
+    {photo("equipe", eager=True)}
     <h2>L'entreprise en chiffres et en faits</h2>
     <table class="facts">{table}</table>
     <h2>Notre histoire</h2>
     <p>Fondée en 1985 à Courtry, la société JMC s'est développée en réalisant les toitures des pavillons de l'est parisien, puis celles d'immeubles parisiens, d'écoles et de programmes neufs pour des promoteurs comme Bouygues Immobilier, Kaufman &amp; Broad ou Nexity. Cette expérience lui a permis de bâtir une véritable structure : des équipes de couvreurs, charpentiers et zingueurs, un atelier, une flotte de véhicules et un encadrement de chantier.</p>
+    <h2>Une équipe stable, formée et fière de son métier</h2>
+    <p>Couvreurs, charpentiers, zingueurs, chefs de chantier, équipe SAV et qualité, administration : c'est toute cette équipe qui fait la qualité de vos travaux. En 2025, nous avons fêté ensemble les 40 ans de l'entreprise. Beaucoup de nos compagnons sont là depuis de longues années, et c'est aussi ce qui garantit la constance de notre travail d'un chantier à l'autre.</p>
+    {photo("depot")}
     <h2>Ce qui nous distingue</h2>
     <ul class="checks">
       <li><strong>Une structure de promotion immobilière</strong> au service des particuliers (<a href="/couvreur-promotion-immobiliere/">en savoir plus</a>)</li>
