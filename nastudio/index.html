@@ -74,229 +74,7 @@
   ]
 }
 </script>
-<style>
-/* Layout : fiche technique d'atelier — grille gauche stricte, annotations mono, filets de mesure */
-:root{
-  --paper:#fbfbfa;
-  --paper-deep:#f0f0ed;
-  --ink:#0f1013;
-  --muted:#5a5e66;
-  --accent:#2336e0;
-  --accent-ink:#1a29ad;
-  --brass:#1f33d6;
-  --brass-soft:#9aa5ff;
-  --line:#e0e0db;
-  --card:#ffffff;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  background:var(--paper);
-  color:var(--ink);
-  font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-  font-size:17px;
-  line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-}
-.wrap{
-  max-width:1140px;
-  margin-inline:auto;
-  padding-left:max(20px, env(safe-area-inset-left, 0px));
-  padding-right:max(20px, env(safe-area-inset-right, 0px));
-}
-h1,h2,h3{font-family:"Bricolage Grotesque","Public Sans",sans-serif;line-height:1.08;text-wrap:balance;margin:0}
-.mono{font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
-a{color:var(--brass)}
-img{max-width:100%;display:block}
-:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:2px}
-@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
-
-/* ---------- header ---------- */
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--paper)}
-header{
-  position:sticky;top:env(safe-area-inset-top,0px);z-index:50;
-  background:var(--paper);border-bottom:1px solid var(--line);
-}
-.bar{display:flex;align-items:center;gap:24px;padding-block:14px}
-.brand{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-.01em;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:10px;padding:8px 0}
-.brand .dot{width:11px;height:11px;background:var(--brass);border-radius:50%;flex:none}
-nav{margin-left:auto;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
-nav::-webkit-scrollbar{display:none}
-nav a{color:var(--muted);text-decoration:none;font-size:.92rem;font-weight:500;padding:12px 12px;border-radius:6px;white-space:nowrap}
-nav a:hover{color:var(--ink);background:var(--paper-deep)}
-.cta{
-  flex:none;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:.95rem;
-  padding:13px 22px;border-radius:999px;border:none;cursor:pointer;
-}
-.cta:hover{background:var(--accent-ink)}
-@media (max-width:760px){ nav{display:none} }
-
-/* ---------- hero ---------- */
-.hero{padding-block:72px 56px;border-bottom:1px solid var(--line)}
-.eyebrow{display:flex;align-items:center;gap:12px;color:var(--brass);margin-bottom:22px}
-.eyebrow::before{content:"";width:34px;height:2px;background:var(--brass)}
-.hero h1{font-size:clamp(2.5rem,6.4vw,4.4rem);font-weight:800;letter-spacing:-.025em;max-width:13ch}
-.hero h1 em{font-style:normal;color:var(--brass);position:relative}
-.hero p.lede{max-width:56ch;font-size:1.12rem;color:var(--muted);margin:26px 0 34px}
-.hero p.lede strong{color:var(--ink)}
-.hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
-.btn-ghost{
-  color:var(--ink);text-decoration:none;font-weight:600;font-size:.95rem;
-  padding:13px 22px;border-radius:999px;border:1.5px solid var(--ink);
-}
-.btn-ghost:hover{background:var(--ink);color:var(--paper)}
-.spec-strip{display:flex;flex-wrap:wrap;gap:10px 32px;margin-top:46px;color:var(--muted)}
-.spec-strip span b{color:var(--ink);font-weight:500}
-
-/* ---------- sections ---------- */
-section{padding-block:76px}
-.sec-head{display:flex;flex-direction:column;gap:16px;margin-bottom:44px}
-.sec-head h2{font-size:clamp(1.8rem,4vw,2.7rem);font-weight:800;letter-spacing:-.02em;max-width:22ch}
-.sec-head .mono{color:var(--brass)}
-.sec-head p{max-width:60ch;color:var(--muted);margin:0}
-
-/* ---------- réalisations ---------- */
-#realisations{border-bottom:1px solid var(--line)}
-.works{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
-@media (max-width:860px){.works{grid-template-columns:1fr}}
-.work{
-  background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;
-  display:flex;flex-direction:column;
-}
-.work .shot{aspect-ratio:1280/860;max-width:100%;overflow:hidden;border-bottom:1px solid var(--line);background:var(--paper-deep)}
-.work .shot img{width:100%;height:100%;object-fit:cover;object-position:top}
-.work .body{padding:22px 24px 24px;display:flex;flex-direction:column;gap:12px;flex:1}
-.work .meta{display:flex;justify-content:space-between;gap:12px;color:var(--muted)}
-.work h3{font-size:1.35rem;font-weight:800;letter-spacing:-.01em}
-.work p{margin:0;color:var(--muted);font-size:.98rem}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.72rem;letter-spacing:.05em;color:var(--brass);border:1px solid var(--brass-soft);border-radius:999px;padding:5px 11px}
-.work .visit{margin-top:auto;padding-top:6px}
-.work .visit a{font-weight:600;text-decoration:none;display:inline-block;padding:8px 0}
-.work .visit a:hover{text-decoration:underline}
-
-/* ---------- offre ---------- */
-#offre{background:#0e0f13;color:var(--paper);border-bottom:1px solid var(--line)}
-#offre .sec-head h2,#offre h3{color:#f6f6f8}
-#offre .sec-head .mono{color:var(--brass-soft)}
-#offre .sec-head p{color:#a9adb9}
-.offer-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start}
-@media (max-width:860px){.offer-grid{grid-template-columns:1fr}}
-.includes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
-.includes li{display:flex;gap:14px;padding:15px 0;border-bottom:1px solid #272a34;font-size:1.02rem;color:#d9dbe3}
-.includes li::before{content:"✓";color:var(--brass-soft);font-weight:700;flex:none}
-.includes li b{color:#f6f6f8;font-weight:600}
-.quote-card{background:#171922;border:1px solid #272a34;border-radius:10px;padding:30px 28px}
-.quote-card .mono{color:var(--brass-soft)}
-.quote-card .price{font-family:"Bricolage Grotesque",sans-serif;font-size:2rem;font-weight:800;margin:10px 0 8px}
-.quote-card p{color:#a9adb9;font-size:.98rem;margin:0 0 22px}
-.quote-card .cta{display:inline-block}
-
-/* ---------- bandeau sur-place ---------- */
-.statement{border-bottom:1px solid var(--line);background:var(--paper-deep)}
-.statement .wrap{padding-block:64px}
-.statement p.big{
-  font-family:"Bricolage Grotesque",sans-serif;font-weight:600;letter-spacing:-.01em;
-  font-size:clamp(1.4rem,3.2vw,2.1rem);line-height:1.3;max-width:34ch;margin:0;text-wrap:balance;
-}
-.statement p.big em{font-style:normal;color:var(--brass)}
-.statement .mono{color:var(--brass);display:block;margin-bottom:18px}
-
-/* ---------- méthode ---------- */
-#methode{border-bottom:1px solid var(--line)}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;counter-reset:step}
-@media (max-width:980px){.steps{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:560px){.steps{grid-template-columns:1fr}}
-.step{counter-increment:step;border-top:3px solid var(--accent);padding-top:18px}
-.step::before{content:counter(step,decimal-leading-zero);font-family:"Spline Sans Mono",ui-monospace,monospace;color:var(--brass);font-size:.85rem;letter-spacing:.1em}
-.step h3{font-size:1.12rem;font-weight:800;margin:8px 0 10px}
-.step p{margin:0;color:var(--muted);font-size:.95rem}
-
-/* ---------- outils de gestion ---------- */
-#outils{border-bottom:1px solid var(--line)}
-.tools{display:flex;flex-direction:column;gap:72px}
-.tool{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
-.tool.rev .mockwrap{order:-1}
-@media (max-width:860px){
-  .tool{grid-template-columns:1fr;gap:28px}
-  .tool.rev .mockwrap{order:0}
-}
-.tool .mono{color:var(--brass);display:block;margin-bottom:12px}
-.tool h3{font-size:1.5rem;font-weight:800;letter-spacing:-.015em;margin-bottom:12px}
-.tool .lead{color:var(--muted);margin:0 0 20px;max-width:52ch}
-.feat{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-.feat li{display:flex;gap:12px;font-size:.97rem;min-width:0}
-.feat li::before{content:"✓";color:var(--accent);font-weight:700;flex:none}
-.mockwrap{min-width:0}
-.mock{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;box-shadow:0 10px 30px rgba(15,16,19,.06)}
-.mock .mhead{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:4px}
-.mock .mhead b{font-size:.95rem}
-.mock .mhead .mono{color:var(--muted)}
-.mrow{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--paper-deep);font-size:.92rem;min-width:0}
-.mrow:last-child{border-bottom:none}
-.mrow .ml{display:flex;flex-direction:column;gap:2px;min-width:0}
-.mrow .ml small{color:var(--muted);font-size:.78rem}
-.mchip{flex:none;font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.7rem;letter-spacing:.04em;border-radius:999px;padding:4px 10px}
-.mchip.ok{color:#0b6b3c;background:#e3f3e9}
-.mchip.warn{color:#8a5200;background:#faeeda}
-.mchip.alert{color:#9f1d1d;background:#fbe5e5}
-.mchip.info{color:var(--accent-ink);background:#e7eafc}
-.mtotal{display:flex;justify-content:space-between;padding-top:12px;font-weight:700}
-.tools-outro{margin-top:56px;border-left:3px solid var(--accent);padding:4px 0 4px 22px;max-width:62ch}
-.tools-outro p{margin:0;font-size:1.05rem}
-.tools-outro p b{color:var(--accent-ink)}
-
-/* ---------- excel & visibilité (SEO + IA) ---------- */
-#excel{border-bottom:1px solid var(--line);background:var(--paper-deep)}
-#excel .vis{background:var(--card)}
-#visibilite{border-bottom:1px solid var(--line)}
-.vis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
-@media (max-width:860px){.vis-grid{grid-template-columns:1fr}}
-.vis{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:26px 24px}
-.vis h3{font-size:1.1rem;font-weight:800;margin-bottom:10px}
-.vis p{margin:0;color:var(--muted);font-size:.95rem}
-.vis .mono{color:var(--brass);display:block;margin-bottom:14px}
-
-/* ---------- FAQ ---------- */
-#questions{border-bottom:1px solid var(--line)}
-.faq{max-width:760px}
-.faq details{border-bottom:1px solid var(--line)}
-.faq summary{
-  cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;
-  padding:20px 4px;font-weight:600;font-size:1.05rem;
-}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-family:"Bricolage Grotesque",sans-serif;font-size:1.5rem;color:var(--brass);flex:none;line-height:1}
-.faq details[open] summary::after{content:"–"}
-.faq details p{margin:0 0 22px;padding:0 4px;color:var(--muted);max-width:62ch}
-
-/* ---------- contact ---------- */
-#contact .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
-@media (max-width:860px){#contact .contact-grid{grid-template-columns:1fr}}
-.coord{display:flex;flex-direction:column;gap:6px;margin-top:28px}
-.coord a{font-size:1.25rem;font-weight:700;text-decoration:none;color:var(--ink);padding:6px 0;display:inline-block}
-.coord a:hover{color:var(--accent-ink)}
-.coord .mono{color:var(--muted)}
-form{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:30px 28px;display:flex;flex-direction:column;gap:18px}
-.field{display:flex;flex-direction:column;gap:7px}
-.field label{font-size:.85rem;font-weight:600;letter-spacing:.02em}
-.field input,.field select,.field textarea{
-  font:inherit;color:var(--ink);background:var(--paper);
-  border:1px solid var(--line);border-radius:7px;padding:12px 14px;width:100%;
-}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent);outline:2px solid var(--accent);outline-offset:0}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-@media (max-width:560px){.two{grid-template-columns:1fr}}
-form .cta{align-self:flex-start}
-form .note{font-size:.84rem;color:var(--muted);margin:0}
-#form-ok{background:var(--accent);color:#fff;border-radius:7px;padding:14px 16px;font-weight:600}
-
-/* ---------- footer ---------- */
-footer{border-top:1px solid var(--line);padding-block:34px;color:var(--muted);font-size:.9rem}
-footer .wrap{display:flex;flex-wrap:wrap;gap:12px 32px;align-items:center;justify-content:space-between}
-footer a{color:var(--muted)}
-</style>
+<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
@@ -305,8 +83,8 @@ footer a{color:var(--muted)}
     <a class="brand" href="#"><span class="dot"></span>NA&nbsp;Studio</a>
     <nav aria-label="Navigation principale">
       <a href="#realisations">Réalisations</a>
-      <a href="#offre">Sites web</a>
-      <a href="#outils">Outils de gestion</a>
+      <a href="sites.html">Sites web</a>
+      <a href="applications.html">Applications</a>
       <a href="#methode">Méthode</a>
       <a href="#questions">Questions</a>
       <a href="#contact">Contact</a>
@@ -393,7 +171,7 @@ footer a{color:var(--muted)}
     <div class="sec-head">
       <p class="mono">L'offre · tout est compris, rien n'est une option</p>
       <h2>Un site complet, livré clé en main.</h2>
-      <p>Le même soin pour un couvreur que pour une bijouterie : ce qui change, c'est votre métier, pas la qualité.</p>
+      <p>Le même soin pour un couvreur que pour une bijouterie : ce qui change, c'est votre métier, pas la qualité. <a href="sites.html" style="color:var(--brass-soft)">Tout sur les sites web →</a></p>
     </div>
     <div class="offer-grid">
       <ul class="includes">
@@ -557,7 +335,7 @@ footer a{color:var(--muted)}
 
     </div>
     <div class="tools-outro">
-      <p><b>Chaque outil fonctionne seul — et ils se parlent entre eux.</b> Un bon de commande validé réserve le stock au dépôt ; une livraison signée part en facturation. On construit uniquement ce dont vous avez besoin, dans l'ordre qui vous rapporte le plus.</p>
+      <p><b>Chaque outil fonctionne seul — et ils se parlent entre eux.</b> Un bon de commande validé réserve le stock au dépôt ; une livraison signée part en facturation. On construit uniquement ce dont vous avez besoin, dans l'ordre qui vous rapporte le plus. <a href="applications.html">Voir les applications livrées →</a></p>
     </div>
   </div>
 </section>

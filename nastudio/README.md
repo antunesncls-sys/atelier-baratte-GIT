@@ -1,6 +1,8 @@
 # NA Studio — site commercial
 
-Site vitrine une page présentant l'offre de création de sites internet (artisans, TPE & PME, Île-de-France), avec portfolio des 4 réalisations en ligne.
+Site commercial présentant l'offre de création de sites internet et d'applications de gestion (artisans, TPE & PME, Île-de-France).
+
+Pages : `index.html` (accueil), `sites.html` (catégorie sites web + portfolio), `applications.html` (catégorie applications : devis/facturation Atelier Baratte, bons de commande, Excel communicant, écrans d'entrepôt, flotte & réparations). CSS partagé dans `assets/style.css`.
 
 ## Avant mise en ligne — placeholders à remplacer
 
