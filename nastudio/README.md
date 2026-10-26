@@ -6,10 +6,11 @@ Site vitrine une page présentant l'offre de création de sites internet (artisa
 
 | Élément | Valeur actuelle (factice) | Où |
 |---|---|---|
-| Téléphone | `06 00 00 00 00` / `+33600000000` | `index.html` : section contact, footer, JSON-LD (`telephone`), liens `tel:` |
-| Email | `contact@na-studio.fr` | `index.html` : section contact, footer, JSON-LD (`email`), liens `mailto:` |
+| Email | `contact@na-studio.fr` | `index.html` : section contact, footer, JSON-LD (`email`), liens `mailto:` — aussi dans `llms.txt` |
 | Domaine | — | ajouter `<link rel="canonical">` + `og:url` dans le `<head>`, et le `Sitemap:` dans `robots.txt` |
 | Mentions légales | lien `#` | créer la page (raison sociale, SIRET, hébergeur) et pointer le lien du footer |
+
+Pas de téléphone affiché (choix assumé) : le contact passe par le formulaire et l'email. Si un numéro arrive un jour, l'ajouter dans la section contact, le footer, le JSON-LD (`telephone`) et `llms.txt` — c'est un plus pour le SEO local (cohérence NAP avec la fiche Google).
 
 ## Déploiement
 

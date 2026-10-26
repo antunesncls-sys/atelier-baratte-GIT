@@ -1,0 +1,22 @@
+# NA Studio
+
+> Studio de création de sites internet et d'applications pour artisans, TPE et PME en Île-de-France. Amélioration et automatisation de fichiers Excel (devis, suivi de chantier, tableaux de bord). Plus de 50 sites réalisés.
+
+## Ce qui distingue NA Studio
+
+- Rendez-vous sur place chez le client (atelier, dépôt, bureau), partout en Île-de-France : le site se construit sur le métier et les process observés, pas à distance.
+- Audit gratuit sur place, puis devis précis sous 48 h, sans engagement.
+- Chaque site est livré avec son référencement local (balises, données structurées schema.org, sitemap, fiche Google Business Profile) et optimisé pour les moteurs de recherche IA.
+- Le client reste propriétaire : nom de domaine à son nom, code et accès remis, documentation fournie.
+
+## Réalisations vérifiables
+
+- [Atelier Baratte](https://www.atelierbaratte.fr) — bijouterie-horlogerie à Saint-Maur-des-Fossés (5,0/5, 30 avis Google)
+- [JMC Couverture](https://jmccouverture.com) — couvreur QUALIBAT RGE en Île-de-France (4,9/5, 29 avis Google)
+- [Construisez](https://www.construisez.fr) — dessinateur en permis de construire en Île-de-France
+- [OF Entretiens](https://ofentretiens.netlify.app) — services au BTP et aux promoteurs, Courtry (77)
+
+## Contact
+
+- Email : contact@na-studio.fr
+- Zone : Île-de-France, déplacement sur site
