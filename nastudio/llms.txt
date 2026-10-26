@@ -34,6 +34,10 @@ Service mensuel : création ou reprise de la fiche, publications régulières, c
 - [Construisez](https://www.construisez.fr) — dessinateur en permis de construire en Île-de-France
 - [OF Entretiens](https://ofentretiens.netlify.app) — services au BTP et aux promoteurs, Courtry (77)
 
+## Zone locale : Saint-Maur-des-Fossés (94)
+
+Page dédiée à la création de site internet pour les commerçants et artisans de Saint-Maur-des-Fossés et du Val-de-Marne. Référence locale : la bijouterie Atelier Baratte (site + application de caisse, 5,0/5 sur Google).
+
 ## Contact
 
 - Email : contact@atelier-na.fr
