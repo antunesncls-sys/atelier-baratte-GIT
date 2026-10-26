@@ -81,7 +81,7 @@
 <header>
   <div class="wrap bar">
     <a class="brand" href="#"><span class="dot"></span>NA&nbsp;Studio</a>
-    <nav aria-label="Navigation principale">
+    <nav id="main-nav" aria-label="Navigation principale">
       <a href="#realisations">Réalisations</a>
       <a href="sites.html">Sites web</a>
       <a href="applications.html">Applications</a>
@@ -90,6 +90,7 @@
       <a href="#contact">Contact</a>
     </nav>
     <a class="cta" href="#contact">Demander un devis</a>
+    <button class="menu-btn" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>
   </div>
 </header>
 
@@ -558,5 +559,20 @@
   </div>
 </footer>
 
+<script>
+(function(){
+  var b = document.querySelector('.menu-btn');
+  var n = document.getElementById('main-nav');
+  if (!b || !n) return;
+  b.addEventListener('click', function(){
+    var open = n.classList.toggle('open');
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    b.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+  });
+  n.addEventListener('click', function(e){
+    if (e.target.tagName === 'A') { n.classList.remove('open'); b.setAttribute('aria-expanded','false'); }
+  });
+})();
+</script>
 </body>
 </html>
