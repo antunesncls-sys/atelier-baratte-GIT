@@ -17,6 +17,9 @@
 - Écrans de suivi en temps réel dans les entrepôts (préparations, arrivages, expéditions, retards)
 - Suivi de flotte de véhicules avec suivi des réparations (échéances CT/révision/assurance, historique et coûts par véhicule)
 - Gestion locative : suivi des loyers et encaissements, quittances automatiques, plateforme d'échange propriétaire-locataire, déclaration de sinistre en ligne
+- Suivi du matériel et de l'outillage interne : affectations salarié/chantier, retours contrôlés, alertes VGP, historique par matériel
+- Suivi de GPA (garantie de parfait achèvement) et levée de réserves : saisie sur place avec photos, attribution par corps d'état, relances, levée documentée
+- Planning d'interventions : équipes et techniciens, créneaux, matériel à prévoir, client prévenu, rapport signé sur place
 
 ## Gestion de fiche Google (Google Business Profile)
 

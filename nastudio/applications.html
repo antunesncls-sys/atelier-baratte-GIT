@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Application de gestion sur mesure : devis, facturation, stock, flotte · NA Studio</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Applications de gestion sur mesure pour artisans, TPE et PME : devis et facturation, bons de commande, fichiers Excel communicants, écrans de suivi en entrepôt, flotte de véhicules, gestion locative (loyers, quittances, sinistres). Projets livrés, audit gratuit sur place en Île-de-France.">
+<meta name="description" content="Applications de gestion sur mesure pour artisans, TPE et PME : devis-facturation, bons de commande, suivi de stock et d’outillage de chantier, levée de réserves et GPA (garantie de parfait achèvement), planning d’interventions, flotte de véhicules, gestion locative, écrans d’entrepôt. Projets livrés, audit gratuit sur place en Île-de-France.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Public+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Spline+Sans+Mono:wght@400;500&display=swap">
@@ -19,7 +19,7 @@
       "name": "Applications de gestion sur mesure",
       "provider": { "@type": "ProfessionalService", "name": "NA Studio" },
       "areaServed": { "@type": "AdministrativeArea", "name": "Île-de-France" },
-      "description": "Applications construites sur les process du client : devis et facturation avec suivi des réparations (livrée pour la bijouterie Atelier Baratte), bons de commande, fichiers Excel reliés à une base de données commune, écrans de suivi en entrepôt, suivi de flotte de véhicules avec historique des réparations, gestion locative avec suivi des loyers, quittances automatiques, encaissements, plateforme d\u2019échange propriétaire-locataire et déclaration de sinistre."
+      "description": "Applications construites sur les process du client : devis et facturation avec suivi des réparations (livrée pour la bijouterie Atelier Baratte), bons de commande, fichiers Excel reliés à une base de données commune, écrans de suivi en entrepôt, suivi de flotte de véhicules avec historique des réparations, gestion locative (loyers, quittances, sinistres), suivi du matériel et de l\u2019outillage interne avec alertes VGP, suivi de GPA (garantie de parfait achèvement) et levée de réserves, planning d\u2019interventions des équipes."
     },
     {
       "@type": "BreadcrumbList",
@@ -68,6 +68,8 @@
       <span>écrans <b>entrepôt</b></span>
       <span>flotte &amp; <b>réparations</b></span>
       <span>loyers &amp; <b>quittances</b></span>
+      <span>GPA &amp; <b>réserves</b></span>
+      <span>planning <b>interventions</b></span>
     </p>
   </div>
 </div>
@@ -220,6 +222,78 @@
         </div>
       </article>
 
+      <article id="materiel-interne" class="tool">
+        <div>
+          <span class="mono">Application · Matériel &amp; outillage interne</span>
+          <h3>Chaque machine, chaque outil : qui l'a, où, dans quel état.</h3>
+          <p class="lead">Perceuses, échafaudages, nacelles, engins : le matériel qui disparaît ou revient cassé sans coupable, c'est terminé. Le parc interne est suivi comme un stock.</p>
+          <ul class="feat">
+            <li>Inventaire du parc : outillage, machines, échafaudages, engins</li>
+            <li>Affectation en deux gestes : quel salarié, quel chantier, depuis quand</li>
+            <li>Retour contrôlé : état constaté, photo en cas de casse, responsabilités claires</li>
+            <li>Vérifications périodiques (VGP) et entretiens avec alertes d'échéance</li>
+            <li>Historique par matériel : pannes, réparations, coût total de détention</li>
+          </ul>
+        </div>
+        <div class="mockwrap">
+          <div class="mock" role="img" aria-label="Aperçu du suivi de matériel interne : affectations, disponibilités et alertes VGP">
+            <div class="mhead"><b>Parc matériel · 142 réf.</b><span class="mono">Interne</span></div>
+            <div class="mrow"><span class="ml">Perceuse Hilti TE 30<small>Karim · chantier Nogent</small></span><span class="mchip info">Sortie · 3 j</span></div>
+            <div class="mrow"><span class="ml">Échafaudage roulant 8 m<small>Dépôt Courtry</small></span><span class="mchip ok">Disponible</span></div>
+            <div class="mrow"><span class="ml">Nacelle 12 m<small>VGP obligatoire</small></span><span class="mchip warn">VGP dans 15 j</span></div>
+            <div class="mrow"><span class="ml">Plaque vibrante<small>Retour avec casse · photo jointe</small></span><span class="mchip alert">Au SAV</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article id="gpa-reserves" class="tool rev">
+        <div>
+          <span class="mono">Application · GPA &amp; levée de réserves</span>
+          <h3>Réserves tracées, GPA sous contrôle, livraisons signées.</h3>
+          <p class="lead">Pour les entreprises générales, promoteurs et artisans en marché : chaque réserve est suivie de l'OPR à la levée, et la garantie de parfait achèvement (GPA) cesse d'être une liste de mails perdus.</p>
+          <ul class="feat">
+            <li>Saisie des réserves sur place : photo, localisation (bâtiment, étage, lot), description</li>
+            <li>Attribution au corps d'état ou à l'entreprise concernée, avec échéance</li>
+            <li>Relances automatiques tant que la réserve n'est pas levée</li>
+            <li>Levée documentée : photo avant/après, date, signature</li>
+            <li>Suivi GPA sur 12 mois : désordres, interventions, clôture — l'historique complet</li>
+          </ul>
+        </div>
+        <div class="mockwrap">
+          <div class="mock" role="img" aria-label="Aperçu du suivi de réserves et GPA : réserves levées, en cours et en retard">
+            <div class="mhead"><b>Résidence Les Tilleuls · OPR</b><span class="mono">38 réserves</span></div>
+            <div class="mrow"><span class="ml">Réserve 23 · peinture hall B<small>Levée le 12/10 · photo avant/après</small></span><span class="mchip ok">Levée</span></div>
+            <div class="mrow"><span class="ml">Réserve 31 · joint sanitaire · apt 204<small>Plomberie · échéance 30/10</small></span><span class="mchip warn">J-4</span></div>
+            <div class="mrow"><span class="ml">Réserve 35 · porte PMR local vélos<small>Menuiserie · relancée ×2</small></span><span class="mchip alert">En retard</span></div>
+            <div class="mrow"><span class="ml">GPA · infiltration balcon 302<small>Déclarée le 02/10</small></span><span class="mchip info">Intervention 05/11</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article id="planning-interventions" class="tool">
+        <div>
+          <span class="mono">Application · Planning d'interventions</span>
+          <h3>Le planning des équipes, lisible par tout le monde.</h3>
+          <p class="lead">Qui intervient où, quand, avec quel matériel : le planning se remplit au bureau et se lit sur le téléphone de chaque équipe, à jour en permanence.</p>
+          <ul class="feat">
+            <li>Planning par équipe, par chantier ou par technicien — vue jour, semaine, mois</li>
+            <li>Chaque intervention : adresse, créneau, matériel à prévoir, notes</li>
+            <li>Modifié au bureau, à jour instantanément sur les téléphones</li>
+            <li>Le client prévenu automatiquement de son créneau, par email ou SMS</li>
+            <li>Rapport d'intervention sur place : photos, signature, temps passé</li>
+          </ul>
+        </div>
+        <div class="mockwrap">
+          <div class="mock" role="img" aria-label="Aperçu du planning d'interventions : journée de trois équipes avec statuts">
+            <div class="mhead"><b>Mercredi · 3 équipes</b><span class="mono">Semaine 44</span></div>
+            <div class="mrow"><span class="ml">08:00 · Équipe A · fuite urgente<small>Chelles · client prévenu</small></span><span class="mchip info">En cours</span></div>
+            <div class="mrow"><span class="ml">09:30 · Équipe B · entretien chaudières ×4<small>Meaux · tournée copropriété</small></span><span class="mchip ok">Confirmé</span></div>
+            <div class="mrow"><span class="ml">13:30 · Équipe A · pose VMC<small>Torcy · nacelle à charger</small></span><span class="mchip warn">Matériel à prévoir</span></div>
+            <div class="mrow"><span class="ml">16:00 · Équipe C · visite devis<small>Lagny-sur-Marne</small></span><span class="mchip ok">Client prévenu</span></div>
+          </div>
+        </div>
+      </article>
+
     </div>
     <div class="tools-outro">
       <p><b>Chaque application fonctionne seule — et elles se parlent entre elles.</b> Un bon de commande validé réserve le stock, l'écran du dépôt l'affiche, la livraison signée part en facturation. On construit uniquement ce dont vous avez besoin, dans l'ordre qui vous rapporte le plus. Et votre vitrine compte aussi : <a href="sites.html">voir la page Sites web →</a></p>
@@ -263,6 +337,9 @@
             <option>Écran de suivi en entrepôt</option>
             <option>Flotte de véhicules &amp; réparations</option>
             <option>Gestion locative (loyers, quittances, sinistres)</option>
+            <option>Suivi du matériel / outillage interne</option>
+            <option>Levée de réserves &amp; GPA</option>
+            <option>Planning d'interventions</option>
             <option>Autre outil / je ne sais pas encore</option>
           </select>
         </div>
@@ -303,6 +380,9 @@
           <li><a href="applications.html#ecrans-entrepot">Écrans d'entrepôt</a></li>
           <li><a href="applications.html#flotte-reparations">Flotte &amp; réparations</a></li>
           <li><a href="applications.html#gestion-locative">Loyers &amp; quittances</a></li>
+          <li><a href="applications.html#materiel-interne">Matériel &amp; outillage</a></li>
+          <li><a href="applications.html#gpa-reserves">GPA &amp; levée de réserves</a></li>
+          <li><a href="applications.html#planning-interventions">Planning d'interventions</a></li>
         </ul>
       </div>
       <div class="fcol">
@@ -317,7 +397,7 @@
         </ul>
       </div>
     </div>
-    <p class="fseo">Création de site internet, applications de gestion et gestion de fiche Google pour artisans, commerçants, TPE et PME à Paris et en Île-de-France : Seine-et-Marne (77), Seine-Saint-Denis (93), Val-de-Marne (94), Essonne (91) — Meaux, Chelles, Torcy, Lagny-sur-Marne, Saint-Maur-des-Fossés, Nogent-sur-Marne, Créteil.</p>
+    <p class="fseo">Création de site internet, applications de gestion (devis-facturation, bons de commande, suivi d'outillage de chantier, levée de réserves et garantie de parfait achèvement, planning d'interventions, gestion locative) et gestion de fiche Google pour artisans, commerçants, promoteurs, TPE et PME à Paris et en Île-de-France : Seine-et-Marne (77), Seine-Saint-Denis (93), Val-de-Marne (94), Essonne (91) — Meaux, Chelles, Torcy, Lagny-sur-Marne, Saint-Maur-des-Fossés, Nogent-sur-Marne, Créteil.</p>
     <div class="fbot">
       <span>© 2026 NA Studio · Île-de-France · <a href="#">Mentions légales</a></span>
       <span>Site conçu et réalisé par NA Studio — comme ceux de nos clients.</span>
