@@ -10,6 +10,11 @@
   "version": 4
  },
  {
+  "short": "flyer",
+  "url": "https://jmccouverture.com/p/flyer",
+  "version": 4
+ },
+ {
   "short": "saint-maur-des-fosses",
   "url": "https://jmccouverture.com/p/saint-maur-des-fosses",
   "version": 5
@@ -282,6 +287,11 @@
  {
   "short": "savigny-sur-orge",
   "url": "https://jmccouverture.com/p/savigny-sur-orge",
+  "version": 4
+ },
+ {
+  "short": "courtry",
+  "url": "https://jmccouverture.com/p/courtry",
   "version": 4
  }
 ]

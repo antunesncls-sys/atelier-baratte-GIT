@@ -242,7 +242,7 @@ def engagement_local():
   <div class="engage-box">
     <div><span class="eyebrow">Engagés à Courtry</span>
     <h2>Une entreprise de couverture ancrée à Courtry</h2>
-    <p>Implantée à Courtry depuis 1985, JMC est fière de soutenir la vie locale et les jeunes de la commune.</p></div>
+    <p>Implantée à Courtry depuis 1985, JMC est fière de soutenir la vie locale et les jeunes de la commune. <a href="/couvreur-courtry/">Votre couvreur à Courtry</a>.</p></div>
     <ul class="checks">{items}</ul>
   </div>
 </div></section>"""
@@ -1864,9 +1864,91 @@ def city_groups(full=False):
     return out
 
 
+# ---------- Courtry (77181) : page du siège, plus complète que les pages de villes ----------
+VILLES += [
+    _v("Courtry", "Seine-et-Marne", "77", "77181",
+       "Notre siège, notre atelier et nos équipes sont à Courtry depuis 1985 : votre entreprise de couverture, charpente et zinguerie au cœur de la commune.",
+       "", "",
+       ["Le Pin", "Villeparisis", "Chelles", "Coubron", "Vaujours", "Claye-Souilly"]),
+]
+
+
+def courtry(v):
+    url = f"/{v['slug']}/"
+    name = v["name"]
+    dd = dept_of(v["num"])
+    trail = [("/", "Accueil"), (f"/{dd['slug']}/", f"Couvreur {dd['name']} ({v['num']})"), (url, "Couvreur Courtry")]
+    near = nearest_villes(v, k=8)
+    near_html = "".join(f'<a href="/{o["slug"]}/">Couvreur {o["name"]} <small>({round(_dist(name, o["name"]))} km)</small></a>' for o in near)
+    page_of = {o["name"]: o["slug"] for o in VILLES}
+    vois = ", ".join(f'<a href="/{page_of[c]}/">{c}</a>' if c in page_of else c for c in v["voisines"])
+    faq = [
+        ("Où se trouve JMC Couverture à Courtry ?",
+         f"Notre siège, notre atelier et notre flotte de véhicules sont installés au {BIZ['street']}, {BIZ['zip']} Courtry. Nous nous déplaçons chez vous pour la visite et le devis, gratuitement et sans engagement."),
+        ("Pouvez-vous intervenir rapidement à Courtry ?",
+         "Nos équipes partent chaque jour de Courtry. Pour un chantier sur la commune ou dans les communes voisines, la visite de diagnostic s'organise facilement, et notre équipe SAV reste à proximité après les travaux."),
+        ("Faut-il une autorisation de la mairie de Courtry pour refaire sa toiture ?",
+         "Si les travaux modifient l'aspect extérieur (matériau, couleur, fenêtres de toit), une déclaration préalable doit généralement être déposée en mairie. Nous pouvons gérer ces démarches pour vous, du dossier au dépôt en mairie."),
+        ("Quels travaux de toiture réalisez-vous à Courtry ?",
+         "Rénovation et remplacement de toiture, couverture zinc et tuiles, isolation des combles et des rampants (entreprise RGE), fenêtres de toit VELUX et lucarnes, toiture de maison neuve, étanchéité de toiture terrasse, zinguerie, nettoyage et entretien, travaux pour copropriétés."),
+    ]
+    svc = {"@context": "https://schema.org", "@type": "Service", "name": "Couvreur à Courtry",
+           "serviceType": "Couverture, charpente et zinguerie", "url": SITE + url,
+           "provider": {"@id": SITE + "/#entreprise"},
+           "areaServed": {"@type": "City", "name": "Courtry",
+                          "containedInPlace": {"@type": "AdministrativeArea", "name": "Seine-et-Marne"}}}
+    lds = [org_ld(), crumbs_ld(trail), svc, faq_ld(faq)]
+    html = head("Couvreur à Courtry (77181) : JMC Couverture depuis 1985",
+                f"Couvreur à Courtry depuis 1985 : siège, atelier et équipes sur place. Couverture zinc et tuiles, rénovation, isolation RGE. Devis gratuit ☎ {BIZ['phone']}.",
+                url, lds)
+    html += header(url)
+    _PAGE["bref"] = (f"JMC Couverture (Société JMC) est une entreprise de couverture, charpente et zinguerie installée à Courtry (77181) "
+                     f"depuis 1985, au {BIZ['street']}. Son siège, son atelier et sa flotte de véhicules sont sur la commune. "
+                     f"Spécialités : couverture zinc et tuiles, rénovation et isolation de toiture (RGE), fenêtres de toit, maisons neuves "
+                     f"et copropriétés. Devis gratuit au {BIZ['phone']}.")
+    html += page_hero(trail, "Seine-et-Marne (77) · 77181", "Couvreur à Courtry : votre entreprise de couverture locale", v["lead"])
+    html += f"""
+<section><div class="wrap split">
+  <article class="prose">
+    <h2>JMC Couverture, installée à Courtry depuis 1985</h2>
+    <p>Courtry n'est pas pour nous une zone d'intervention parmi d'autres : c'est là que se trouvent notre siège, notre atelier et notre flotte de véhicules. Chaque matin, nos équipes de couvreurs, charpentiers et zingueurs partent de la rue Charles Van Wyngene vers les chantiers de la commune et de toute l'Île-de-France.</p>
+    <p>Pour les habitants de Courtry, cette proximité change beaucoup de choses : une visite de diagnostic facile à organiser, un chef de chantier qui suit les travaux de près, et une équipe SAV et qualité interne qui reste joignable et disponible après le chantier.</p>
+    {photo("depot")}
+    <h2>Les toitures de Courtry</h2>
+    <p>Commune résidentielle de Seine-et-Marne, à la limite de la Seine-Saint-Denis, Courtry compte surtout des maisons individuelles : pavillons en tuiles mécaniques ou plates, maisons plus anciennes du centre et constructions récentes. Nous connaissons ces toitures pour y intervenir depuis 1985, et nous savons à quel moment un nettoyage suffit et quand une rénovation devient nécessaire.</p>
+    <h2>Nos services de couverture à Courtry</h2>
+    <ul class="checks">
+      <li><a href="/renovation-toiture/"><strong>Rénovation et remplacement de toiture</strong></a> : réfection complète en <a href="/toiture-tuile/">tuiles</a>, ardoise ou zinc, de la charpente aux gouttières.</li>
+      <li><a href="/couverture-zinc-bardage/"><strong>Couverture zinc et bardage</strong></a> pour maisons d'architecte, extensions et surélévations.</li>
+      <li><a href="/isolation-toiture/"><strong>Isolation de toiture</strong></a>, <a href="/isolation-rampants/">sous rampants</a> ou <a href="/isolation-combles-perdus/">combles perdus</a>, par une entreprise RGE.</li>
+      <li><a href="/fenetre-de-toit-velux-lucarnes/"><strong>Fenêtres de toit VELUX et lucarnes</strong></a> : remplacement, création et restauration.</li>
+      <li><a href="/toiture-maison-neuve/"><strong>Toiture de maison neuve</strong></a> : charpente, couverture et zinguerie de votre construction.</li>
+      <li><a href="/etancheite-toiture-terrasse/"><strong>Étanchéité de toiture terrasse</strong></a> et reprise des descentes d'eaux pluviales.</li>
+      <li><a href="/nettoyage-toiture/"><strong>Nettoyage, démoussage et entretien</strong></a> avec traitement hydrofuge.</li>
+      <li><a href="/couvreur-copropriete-syndic/"><strong>Copropriétés et syndics</strong></a> : devis détaillé pour l'assemblée générale et suivi des travaux.</li>
+    </ul>
+    <h2>Une méthode de chantier claire</h2>
+    <p>Visite et diagnostic gratuits, devis détaillé poste par poste, démarches en mairie gérées si besoin, chantier sûr et propre, accès au toit pendant les travaux pour constater l'avancement, contrôle qualité et procès-verbal de réception : découvrez <a href="/notre-methode-sav-qualite/">notre méthode, notre SAV et notre suivi qualité</a>.</p>
+    {reviews_block(["lily", "richard"], "Ce que nos clients en disent")}
+    <h2>Engagés dans la vie de Courtry</h2>
+    <p>Implantée à Courtry depuis 1985, JMC soutient la vie locale, notamment le club de football <a href="{BIZ['partenaires'][0][2]}" target="_blank" rel="noopener">CS Courtry Académie</a>. Une grande partie de nos clients nous vient du bouche-à-oreille.</p>
+    <h3>Communes proches de Courtry</h3>
+    <p>Nous intervenons aussi à {vois}, et dans toute la Seine-et-Marne : voir notre page <a href="/{dd['slug']}/">couvreur {dd['art']} {dd['name']}</a>.</p>
+    <h2>Votre couvreur dans les villes autour de Courtry</h2>
+    <div class="city-links">{near_html}</div>
+  </article>
+  {aside("Votre couvreur à Courtry")}
+</div></section>
+"""
+    html += faq_html(faq, "Questions fréquentes – couvreur à Courtry")
+    html += cta_band("Un projet de toiture à Courtry ?", "Visite sur place et devis détaillé gratuits, sans engagement.")
+    html += footer()
+    write(url, html)
+
+
 def villes():
     for v in VILLES:
-        ville(v)
+        courtry(v) if v["name"] == "Courtry" else ville(v)
 
 
 def copropriete():
