@@ -12,6 +12,7 @@
   --card:#ffffff;
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth}
 body{
   margin:0;
@@ -172,6 +173,7 @@ section{padding-block:76px}
 
 /* ---------- excel & visibilité (SEO + IA) ---------- */
 #excel{border-bottom:1px solid var(--line);background:var(--paper-deep)}
+#gratuit{border-bottom:1px solid var(--line)}
 #excel .vis{background:var(--card)}
 #visibilite{border-bottom:1px solid var(--line)}
 .vis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}

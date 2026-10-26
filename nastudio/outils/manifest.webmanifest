@@ -1,0 +1,14 @@
+{
+  "name": "Mes Cigarettes",
+  "short_name": "Mes Cigarettes",
+  "description": "Suivi de consommation de tabac à rouler : roulées du jour, coût, quota, pochons. Données 100 % locales.",
+  "start_url": "mes-cigarettes.html",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#fbfbfa",
+  "theme_color": "#2336e0",
+  "lang": "fr",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

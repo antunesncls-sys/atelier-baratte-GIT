@@ -28,6 +28,10 @@ Service mensuel : création ou reprise de la fiche, publications régulières, c
 - [Construisez](https://www.construisez.fr) — dessinateur en permis de construire en Île-de-France
 - [OF Entretiens](https://ofentretiens.netlify.app) — services au BTP et aux promoteurs, Courtry (77)
 
+## Outils gratuits
+
+- Mes Cigarettes : suivi de consommation de tabac à rouler (quota, coût, pochons, historique 14 jours), gratuit, hors connexion, données locales.
+
 ## Contact
 
 - Email : contact@na-studio.fr
