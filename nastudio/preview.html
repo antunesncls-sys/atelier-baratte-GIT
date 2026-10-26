@@ -6,16 +6,16 @@
 <style>
 /* Layout : fiche technique d'atelier — grille gauche stricte, annotations mono, filets de mesure */
 :root{
-  --paper:#f4f1e9;
-  --paper-deep:#eae5d8;
-  --ink:#141a14;
-  --muted:#5b6153;
-  --accent:#163f2e;
-  --accent-ink:#0f2e21;
-  --brass:#8a6a28;
-  --brass-soft:#cfae62;
-  --line:#d3cdbc;
-  --card:#fdfcf8;
+  --paper:#fbfbfa;
+  --paper-deep:#f0f0ed;
+  --ink:#0f1013;
+  --muted:#5a5e66;
+  --accent:#2336e0;
+  --accent-ink:#1a29ad;
+  --brass:#1f33d6;
+  --brass-soft:#9aa5ff;
+  --line:#e0e0db;
+  --card:#ffffff;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -106,20 +106,20 @@ section{padding-block:76px}
 .work .visit a:hover{text-decoration:underline}
 
 /* ---------- offre ---------- */
-#offre{background:#0f1d16;color:var(--paper);border-bottom:1px solid var(--line)}
-#offre .sec-head h2,#offre h3{color:#f6f3ea}
+#offre{background:#0e0f13;color:var(--paper);border-bottom:1px solid var(--line)}
+#offre .sec-head h2,#offre h3{color:#f6f6f8}
 #offre .sec-head .mono{color:var(--brass-soft)}
-#offre .sec-head p{color:#b9bfae}
+#offre .sec-head p{color:#a9adb9}
 .offer-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start}
 @media (max-width:860px){.offer-grid{grid-template-columns:1fr}}
 .includes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
-.includes li{display:flex;gap:14px;padding:15px 0;border-bottom:1px solid #2c4033;font-size:1.02rem;color:#dfe2d5}
+.includes li{display:flex;gap:14px;padding:15px 0;border-bottom:1px solid #272a34;font-size:1.02rem;color:#d9dbe3}
 .includes li::before{content:"✓";color:var(--brass-soft);font-weight:700;flex:none}
-.includes li b{color:#f6f3ea;font-weight:600}
-.quote-card{background:#15291e;border:1px solid #2c4033;border-radius:10px;padding:30px 28px}
+.includes li b{color:#f6f6f8;font-weight:600}
+.quote-card{background:#171922;border:1px solid #272a34;border-radius:10px;padding:30px 28px}
 .quote-card .mono{color:var(--brass-soft)}
 .quote-card .price{font-family:"Bricolage Grotesque",sans-serif;font-size:2rem;font-weight:800;margin:10px 0 8px}
-.quote-card p{color:#b9bfae;font-size:.98rem;margin:0 0 22px}
+.quote-card p{color:#a9adb9;font-size:.98rem;margin:0 0 22px}
 .quote-card .cta{display:inline-block}
 
 /* ---------- bandeau sur-place ---------- */
