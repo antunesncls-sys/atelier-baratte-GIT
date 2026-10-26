@@ -1,8 +1,8 @@
-# Forgez
+# Atelier NA
 
 > Studio de création de sites internet et d'applications pour artisans, TPE et PME en Île-de-France. Amélioration et automatisation de fichiers Excel (devis, suivi de chantier, tableaux de bord). Plus de 50 sites réalisés.
 
-## Ce qui distingue Forgez
+## Ce qui distingue Atelier NA
 
 - Rendez-vous sur place chez le client (atelier, dépôt, bureau), partout en Île-de-France : le site se construit sur le métier et les process observés, pas à distance.
 - Audit gratuit sur place, puis devis précis sous 48 h, sans engagement.
@@ -38,5 +38,5 @@ Service mensuel : création ou reprise de la fiche, publications régulières, c
 
 ## Contact
 
-- Email : contact@forgez.fr
+- Email : contact@atelier-na.fr
 - Zone : Île-de-France, déplacement sur site
