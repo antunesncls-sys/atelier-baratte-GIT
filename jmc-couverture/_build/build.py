@@ -113,7 +113,7 @@ PHOTOS = {
     "mansarde": ("toiture-mansardee-lucarnes-zinc-jmc",
                  "Maison bourgeoise rénovée en Île-de-France : toiture mansardée en ardoise et lucarnes en zinc réalisées par JMC Couverture",
                  "Maison bourgeoise : toiture mansardée en ardoise et lucarnes en zinc."),
-    "meuliere": ("maison-meuliere-couverture-tuiles-jmc",
+    "meuliere": ("maison-meuliere-toiture-tuiles-faitage-jmc",
                  "Maison en pierre meulière avec couverture en tuiles terre cuite et zinguerie, panneau de chantier JMC Couverture devant la façade",
                  "Maison en meulière : réfection complète de la toiture en tuiles."),
     "pavillon": ("toiture-pavillon-renovation-jmc",
