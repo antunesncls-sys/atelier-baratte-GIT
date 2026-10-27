@@ -50,38 +50,40 @@ h1,h2,h3,p{margin:0}
 .foot .web b{font-size:12pt}
 
 /* ---------- VERSO ---------- */
-.v-head{padding:10mm 12mm 0;display:flex;justify-content:space-between;align-items:flex-end}
+.v-head{padding:7mm 12mm 0;display:flex;justify-content:space-between;align-items:flex-end}
+.team{margin:3mm 12mm 0;height:40mm;border-radius:3mm;position:relative;overflow:hidden;background:url(../jmc-couverture/assets/photos/equipe-jmc-couverture-40-ans.jpg) center 30%/cover}
+.team span{position:absolute;left:0;right:0;bottom:0;padding:2mm 4mm;background:linear-gradient(0deg,rgba(10,12,14,.75),rgba(10,12,14,0));color:#fff;font-size:8.6pt;font-weight:600}
 .v-head h2{font-size:19pt;font-weight:800;line-height:1.1}
 .v-head h2 em{font-style:normal;color:var(--red)}
 .v-head img{height:13mm}
-.why{padding:4mm 12mm 0;display:grid;grid-template-columns:1fr 1fr;gap:2.4mm}
-.card{border:1px solid var(--line);border-top:1mm solid var(--red);padding:2.3mm 4mm 2.5mm;background:#fff}
-.card h3{font-size:10pt;font-weight:800;margin-bottom:1mm}
-.card p{font-size:8.6pt;color:var(--mut);line-height:1.36}
-.band{margin:4mm 0 0;background:var(--paper);padding:3.6mm 12mm 4mm}
+.why{padding:3mm 12mm 0;display:grid;grid-template-columns:1fr 1fr;gap:1.8mm}
+.card{border:1px solid var(--line);border-top:1mm solid var(--red);padding:2mm 4mm 2.2mm;background:#fff}
+.card h3{font-size:9.4pt;font-weight:800;margin-bottom:.6mm}
+.card p{font-size:7.9pt;color:var(--mut);line-height:1.3}
+.band{margin:3.5mm 0 0;background:var(--paper);padding:3mm 12mm 3.4mm}
 .band .sec-title{font-size:13pt}
-.steps{display:grid;grid-template-columns:repeat(7,1fr);gap:2mm;margin-top:3.5mm;counter-reset:s}
-.steps div{counter-increment:s;font-size:7.7pt;line-height:1.28;color:var(--ink);font-weight:600}
-.steps div:before{content:counter(s);display:flex;width:7.5mm;height:7.5mm;border-radius:50%;background:var(--ink);color:#fff;font-weight:800;font-size:9pt;align-items:center;justify-content:center;margin-bottom:1.8mm}
+.steps{display:grid;grid-template-columns:repeat(7,1fr);gap:2mm;margin-top:2.8mm;counter-reset:s}
+.steps div{counter-increment:s;font-size:7.4pt;line-height:1.25;color:var(--ink);font-weight:600}
+.steps div:before{content:counter(s);display:flex;width:6.5mm;height:6.5mm;border-radius:50%;background:var(--ink);color:#fff;font-weight:800;font-size:9pt;align-items:center;justify-content:center;margin-bottom:1.8mm}
 .steps div:nth-child(5):before,.steps div:nth-child(6):before{background:var(--red)}
-.mid{display:grid;grid-template-columns:58mm 1fr;gap:6mm;padding:4mm 12mm 0}
-.photos{display:grid;grid-template-rows:1fr 1fr;gap:3mm;height:76mm}
+.mid{display:grid;grid-template-columns:48mm 1fr;gap:5mm;padding:3mm 12mm 0}
+.photos{display:grid;grid-template-rows:1fr 1fr;gap:2.5mm;height:56mm}
 .photos div{background-size:cover;background-position:center top}
 .review{border-left:1.2mm solid var(--gold);padding:1mm 0 0 5mm}
 .stars{color:#e3a400;font-size:11pt;letter-spacing:.08em}
-.review p{font-size:8.7pt;line-height:1.36;margin-top:.8mm;font-style:italic}
+.review p{font-size:8.3pt;line-height:1.34;margin-top:.6mm;font-style:italic}
 .review cite{display:block;margin-top:2mm;font-style:normal;font-weight:700;font-size:8.8pt}
 .review cite span{font-weight:400;color:var(--mut)}
-.zones{margin-top:2.6mm}
+.zones{margin-top:2mm}
 .zones h3{font-size:10.4pt;font-weight:800;margin-bottom:1mm}
-.zones p{font-size:8.5pt;color:var(--mut);line-height:1.38}
+.zones p{font-size:8.2pt;color:var(--mut);line-height:1.34}
 .zones p b{color:var(--ink)}
-.contact{position:absolute;left:12mm;right:12mm;bottom:9mm;height:41mm;background:var(--ink);color:#fff;display:grid;grid-template-columns:37mm 1fr 30mm;gap:6mm;align-items:center;padding:0 6mm}
-.contact .qr{background:#fff;padding:1.5mm;width:33mm;height:33mm}
+.contact{position:absolute;left:12mm;right:12mm;bottom:8mm;height:36mm;background:var(--ink);color:#fff;display:grid;grid-template-columns:37mm 1fr 30mm;gap:6mm;align-items:center;padding:0 6mm}
+.contact .qr{background:#fff;padding:1.5mm;width:29mm;height:29mm}
 .contact .qr img{width:100%;height:100%;display:block}
-.contact h3{font-size:14pt;font-weight:800;line-height:1.15}
+.contact h3{font-size:13pt;font-weight:800;line-height:1.15}
 .contact h3 em{font-style:normal;color:#f0d35a}
-.contact .tel{font-size:19pt;font-weight:800;margin-top:2.5mm;color:#fff}
+.contact .tel{font-size:17pt;font-weight:800;margin-top:2.5mm;color:#fff}
 .contact .info{font-size:8.6pt;color:#d2cfc8;margin-top:1.5mm;line-height:1.5}
 .labels{display:flex;flex-direction:column;align-items:center;gap:2.5mm;background:#fff;padding:3mm 2mm;border-radius:1.5mm}
 .labels img{height:15mm}
@@ -142,6 +144,7 @@ h1,h2,h3,p{margin:0}
     <h2>Pourquoi confier votre toiture<br>à <em>JMC Couverture</em> ?</h2>
     <img src="../jmc-couverture/assets/logo-jmc-40ans.svg" alt="JMC Couverture">
   </div>
+  <div class="team"><span>Toute l'équipe JMC réunie pour les 40 ans de l'entreprise : couvreurs, charpentiers, zingueurs, encadrement et direction.</span></div>
 
   <div class="why">
     <div class="card"><h3>La structure d'un promoteur, pour les particuliers</h3><p>Équipes, flotte de véhicules, atelier de façonnage et méthodes de la promotion immobilière, mis au service de votre maison.</p></div>
@@ -176,7 +179,7 @@ h1,h2,h3,p{margin:0}
         <p>« Le devis est clair, détaillé et le tarif est compétitif. Les délais sont respectés avec une organisation sans faille […] respectueux des lieux (le chantier est protégé et nettoyé chaque soir). Je recommande vivement cette société. »</p>
         <cite>Lily <span>· Réfection complète de toiture · avis Google</span></cite>
       </div>
-      <div class="review" style="margin-top:2.4mm">
+      <div class="review" style="margin-top:2mm">
         <div class="stars">★★★★★</div>
         <p>« Réfection totale de la toiture avec remplacement de 3 velux et isolation. Équipe ponctuelle, agréable et serviable. Chantier toujours très propre à la fin de la journée. »</p>
         <cite>Richard K. <span>· avis Google</span></cite>

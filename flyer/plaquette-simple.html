@@ -21,7 +21,7 @@ svg.i{width:15mm;height:15mm;stroke:var(--red);fill:none;stroke-width:1.7;stroke
 .stats div:last-child{border:0}
 .stats b{display:block;font-size:24pt;font-weight:800;color:var(--red);line-height:1}
 .stats small{font-size:9pt;color:var(--mut);text-transform:uppercase;letter-spacing:.1em;font-weight:600}
-h2{font-size:15pt;font-weight:800;margin:9mm 12mm 5mm;display:flex;align-items:center;gap:4mm}
+h2{font-size:14pt;font-weight:800;margin:5.5mm 12mm 3.5mm;display:flex;align-items:center;gap:4mm}
 h2:after{content:"";flex:1;height:.5mm;background:var(--line)}
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm;margin:0 12mm}
 .tile{background:var(--paper);border-radius:4mm;padding:7mm 3mm 6.5mm;text-align:center}
@@ -35,27 +35,29 @@ h2:after{content:"";flex:1;height:.5mm;background:var(--line)}
 .cta .web b{font-size:14pt}
 /* verso */
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:0 12mm;position:relative}
-.steps:before{content:"";position:absolute;left:12%;right:12%;top:11mm;height:.8mm;background:var(--red);opacity:.25}
+.steps:before{content:"";position:absolute;left:12%;right:12%;top:8.5mm;height:.8mm;background:var(--red);opacity:.25}
 .step{text-align:center;position:relative;padding:0 2mm}
-.step .c{width:22mm;height:22mm;border-radius:50%;background:#fff;border:.8mm solid var(--red);margin:0 auto 3mm;display:flex;align-items:center;justify-content:center;position:relative}
+.step .c{width:17mm;height:17mm;border-radius:50%;background:#fff;border:.8mm solid var(--red);margin:0 auto 3mm;display:flex;align-items:center;justify-content:center;position:relative}
 .step .c span{position:absolute;top:-2mm;right:-2mm;width:7.5mm;height:7.5mm;border-radius:50%;background:var(--ink);color:#fff;font-weight:800;font-size:10pt;display:flex;align-items:center;justify-content:center}
-.step svg.i{width:11mm;height:11mm}
+.step svg.i{width:9.5mm;height:9.5mm}
 .step b{display:block;font-size:11pt;font-weight:800;line-height:1.2}
 .step small{display:block;font-size:8.6pt;color:var(--mut);margin-top:1mm;line-height:1.3}
+.team{margin:0 12mm;height:40mm;border-radius:4mm;position:relative;overflow:hidden;background:url(../jmc-couverture/assets/photos/equipe-jmc-couverture-40-ans.jpg) center 30%/cover}
+.team span{position:absolute;left:0;right:0;bottom:0;padding:2.5mm 5mm;background:linear-gradient(0deg,rgba(10,12,14,.75),rgba(10,12,14,0));color:#fff;font-size:9.5pt;font-weight:700}
 .who{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm;margin:0 12mm}
-.who div{border:1px solid var(--line);border-radius:4mm;padding:4mm 3mm;text-align:center;font-weight:800;font-size:10.5pt;line-height:1.2}
-.who svg.i{width:10mm;height:10mm;margin:0 auto 2mm;display:block}
+.who div{border:1px solid var(--line);border-radius:4mm;padding:2.5mm 3mm;text-align:center;font-weight:800;font-size:10pt;line-height:1.2}
+.who svg.i{width:8.5mm;height:8.5mm;margin:0 auto 1.5mm;display:block}
 .trust{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm;margin:0 12mm;align-items:center;text-align:center}
-.trust div{background:var(--paper);border-radius:4mm;height:28mm;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5mm}
-.trust img{height:15mm}
+.trust div{background:var(--paper);border-radius:4mm;height:21mm;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5mm}
+.trust img{height:11mm}
 .trust b{font-size:13pt;font-weight:800}
 .trust small{font-size:8.5pt;color:var(--mut);font-weight:600}
 .trust .stars{color:#e3a400;font-size:12pt;letter-spacing:.05em}
 .zone{margin:0 12mm;display:flex;flex-wrap:wrap;gap:2.5mm}
-.zone span{border:1px solid var(--line);border-radius:99px;padding:1.8mm 4mm;font-size:9.5pt;font-weight:700}
+.zone span{border:1px solid var(--line);border-radius:99px;padding:1.5mm 3.5mm;font-size:9pt;font-weight:700}
 .zone span.home{background:var(--red);border-color:var(--red);color:#fff}
-.contact{position:absolute;left:12mm;right:12mm;bottom:12mm;height:44mm;background:var(--ink);color:#fff;border-radius:5mm;display:flex;align-items:center;gap:7mm;padding:0 7mm}
-.contact .qr{background:#fff;padding:1.5mm;border-radius:2mm;width:34mm;height:34mm;flex:0 0 auto}
+.contact{position:absolute;left:12mm;right:12mm;bottom:10mm;height:37mm;background:var(--ink);color:#fff;border-radius:5mm;display:flex;align-items:center;gap:7mm;padding:0 7mm}
+.contact .qr{background:#fff;padding:1.5mm;border-radius:2mm;width:29mm;height:29mm;flex:0 0 auto}
 .contact .qr img{width:100%;height:100%;display:block}
 .contact h3{font-size:16pt;font-weight:800;line-height:1.15}
 .contact h3 em{font-style:normal;color:var(--gold)}
@@ -97,13 +99,16 @@ h2:after{content:"";flex:1;height:.5mm;background:var(--line)}
 <section class="page">
   <div class="top"><img src="../jmc-couverture/assets/logo-jmc-40ans.svg" alt="JMC Couverture"><b>Comment ça se passe ?</b></div>
 
-  <h2 style="margin-top:10mm">4 étapes, un seul interlocuteur</h2>
+  <h2 style="margin-top:8mm">4 étapes, un seul interlocuteur</h2>
   <div class="steps">
     <div class="step"><div class="c"><span>1</span><svg class="i" viewBox="0 0 48 48"><path d="M12 6h8l4 10-5 3a22 22 0 0 0 10 10l3-5 10 4v8a3 3 0 0 1-3 3C21 39 9 27 9 9a3 3 0 0 1 3-3z"/></svg></div><b>Visite gratuite</b><small>diagnostic sur place, photos à l'appui</small></div>
     <div class="step"><div class="c"><span>2</span><svg class="i" viewBox="0 0 48 48"><path d="M12 4h18l8 8v32H12z"/><path d="M30 4v8h8"/><path d="M18 22h14M18 29h14M18 36h8"/></svg></div><b>Devis détaillé</b><small>gratuit, poste par poste</small></div>
     <div class="step"><div class="c"><span>3</span><svg class="i" viewBox="0 0 48 48"><path d="M24 4l16 6v12c0 10-7 18-16 22C15 40 8 32 8 22V10z"/><path d="M17 24l5 5 9-10"/></svg></div><b>Chantier propre</b><small>sécurisé, suivi, accès au toit</small></div>
     <div class="step"><div class="c"><span>4</span><svg class="i" viewBox="0 0 48 48"><circle cx="24" cy="20" r="11"/><path d="M19 20l4 4 7-8"/><path d="M17 30l-4 14 11-5 11 5-4-14"/></svg></div><b>PV de réception</b><small>contrôle qualité, puis SAV</small></div>
   </div>
+
+  <h2>Une équipe, depuis 1985</h2>
+  <div class="team"><span>Couvreurs, charpentiers, zingueurs : toute l'équipe réunie pour les 40 ans de JMC.</span></div>
 
   <h2>Nous travaillons pour</h2>
   <div class="who">
