@@ -35,6 +35,7 @@ Service mensuel : création ou reprise de la fiche, publications régulières, c
 - [JMC Couverture](https://jmccouverture.com) — couvreur QUALIBAT RGE en Île-de-France (4,9/5, 29 avis Google)
 - [Construisez](https://www.construisez.fr) — dessinateur en permis de construire en Île-de-France
 - [OF Entretiens](https://ofentretiens.netlify.app) — services au BTP et aux promoteurs, Courtry (77)
+- [AJR Concept](https://ajr-concept.netlify.app) — rénovation salle de bain, électricité et plomberie en Seine-et-Marne (5,0/5 Google, +100 chantiers en photos)
 
 ## Zone locale : Saint-Maur-des-Fossés (94)
 
