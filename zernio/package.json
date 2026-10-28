@@ -1,0 +1,15 @@
+{
+  "name": "atelier-baratte-zernio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Outils Zernio pour publier et programmer les posts réseaux sociaux de l'Atelier Baratte",
+  "type": "module",
+  "scripts": {
+    "accounts": "node src/list-accounts.js",
+    "post": "node src/create-post.js"
+  },
+  "dependencies": {
+    "@zernio/node": "^0.2.1374",
+    "dotenv": "^17.2.3"
+  }
+}
