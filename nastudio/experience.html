@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>L'expérience Atelier NA — nos applications en plein écran</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Nos applications de gestion racontées en plein écran : devis IA, équipes chantier, caisse et réparations. Atelier NA — sites web & applications pour artisans, Île-de-France.">
+<meta property="og:image" content="https://atelier-na.netlify.app/assets/og-atelier-na.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/logo-na.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Public+Sans:wght@400;600;700&display=swap">
+<style>
+:root{
+  --bg:#0b0c0f; --fg:#fbfbfa; --dim:#9ca0ab; --faint:#5c606b;
+  --ikb:#002fa7; --ikb-l:#546eff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Public Sans",system-ui,sans-serif;color-scheme:dark}
+[hidden]{display:none!important}
+
+/* masthead fixe, façon édition de magazine */
+.mast{
+  position:fixed;inset:0 0 auto;z-index:40;display:flex;justify-content:space-between;align-items:center;
+  padding:18px max(22px, env(safe-area-inset-left, 0px)) 0 max(22px, env(safe-area-inset-right, 0px));
+  font-size:11px;letter-spacing:.28em;color:var(--dim);text-transform:uppercase;pointer-events:none;
+}
+.mast a{pointer-events:auto;color:var(--fg);text-decoration:none;display:flex;align-items:center;gap:10px;letter-spacing:.28em}
+.mast a img{height:20px;width:auto}
+.mast .ed{font-family:"Public Sans"}
+
+section.ch{
+  min-height:100vh;min-height:100svh;position:relative;display:flex;align-items:center;
+  padding:110px max(22px, env(safe-area-inset-left, 0px)) 90px max(22px, env(safe-area-inset-right, 0px));
+  overflow:hidden;
+}
+.inner{width:min(1180px,100%);margin-inline:auto;position:relative;display:flex;align-items:center;gap:60px}
+@media (max-width:900px){.inner{flex-direction:column;align-items:flex-start;gap:36px}}
+
+/* halo d'ambiance par chapitre */
+.ch::before{content:"";position:absolute;inset:-20%;background:radial-gradient(ellipse at var(--gx,70%) var(--gy,30%), var(--glow,#13204d) 0%, transparent 55%);opacity:.8;pointer-events:none}
+
+.eyebrow{font-size:11.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--ikb-l);margin:0 0 18px}
+h1,h2{font-family:"Archivo Black",sans-serif;font-weight:400;text-transform:uppercase;line-height:.92;letter-spacing:-.01em;margin:0;text-wrap:balance}
+.giant{font-size:clamp(3.4rem,11vw,9rem)}
+.giant .blue{color:var(--ikb-l)}
+.lede{max-width:46ch;color:var(--dim);font-size:1.05rem;line-height:1.7;margin:26px 0 0}
+.lede b{color:var(--fg)}
+.sub{font-size:11.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--faint);margin:22px 0 0}
+
+.phone{flex:none;width:min(300px,78vw);height:auto;border-radius:28px;box-shadow:0 40px 90px rgba(0,0,0,.6), 0 0 0 1px #23262e;transform:rotate(var(--tilt,2deg))}
+@media (max-width:900px){.phone{align-self:center}}
+
+.scrolldown{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);color:var(--faint);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;text-align:center}
+.scrolldown::after{content:"";display:block;width:1px;height:38px;background:var(--faint);margin:10px auto 0;animation:drop 1.8s ease-in-out infinite}
+@keyframes drop{0%{transform:scaleY(.2);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}100%{transform:scaleY(.2);transform-origin:bottom}}
+
+/* révélation au scroll */
+.rv{opacity:1;transform:none;transition:opacity .9s ease, transform .9s cubic-bezier(.16,1,.3,1)}
+.js .rv{opacity:0;transform:translateY(46px)}
+.js .rv.in{opacity:1;transform:none}
+.js .rv.d1{transition-delay:.12s}.js .rv.d2{transition-delay:.24s}
+@media (prefers-reduced-motion: reduce){.js .rv{opacity:1!important;transform:none!important;transition:none}}
+
+/* chapitre final */
+.final{text-align:center;justify-content:center}
+.final .inner{flex-direction:column;align-items:center;text-align:center}
+.final .lede{margin-inline:auto}
+.cta{
+  display:inline-block;margin-top:34px;background:var(--ikb);color:#fff;text-decoration:none;font-weight:700;
+  padding:17px 34px;border-radius:999px;font-size:1.02rem;
+}
+.cta:hover{background:#1a2fbf}
+.ghost{display:inline-block;margin:34px 0 0 14px;color:var(--fg);text-decoration:none;font-weight:600;padding:16px 30px;border-radius:999px;border:1.5px solid #3a3e49}
+.ghost:hover{border-color:var(--fg)}
+.pager{position:fixed;right:max(16px, env(safe-area-inset-right, 0px));top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:12px;z-index:40}
+.pager a{width:7px;height:7px;border-radius:50%;background:#3a3e49}
+.pager a.on{background:var(--ikb-l)}
+@media (max-width:900px){.pager{display:none}}
+footer{padding:30px 22px calc(30px + env(safe-area-inset-bottom, 0px));text-align:center;color:var(--faint);font-size:.85rem}
+footer a{color:var(--dim)}
+</style>
+</head>
+<body>
+<script>document.body.classList.add('js')</script>
+
+<div class="mast">
+  <a href="./"><img src="assets/logo-na-nu-blanc.png" alt="Atelier NA">ATELIER&nbsp;NA</a>
+  <span class="ed">Applications · Édition 2026 · N°001</span>
+</div>
+
+<nav class="pager" aria-label="Chapitres">
+  <a href="#c1" aria-label="Intro"></a><a href="#c2" aria-label="Devis"></a><a href="#c3" aria-label="Chantier"></a><a href="#c4" aria-label="Boutique"></a><a href="#c5" aria-label="Contact"></a>
+</nav>
+
+<section class="ch" id="c1" style="--glow:#101b45;--gx:50%;--gy:20%">
+  <div class="inner" style="flex-direction:column;align-items:flex-start">
+    <div>
+      <p class="eyebrow rv">Atelier NA · applications de gestion</p>
+      <h1 class="giant rv d1">Des outils<br>qui font<br><span class="blue">tourner</span><br>la boîte.</h1>
+      <p class="sub rv d2">Construits sur vos process · constatés sur place</p>
+    </div>
+  </div>
+  <div class="scrolldown">Scroll</div>
+</section>
+
+<section class="ch" id="c2" style="--glow:#0f2b1d;--gx:75%;--gy:35%">
+  <div class="inner">
+    <div>
+      <p class="eyebrow rv">Chapitre 01 · Devis &amp; factures</p>
+      <h2 class="giant rv d1">Devis<br><span class="blue">IA.</span></h2>
+      <p class="lede rv d2">Décrivez le chantier, <b>l'application rédige le devis</b>. Trois touches, le PDF part par email — le jour de la visite, pas le dimanche soir. Factures et tableau de bord dans la poche.</p>
+    </div>
+    <img class="phone rv d2" style="--tilt:2.5deg" src="assets/app-devis-ia.jpg" width="1309" height="2576" loading="lazy" alt="Application devis et factures avec Devis IA">
+  </div>
+</section>
+
+<section class="ch" id="c3" style="--glow:#3a1413;--gx:25%;--gy:40%">
+  <div class="inner" style="flex-direction:row-reverse">
+    <div>
+      <p class="eyebrow rv">Chapitre 02 · Équipes chantier</p>
+      <h2 class="giant rv d1">Le<br>chantier<br><span class="blue">du jour.</span></h2>
+      <p class="lede rv d2">Chaque chef de chantier voit son planning de la semaine, <b>demande matériel et échafaudage depuis le chantier</b>, envoie ses bons de fabrication à l'atelier. En production chez JMC Couverture.</p>
+    </div>
+    <img class="phone rv d2" style="--tilt:-2.5deg" src="assets/app-jmc-chantier.jpg" width="1320" height="2552" loading="lazy" alt="Application équipes chantier JMC Couverture">
+  </div>
+</section>
+
+<section class="ch" id="c4" style="--glow:#2e2510;--gx:70%;--gy:60%">
+  <div class="inner">
+    <div>
+      <p class="eyebrow rv">Chapitre 03 · Caisse &amp; réparations</p>
+      <h2 class="giant rv d1">La<br>boutique,<br><span class="blue">en main.</span></h2>
+      <p class="lede rv d2">Dépôts de réparation enregistrés en quelques secondes, <b>objectif du jour et chiffre du mois en temps réel</b>. En production à la bijouterie Atelier Baratte, Saint-Maur-des-Fossés.</p>
+    </div>
+    <img class="phone rv d2" style="--tilt:2deg" src="assets/app-atelier-baratte.png" width="295" height="640" loading="lazy" alt="Application caisse et réparations Atelier Baratte">
+  </div>
+</section>
+
+<section class="ch final" id="c5" style="--glow:#101b45;--gx:50%;--gy:70%">
+  <div class="inner">
+    <p class="eyebrow rv">Et la vôtre ?</p>
+    <h2 class="giant rv d1">Sur<br><span class="blue">mesure.</span></h2>
+    <p class="lede rv d2">Bons de commande, stock et dépôts, flotte &amp; réparations, loyers &amp; quittances, levée de réserves, planning d'interventions… <b>On construit l'outil sur vos process</b> — constatés chez vous, pas imaginés derrière un écran.</p>
+    <div class="rv d2">
+      <a class="cta" href="./#contact">Audit gratuit sur place</a>
+      <a class="ghost" href="applications.html">Toutes les applications</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Atelier NA · <a href="./">atelier-na</a> · Île-de-France</footer>
+
+<script>
+(function(){
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.18 });
+  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+
+  var dots = document.querySelectorAll('.pager a');
+  var chs = document.querySelectorAll('section.ch');
+  var io2 = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if (e.isIntersecting) {
+        var i = Array.prototype.indexOf.call(chs, e.target);
+        dots.forEach(function(d, j){ d.classList.toggle('on', i === j); });
+      }
+    });
+  }, { threshold: 0.6 });
+  chs.forEach(function(c){ io2.observe(c); });
+})();
+</script>
+</body>
+</html>
