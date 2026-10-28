@@ -2999,6 +2999,42 @@ def zones():
     write("/zones-intervention/", html)
 
 
+DEVIS_TRAVAUX = [
+    # (valeur envoyée, libellé, icône SVG)
+    ("Remplacement / rénovation de toiture", "Rénovation de toiture",
+     '<path d="M3 12 12 4l9 8"/><path d="M5 10.5V20h14v-9.5"/><path d="M9 20v-5h6v5"/>'),
+    ("Isolation de toiture", "Isolation",
+     '<path d="M3 11 12 4l9 7"/><path d="M6 13c2 1.5 4-1.5 6 0s4-1.5 6 0"/><path d="M6 17c2 1.5 4-1.5 6 0s4-1.5 6 0"/>'),
+    ("Fenêtre de toit VELUX / lucarne", "VELUX, lucarne",
+     '<path d="M4 20 12 4l8 16z"/><rect x="9.5" y="11" width="5" height="6"/><path d="M12 11v6M9.5 14h5"/>'),
+    ("Couverture zinc / bardage (maison d'architecte)", "Zinc, bardage",
+     '<path d="M3 8h18v12H3z"/><path d="M7 8v12M11 8v12M15 8v12M19 8v12"/><path d="M3 8l9-4 9 4"/>'),
+    ("Nettoyage / démoussage / entretien de toiture", "Nettoyage, démoussage",
+     '<path d="M12 3c3 4 5 6.5 5 9.5a5 5 0 0 1-10 0C7 9.5 9 7 12 3z"/><path d="M10 14a2 2 0 0 0 2 2"/>'),
+    ("Zinguerie / gouttières", "Gouttières, zinguerie",
+     '<path d="M3 6h18v3a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3z"/><path d="M17 12v7M15 19h4"/>'),
+    ("Toiture de maison neuve / extension", "Maison neuve, extension",
+     '<path d="M3 20h18"/><path d="M5 20V11l7-6 7 6v9"/><path d="M12 5v15M5 11h14"/>'),
+    ("Copropriété / syndic", "Copropriété, syndic",
+     '<rect x="4" y="3" width="10" height="18"/><path d="M14 9h6v12h-6"/><path d="M7 7h1M10 7h1M7 11h1M10 11h1M7 15h1M10 15h1"/>'),
+    ("Charpente", "Charpente",
+     '<path d="M2 18 12 6l10 12"/><path d="M5 18h14M12 6v12M8.5 13.5 12 18l3.5-4.5"/>'),
+    ("Étanchéité toiture terrasse / descentes", "Toiture terrasse",
+     '<path d="M3 10h18v10H3z"/><path d="M3 10l2-3h14l2 3"/><path d="M8 14h8"/>'),
+    ("SAV – client JMC", "Déjà client (SAV)",
+     '<circle cx="12" cy="12" r="8"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/>'),
+    ("Autre", "Autre projet",
+     '<circle cx="12" cy="12" r="8"/><path d="M12 8v8M8 12h8"/>'),
+]
+
+
+def _choice(name, value, label, icon=None, checked=False, required=False):
+    ic = (f'<svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" '
+          f'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{icon}</svg>') if icon else ""
+    return (f'<label class="choice{" choice-ic" if icon else ""}"><input type="radio" name="{name}" value="{value}"'
+            f'{" checked" if checked else ""}{" required" if required else ""}><span>{ic}<b>{label}</b></span></label>')
+
+
 def contact():
     trail = [("/", "Accueil"), ("/contact/", "Contact")]
     contact_ld = {"@context": "https://schema.org", "@type": "ContactPage", "url": SITE + "/contact/",
@@ -3008,72 +3044,105 @@ def contact():
                 "Demandez votre devis gratuit pour vos travaux de couverture, charpente ou zinguerie. JMC, 97 rue Charles Van Wyngene, 77181 Courtry. ☎ 01 64 21 38 37.",
                 "/contact/", lds)
     html += header("/contact/")
-    html += page_hero(trail, "Contact", "Devis toiture gratuit : demandez votre visite",
-                      "Décrivez votre projet en quelques lignes : nous vous recontactons rapidement pour organiser une visite et établir un devis détaillé, gratuit et sans engagement.", cta=False)
+    travaux = "".join(_choice("travaux", v, l, ic, required=(i == 0)) for i, (v, l, ic) in enumerate(DEVIS_TRAVAUX))
+    biens = "".join(_choice("bien", b, b, checked=(i == 0)) for i, b in enumerate(
+        ["Maison individuelle", "Copropriété / immeuble", "Local professionnel", "Construction neuve"]))
+    delais = "".join(_choice("delai", d, d, checked=(i == 1)) for i, d in enumerate(
+        ["Dès que possible", "Dans les 3 mois", "Dans l'année", "Je me renseigne"]))
+    origines = "".join(f"<option>{o}</option>" for o in [
+        "Recommandation d'un proche ou d'un voisin", "Panneau de chantier JMC", "Recherche Google", "Instagram",
+        "Déjà client JMC", "Autre"])
     html += f"""
-<section><div class="wrap split">
-  <div>
-    <h2>Formulaire de demande de devis</h2>
-    <form class="quote" name="devis" method="POST" action="/merci/" data-netlify="true" netlify-honeypot="societe-web">
-      <input type="hidden" name="form-name" value="devis">
-      <input type="hidden" name="provenance" id="provenance" value="">
-      <p class="skip"><label>Ne pas remplir : <input name="societe-web"></label></p>
+<section class="devis-immersive has-photo">{hero_bg()}<div class="wrap devis-grid">
+  <div class="devis-intro">
+    {breadcrumb(trail)}
+    <span class="eyebrow">Devis gratuit · sans engagement</span>
+    <h1>Devis toiture gratuit : demandez votre visite</h1>
+    <p class="lead">Quatre questions, deux minutes. Nous vous rappelons pour organiser une visite sur place et vous remettre un devis détaillé, poste par poste.</p>
+    <ol class="devis-promesse">
+      <li><b>1</b><span><strong>Votre demande</strong> en ligne ou au {BIZ['phone']}</span></li>
+      <li><b>2</b><span><strong>Visite gratuite</strong> et diagnostic de votre toiture</span></li>
+      <li><b>3</b><span><strong>Devis clair</strong>, détaillé et sans engagement</span></li>
+    </ol>
+    <div class="hero-labels">{labels()}{google_badge()}</div>
+  </div>
+
+  <form class="quote wizard" name="devis" method="POST" action="/merci/" data-netlify="true" netlify-honeypot="societe-web" novalidate>
+    <input type="hidden" name="form-name" value="devis">
+    <input type="hidden" name="provenance" id="provenance" value="">
+    <p class="skip"><label>Ne pas remplir : <input name="societe-web"></label></p>
+    <div class="wz-progress" aria-hidden="true"><span></span></div>
+    <p class="wz-count" aria-live="polite">Étape <b>1</b> sur 4</p>
+
+    <fieldset class="wz-step" data-step="1">
+      <legend>Quel est votre projet ?</legend>
+      <div class="choices choices-ic">{travaux}</div>
+    </fieldset>
+
+    <fieldset class="wz-step" data-step="2">
+      <legend>Parlez-nous de votre bien</legend>
+      <p class="wz-sub">Type de bâtiment</p>
+      <div class="choices choices-2">{biens}</div>
+      <p class="wz-sub">Quand souhaitez-vous réaliser les travaux ?</p>
+      <div class="choices choices-2">{delais}</div>
+    </fieldset>
+
+    <fieldset class="wz-step" data-step="3">
+      <legend>Où et quoi ?</legend>
+      <label>Ville du chantier *<input name="ville" autocomplete="address-level2" required placeholder="Ex. : Chelles"></label>
+      <label>Votre projet en quelques mots *<textarea name="message" rows="5" required placeholder="Surface approximative, matériau actuel, problème constaté, photos à venir…"></textarea></label>
+      <label>Comment nous avez-vous connu ?<select name="origine">{origines}</select></label>
+    </fieldset>
+
+    <fieldset class="wz-step" data-step="4">
+      <legend>Comment vous recontacter ?</legend>
       <div class="form-row">
         <label>Nom et prénom *<input name="nom" autocomplete="name" required></label>
         <label>Téléphone *<input name="telephone" type="tel" autocomplete="tel" required></label>
       </div>
-      <div class="form-row">
-        <label>E-mail<input name="email" type="email" autocomplete="email"></label>
-        <label>Ville du chantier *<input name="ville" autocomplete="address-level2" required></label>
-      </div>
-      <label>Comment nous avez-vous connu ?
-        <select name="origine">
-          <option>Recommandation d'un proche ou d'un voisin</option>
-          <option>Panneau de chantier JMC</option>
-          <option>Recherche Google</option>
-          <option>Instagram</option>
-          <option>Déjà client JMC</option>
-          <option>Autre</option>
-        </select></label>
-      <label>Type de travaux
-        <select name="travaux">
-          <option>Remplacement / rénovation de toiture</option>
-          <option>Nettoyage / démoussage / entretien de toiture</option>
-          <option>Toiture de maison neuve / extension</option>
-          <option>Isolation de toiture</option>
-          <option>Isolation des rampants / combles aménagés</option>
-          <option>Isolation des combles perdus</option>
-          <option>Couverture zinc / bardage (maison d'architecte)</option>
-          <option>Charpente</option>
-          <option>Zinguerie / gouttières</option>
-          <option>Copropriété / syndic</option>
-          <option>Promotion immobilière / constructeur</option>
-          <option>Fenêtre de toit VELUX / lucarne</option>
-          <option>Étanchéité toiture terrasse / descentes</option>
-          <option>Toiture avant panneaux photovoltaïques</option>
-          <option>Finitions : dessous de toit, sous-faces, peinture</option>
-          <option>Auvent / marquise sur mesure</option>
-          <option>SAV – client JMC</option>
-          <option>Autre</option>
-        </select></label>
-      <label>Votre projet *<textarea name="message" rows="6" required placeholder="Surface approximative, matériau actuel, problème constaté…"></textarea></label>
-      <label style="display:flex;gap:10px;align-items:flex-start;font-weight:400"><input type="checkbox" name="rgpd" required style="width:auto;margin-top:5px">
-        J'accepte que mes données soient utilisées pour être recontacté au sujet de ma demande (voir <a href="/mentions-legales/">mentions légales</a>).</label>
-      <button class="btn btn-primary" type="submit" style="justify-self:start">Envoyer ma demande</button>
-      <p class="small">* Champs obligatoires. Réponse rapide, du lundi au samedi.</p>
-    </form>
-  </div>
-  <aside class="aside">
-    <h2>Nos coordonnées</h2>
+      <label>E-mail<input name="email" type="email" autocomplete="email"></label>
+      <label class="rgpd"><input type="checkbox" name="rgpd" required>
+        <span>J'accepte que mes données soient utilisées pour être recontacté au sujet de ma demande (voir <a href="/mentions-legales/">mentions légales</a>).</span></label>
+    </fieldset>
+
+    <div class="wz-nav">
+      <button class="btn btn-ghost-dark wz-prev" type="button">← Retour</button>
+      <button class="btn btn-primary wz-next" type="button">Continuer →</button>
+      <button class="btn btn-primary wz-submit" type="submit">Envoyer ma demande</button>
+    </div>
+    <p class="small wz-foot">* Champs obligatoires. Réponse rapide, du lundi au samedi. Vous préférez parler à quelqu'un ? <a href="tel:{BIZ['phone_intl']}">{BIZ['phone']}</a></p>
+  </form>
+</div></section>
+
+<section><div class="wrap split">
+  <div class="prose">
+    <h2>Nous rendre visite à Courtry</h2>
     <p><strong>{BIZ['legal']} – {BIZ['name']}</strong><br>{BIZ['street']}<br>{BIZ['zip']} {BIZ['city']}</p>
     <p>Téléphone : <a href="tel:{BIZ['phone_intl']}"><strong>{BIZ['phone']}</strong></a><br>
     E-mail : <a href="mailto:{BIZ['email']}">{BIZ['email']}</a></p>
-    <p><strong>Devis gratuit et sans engagement</strong> · <a href="{BIZ['reviews']}" target="_blank" rel="noopener">Avis Google</a>{insta_link(" · ")}</p>
-    {photo("depot")}
+    <p><a href="{BIZ['reviews']}" target="_blank" rel="noopener">Nos avis Google</a>{insta_link(" · ")}</p>
     <iframe class="map" title="Plan d'accès JMC Couverture, Courtry" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
       src="https://www.google.com/maps?q=97+rue+Charles+Van+Wyngene+77181+Courtry&amp;output=embed"></iframe>
-  </aside>
+  </div>
+  <div>{photo("depot")}{photo("equipe")}</div>
 </div></section>
+<script>
+(function(){{var f=document.querySelector('form.wizard');if(!f)return;f.classList.add('wz-on');
+var steps=[].slice.call(f.querySelectorAll('.wz-step')),i=0,bar=f.querySelector('.wz-progress span'),cnt=f.querySelector('.wz-count b'),
+prev=f.querySelector('.wz-prev'),next=f.querySelector('.wz-next');
+function show(n,focus){{steps.forEach(function(s,k){{s.classList.toggle('active',k===n)}});i=n;
+bar.style.width=((n+1)/steps.length*100)+'%';cnt.textContent=n+1;f.classList.toggle('wz-first',n===0);f.classList.toggle('wz-last',n===steps.length-1);
+if(focus){{var t=steps[n].querySelector('input:not([type=radio]),textarea');var top=f.getBoundingClientRect().top+scrollY-90;if(top<scrollY)scrollTo({{top:top,behavior:'smooth'}});if(t)setTimeout(function(){{t.focus({{preventScroll:true}})}},350)}}}}
+function ok(n){{var bad=[].slice.call(steps[n].querySelectorAll('input,textarea,select')).filter(function(e){{return !e.checkValidity()}});
+if(bad.length){{steps[n].classList.add('shake');setTimeout(function(){{steps[n].classList.remove('shake')}},500);bad[0].reportValidity&&bad[0].reportValidity();return false}}return true}}
+next.addEventListener('click',function(){{if(ok(i))show(i+1,true)}});
+prev.addEventListener('click',function(){{show(i-1,true)}});
+f.querySelectorAll('input[name=travaux]').forEach(function(r){{r.addEventListener('change',function(){{setTimeout(function(){{if(i===0)show(1,true)}},250)}})}});
+f.addEventListener('keydown',function(e){{if(e.key==='Enter'&&e.target.tagName!=='TEXTAREA'&&i<steps.length-1){{e.preventDefault();next.click()}}}});
+f.addEventListener('submit',function(e){{for(var k=0;k<steps.length;k++)if(!ok(k)){{e.preventDefault();show(k);ok(k);return}}}});
+try{{var q=new URLSearchParams(location.search).get('travaux');if(q){{var r=[].slice.call(f.querySelectorAll('input[name=travaux]')).filter(function(x){{return x.value.toLowerCase().indexOf(q.toLowerCase())>-1}})[0];if(r){{r.checked=true;show(1)}}}}}}catch(e){{}}
+if(!f.querySelector('.wz-step.active'))show(i);}})();
+</script>
 """
     html += footer()
     write("/contact/", html)
