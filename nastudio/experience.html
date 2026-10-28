@@ -30,7 +30,8 @@ body{margin:0;background:var(--bg);color:var(--fg);font-family:"Public Sans",sys
 }
 .mast a{pointer-events:auto;color:var(--fg);text-decoration:none;display:flex;align-items:center;gap:10px;letter-spacing:.28em}
 .mast a img{height:20px;width:auto}
-.mast .ed{font-family:"Public Sans"}
+.mast .ed{font-family:"Public Sans";white-space:nowrap}
+@media (max-width:760px){.mast .ed{display:none}}
 
 section.ch{
   min-height:100vh;min-height:100svh;position:relative;display:flex;align-items:center;
