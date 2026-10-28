@@ -605,6 +605,65 @@ REVIEWS = [
 ]
 
 
+# ---------------------------------------------------------------- partenaires (panneau des 40 ans)
+PARTENAIRES = json.loads((ROOT / "_build" / "partenaires.json").read_text(encoding="utf-8"))
+PART_BY_NAME = {n: (s, n, c, w, h) for s, n, c, w, h in PARTENAIRES if n}
+PART_CATS = [
+    ("communes", "Les communes qui nous font confiance", "Écoles, équipements publics et bâtiments communaux : des collectivités de l'est parisien nous confient leurs toitures."),
+    ("promoteurs", "Promoteurs immobiliers et constructeurs", "Charpente, couverture et zinguerie de programmes de logements neufs en Île-de-France."),
+    ("materiaux", "Les matériaux que nous posons", "Des fabricants et des distributeurs reconnus, pour des toitures durables."),
+    ("architectes", "Architectes, maîtres d'œuvre et bureaux de contrôle", "Nous travaillons avec les concepteurs et les contrôleurs, du dossier à la réception."),
+    ("entreprises", "Entreprises partenaires", "Les entreprises du bâtiment avec lesquelles nous menons nos chantiers."),
+    ("autres", "Ils nous accompagnent", ""),
+]
+
+
+def part_fig(p, color=False):
+    s, n, c, w, h = p
+    alt = f"Logo {n}, partenaire de JMC Couverture" if n else "Logo d'une entreprise partenaire de JMC Couverture"
+    t = f' title="{n}"' if n else ""
+    return (f'<figure class="pl{" pl-color" if color else ""}"{t}><img src="/assets/partenaires/{s}.webp" alt="{alt}" '
+            f'loading="lazy" decoding="async" width="{w}" height="{h}"></figure>')
+
+
+def part_grid(names_or_cat, color=False):
+    if isinstance(names_or_cat, str):
+        items = [p for p in PARTENAIRES if p[2] == names_or_cat]
+    else:
+        items = [PART_BY_NAME[n] for n in names_or_cat if n in PART_BY_NAME]
+    return f'<div class="plogos">{"".join(part_fig(p, color) for p in items)}</div>'
+
+
+HOME_PART = ["Ville de Courtry", "Bouygues Immobilier", "Kaufman & Broad", "Ville de Montfermeil", "VELUX", "Les Nouveaux Constructeurs",
+             "Ville de Lagny-sur-Marne", "VMZINC", "Quartus", "Ville de Bagnolet", "Terreal", "Ville de Nogent-sur-Marne"]
+
+
+def trust_band():
+    return f"""
+<section class="trust-band"><div class="wrap">
+  <div class="section-head center"><span class="eyebrow">Ils nous font confiance</span>
+  <h2>Communes, promoteurs et fabricants nous confient leurs toitures depuis 1985</h2>
+  <p>Plus de 150 partenaires : collectivités, promoteurs immobiliers, architectes, entreprises du bâtiment et fabricants de matériaux.</p></div>
+  {part_grid(HOME_PART)}
+  <p class="center" style="margin-top:26px"><a class="btn btn-primary" href="/nos-references/#partenaires">Voir tous nos partenaires →</a></p>
+</div></section>"""
+
+
+def materiaux_block(names, titre="Les matériaux que nous posons"):
+    return (f'<h2>{titre}</h2><p>Nous travaillons avec des fabricants reconnus. '
+            f'Retrouvez tous nos partenaires sur la page <a href="/nos-references/#partenaires">références</a>.</p>'
+            f'{part_grid(names, color=True)}')
+
+
+def commune_block(ville):
+    p = PART_BY_NAME.get(f"Ville de {ville}") or PART_BY_NAME.get(f"Ville d'{ville}") or PART_BY_NAME.get(f"Ville des {ville}")
+    if not p:
+        return ""
+    return (f'<div class="commune-trust">{part_fig(p, color=True)}<div><h3>La {p[1][0].lower() + p[1][1:]} nous fait confiance</h3>'
+            f'<p>Nous intervenons pour la commune comme pour les particuliers : la même exigence sur chaque toiture. '
+            f'Voir nos <a href="/nos-references/#partenaires">références</a>.</p></div></div>')
+
+
 GOOGLE_REVIEWS = {
     "lily": {"name": "Lily", "date": "février 2026", "travaux": "Réfection complète de toiture",
              "text": "Réfection complète de ma toiture par l'entreprise JMC à Courtry. Je suis plus que ravie du résultat ! Le devis est clair, détaillé et le tarif est compétitif. Les délais des travaux sont respectés avec une organisation sans faille impressionnante et ceux-ci sont réalisés dans les règles de l'art. Le gérant Mr Anthony Da Silva et les couvreurs Michel et Gerson qui sont intervenus sont charmants, ponctuels, rigoureux, professionnels et respectueux des lieux (le chantier est protégé et nettoyé chaque soir). De plus, ils véhiculent et montrent de belles valeurs d'entreprise appréciables. Je recommande vivement cette société. N'hésitez pas à regarder ses vidéos sur les réseaux sociaux (Instagram, Facebook), elles reflètent leur savoir-faire et leurs compétences indéniables.",
@@ -795,6 +854,7 @@ def home():
 
 {secu_proprete()}
 {bouche_oreille()}
+{trust_band()}
 
 {engagement_local()}
 <section class="section-alt"><div class="wrap">
@@ -971,6 +1031,7 @@ def zinguerie():
       <li>Reprise des soudures et des joints de dilatation</li>
       <li>Pose de crapaudines et de grilles pare-feuilles</li>
     </ul>
+  {materiaux_block(["VMZINC", "Rheinzink"], "Les zincs que nous posons")}
   </article>
   {aside()}
 </div></section>
@@ -1296,6 +1357,7 @@ def zinc_bardage():
       <li><strong>Respect des règles de l'art</strong> (DTU) : ventilation, dilatation, compatibilité des matériaux</li>
     </ul>
     <p>Ce même savoir-faire sert aussi aux <a href="/toiture-maison-neuve/">maisons neuves</a> plus classiques et à la <a href="/zinguerie/">zinguerie</a> de tous types de toitures.</p>
+  {materiaux_block(["VMZINC", "Rheinzink"], "Les zincs que nous posons")}
   </article>
   {aside("Votre projet en zinc")}
 </div></section>
@@ -1471,6 +1533,7 @@ def ville(v):
   <article class="prose">
     <h2>Les toitures de {name}</h2>
     {paras}
+    {commune_block(name)}
     <h2>Nos services de couverture à {name}</h2>
     <ul class="checks">
       <li><a href="/renovation-toiture/"><strong>Rénovation et remplacement de toiture</strong></a> : réfection complète en <a href="/toiture-tuile/">tuiles</a>, ardoise ou zinc, de la charpente aux gouttières.</li>
@@ -1933,6 +1996,7 @@ def courtry(v):
     <h2>Une méthode de chantier claire</h2>
     <p>Visite et diagnostic gratuits, devis détaillé poste par poste, démarches en mairie gérées si besoin, chantier sûr et propre, accès au toit pendant les travaux pour constater l'avancement, contrôle qualité et procès-verbal de réception : découvrez <a href="/notre-methode-sav-qualite/">notre méthode, notre SAV et notre suivi qualité</a>.</p>
     {reviews_block(["lily", "richard"], "Ce que nos clients en disent")}
+    {commune_block("Courtry")}
     <h2>Engagés dans la vie de Courtry</h2>
     <p>Implantée à Courtry depuis 1985, JMC soutient la vie locale, notamment le club de football <a href="{BIZ['partenaires'][0][2]}" target="_blank" rel="noopener">CS Courtry Académie</a>. Une grande partie de nos clients nous vient du bouche-à-oreille.</p>
     {photo("equipe")}
@@ -2070,6 +2134,7 @@ def fenetres():
     <p>Nous intervenons dans les maisons individuelles comme dans les immeubles, en lien avec le <a href="/couvreur-copropriete-syndic/">syndic de copropriété</a> pour les fenêtres de toit et les lucarnes des lots sous combles. Ces travaux se combinent idéalement avec une <a href="/isolation-toiture/">isolation de toiture</a> ou une <a href="/renovation-toiture/">rénovation complète</a>.</p>
     {reviews_block(['richard', 'marcelino'], "Ils nous ont confié leurs VELUX")}
     <p class="small">VELUX est une marque déposée de son propriétaire. JMC pose et remplace les fenêtres de toit de cette marque et d'autres fabricants.</p>
+  {materiaux_block(["VELUX"], "Les fenêtres de toit que nous posons")}
   </article>
   {aside("Fenêtres de toit et lucarnes")}
 </div></section>
@@ -2603,7 +2668,8 @@ def tuile():
 
     <h2>Le prix d'une toiture en tuiles</h2>
     <p>Le prix au mètre carré dépend du type de tuile (mécanique ou plate, terre cuite ou béton), de la surface, de la pente, de l'accès, de l'état de la charpente et des options (isolation, fenêtres de toit, zinguerie). Nous vous remettons un devis gratuit, détaillé poste par poste, après visite.</p>
-    {reviews_block(['lily', 'marcelino'])}"""
+    {reviews_block(['lily', 'marcelino'])}
+    {materiaux_block(['Terreal', 'Edilians'], 'Les tuiles que nous posons')}"""
     _guide("/toiture-tuile/", "Toiture en tuiles",
            "Toiture en tuiles : tuile mécanique, tuile plate, remaniage | JMC",
            "Pose, réfection et remaniage de toitures en tuiles mécaniques, tuiles plates, terre cuite ou béton en Île-de-France. Remplacement de tuiles, devis gratuit.",
@@ -2797,6 +2863,10 @@ def references():
                f'<p>Quelques toitures réalisées par nos équipes.</p></div><div class="refs">{gallery}</div></div></section>') if gallery else ""
     clients = ["Bouygues Immobilier", "Kaufman &amp; Broad", "Nexity", "Archicrea", "Ville de Montfermeil",
                "Ville de Nogent-sur-Marne", "Ville de Villemomble", "Maison Fochia", "Archi Noisy"]
+    part_sections = "".join(
+        f'<div class="pcat"><h3>{t}</h3>' + (f'<p>{d}</p>' if d else '') + part_grid(c, color=True)
+        + (f'<p class="pnames">{", ".join(p[1] for p in PARTENAIRES if p[2] == c and p[1])}.</p>' if c != "entreprises" else '')
+        + '</div>' for c, t, d in PART_CATS)
     html += f"""
 <section><div class="wrap">
   <div class="section-head"><h2>Quelques chantiers récents</h2>
@@ -2804,10 +2874,10 @@ def references():
   <div class="refs">{cards}</div>
 </div></section>
 {gallery}
-<section><div class="wrap">
+<section id="partenaires"><div class="wrap">
   <div class="section-head"><h2>Ils nous font confiance</h2>
-  <p>Promoteurs, architectes et collectivités de l'est parisien.</p></div>
-  <ul class="clients">{"".join(f"<li>{c}</li>" for c in clients)}</ul>
+  <p>Depuis 1985, plus de 150 collectivités, promoteurs, architectes, entreprises et fabricants travaillent avec JMC Couverture. Merci à eux pour leur confiance et leur fidélité.</p></div>
+  {part_sections}
 </div></section>
 <section class="section-alt"><div class="wrap">
   <div class="section-head"><h2>Avis de nos clients</h2></div>

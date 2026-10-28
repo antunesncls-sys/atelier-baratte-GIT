@@ -329,3 +329,19 @@ table.facts th,table.facts td{text-align:left;padding:9px 12px;border-bottom:1px
 table.facts th{width:38%;color:var(--ink-2);font-weight:700;background:var(--bg-2)}
 .faq-group{margin-bottom:40px;padding-bottom:12px;border-bottom:1px solid var(--line)}
 .faq-group h3{font-size:1.08rem;margin-top:1.1em}
+
+/* ---------- partenaires ---------- */
+.trust-band{padding:72px 0;background:var(--paper,#f6f4ef)}
+.section-head.center,.center{text-align:center;margin-left:auto;margin-right:auto}
+.plogos{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.pl{margin:0;background:#fff;border:1px solid #e4e1da;border-radius:10px;height:96px;display:flex;align-items:center;justify-content:center;padding:14px}
+.pl img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+.pl{transition:box-shadow .2s,transform .2s}.pl:hover{box-shadow:0 6px 18px rgba(17,20,23,.08);transform:translateY(-2px)}
+.pcat{margin-top:40px}.pcat h3{margin-bottom:6px}.pcat>p{color:#5b6168;margin:0 0 14px}
+.pcat .pnames{font-size:.85rem;color:#80868d;margin-top:12px}
+.prose .plogos{grid-template-columns:repeat(3,1fr);margin:14px 0 8px}
+.commune-trust{display:grid;grid-template-columns:150px 1fr;gap:22px;align-items:center;background:var(--paper,#f6f4ef);border-left:5px solid #af9317;border-radius:10px;padding:18px 22px;margin:26px 0}
+.commune-trust .pl{height:84px}
+.commune-trust h3{margin:0 0 6px}.commune-trust p{margin:0;color:#5b6168}
+@media (max-width:900px){.plogos{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:560px){.plogos,.prose .plogos{grid-template-columns:repeat(2,1fr)}.pl{height:80px}.commune-trust{grid-template-columns:1fr}.commune-trust .pl{max-width:200px}}
