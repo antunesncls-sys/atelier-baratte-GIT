@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "accounts": "node src/list-accounts.js",
-    "post": "node src/create-post.js"
+    "post": "node src/create-post.js",
+    "schedule": "node src/schedule-batch.js"
   },
   "dependencies": {
     "@zernio/node": "^0.2.1374",
