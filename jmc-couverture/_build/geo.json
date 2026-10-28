@@ -334,5 +334,41 @@
   "cp": "91230",
   "lat": 48.704816,
   "lon": 2.455399
+ },
+ "Montfermeil": {
+  "nom": "Montfermeil",
+  "cp": "93370",
+  "lat": 48.8976,
+  "lon": 2.5678
+ },
+ "Coubron": {
+  "nom": "Coubron",
+  "cp": "93470",
+  "lat": 48.9173,
+  "lon": 2.5759
+ },
+ "Livry-Gargan": {
+  "nom": "Livry-Gargan",
+  "cp": "93190",
+  "lat": 48.9184,
+  "lon": 2.5351
+ },
+ "Noisy-le-Grand": {
+  "nom": "Noisy-le-Grand",
+  "cp": "93160",
+  "lat": 48.8327,
+  "lon": 2.556
+ },
+ "Torcy": {
+  "nom": "Torcy",
+  "cp": "77200",
+  "lat": 48.8534,
+  "lon": 2.6476
+ },
+ "Vaires-sur-Marne": {
+  "nom": "Vaires-sur-Marne",
+  "cp": "77360",
+  "lat": 48.8703,
+  "lon": 2.6332
  }
 }

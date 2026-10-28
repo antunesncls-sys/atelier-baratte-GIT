@@ -1579,7 +1579,7 @@ DEPTS_PAGES = [
      "lead": "Notre siège est à Courtry : la Seine-et-Marne est notre territoire depuis 1985. Couverture zinc et tuiles, rénovation, isolation et maisons neuves, de Meaux à Melun et de Chelles à Fontainebleau.",
      "texte": ["Plus grand département d'Île-de-France, la Seine-et-Marne réunit des réalités très différentes : pavillons et maisons en meulière de l'ouest du département, villes nouvelles de Marne-la-Vallée aux nombreuses maisons récentes, bourgs anciens et belles propriétés du sud autour de Fontainebleau et de Barbizon.",
                "Basés à Courtry, nous intervenons rapidement dans tout le département avec nos équipes et notre flotte de véhicules : rénovation et isolation de toitures anciennes, toitures de maisons neuves dans les nouveaux quartiers, nettoyage et démoussage des toitures des années 1990-2000, travaux pour les copropriétés."],
-     "autres": ["Torcy", "Noisiel", "Roissy-en-Brie", "Vaires-sur-Marne", "Serris", "Combs-la-Ville", "Savigny-le-Temple", "Le Mée-sur-Seine", "Gretz-Armainvilliers", "Lésigny", "Bois-le-Roi", "Avon"]},
+     "autres": ["Noisiel", "Roissy-en-Brie", "Lognes", "Serris", "Combs-la-Ville", "Savigny-le-Temple", "Le Mée-sur-Seine", "Gretz-Armainvilliers", "Lésigny", "Bois-le-Roi", "Avon"]},
     {"num": "94", "name": "Val-de-Marne", "slug": "couvreur-val-de-marne-94", "art": "dans le",
      "lead": "Maisons bourgeoises des bords de Marne, villas en meulière et copropriétés : votre couvreur dans le Val-de-Marne, de Saint-Maur-des-Fossés à Nogent-sur-Marne.",
      "texte": ["Le Val-de-Marne concentre certaines des plus belles communes résidentielles de l'est parisien : Saint-Maur-des-Fossés et La Varenne, Nogent-sur-Marne, Le Perreux-sur-Marne, Vincennes, Saint-Mandé, Bry-sur-Marne. Villas Belle Époque, maisons en meulière et immeubles de caractère y portent des toitures riches et complexes.",
@@ -1594,7 +1594,7 @@ DEPTS_PAGES = [
      "lead": "Villas du Raincy, pavillons de Villemomble et de Gagny, copropriétés et équipements publics : votre couvreur en Seine-Saint-Denis, à la porte de notre siège.",
      "texte": ["Courtry est à la frontière de la Seine-Saint-Denis : nous y intervenons depuis 1985, pour les particuliers, les copropriétés et les collectivités, comme les groupes scolaires de Montfermeil. Villas du Raincy, maisons bourgeoises de Villemomble, pavillons de Gagny ou de Livry-Gargan : nous connaissons chaque type de toiture du département.",
                "Notre proximité nous permet des visites rapides, un suivi de chantier attentif et un SAV réactif. Rénovation, isolation des combles, nettoyage, fenêtres de toit et zinguerie : tous vos travaux de toiture avec un seul interlocuteur."],
-     "autres": ["Villemomble", "Gagny", "Montfermeil", "Coubron", "Vaujours", "Livry-Gargan", "Clichy-sous-Bois", "Neuilly-Plaisance", "Neuilly-sur-Marne", "Noisy-le-Grand", "Les Pavillons-sous-Bois", "Rosny-sous-Bois"]},
+     "autres": ["Villemomble", "Gagny", "Vaujours", "Clichy-sous-Bois", "Neuilly-Plaisance", "Neuilly-sur-Marne", "Sevran", "Bondy", "Les Pavillons-sous-Bois", "Rosny-sous-Bois"]},
     {"num": "75", "name": "Paris", "slug": "couvreur-paris", "art": "à",
      "lead": "Toitures en zinc et en ardoise, combles mansardés, lucarnes et balcons : un couvreur-zingueur à Paris pour les copropriétés, les syndics et les propriétaires.",
      "texte": ["Les toits de Paris sont un patrimoine à part : couvertures en zinc, brisis d'ardoise, lucarnes, chiens-assis, terrassons et balcons en plomb. Le savoir-faire des couvreurs-zingueurs parisiens est d'ailleurs inscrit au patrimoine culturel immatériel de l'UNESCO depuis 2024.",
@@ -1806,7 +1806,8 @@ VOL = {"Argenteuil": 720, "Saint-Maur-des-Fossés": 590, "Fontainebleau": 590, "
        "Eaubonne": 170, "Herblay-sur-Seine": 170, "Lagny-sur-Marne": 140, "Claye-Souilly": 140,
        "Dammarie-les-Lys": 140, "Coulommiers": 140, "Cergy": 140, "Montmorency": 140, "Champs-sur-Marne": 110,
        "Franconville": 110, "L'Isle-Adam": 110, "Osny": 110, "Villeparisis": 90, "Esbly": 90, "Taverny": 90,
-       "Sannois": 90, "Deuil-la-Barre": 90, "Cormeilles-en-Parisis": 90, "Mitry-Mory": 70}
+       "Sannois": 90, "Deuil-la-Barre": 90, "Cormeilles-en-Parisis": 90, "Mitry-Mory": 70,
+       "Montfermeil": 390, "Livry-Gargan": 210, "Noisy-le-Grand": 210, "Torcy": 70, "Coubron": 50, "Vaires-sur-Marne": 40}
 
 
 DEPTS_PAGES.append(
@@ -1936,6 +1937,40 @@ VILLES += [
        "Notre siège, notre atelier et nos équipes sont à Courtry depuis 1985 : votre entreprise de couverture, charpente et zinguerie au cœur de la commune.",
        "", "",
        ["Le Pin", "Villeparisis", "Chelles", "Coubron", "Vaujours", "Claye-Souilly"]),
+]
+
+# ---------- Communes voisines de Courtry (audit mots-clés, octobre 2026) ----------
+VILLES += [
+    _v("Montfermeil", "Seine-Saint-Denis", "93", "93370",
+       "Pavillons, maisons de ville et bâtiments publics : votre couvreur à Montfermeil, à quelques minutes de notre siège de Courtry.",
+       "Perchée sur son plateau en lisière des bois, Montfermeil est voisine directe de Courtry. Ses quartiers pavillonnaires, ses maisons anciennes du centre et ses copropriétés offrent des toitures très variées : tuiles mécaniques, tuiles plates, ardoise et zinc.",
+       "La ville de Montfermeil nous confie elle-même des travaux de couverture, notamment sur ses groupes scolaires. Particuliers et copropriétés y bénéficient de la même exigence : rénovation complète, isolation RGE, fenêtres de toit, zinguerie et entretien, avec visite et devis gratuits.",
+       ["Courtry", "Coubron", "Clichy-sous-Bois", "Chelles", "Gagny", "Le Raincy"]),
+    _v("Coubron", "Seine-Saint-Denis", "93", "93470",
+       "Maisons individuelles et pavillons en lisière de la forêt de Bondy : votre couvreur à Coubron, juste à côté de Courtry.",
+       "Petite commune résidentielle entre la forêt régionale de Bondy et les coteaux de l'Aulnoye, Coubron touche Courtry. Ses rues sont surtout bordées de maisons individuelles et de pavillons, dont les toitures en tuiles ont souvent plusieurs décennies.",
+       "Nos équipes partent chaque jour de Courtry : à Coubron, la visite de diagnostic s'organise très vite et notre SAV reste tout proche après les travaux. Rénovation, isolation des combles, VELUX, gouttières, nettoyage et démoussage : nous prenons en charge toute votre toiture.",
+       ["Courtry", "Vaujours", "Montfermeil", "Clichy-sous-Bois", "Livry-Gargan", "Le Pin"]),
+    _v("Livry-Gargan", "Seine-Saint-Denis", "93", "93190",
+       "Pavillons, maisons en meulière et résidences : votre couvreur à Livry-Gargan, de Gargan au parc de la Poudrerie.",
+       "Grande commune pavillonnaire de l'est de la Seine-Saint-Denis, Livry-Gargan mêle maisons en meulière du début du XXe siècle, pavillons des années 1950 à 1980 et petites copropriétés. Beaucoup de ces toitures arrivent en fin de vie et méritent une rénovation accompagnée d'une meilleure isolation.",
+       "Depuis Courtry, nous intervenons à Livry-Gargan pour la réfection complète de toitures en tuiles, l'isolation des combles et des rampants, la pose de fenêtres de toit VELUX, la zinguerie et l'entretien, avec un interlocuteur unique du devis au SAV.",
+       ["Vaujours", "Coubron", "Clichy-sous-Bois", "Le Raincy", "Sevran", "Les Pavillons-sous-Bois"]),
+    _v("Noisy-le-Grand", "Seine-Saint-Denis", "93", "93160",
+       "Pavillons, maisons des bords de Marne et copropriétés : votre couvreur à Noisy-le-Grand.",
+       "Entre les bords de Marne et le quartier du Mont d'Est, Noisy-le-Grand associe des quartiers pavillonnaires anciens, des maisons de ville et de nombreuses copropriétés plus récentes. Tuiles, ardoise, zinc et toitures terrasses : nous y rencontrons tous les types de couverture.",
+       "Nous intervenons à Noisy-le-Grand auprès des particuliers, des syndics et des copropriétés : rénovation et remplacement de toiture, étanchéité de toiture terrasse, isolation RGE, fenêtres de toit et zinguerie, avec suivi d'exécution et SAV interne.",
+       ["Gournay-sur-Marne", "Champs-sur-Marne", "Bry-sur-Marne", "Villiers-sur-Marne", "Neuilly-sur-Marne", "Chelles"]),
+    _v("Torcy", "Seine-et-Marne", "77", "77200",
+       "Maisons individuelles et résidences de Marne-la-Vallée : votre couvreur à Torcy.",
+       "Ville du Val Maubuée, entre la Marne et la base de loisirs de Vaires-Torcy, Torcy compte de nombreux lotissements et résidences construits à partir des années 1970 et 1980, à côté d'un centre ancien plus traditionnel. Ces toitures atteignent l'âge où l'on refait la couverture et l'isolation.",
+       "Nous accompagnons les propriétaires et les copropriétés de Torcy : rénovation de toiture, isolation des combles par soufflage ou sous rampants, remplacement de VELUX, gouttières et descentes en zinc, nettoyage et démoussage. Visite et devis gratuits.",
+       ["Vaires-sur-Marne", "Noisiel", "Champs-sur-Marne", "Lognes", "Collégien", "Chelles"]),
+    _v("Vaires-sur-Marne", "Seine-et-Marne", "77", "77360",
+       "Pavillons et maisons des bords de Marne : votre couvreur à Vaires-sur-Marne, à deux pas de Courtry.",
+       "Entre Chelles et Torcy, Vaires-sur-Marne est une commune résidentielle des bords de Marne, connue pour son stade nautique. Ses quartiers de pavillons et de maisons anciennes présentent surtout des toitures en tuiles mécaniques et en tuiles plates.",
+       "Toute proche de notre siège de Courtry, Vaires-sur-Marne fait partie de notre secteur de tous les jours : rénovation et remplacement de toiture, isolation RGE, fenêtres de toit, zinguerie, nettoyage et entretien, avec une équipe SAV à proximité.",
+       ["Chelles", "Torcy", "Brou-sur-Chantereine", "Pomponne", "Courtry", "Noisiel"]),
 ]
 
 
