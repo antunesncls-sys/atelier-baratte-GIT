@@ -4,389 +4,299 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
-<link rel="stylesheet" href="assets/style.css">
+<style>
+:root{
+  --bg:#0b0c0f; --card:#13151b; --line:#242731;
+  --fg:#fbfbfa; --dim:#9ca0ab; --faint:#5c606b;
+  --ikb:#002fa7; --ikb-l:#546eff;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Public Sans",system-ui,sans-serif;font-size:17px;line-height:1.6;color-scheme:dark;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:3px solid var(--ikb-l);outline-offset:3px;border-radius:2px}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+img{max-width:100%}
+a{color:var(--ikb-l)}
 
+/* ---------- masthead ---------- */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+.mast{
+  position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:50;
+  display:flex;align-items:center;gap:26px;
+  padding:14px max(20px, env(safe-area-inset-right, 0px)) 14px max(20px, env(safe-area-inset-left, 0px));
+  background:linear-gradient(to bottom, rgba(11,12,15,.92), rgba(11,12,15,.75) 70%, transparent);
+}
+.brand{display:flex;align-items:center;gap:12px;color:var(--fg);text-decoration:none;font-weight:600;font-size:.95rem;letter-spacing:.2em;text-transform:uppercase}
+.brand img{height:22px;width:auto;display:block}
+.brand .ia{color:var(--ikb-l)}
+.mnav{margin-left:auto;display:flex;gap:4px}
+.mnav a{color:var(--dim);text-decoration:none;font-size:.9rem;font-weight:500;padding:12px 12px;border-radius:6px}
+.mnav a:hover{color:var(--fg)}
+.cta{flex:none;background:var(--ikb);color:#fff;text-decoration:none;font-weight:700;font-size:.92rem;padding:12px 22px;border-radius:999px;border:none;cursor:pointer}
+.cta:hover{background:#1a2fbf}
+@media (max-width:760px){.mnav{display:none}.cta{margin-left:auto}}
 
-<header>
-  <div class="wrap bar">
-    <a class="brand" href="./"><img class="mark" src="assets/logo-na-nu.png" width="30" height="25" alt="" style="border-radius:0"><span class="bname">Atel<span class="ia">i</span>er&nbsp;N<span class="ia">A</span></span></a>
-    <nav id="main-nav" aria-label="Navigation principale">
-      <a href="./" aria-current="page">Accueil</a>
-      <a href="sites.html">Sites web</a>
-      <a href="applications.html">Applications</a>
-    </nav>
-    <a class="cta" href="#contact">Demander un devis</a>
-    <button class="menu-btn" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>
-  </div>
+/* ---------- chapitres ---------- */
+section.ch{
+  min-height:100vh;min-height:100svh;position:relative;display:flex;align-items:center;
+  padding:120px max(20px, env(safe-area-inset-left, 0px)) 90px max(20px, env(safe-area-inset-right, 0px));
+  overflow:hidden;
+}
+section.ch.auto{min-height:0;padding-top:90px;padding-bottom:90px}
+.ch::before{content:"";position:absolute;inset:-20%;background:radial-gradient(ellipse at var(--gx,70%) var(--gy,30%), var(--glow,#13204d) 0%, transparent 55%);opacity:.8;pointer-events:none}
+.inner{width:min(1180px,100%);margin-inline:auto;position:relative;display:flex;align-items:center;gap:60px}
+@media (max-width:900px){.inner{flex-direction:column;align-items:flex-start;gap:36px}}
+.col{display:block}
+
+.eyebrow{font-size:11.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--ikb-l);margin:0 0 18px;font-weight:600}
+h1,h2,h3{font-family:"Archivo Black",sans-serif;font-weight:400;line-height:.95;letter-spacing:-.01em;margin:0;text-wrap:balance}
+.giant{font-size:clamp(2.6rem,8.4vw,6.6rem);text-transform:uppercase}
+.giant .blue{color:var(--ikb-l)}
+.lede{max-width:50ch;color:var(--dim);font-size:1.06rem;line-height:1.7;margin:26px 0 0}
+.lede b{color:var(--fg)}
+.sub{font-size:11.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--faint);margin:24px 0 0;font-weight:600}
+.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.ghost{display:inline-block;color:var(--fg);text-decoration:none;font-weight:600;padding:14px 26px;border-radius:999px;border:1.5px solid #3a3e49;font-size:.95rem}
+.ghost:hover{border-color:var(--fg)}
+.actions .cta{padding:15px 28px;font-size:.98rem}
+
+.phone{flex:none;width:min(290px,76vw);height:auto;border-radius:26px;box-shadow:0 40px 90px rgba(0,0,0,.6), 0 0 0 1px #23262e;transform:rotate(var(--tilt,2deg))}
+@media (max-width:900px){.phone{align-self:center}}
+
+.scrolldown{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);color:var(--faint);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;text-align:center}
+.scrolldown::after{content:"";display:block;width:1px;height:36px;background:var(--faint);margin:10px auto 0;animation:drop 1.8s ease-in-out infinite}
+@keyframes drop{0%{transform:scaleY(.2);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}100%{transform:scaleY(.2);transform-origin:bottom}}
+
+/* révélations */
+.rv{opacity:1;transform:none;transition:opacity .9s ease, transform .9s cubic-bezier(.16,1,.3,1)}
+.js .rv{opacity:0;transform:translateY(46px)}
+.js .rv.in{opacity:1;transform:none}
+.js .rv.d1{transition-delay:.12s}.js .rv.d2{transition-delay:.24s}
+@media (prefers-reduced-motion: reduce){.js .rv{opacity:1!important;transform:none!important;transition:none}}
+
+/* ---------- bande portfolio ---------- */
+.strip{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding:40px 4px 20px;margin-top:8px;width:100%;scrollbar-width:thin}
+.strip::-webkit-scrollbar{height:6px}
+.strip::-webkit-scrollbar-thumb{background:#2a2d38;border-radius:3px}
+.site-card{flex:0 0 min(400px,84vw);scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;text-decoration:none;color:var(--fg);display:block}
+.site-card img{width:100%;aspect-ratio:1280/860;height:auto;object-fit:cover;object-position:top;display:block;border-bottom:1px solid var(--line)}
+.site-card .b{padding:16px 18px}
+.site-card .m{display:flex;justify-content:space-between;gap:10px;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);font-weight:600}
+.site-card h3{font-size:1rem;margin-top:8px;color:var(--fg)}
+.site-card:hover{border-color:#3a3e49}
+
+/* ---------- méthode ---------- */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;counter-reset:step;margin-top:46px;width:100%}
+@media (max-width:980px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.steps{grid-template-columns:1fr}}
+.step{counter-increment:step;border-top:2px solid var(--ikb-l);padding-top:16px;min-width:0}
+.step::before{content:counter(step,decimal-leading-zero);font-weight:600;color:var(--ikb-l);font-size:.78rem;letter-spacing:.2em}
+.step h3{font-size:.95rem;margin:8px 0 10px;text-transform:none;letter-spacing:0}
+.step p{margin:0;color:var(--dim);font-size:.92rem}
+
+/* ---------- FAQ ---------- */
+.faq{max-width:760px;width:100%;margin-top:40px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:19px 4px;font-weight:600;font-size:1.02rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-weight:600;font-size:1.4rem;color:var(--ikb-l);flex:none;line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq details p{margin:0 0 22px;padding:0 4px;color:var(--dim);max-width:62ch}
+
+/* ---------- contact ---------- */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;width:100%}
+@media (max-width:900px){.contact-grid{grid-template-columns:1fr}}
+.coord{display:flex;flex-direction:column;gap:6px;margin-top:30px}
+.coord .k{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint);font-weight:600}
+.coord a{font-size:1.2rem;font-weight:700;text-decoration:none;color:var(--fg);padding:4px 0;display:inline-block}
+.coord a:hover{color:var(--ikb-l)}
+.coord span.v{color:var(--dim)}
+form{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:28px 26px;display:flex;flex-direction:column;gap:18px}
+.field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.field label{font-size:.82rem;font-weight:600;letter-spacing:.02em;color:var(--dim)}
+.field input,.field select,.field textarea{font:inherit;color:var(--fg);background:#0e1015;border:1px solid var(--line);border-radius:8px;padding:12px 14px;width:100%}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--ikb-l);outline:2px solid var(--ikb-l);outline-offset:0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:560px){.two{grid-template-columns:1fr}}
+form .cta{align-self:flex-start}
+form .note{font-size:.84rem;color:var(--faint);margin:0}
+#form-ok{background:var(--ikb);color:#fff;border-radius:8px;padding:14px 16px;font-weight:600}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line);padding:46px max(20px, env(safe-area-inset-left, 0px)) calc(26px + env(safe-area-inset-bottom, 0px)) max(20px, env(safe-area-inset-right, 0px));color:var(--dim);font-size:.95rem}
+.fwrap{width:min(1180px,100%);margin-inline:auto}
+.fbot{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;color:var(--faint);font-size:.85rem;align-items:center}
+.fbot a{color:var(--faint);text-decoration:none;padding:6px 0;display:inline-block}
+.fbot a:hover{color:var(--dim)}
+.fdevise{margin:0 0 26px;color:var(--dim)}
+</style>
+
+<script>document.body.classList.add('js')</script>
+
+<header class="mast">
+  <a class="brand" href="./"><img src="assets/logo-na-nu-blanc.png" alt="">Atel<span class="ia">i</span>er&nbsp;N<span class="ia">A</span></a>
+  <nav class="mnav" aria-label="Navigation principale">
+    <a href="sites.html">Sites web</a>
+    <a href="applications.html">Applications</a>
+  </nav>
+  <a class="cta" href="#contact">Demander un devis</a>
 </header>
 
 <main>
 
-<div class="hero">
-  <div class="wrap">
-    <p class="eyebrow mono">Studio web · artisans, TPE &amp; PME · Île-de-France</p>
-    <h1>Des sites qui vendent. <em>Des outils qui gèrent.</em></h1>
-    <p class="lede">Atelier NA conçoit des sites <strong>rapides et trouvables sur Google</strong> pour les artisans et patrons d'Île-de-France — et des outils de gestion sur mesure : <strong>flotte de véhicules, bons de commande, dépôts, livraisons</strong>. Rien ne se fait à distance : on se déplace chez vous, on regarde vos process, et tout se construit sur ce qu'on a compris sur place.</p>
-    <div class="hero-actions">
-      <a class="cta" href="#contact">Audit gratuit sur place</a>
-      <a class="btn-ghost" href="#realisations">Voir les réalisations</a>
+<section class="ch" id="hero" style="--glow:#101b45;--gx:50%;--gy:22%">
+  <div class="inner" style="flex-direction:column;align-items:flex-start">
+    <div class="col">
+      <p class="eyebrow rv">Atelier NA · Sites web &amp; applications · Île-de-France</p>
+      <h1 class="giant rv d1">Des sites<br>qui vendent.<br><span class="blue">Des outils<br>qui gèrent.</span></h1>
+      <p class="lede rv d2">Création de sites internet et d'applications de gestion pour artisans, TPE et PME. <b>Rien ne se fait à distance</b> : on se déplace chez vous, on regarde vos process, et tout se construit sur ce qu'on a compris sur place.</p>
+      <div class="actions rv d2">
+        <a class="cta" href="#contact">Audit gratuit sur place</a>
+        <a class="ghost" href="#real">Voir les réalisations</a>
+      </div>
     </div>
-    <p class="spec-strip mono">
-      <span><b>+50 sites</b> réalisés</span>
-      <span>outils <b>sur mesure</b></span>
-      <span>SEO local <b>inclus</b></span>
-      <span>audit gratuit <b>sur place</b></span>
-      <span>vous restez <b>propriétaire</b></span>
-    </p>
   </div>
-</div>
+  <div class="scrolldown">Scroll</div>
+</section>
 
-<section id="realisations">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="mono">Réalisations · une sélection parmi plus de 50 sites livrés</p>
-      <h2>Plus de 50 sites réalisés. En voici cinq, en ligne aujourd'hui.</h2>
-      <p>Cinq métiers différents, cinq identités différentes : couleurs, typographies et textes pensés pour chaque client. Cliquez, comparez — c'est la meilleure preuve.</p>
-    </div>
-    <div class="works">
-      <article class="work">
-        <div class="shot"><img src="assets/shot-atelierbaratte.jpg" width="1280" height="860" loading="lazy" alt="Page d'accueil du site Atelier Baratte : bijouterie et horlogerie à Saint-Maur-des-Fossés"></div>
-        <div class="body">
-          <p class="meta mono"><span>Bijouterie · horlogerie</span><span>Saint-Maur-des-Fossés (94)</span></p>
-          <h3>Atelier Baratte</h3>
-          <p>Bijouterie familiale depuis 1992. Site vitrine avec pages métier (réparation montres, horloges, rachat d'or) et référencement local sur Saint-Maur.</p>
-          <div class="chips"><span class="chip">5,0/5 · 30 avis Google</span><span class="chip">4 pages locales SEO</span></div>
-          <p class="visit"><a href="https://www.atelierbaratte.fr" target="_blank" rel="noopener">Visiter atelierbaratte.fr →</a></p>
-        </div>
-      </article>
-      <article class="work">
-        <div class="shot"><img src="assets/shot-jmccouverture.jpg" width="1280" height="860" loading="lazy" alt="Page d'accueil du site JMC Couverture : couvreur zinc et tuiles en Île-de-France"></div>
-        <div class="body">
-          <p class="meta mono"><span>Couverture · BTP</span><span>Île-de-France</span></p>
-          <h3>JMC Couverture</h3>
-          <p>Couvreur depuis 1985, certifié QUALIBAT &amp; RGE. Site avec vidéo drone des chantiers, pages par prestation et avis Google mis en avant.</p>
-          <div class="chips"><span class="chip">4,9/5 · 29 avis Google</span><span class="chip">QUALIBAT · RGE</span></div>
-          <p class="visit"><a href="https://jmccouverture.com" target="_blank" rel="noopener">Visiter jmccouverture.com →</a></p>
-        </div>
-      </article>
-      <article class="work">
-        <div class="shot"><img src="assets/shot-construisez.jpg" width="1280" height="860" loading="lazy" alt="Page d'accueil du site Construisez : permis de construire et déclaration préalable en Île-de-France"></div>
-        <div class="body">
-          <p class="meta mono"><span>Permis de construire</span><span>Île-de-France</span></p>
-          <h3>Construisez</h3>
-          <p>Dessinateur en autorisations d'urbanisme depuis 2018. Site éditorial sobre : services, réalisations, secteurs et parcours professionnel.</p>
-          <div class="chips"><span class="chip">Étude PLU · plans · 3D</span></div>
-          <p class="visit"><a href="https://www.construisez.fr" target="_blank" rel="noopener">Visiter construisez.fr →</a></p>
-        </div>
-      </article>
-      <article class="work">
-        <div class="shot"><img src="assets/shot-ofentretiens.jpg" width="1280" height="860" loading="lazy" alt="Page d'accueil du site OF Entretiens : corvoyage, visites de livraison et interventions en Île-de-France"></div>
-        <div class="body">
-          <p class="meta mono"><span>Services au BTP</span><span>Courtry (77) · Île-de-France</span></p>
-          <h3>OF Entretiens</h3>
-          <p>Partenaire des promoteurs et plateformes logistiques : corvoyage, levée de réserves, urgences. Site orienté devis, pensé pour une clientèle B2B.</p>
-          <div class="chips"><span class="chip">B2B · promoteurs</span><span class="chip">8 départements couverts</span></div>
-          <p class="visit"><a href="https://ofentretiens.netlify.app" target="_blank" rel="noopener">Visiter le site →</a></p>
-        </div>
-      </article>
-      <article class="work">
-        <div class="shot"><img src="assets/shot-ajrconcept.jpg" width="1280" height="860" loading="lazy" alt="Page d'accueil du site AJR Concept : rénovation de salle de bain, électricité et plomberie en Seine-et-Marne"></div>
-        <div class="body">
-          <p class="meta mono"><span>Rénovation · élec · plomberie</span><span>Seine-et-Marne (77)</span></p>
-          <h3>AJR Concept</h3>
-          <p>Artisans rénovateurs depuis 2013 : salle de bain clé en main, électricité, domotique. Site avec comparateur avant/après des chantiers, avis Google en avant et devis sous 48 h.</p>
-          <div class="chips"><span class="chip">5,0/5 Google</span><span class="chip">+100 chantiers en photos</span></div>
-          <p class="visit"><a href="https://ajr-concept.netlify.app" target="_blank" rel="noopener">Visiter le site →</a></p>
-        </div>
-      </article>
+<section class="ch auto" id="real" style="--glow:#0d1f3c;--gx:80%;--gy:20%">
+  <div class="inner" style="flex-direction:column;align-items:flex-start">
+    <div class="col" style="width:100%">
+      <p class="eyebrow rv">Chapitre 01 · Réalisations</p>
+      <h2 class="giant rv d1">50+ sites<br><span class="blue">livrés.</span></h2>
+      <p class="lede rv d2">Bijouterie, couverture, permis de construire, BTP, rénovation : cinq métiers, cinq identités — aucune ne ressemble aux autres. <b>Cliquez, ils sont en ligne.</b></p>
+      <div class="strip rv d2">
+        <a class="site-card" href="https://www.atelierbaratte.fr" target="_blank" rel="noopener">
+          <img src="assets/shot-atelierbaratte.jpg" width="1280" height="860" loading="lazy" alt="Site de la bijouterie Atelier Baratte à Saint-Maur-des-Fossés">
+          <div class="b"><div class="m"><span>Bijouterie</span><span>Saint-Maur (94)</span></div><h3>Atelier Baratte · 5,0/5 Google</h3></div>
+        </a>
+        <a class="site-card" href="https://jmccouverture.com" target="_blank" rel="noopener">
+          <img src="assets/shot-jmccouverture.jpg" width="1280" height="860" loading="lazy" alt="Site du couvreur JMC Couverture en Île-de-France">
+          <div class="b"><div class="m"><span>Couverture</span><span>Île-de-France</span></div><h3>JMC Couverture · QUALIBAT RGE</h3></div>
+        </a>
+        <a class="site-card" href="https://ajr-concept.netlify.app" target="_blank" rel="noopener">
+          <img src="assets/shot-ajrconcept.jpg" width="1280" height="860" loading="lazy" alt="Site d'AJR Concept, rénovation en Seine-et-Marne">
+          <div class="b"><div class="m"><span>Rénovation</span><span>Seine-et-Marne (77)</span></div><h3>AJR Concept · 5,0/5 Google</h3></div>
+        </a>
+        <a class="site-card" href="https://www.construisez.fr" target="_blank" rel="noopener">
+          <img src="assets/shot-construisez.jpg" width="1280" height="860" loading="lazy" alt="Site de Construisez, permis de construire en Île-de-France">
+          <div class="b"><div class="m"><span>Permis de construire</span><span>Île-de-France</span></div><h3>Construisez</h3></div>
+        </a>
+        <a class="site-card" href="https://ofentretiens.netlify.app" target="_blank" rel="noopener">
+          <img src="assets/shot-ofentretiens.jpg" width="1280" height="860" loading="lazy" alt="Site d'OF Entretiens, services au BTP en Île-de-France">
+          <div class="b"><div class="m"><span>Services BTP</span><span>Courtry (77)</span></div><h3>OF Entretiens</h3></div>
+        </a>
+      </div>
+      <div class="actions rv"><a class="ghost" href="sites.html">Tout sur les sites web →</a></div>
     </div>
   </div>
 </section>
 
-<section id="offre">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="mono">L'offre · tout est compris, rien n'est une option</p>
-      <h2>Un site complet, livré clé en main.</h2>
-      <p>Le même soin pour un couvreur que pour une bijouterie : ce qui change, c'est votre métier, pas la qualité. <a href="sites.html" style="color:var(--brass-soft)">Tout sur les sites web →</a></p>
+<section class="ch" id="devis" style="--glow:#0f2b1d;--gx:75%;--gy:35%">
+  <div class="inner">
+    <div class="col">
+      <p class="eyebrow rv">Chapitre 02 · Devis &amp; factures</p>
+      <h2 class="giant rv d1">Devis<br><span class="blue">IA.</span></h2>
+      <p class="lede rv d2">Décrivez le chantier, <b>l'application rédige le devis</b>. Trois touches, le PDF part par email — le jour de la visite, pas le dimanche soir. Factures et tableau de bord dans la poche.</p>
     </div>
-    <div class="offer-grid">
-      <ul class="includes">
-        <li><span><b>Un vrai rendez-vous sur place</b> — on se déplace partout en Île-de-France, le site se construit sur ce qu'on voit chez vous</span></li>
-        <li><span><b>Design sur mesure</b> — aux couleurs de votre activité, jamais un template</span></li>
-        <li><span><b>Textes rédigés pour vos clients</b> — vous validez, vous ne rédigez pas</span></li>
-        <li><span><b>Référencement local</b> — balises, données structurées, sitemap, fiche Google</span></li>
-        <li><span><b>Prêt pour les recherches par IA</b> — lisible et citable par ChatGPT, Perplexity et les réponses IA de Google</span></li>
-        <li><span><b>Rapide sur mobile</b> — moins d'une seconde de chargement, comme les sites ci-dessus</span></li>
-        <li><span><b>Formulaire + téléphone cliquable</b> — chaque visite peut devenir un appel</span></li>
-        <li><span><b>Vous restez propriétaire</b> — domaine à votre nom, code et accès remis, tout documenté</span></li>
-      </ul>
-      <div class="quote-card">
-        <p class="mono">Tarification</p>
-        <p class="price">Sur devis</p>
-        <p>Chaque projet est chiffré après un audit gratuit sur place : nombre de pages, contenus, référencement visé. Devis précis sous 48&nbsp;h, sans engagement.</p>
-        <a class="cta" href="#contact">Réserver mon audit gratuit</a>
+    <img class="phone rv d2" style="--tilt:2.5deg" src="assets/app-devis-ia.jpg" width="1309" height="2576" loading="lazy" alt="Application devis et factures avec Devis IA">
+  </div>
+</section>
+
+<section class="ch" id="chantier" style="--glow:#3a1413;--gx:25%;--gy:40%">
+  <div class="inner" style="flex-direction:row-reverse">
+    <div class="col">
+      <p class="eyebrow rv">Chapitre 03 · Équipes chantier</p>
+      <h2 class="giant rv d1">Le chantier<br><span class="blue">du jour.</span></h2>
+      <p class="lede rv d2">Chaque chef de chantier voit son planning de la semaine, <b>demande matériel et échafaudage depuis le chantier</b>, envoie ses bons de fabrication à l'atelier. En production chez JMC Couverture.</p>
+    </div>
+    <img class="phone rv d2" style="--tilt:-2.5deg" src="assets/app-jmc-chantier.jpg" width="1320" height="2552" loading="lazy" alt="Application équipes chantier JMC Couverture">
+  </div>
+</section>
+
+<section class="ch" id="boutique" style="--glow:#2e2510;--gx:70%;--gy:60%">
+  <div class="inner">
+    <div class="col">
+      <p class="eyebrow rv">Chapitre 04 · Caisse &amp; réparations</p>
+      <h2 class="giant rv d1">La boutique,<br><span class="blue">en main.</span></h2>
+      <p class="lede rv d2">Dépôts de réparation enregistrés en quelques secondes, <b>objectif du jour et chiffre du mois en temps réel</b>. En production à la bijouterie Atelier Baratte, Saint-Maur-des-Fossés.</p>
+      <div class="actions rv d2"><a class="ghost" href="applications.html">Les 9 applications →</a></div>
+    </div>
+    <img class="phone rv d2" style="--tilt:2deg" src="assets/app-atelier-baratte.png" width="295" height="640" loading="lazy" alt="Application caisse et réparations Atelier Baratte">
+  </div>
+</section>
+
+<section class="ch auto" id="methode" style="--glow:#101b45;--gx:30%;--gy:30%">
+  <div class="inner" style="flex-direction:column;align-items:flex-start">
+    <div class="col" style="width:100%">
+      <p class="eyebrow rv">Chapitre 05 · Notre façon de travailler</p>
+      <h2 class="giant rv d1">On vient<br><span class="blue">vous voir.</span></h2>
+      <p class="lede rv d2">Pas une agence à distance. On échange sur votre business, vos process, vos clients — <b>à l'atelier, au dépôt, au bureau</b>. C'est là que le site se décide, pas derrière un écran. Un service convivial, auquel vous pouvez accorder votre confiance.</p>
+      <div class="steps">
+        <div class="step rv"><h3>Rencontre sur place</h3><p>On se déplace chez vous : une heure pour comprendre votre métier, vos process, votre clientèle. Sans engagement.</p></div>
+        <div class="step rv d1"><h3>Maquette &amp; textes</h3><p>Vous recevez une maquette réelle de votre future page d'accueil, textes compris. Vous corrigez, on ajuste.</p></div>
+        <div class="step rv d1"><h3>Mise en ligne</h3><p>Domaine, hébergement, référencement local et fiche Google : tout est installé et vérifié ensemble.</p></div>
+        <div class="step rv d2"><h3>Transfert &amp; suivi</h3><p>Accès et documentation remis : vous êtes autonome, avec un interlocuteur direct — pas un ticket.</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="statement">
-  <div class="wrap">
-    <span class="mono">Un service convivial, auquel vous pouvez accorder votre confiance</span>
-    <p class="big">Pas une agence à distance. <em>On vient vous voir</em> — à l'atelier, au dépôt, au bureau. On échange sur votre business, vos process, vos clients. C'est là que le site se décide, pas derrière un écran.</p>
-  </div>
-</div>
-
-<section id="methode">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="mono">Méthode · de la rencontre à la mise en ligne</p>
-      <h2>Quatre étapes, un seul interlocuteur.</h2>
-    </div>
-    <div class="steps">
-      <div class="step">
-        <h3>Rencontre sur place</h3>
-        <p>On se déplace chez vous : une heure pour comprendre votre métier, vos process, votre clientèle et ce que le site doit rapporter. Sans engagement.</p>
-      </div>
-      <div class="step">
-        <h3>Maquette &amp; textes</h3>
-        <p>Vous recevez une maquette réelle de votre future page d'accueil, textes compris. Vous corrigez, on ajuste.</p>
-      </div>
-      <div class="step">
-        <h3>Mise en ligne</h3>
-        <p>Domaine, hébergement, référencement de base et fiche Google : tout est installé et vérifié ensemble, page par page.</p>
-      </div>
-      <div class="step">
-        <h3>Transfert &amp; suivi</h3>
-        <p>Les accès et la documentation vous sont remis : vous êtes autonome. Et après la livraison, vous gardez un interlocuteur direct — pas un ticket.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="outils">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="mono">Outils de gestion · construits sur vos process</p>
-      <h2>Les outils qui font tourner la boîte, sans les usines à gaz.</h2>
-      <p>Pas un logiciel générique avec 200 menus dont vous utilisez 10 : des outils construits sur votre façon de travailler, constatée sur place. Chacun fonctionne seul, et ils se parlent entre eux.</p>
-    </div>
-    <div class="tools">
-
-      <article class="tool">
-        <div>
-          <span class="mono">Outil · Flotte de véhicules</span>
-          <h3>Tout votre parc dans un seul écran.</h3>
-          <p class="lead">Camions, utilitaires, engins : fini le carnet d'entretien dans la boîte à gants et le contrôle technique découvert en retard.</p>
-          <ul class="feat">
-            <li>Carnet par véhicule : entretiens, contrôles techniques, assurances, kilométrage</li>
-            <li>Alertes automatiques avant chaque échéance — CT, révision, assurance</li>
-            <li>Affectation chauffeur et chantier : qui a quel véhicule, aujourd'hui et demain</li>
-            <li>Coûts par véhicule : carburant, réparations, coût au kilomètre</li>
-            <li>Historique complet, utile en cas de contrôle ou à la revente</li>
-          </ul>
-        </div>
-        <div class="mockwrap">
-          <div class="mock" role="img" aria-label="Aperçu de l'outil de gestion de flotte : liste de véhicules avec alertes d'échéances">
-            <div class="mhead"><b>Parc · 7 véhicules</b><span class="mono">Aujourd'hui</span></div>
-            <div class="mrow"><span class="ml">Master L2 · ED-482-PM<small>Chauffeur : Karim · chantier Nogent</small></span><span class="mchip warn">CT dans 12 j</span></div>
-            <div class="mrow"><span class="ml">Kangoo 3 · FT-209-KL<small>Chauffeur : David · dépôt</small></span><span class="mchip ok">À jour</span></div>
-            <div class="mrow"><span class="ml">Iveco 3,5 t · GC-114-RE<small>84 500 km</small></span><span class="mchip warn">Révision 85 000 km</span></div>
-            <div class="mrow"><span class="ml">Berlingo · EK-771-AD<small>Assurance : 03/12</small></span><span class="mchip ok">À jour</span></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="tool rev">
-        <div>
-          <span class="mono">Outil · Bons de commande</span>
-          <h3>Un bon de commande propre, envoyé avant de quitter le client.</h3>
-          <p class="lead">Trois clics sur le téléphone : le PDF part par email, numéroté, calculé, à votre image. Plus rien ne se perd entre la prise de commande et la facture.</p>
-          <ul class="feat">
-            <li>Catalogue de vos produits et prestations, prix toujours à jour</li>
-            <li>Numérotation automatique, TVA et totaux calculés sans erreur</li>
-            <li>PDF à votre image, envoyé par email depuis le chantier</li>
-            <li>Statuts suivis : émis, validé, livré, facturé — rien n'attend dans un coin</li>
-            <li>Lié au stock : un bon validé réserve la marchandise au dépôt</li>
-          </ul>
-        </div>
-        <div class="mockwrap">
-          <div class="mock" role="img" aria-label="Aperçu de l'outil bons de commande : document avec lignes, total et statut">
-            <div class="mhead"><b>BC-2026-0142 · SARL Renaudin</b><span class="mchip info">Validé</span></div>
-            <div class="mrow"><span class="ml">Tuiles canal rouge<small>280 u × 2,10 €</small></span><span>588,00&nbsp;€</span></div>
-            <div class="mrow"><span class="ml">Liteaux 27×40<small>120 ml × 1,85 €</small></span><span>222,00&nbsp;€</span></div>
-            <div class="mrow"><span class="ml">Écran sous-toiture HPV<small>4 rouleaux × 86,00 €</small></span><span>344,00&nbsp;€</span></div>
-            <div class="mtotal"><span>Total HT</span><span>1 154,00&nbsp;€</span></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="tool">
-        <div>
-          <span class="mono">Outil · Dépôts de marchandise</span>
-          <h3>Le stock juste, dans chaque dépôt, sans inventaire surprise.</h3>
-          <p class="lead">Vous savez ce qu'il reste, où, et pour qui — avant la rupture, pas après. Multi-dépôts, multi-références, sans double saisie.</p>
-          <ul class="feat">
-            <li>Entrées et sorties saisies en deux gestes, ou scannées</li>
-            <li>Stock en temps réel par dépôt, par référence, par chantier</li>
-            <li>Seuils d'alerte : prévenu avant la rupture, commande passée à temps</li>
-            <li>Inventaires rapides : seul l'écart s'affiche, pas besoin de tout recompter</li>
-            <li>Traçabilité : qui a sorti quoi, quand, pour quel client</li>
-          </ul>
-        </div>
-        <div class="mockwrap">
-          <div class="mock" role="img" aria-label="Aperçu de l'outil de gestion de dépôt : stock par référence avec alertes de seuil">
-            <div class="mhead"><b>Dépôt Courtry</b><span class="mono">Temps réel</span></div>
-            <div class="mrow"><span class="ml">Tuiles canal rouge<small>Réservé : 280 u (BC-0142)</small></span><span class="mchip ok">1 240 u</span></div>
-            <div class="mrow"><span class="ml">Zinc 0,65 · bobine 500<small>Seuil : 20</small></span><span class="mchip warn">18 rouleaux</span></div>
-            <div class="mrow"><span class="ml">Écran sous-toiture HPV<small>Seuil : 10</small></span><span class="mchip alert">6 rouleaux</span></div>
-            <div class="mrow"><span class="ml">Liteaux 27×40<small>Entrée ce matin : +600 ml</small></span><span class="mchip ok">2 150 ml</span></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="tool rev">
-        <div>
-          <span class="mono">Outil · Livraisons client</span>
-          <h3>De la tournée du matin à la preuve de livraison signée.</h3>
-          <p class="lead">Le chauffeur a sa tournée sur le téléphone, le client signe du doigt, la photo fait foi. Fini les bons papier perdus et les litiges sans preuve.</p>
-          <ul class="feat">
-            <li>Tournées planifiées : adresses, créneaux, ordre de passage</li>
-            <li>Bon de livraison sur le téléphone du chauffeur, signé du doigt</li>
-            <li>Photo + signature horodatées : la preuve de livraison qui clôt les litiges</li>
-            <li>Le client est prévenu par email, avec son bon en pièce jointe</li>
-            <li>Écarts et retours remontent directement au dépôt et à la facturation</li>
-          </ul>
-        </div>
-        <div class="mockwrap">
-          <div class="mock" role="img" aria-label="Aperçu de l'outil livraisons : tournée du jour avec étapes livrées et signées">
-            <div class="mhead"><b>Tournée · mardi</b><span class="mono">Karim · Master L2</span></div>
-            <div class="mrow"><span class="ml">08:10 · Dépôt Courtry<small>Chargement BC-0142, BC-0145</small></span><span class="mchip ok">Fait</span></div>
-            <div class="mrow"><span class="ml">09:35 · SARL Renaudin, Nogent<small>Signé M. Renaudin · photo jointe</small></span><span class="mchip ok">Livré 09:41</span></div>
-            <div class="mrow"><span class="ml">11:20 · SCI Bellevue, Chelles<small>Créneau 11 h – 12 h</small></span><span class="mchip info">En route</span></div>
-            <div class="mrow"><span class="ml">14:00 · Chantier Grosjean, Meaux<small>2 palettes</small></span><span class="mchip warn">À livrer</span></div>
-          </div>
-        </div>
-      </article>
-
-    </div>
-    <div class="tools-outro">
-      <p><b>Chaque outil fonctionne seul — et ils se parlent entre eux.</b> Un bon de commande validé réserve le stock au dépôt ; une livraison signée part en facturation. On construit uniquement ce dont vous avez besoin, dans l'ordre qui vous rapporte le plus. <a href="applications.html">Voir les applications livrées →</a></p>
-    </div>
-  </div>
-</section>
-
-<section id="excel">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="mono">Excel · souvent le point de départ</p>
-      <h2>Déjà tout sur Excel ? C'est un bon début.</h2>
-      <p>Devis, suivi de chantier, planning, trésorerie : la plupart des entreprises tournent sur des fichiers Excel bricolés au fil des années. On les reprend, on les fiabilise, on les automatise — et quand Excel atteint ses limites, on bascule vers les outils ci-dessus, en gardant vos données.</p>
-    </div>
-    <div class="vis-grid">
-      <div class="vis">
-        <span class="mono">Devis · factures</span>
-        <h3>Des fichiers qui calculent seuls</h3>
-        <p>Formules fiables, menus déroulants, totaux automatiques, mise en page prête à envoyer : vous remplissez trois cases, le fichier fait le reste.</p>
-      </div>
-      <div class="vis">
-        <span class="mono">Suivi · tableaux de bord</span>
-        <h3>Vos chiffres lisibles d'un coup d'œil</h3>
-        <p>Chantiers, marges, trésorerie, stocks : un tableau de bord clair construit sur vos données existantes, sans changer vos habitudes.</p>
-      </div>
-      <div class="vis">
-        <span class="mono">Automatisation</span>
-        <h3>Fini la double saisie</h3>
-        <p>Macros, imports automatiques, fichiers qui se parlent entre eux. Et si le besoin dépasse Excel, on bascule vers une petite application web.</p>
+<section class="ch auto" id="questions" style="--glow:#0d1f3c;--gx:70%;--gy:50%">
+  <div class="inner" style="flex-direction:column;align-items:flex-start">
+    <div class="col" style="width:100%">
+      <p class="eyebrow rv">Chapitre 06 · Questions fréquentes</p>
+      <h2 class="giant rv d1">Avant de<br><span class="blue">se lancer.</span></h2>
+      <div class="faq rv d2">
+        <details>
+          <summary>Travaillez-vous à distance ?</summary>
+          <p>Non. Le premier rendez-vous se fait chez vous — à l'atelier, au dépôt ou au bureau, partout en Île-de-France. Le site se construit sur ce qu'on a compris sur place : le métier, les process, la clientèle.</p>
+        </details>
+        <details>
+          <summary>Combien coûte un site Atelier NA ?</summary>
+          <p>Chaque projet est chiffré après un rendez-vous sur place, selon le nombre de pages, les contenus à rédiger et le référencement visé. Vous recevez un devis précis sous 48&nbsp;h, sans engagement.</p>
+        </details>
+        <details>
+          <summary>En combien de temps le site est-il en ligne ?</summary>
+          <p>Un site vitrine complet est généralement en ligne en deux à trois semaines après réception de vos éléments (logo, photos, informations). Le délai exact figure sur le devis.</p>
+        </details>
+        <details>
+          <summary>Le référencement Google est-il inclus ?</summary>
+          <p>Oui. Balises optimisées, données structurées, sitemap et accompagnement sur votre fiche Google : c'est compris dans le devis, pas une option facturée ensuite.</p>
+        </details>
+        <details>
+          <summary>Serai-je propriétaire de mon site ?</summary>
+          <p>Oui, entièrement. Le nom de domaine est enregistré à votre nom, le code et les contenus vous sont remis, et tout est documenté. Si vous partez un jour, vous partez avec tout.</p>
+        </details>
+        <details>
+          <summary>Vos outils remplacent-ils un logiciel de gestion ?</summary>
+          <p>Ils remplacent surtout ce qui vous fait perdre du temps : le carnet papier, les fichiers éparpillés, le logiciel générique dont vous n'utilisez qu'un dixième. Chaque outil est construit sur vos process — et vous restez propriétaire. Si un logiciel existant vous convient, on s'y connecte au lieu de le remplacer.</p>
+        </details>
+        <details>
+          <summary>Qu'est-ce que le référencement IA ?</summary>
+          <p>De plus en plus de clients trouvent leurs prestataires en interrogeant ChatGPT, Perplexity ou les réponses IA de Google. Ces moteurs lisent les sites comme les humains : structure claire, données vérifiables, entreprise identifiable. Chaque site Atelier NA est construit pour être compris et cité par ces moteurs.</p>
+        </details>
       </div>
     </div>
   </div>
 </section>
 
-<section id="visibilite">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="mono">Visibilité · être trouvé en 2026</p>
-      <h2>Un beau site que personne ne trouve ne sert à rien.</h2>
-      <p>Vos clients vous cherchent sur Google, sur Maps, et de plus en plus en posant une question à une IA. Chaque site Atelier NA est construit pour les trois.</p>
-    </div>
-    <div class="vis-grid">
-      <div class="vis">
-        <span class="mono">Google · recherche classique</span>
-        <h3>Référencement local</h3>
-        <p>Pages dédiées par prestation et par ville, balises propres, sitemap : la structure que Google récompense, celle des quatre sites du portfolio.</p>
-      </div>
-      <div class="vis">
-        <span class="mono">Google Maps · fiche établissement</span>
-        <h3>Fiche Google gérée pour vous</h3>
-        <p>Création, optimisation puis gestion mensuelle de votre fiche Google Business Profile : publications, avis, photos, rapport. Objectif : le pack local, position 1. <a href="sites.html#fiche-google">En savoir plus →</a></p>
-      </div>
-      <div class="vis">
-        <span class="mono">ChatGPT · Perplexity · AI Overviews</span>
-        <h3>Référencement IA</h3>
-        <p>Données structurées schema.org, contenu en questions-réponses, entreprise identifiable : ce que les moteurs IA lisent avant de recommander un prestataire.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="questions">
-  <div class="wrap">
-    <div class="sec-head">
-      <p class="mono">Questions fréquentes</p>
-      <h2>Ce qu'on nous demande avant de se lancer.</h2>
-    </div>
-    <div class="faq">
-      <details>
-        <summary>Vos outils remplacent-ils un logiciel de gestion ?</summary>
-        <p>Ils remplacent surtout ce qui vous fait perdre du temps : le carnet papier, les fichiers éparpillés, le logiciel générique dont vous n'utilisez qu'un dixième. Chaque outil est construit sur vos process — pas d'abonnement par utilisateur, pas de fonctions inutiles, et vous restez propriétaire. Si un logiciel existant vous convient, on s'y connecte au lieu de le remplacer.</p>
-      </details>
-      <details>
-        <summary>Travaillez-vous à distance ?</summary>
-        <p>Non. Le premier rendez-vous se fait chez vous — à l'atelier, au dépôt ou au bureau. On échange sur votre business, vos process et vos clients avant d'écrire la moindre page : c'est ce qui fait la différence entre un site générique et un site qui vous ressemble.</p>
-      </details>
-      <details>
-        <summary>Combien coûte un site Atelier NA ?</summary>
-        <p>Chaque projet est chiffré après un rendez-vous sur place, selon le nombre de pages, les contenus à rédiger et le référencement visé. Vous recevez un devis précis sous 48&nbsp;h, sans engagement.</p>
-      </details>
-      <details>
-        <summary>En combien de temps le site est-il en ligne ?</summary>
-        <p>Un site vitrine complet est généralement en ligne en deux à trois semaines après réception de vos éléments (logo, photos, informations). Le délai exact figure sur le devis.</p>
-      </details>
-      <details>
-        <summary>Le référencement Google est-il inclus ?</summary>
-        <p>Oui. Balises optimisées, données structurées, sitemap et accompagnement sur votre fiche Google : c'est compris dans le devis, pas une option facturée ensuite.</p>
-      </details>
-      <details>
-        <summary>Serai-je propriétaire de mon site ?</summary>
-        <p>Oui, entièrement. Le nom de domaine est enregistré à votre nom, le code et les contenus vous sont remis, et tout est documenté. Si vous partez un jour, vous partez avec tout.</p>
-      </details>
-      <details>
-        <summary>Qu'est-ce que le référencement IA ?</summary>
-        <p>De plus en plus de clients trouvent leurs prestataires en interrogeant ChatGPT, Perplexity ou les réponses IA de Google. Ces moteurs lisent les sites comme les humains : structure claire, données vérifiables, entreprise identifiable. Vos concurrents n'y sont pas encore — c'est le moment d'y être.</p>
-      </details>
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="wrap">
+<section class="ch" id="contact" style="--glow:#101b45;--gx:50%;--gy:70%">
+  <div class="inner" style="flex-direction:column;align-items:flex-start">
     <div class="contact-grid">
-      <div>
-        <div class="sec-head">
-          <p class="mono">Contact · réponse sous un jour ouvré</p>
-          <h2>Parlez-nous de votre métier.</h2>
-          <p>Décrivez votre activité et ce qui vous manque aujourd'hui : être trouvé, rassurer, recevoir plus d'appels. On convient d'un rendez-vous sur place, et on vous dit franchement ce qu'un site peut changer — et ce qu'il ne changera pas.</p>
-        </div>
-        <div class="coord">
-          <span class="mono">Email</span>
+      <div class="col">
+        <p class="eyebrow rv">Chapitre 07 · Contact</p>
+        <h2 class="giant rv d1">Parlons-<br><span class="blue">en.</span></h2>
+        <p class="lede rv d2">Décrivez votre activité et ce qui vous manque : être trouvé, rassurer, recevoir plus d'appels. On convient d'un audit gratuit sur place, et on vous dit franchement ce qu'un site peut changer — et ce qu'il ne changera pas. <b>Réponse sous un jour ouvré.</b></p>
+        <div class="coord rv d2">
+          <span class="k">Email</span>
           <a href="mailto:contact@atelier-na.fr">contact@atelier-na.fr</a>
-          <span class="mono" style="margin-top:14px">Zone d'intervention</span>
-          <span>Île-de-France · on se déplace à l'atelier, au dépôt ou au bureau</span>
+          <span class="k" style="margin-top:14px">Zone d'intervention</span>
+          <span class="v">Île-de-France · on se déplace à l'atelier, au dépôt ou au bureau</span>
         </div>
       </div>
-      <form name="devis" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <form class="rv d2" name="devis" method="POST" data-netlify="true" netlify-honeypot="bot-field">
         <p style="display:none"><label>Ne pas remplir : <input name="bot-field"></label></p>
         <div class="two">
           <div class="field"><label for="f-nom">Nom *</label><input id="f-nom" name="nom" required autocomplete="name"></div>
@@ -421,48 +331,28 @@
 </main>
 
 <footer>
-  <div class="wrap">
-    <div class="fcontact">
-      <div class="fbrand">
-        <p class="fname"><img class="mark" src="assets/logo-na-nu-blanc.png" width="34" height="28" alt=""><span class="bname">Atel<span class="ia">i</span>er&nbsp;N<span class="ia">A</span></span></p>
-        <p class="fdesc">Un service convivial, auquel vous pouvez accorder votre confiance.</p>
-      </div>
-      <div class="fcta">
-        <p class="ftitle">Un projet ? Parlons-en.</p>
-        <a class="femail" href="mailto:contact@atelier-na.fr">contact@atelier-na.fr</a>
-        <p class="fzone">Audit gratuit sur place · Île-de-France</p>
-        <a class="cta" href="#contact">Demander un devis</a>
-      </div>
-    </div>
+  <div class="fwrap">
+    <p class="fdevise">Un service convivial, auquel vous pouvez accorder votre confiance.</p>
     <div class="fbot">
-      <span>© 2026 Atelier NA · <a href="#">Mentions légales</a></span>
-      <span><a href="./">Accueil</a> · <a href="sites.html">Sites web</a> · <a href="applications.html">Applications</a></span>
+      <span>© 2026 Atelier NA · Île-de-France · <a href="#">Mentions légales</a></span>
+      <span><a href="sites.html">Sites web</a> · <a href="applications.html">Applications</a> · <a href="creation-site-internet-saint-maur-des-fosses.html">Saint-Maur-des-Fossés</a></span>
     </div>
   </div>
 </footer>
 
 <script>
 (function(){
-  var b = document.querySelector('.menu-btn');
-  var n = document.getElementById('main-nav');
-  if (!b || !n) return;
-  b.addEventListener('click', function(){
-    var open = n.classList.toggle('open');
-    b.setAttribute('aria-expanded', open ? 'true' : 'false');
-    b.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
-  });
-  n.addEventListener('click', function(e){
-    if (e.target.tagName === 'A') { n.classList.remove('open'); b.setAttribute('aria-expanded','false'); }
-  });
-})();
-</script>
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
 
-<script>
-var f = document.querySelector('form[name=devis]');
-if (f) f.addEventListener('submit', function(e){
-  e.preventDefault();
-  var ok = document.getElementById('form-ok');
-  ok.hidden = false;
-  this.querySelectorAll('input:not([name=bot-field]),textarea').forEach(function(el){ el.value=''; });
-});
+  var f = document.querySelector('form[name=devis]');
+  if (f && location.protocol !== 'https:') {
+    f.addEventListener('submit', function(e){
+      e.preventDefault();
+      document.getElementById('form-ok').hidden = false;
+    });
+  }
+})();
 </script>
