@@ -108,8 +108,14 @@ h1,h2,h3{font-family:"Archivo Black",sans-serif;font-weight:400;line-height:.95;
 .ghost:hover{border-color:var(--fg)}
 .actions .cta{padding:15px 28px;font-size:.98rem}
 
-.phone{flex:none;width:min(290px,76vw);height:auto;border-radius:26px;box-shadow:0 40px 90px rgba(0,0,0,.6), 0 0 0 1px #23262e;transform:rotate(var(--tilt,2deg))}
-@media (max-width:900px){.phone{align-self:center}}
+.float{flex:none;position:relative;will-change:transform;transform:translate3d(0,var(--py,0px),0)}
+.float::after{content:"";position:absolute;left:12%;right:12%;bottom:-46px;height:46px;border-radius:50%;background:radial-gradient(closest-side,rgba(84,110,255,.38),transparent);filter:blur(14px);z-index:-1;animation:breathe 7s ease-in-out infinite;animation-delay:var(--fd,0s)}
+.float-in{animation:float 7s ease-in-out infinite;animation-delay:var(--fd,0s)}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -16px}}
+@keyframes breathe{0%,100%{scale:1;opacity:.9}50%{scale:.8;opacity:.55}}
+.phone{display:block;width:min(290px,76vw);height:auto;border-radius:26px;box-shadow:0 40px 90px rgba(0,0,0,.6), 0 0 0 1px #23262e;rotate:var(--tilt,2deg);transition:opacity .9s ease, transform .9s cubic-bezier(.16,1,.3,1), rotate .6s cubic-bezier(.16,1,.3,1), scale .6s cubic-bezier(.16,1,.3,1)}
+@media (hover:hover){.float:hover .phone{rotate:0deg;scale:1.03}}
+@media (max-width:900px){.float{align-self:center}}
 
 .scrolldown{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);color:var(--faint);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;text-align:center}
 .scrolldown::after{content:"";display:block;width:1px;height:36px;background:var(--faint);margin:10px auto 0;animation:drop 1.8s ease-in-out infinite}
@@ -120,18 +126,22 @@ h1,h2,h3{font-family:"Archivo Black",sans-serif;font-weight:400;line-height:.95;
 .js .rv{opacity:0;transform:translateY(46px)}
 .js .rv.in{opacity:1;transform:none}
 .js .rv.d1{transition-delay:.12s}.js .rv.d2{transition-delay:.24s}
-@media (prefers-reduced-motion: reduce){.js .rv{opacity:1!important;transform:none!important;transition:none}}
+@media (prefers-reduced-motion: reduce){.js .rv{opacity:1!important;transform:none!important;transition:none}.float-in,.float::after{animation:none}.float{transform:none!important}}
 
 /* ---------- bande portfolio ---------- */
 .strip{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding:40px 4px 20px;margin-top:8px;width:100%;scrollbar-width:thin}
 .strip::-webkit-scrollbar{height:6px}
 .strip::-webkit-scrollbar-thumb{background:#2a2d38;border-radius:3px}
 .site-card{flex:0 0 min(400px,84vw);scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;text-decoration:none;color:var(--fg);display:block}
-.site-card img{width:100%;aspect-ratio:1280/860;height:auto;object-fit:cover;object-position:top;display:block;border-bottom:1px solid var(--line)}
+.site-card img{width:100%;aspect-ratio:1280/860;height:auto;object-fit:cover;object-position:top;display:block}
 .site-card .b{padding:16px 18px}
 .site-card .m{display:flex;justify-content:space-between;gap:10px;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);font-weight:600}
 .site-card h3{font-size:1rem;margin-top:8px;color:var(--fg)}
-.site-card:hover{border-color:#3a3e49}
+.site-card{transition:translate .5s cubic-bezier(.16,1,.3,1), box-shadow .5s ease, border-color .3s ease}
+.site-card img{transition:scale .8s cubic-bezier(.16,1,.3,1)}
+.site-card:hover{border-color:#3a3e49;translate:0 -8px;box-shadow:0 30px 60px rgba(0,0,0,.5), 0 0 0 1px rgba(84,110,255,.25)}
+.site-card:hover img{scale:1.04}
+.site-card .shot{overflow:hidden;border-bottom:1px solid var(--line)}
 
 /* ---------- méthode ---------- */
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;counter-reset:step;margin-top:46px;width:100%}
@@ -216,23 +226,23 @@ footer{border-top:1px solid var(--line);padding:46px max(20px, env(safe-area-ins
       <p class="lede rv d2">Bijouterie, couverture, permis de construire, BTP, rénovation : cinq métiers, cinq identités — aucune ne ressemble aux autres. <b>Cliquez, ils sont en ligne.</b></p>
       <div class="strip rv d2">
         <a class="site-card" href="https://www.atelierbaratte.fr" target="_blank" rel="noopener">
-          <img src="assets/shot-atelierbaratte.jpg" width="1280" height="860" loading="lazy" alt="Site de la bijouterie Atelier Baratte à Saint-Maur-des-Fossés">
+          <div class="shot"><img src="assets/shot-atelierbaratte.jpg" width="1280" height="860" loading="lazy" alt="Site de la bijouterie Atelier Baratte à Saint-Maur-des-Fossés"></div>
           <div class="b"><div class="m"><span>Bijouterie</span><span>Saint-Maur (94)</span></div><h3>Atelier Baratte · 5,0/5 Google</h3></div>
         </a>
         <a class="site-card" href="https://jmccouverture.com" target="_blank" rel="noopener">
-          <img src="assets/shot-jmccouverture.jpg" width="1280" height="860" loading="lazy" alt="Site du couvreur JMC Couverture en Île-de-France">
+          <div class="shot"><img src="assets/shot-jmccouverture.jpg" width="1280" height="860" loading="lazy" alt="Site du couvreur JMC Couverture en Île-de-France"></div>
           <div class="b"><div class="m"><span>Couverture</span><span>Île-de-France</span></div><h3>JMC Couverture · QUALIBAT RGE</h3></div>
         </a>
         <a class="site-card" href="https://ajr-concept.netlify.app" target="_blank" rel="noopener">
-          <img src="assets/shot-ajrconcept.jpg" width="1280" height="860" loading="lazy" alt="Site d'AJR Concept, rénovation en Seine-et-Marne">
+          <div class="shot"><img src="assets/shot-ajrconcept.jpg" width="1280" height="860" loading="lazy" alt="Site d'AJR Concept, rénovation en Seine-et-Marne"></div>
           <div class="b"><div class="m"><span>Rénovation</span><span>Seine-et-Marne (77)</span></div><h3>AJR Concept · 5,0/5 Google</h3></div>
         </a>
         <a class="site-card" href="https://www.construisez.fr" target="_blank" rel="noopener">
-          <img src="assets/shot-construisez.jpg" width="1280" height="860" loading="lazy" alt="Site de Construisez, permis de construire en Île-de-France">
+          <div class="shot"><img src="assets/shot-construisez.jpg" width="1280" height="860" loading="lazy" alt="Site de Construisez, permis de construire en Île-de-France"></div>
           <div class="b"><div class="m"><span>Permis de construire</span><span>Île-de-France</span></div><h3>Construisez</h3></div>
         </a>
         <a class="site-card" href="https://ofentretiens.netlify.app" target="_blank" rel="noopener">
-          <img src="assets/shot-ofentretiens.jpg" width="1280" height="860" loading="lazy" alt="Site d'OF Entretiens, services au BTP en Île-de-France">
+          <div class="shot"><img src="assets/shot-ofentretiens.jpg" width="1280" height="860" loading="lazy" alt="Site d'OF Entretiens, services au BTP en Île-de-France"></div>
           <div class="b"><div class="m"><span>Services BTP</span><span>Courtry (77)</span></div><h3>OF Entretiens</h3></div>
         </a>
       </div>
@@ -248,7 +258,7 @@ footer{border-top:1px solid var(--line);padding:46px max(20px, env(safe-area-ins
       <h2 class="giant rv d1">Devis<br><span class="blue">IA.</span></h2>
       <p class="lede rv d2">Décrivez le chantier, <b>l'application rédige le devis</b>. Trois touches, le PDF part par email — le jour de la visite, pas le dimanche soir. Factures et tableau de bord dans la poche.</p>
     </div>
-    <img class="phone rv d2" style="--tilt:2.5deg" src="assets/app-devis-ia.jpg" width="1309" height="2576" loading="lazy" alt="Application devis et factures avec Devis IA">
+    <div class="float" data-par style="--fd:0s"><div class="float-in"><img class="phone rv d2" style="--tilt:2.5deg" src="assets/app-devis-ia.jpg" width="1309" height="2576" loading="lazy" alt="Application devis et factures avec Devis IA"></div></div>
   </div>
 </section>
 
@@ -259,7 +269,7 @@ footer{border-top:1px solid var(--line);padding:46px max(20px, env(safe-area-ins
       <h2 class="giant rv d1">Le chantier<br><span class="blue">du jour.</span></h2>
       <p class="lede rv d2">Chaque chef de chantier voit son planning de la semaine, <b>demande matériel et échafaudage depuis le chantier</b>, envoie ses bons de fabrication à l'atelier. En production chez JMC Couverture.</p>
     </div>
-    <img class="phone rv d2" style="--tilt:-2.5deg" src="assets/app-jmc-chantier.jpg" width="1320" height="2552" loading="lazy" alt="Application équipes chantier JMC Couverture">
+    <div class="float" data-par style="--fd:-2.3s"><div class="float-in"><img class="phone rv d2" style="--tilt:-2.5deg" src="assets/app-jmc-chantier.jpg" width="1320" height="2552" loading="lazy" alt="Application équipes chantier JMC Couverture"></div></div>
   </div>
 </section>
 
@@ -271,7 +281,7 @@ footer{border-top:1px solid var(--line);padding:46px max(20px, env(safe-area-ins
       <p class="lede rv d2">Dépôts de réparation enregistrés en quelques secondes, <b>objectif du jour et chiffre du mois en temps réel</b>. En production à la bijouterie Atelier Baratte, Saint-Maur-des-Fossés.</p>
       <div class="actions rv d2"><a class="ghost" href="applications.html">Les 9 applications →</a></div>
     </div>
-    <img class="phone rv d2" style="--tilt:2deg" src="assets/app-atelier-baratte.png" width="295" height="640" loading="lazy" alt="Application caisse et réparations Atelier Baratte">
+    <div class="float" data-par style="--fd:-4.6s"><div class="float-in"><img class="phone rv d2" style="--tilt:2deg" src="assets/app-atelier-baratte.png" width="295" height="640" loading="lazy" alt="Application caisse et réparations Atelier Baratte"></div></div>
   </div>
 </section>
 
@@ -394,6 +404,23 @@ footer{border-top:1px solid var(--line);padding:46px max(20px, env(safe-area-ins
     es.forEach(function(e){ if (e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: 0.15 });
   document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+
+  var par = document.querySelectorAll('[data-par]');
+  if (par.length && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var ticking = false;
+    var update = function(){
+      var vh = innerHeight, k = innerWidth < 900 ? 0.05 : 0.1;
+      par.forEach(function(el){
+        var r = el.getBoundingClientRect();
+        var off = (r.top + r.height/2 - vh/2) * -k;
+        el.style.setProperty('--py', Math.max(-60, Math.min(60, off)).toFixed(1) + 'px');
+      });
+      ticking = false;
+    };
+    addEventListener('scroll', function(){ if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    addEventListener('resize', update);
+    update();
+  }
 
   var f = document.querySelector('form[name=devis]');
   if (f && location.protocol !== 'https:') {
