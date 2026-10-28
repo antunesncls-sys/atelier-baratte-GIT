@@ -754,8 +754,8 @@ def home():
          "Le label RGE (Reconnu Garant de l'Environnement) est exigé pour que vos travaux d'isolation de toiture puissent bénéficier des aides publiques à la rénovation énergétique, sous réserve des conditions d'éligibilité en vigueur."),
     ]
     lds = [org_ld(), website_ld(), faq_ld(faq), video_ld()]
-    html = head("Couverture zinc et tuiles en Île-de-France | Couvreur JMC",
-                "Couvreur depuis 1985 : couverture zinc et tuiles, rénovation, isolation, maison neuve et copropriétés en Île-de-France. QUALIBAT & RGE. ☎ 01 64 21 38 37.",
+    html = head("Couvreur zingueur en Seine-et-Marne et Île-de-France | JMC Couverture",
+                "Couvreur zingueur à Courtry (77) depuis 1985 : rénovation de toiture, couverture zinc, tuiles et ardoise, isolation, zinguerie en Île-de-France. QUALIBAT & RGE. ☎ 01 64 21 38 37.",
                 "/", lds)
     html += header("/")
     _PAGE["bref"] = ("JMC Couverture (Société JMC) est une entreprise de couverture, charpente et zinguerie fondée en 1985 à Courtry (77). "
@@ -766,7 +766,7 @@ def home():
 <section class="hero has-photo">{hero_bg()}<div class="wrap">
   <div>
     <span class="eyebrow">Depuis 1985</span>
-    <h1>Couverture zinc et tuiles en Île-de-France : votre couvreur depuis 1985</h1>
+    <h1>Couvreur zingueur en Seine-et-Marne et Île-de-France depuis 1985</h1>
     <p class="lead">Couverture zinc, toitures en tuiles, rénovation, isolation et maisons neuves : depuis 1985, JMC met au service des particuliers la structure et les équipes qui réalisent les toitures des programmes de promotion immobilière, en Île-de-France.</p>
     <div class="hero-cta"><a class="btn btn-primary" href="/contact/">Demander un devis gratuit</a>
     <a class="btn btn-ghost" href="tel:{BIZ['phone_intl']}">Appeler le {BIZ['phone']}</a></div>
@@ -886,11 +886,11 @@ def couverture():
     ]
     desc = "Réfection, rénovation et réparation de toiture en tuiles, ardoise, zinc, bac acier et toit-terrasse."
     lds = [org_ld(), crumbs_ld(trail), service_ld("Couverture et rénovation de toiture", "/couverture/", desc), faq_ld(faq)]
-    html = head("Couvreur Seine-et-Marne : tuiles, ardoise, zinc, bac acier | JMC",
-                "Couvreur à Courtry (77) : pose de toiture en tuiles, ardoise, zinc, bac acier et toit-terrasse EPDM. Entreprise QUALIBAT & RGE, garantie décennale. Devis gratuit.",
+    html = head("Couverture de toiture : tuile, ardoise, zinc, bac acier | Couvreur JMC",
+                "Couverture de toiture en tuile, ardoise, zinc ou bac acier, et toiture terrasse EPDM, en Île-de-France. Entreprise QUALIBAT & RGE, garantie décennale. Devis gratuit.",
                 "/couverture/", lds)
     html += header("/couverture/")
-    html += page_hero(trail, "Couverture", "Couvreur en Seine-et-Marne : toitures en tuiles, ardoise, zinc et bac acier",
+    html += page_hero(trail, "Couverture", "Couverture de toiture : tuiles, ardoise, zinc et bac acier",
                       "Pose neuve ou réfection complète : nos couvreurs travaillent tous les matériaux de couverture, dans le respect des DTU et des règles d'urbanisme locales.")
     html += f"""
 <section><div class="wrap split">
@@ -998,11 +998,11 @@ def zinguerie():
     ]
     desc = "Gouttières, descentes d'eaux pluviales, chéneaux, noues, entourages de cheminée et habillages en zinc et cuivre."
     lds = [org_ld(), crumbs_ld(trail), service_ld("Zinguerie et gouttières", "/zinguerie/", desc), faq_ld(faq)]
-    html = head("Zinguerie et gouttières en Seine-et-Marne | JMC Couverture",
-                "Zingueur à Courtry (77) : pose et remplacement de gouttières, descentes, chéneaux, noues, entourages de cheminée, habillages zinc et cuivre. Devis gratuit.",
+    html = head("Zinguerie et gouttière zinc en Seine-et-Marne (77) | JMC Couverture",
+                "Zingueur à Courtry (77) : pose et remplacement de gouttières zinc, descentes, chéneaux, noues, entourages de cheminée, habillages zinc et cuivre. Devis gratuit.",
                 "/zinguerie/", lds)
     html += header("/zinguerie/")
-    html += page_hero(trail, "Zinguerie", "Zinguerie et gouttières : zinc, cuivre, chéneaux et habillages",
+    html += page_hero(trail, "Zinguerie", "Zinguerie et gouttières zinc : descentes, chéneaux et habillages",
                       "Évacuer l'eau de pluie et rendre étanches les points sensibles du toit : la zinguerie protège vos façades, vos fondations et votre charpente.")
     html += f"""
 <section><div class="wrap split">
@@ -1058,11 +1058,11 @@ def renovation():
     ]
     desc = "Remplacement et réfection complète de toiture : dépose, contrôle de charpente, écran sous-toiture, couverture neuve, zinguerie et isolation RGE."
     lds = [org_ld(), crumbs_ld(trail), service_ld("Rénovation et remplacement de toiture", "/renovation-toiture/", desc), faq_ld(faq)]
-    html = head("Rénovation et remplacement de toiture en Île-de-France | JMC",
+    html = head("Rénovation de toiture en Seine-et-Marne et Île-de-France | JMC",
                 "Remplacement et réfection complète de toiture en Île-de-France : tuiles, ardoise, zinc, isolation RGE. Couvreur depuis 1985. Devis gratuit.",
                 "/renovation-toiture/", lds)
     html += header("/renovation-toiture/")
-    html += page_hero(trail, "Rénovation de toiture", "Rénovation et remplacement de toiture en Île-de-France",
+    html += page_hero(trail, "Rénovation de toiture", "Rénovation et remplacement de toiture en Seine-et-Marne et Île-de-France",
                       "Votre toiture a fait son temps ? Nous la remplaçons entièrement, de la charpente aux gouttières, avec une seule entreprise, un seul devis et une garantie décennale.")
     html += f"""
 <section><div class="wrap split">
@@ -1128,11 +1128,11 @@ def nettoyage():
     ]
     desc = "Nettoyage de toiture, démoussage, traitement anti-mousse et hydrofuge, nettoyage des gouttières et entretien régulier par des couvreurs professionnels."
     lds = [org_ld(), crumbs_ld(trail), service_ld("Nettoyage, démoussage et entretien de toiture", "/nettoyage-toiture/", desc), faq_ld(faq)]
-    html = head("Nettoyage, démoussage et entretien de toiture en Île-de-France | JMC",
-                "Nettoyage de toit, démoussage, traitement hydrofuge et entretien régulier de toiture en Île-de-France, par de vrais couvreurs depuis 1985. Devis gratuit.",
+    html = head("Nettoyage et démoussage de toiture en Seine-et-Marne (77) | JMC",
+                "Nettoyage de toiture, démoussage, traitement hydrofuge et entretien régulier en Seine-et-Marne et Île-de-France, par de vrais couvreurs depuis 1985. Devis gratuit.",
                 "/nettoyage-toiture/", lds)
     html += header("/nettoyage-toiture/")
-    html += page_hero(trail, "Nettoyage et entretien", "Nettoyage, démoussage et entretien de toiture par des couvreurs",
+    html += page_hero(trail, "Nettoyage et entretien", "Nettoyage et démoussage de toiture par des couvreurs",
                       "Mousses, lichens, traces noires : redonnez à votre toit son aspect d'origine et prolongez sa durée de vie, avec une entreprise de couverture qui sait aussi vérifier et remplacer les tuiles abîmées.")
     html += f"""
 <section><div class="wrap split">
@@ -1263,11 +1263,11 @@ def isolation():
     ]
     desc = "Isolation de toiture par l'extérieur (sarking), sous rampants et combles, par une entreprise RGE : confort, économies d'énergie et aides financières."
     lds = [org_ld(), crumbs_ld(trail), service_ld("Isolation de toiture", "/isolation-toiture/", desc), faq_ld(faq)]
-    html = head("Isolation de toiture, rampants et combles perdus, RGE | JMC",
+    html = head("Isolation de toiture et sarking par un couvreur RGE | JMC",
                 "Isolation de toiture par l'extérieur (sarking) ou sous rampants par un couvreur RGE en Île-de-France. Confort, économies, aides possibles. Devis gratuit.",
                 "/isolation-toiture/", lds)
     html += header("/isolation-toiture/")
-    html += page_hero(trail, "Isolation · Entreprise RGE", "Isolation de toiture par un couvreur RGE en Île-de-France",
+    html += page_hero(trail, "Isolation · Entreprise RGE", "Isolation de toiture et sarking par un couvreur RGE en Île-de-France",
                       "Jusqu'à 30 % des pertes de chaleur d'une maison mal isolée passent par le toit. Nous isolons votre toiture par l'extérieur ou par l'intérieur, idéalement en même temps que sa rénovation.")
     html += f"""
 <section><div class="wrap split">
@@ -1321,11 +1321,11 @@ def zinc_bardage():
     ]
     desc = "Couverture zinc à joint debout, bardage zinc de façade et habillages pour maisons d'architecte, en neuf comme en rénovation."
     lds = [org_ld(), crumbs_ld(trail), service_ld("Couverture zinc et bardage zinc", "/couverture-zinc-bardage/", desc), faq_ld(faq)]
-    html = head("Couverture zinc et toiture en zinc joint debout, bardage | JMC",
+    html = head("Toiture zinc, couverture zinc et bardage zinc en Île-de-France | JMC",
                 "Couvreur-zingueur pour maisons d'architecte : couverture zinc à joint debout, bardage de façade, lucarnes et habillages, en Île-de-France.",
                 "/couverture-zinc-bardage/", lds)
     html += header("/couverture-zinc-bardage/")
-    html += page_hero(trail, "Maison d'architecte", "Couverture zinc : toitures en zinc et bardage pour maisons d'architecte",
+    html += page_hero(trail, "Maison d'architecte", "Toiture zinc et bardage zinc pour maisons d'architecte",
                       "Toitures à joint debout, façades en zinc, lucarnes et habillages sur mesure : nos couvreurs-zingueurs donnent forme aux projets des architectes, en neuf comme en rénovation.")
     html += f"""
 <section><div class="wrap split">
@@ -1516,8 +1516,8 @@ def ville(v):
            "areaServed": {"@type": "City", "name": name,
                           "containedInPlace": {"@type": "AdministrativeArea", "name": v["dept"]}}}
     lds = [org_ld(), crumbs_ld(trail), svc, faq_ld(faq)]
-    html = head(f"Couvreur {name} ({v['num']}) : rénovation, isolation | JMC",
-                f"Couvreur à {name} depuis 1985 : rénovation, isolation RGE, toiture zinc, maison neuve, nettoyage. QUALIBAT. Devis gratuit ☎ {BIZ['phone']}.",
+    html = head(f"Couvreur {name} ({v['num']}) : rénovation de toiture, isolation | JMC",
+                f"Couvreur zingueur à {name} depuis 1985 : rénovation de toiture, isolation RGE, toiture zinc, maison neuve, nettoyage. QUALIBAT. Devis gratuit ☎ {BIZ['phone']}.",
                 url, lds)
     html += header(url)
     dk = round(_dist("Courtry", name))
@@ -1621,7 +1621,7 @@ def dept_page(d):
            "provider": {"@id": SITE + "/#entreprise"},
            "areaServed": {"@type": "AdministrativeArea", "name": d["name"]}}
     lds = [org_ld(), crumbs_ld(trail), svc, faq_ld(faq)]
-    title = (f"Couvreur {d['num']} – {d['name']} : rénovation, isolation | JMC" if d["num"] != "75"
+    title = (f"Couvreur {d['num']} – {d['name']} : rénovation de toiture, isolation | JMC" if d["num"] != "75"
              else "Couvreur zingueur Paris : toiture zinc, ardoise, copropriété | JMC")
     html = head(title,
                 f"Couvreur {d['art']} {d['name']} depuis 1985 : rénovation, isolation RGE, zinc, VELUX, copropriétés. Noté 4,9/5 sur Google. Devis gratuit ☎ {BIZ['phone']}.",
@@ -2100,7 +2100,7 @@ def fenetres():
     ]
     desc = "Pose, remplacement et création de fenêtres de toit VELUX, restauration et création de lucarnes, habillage zinc, pour particuliers et copropriétés."
     lds = [org_ld(), crumbs_ld(trail), service_ld("Fenêtres de toit et lucarnes", "/fenetre-de-toit-velux-lucarnes/", desc), faq_ld(faq)]
-    html = head("Pose et remplacement de VELUX, lucarnes en Île-de-France | JMC",
+    html = head("Pose et remplacement de VELUX, fenêtre de toit et lucarne | JMC",
                 "Remplacement et pose de fenêtres de toit VELUX, création et rénovation de lucarnes en zinc ou ardoise en Île-de-France. Particuliers et copropriétés. Devis gratuit.",
                 "/fenetre-de-toit-velux-lucarnes/", lds)
     html += header("/fenetre-de-toit-velux-lucarnes/")
@@ -2577,7 +2577,7 @@ def combles_perdus():
     <p>Parce que nous sommes couvreurs, nous vérifions aussi l'état de votre toiture et de votre charpente lors de la visite. Si une <a href="/renovation-toiture/">rénovation de toiture</a> s'impose à court terme, nous vous le disons : il serait dommage d'isoler sous une couverture à refaire.</p>
     <p>Combles aménagés ou à aménager ? Voir l'<a href="/isolation-rampants/">isolation des rampants</a>. Toutes nos solutions : <a href="/isolation-toiture/">isolation de toiture</a>. En immeuble, nous intervenons aussi pour les <a href="/couvreur-copropriete-syndic/">copropriétés</a>.</p>"""
     _guide("/isolation-combles-perdus/", "Isolation des combles perdus",
-           "Isolation des combles perdus par soufflage, entreprise RGE | JMC",
+           "Isolation des combles perdus par soufflage, couvreur RGE 77 | JMC",
            "Isolation des combles perdus par soufflage ou déroulage (laine minérale, ouate de cellulose) en Île-de-France, par un couvreur RGE. Aides possibles, devis gratuit.",
            "Isolation · Combles perdus", "Isolation des combles perdus par soufflage",
            "Une journée de travaux pour un gain de confort immédiat : nous isolons vos combles perdus par soufflage ou déroulage, avec le regard d'un couvreur sur votre toiture.",
@@ -2951,11 +2951,11 @@ def contact():
     contact_ld = {"@context": "https://schema.org", "@type": "ContactPage", "url": SITE + "/contact/",
                   "about": {"@id": SITE + "/#entreprise"}}
     lds = [org_ld(), crumbs_ld(trail), contact_ld]
-    html = head("Contact et devis toiture gratuit à Courtry (77) | JMC Couverture",
+    html = head("Devis toiture gratuit : votre couvreur à Courtry (77) | JMC Couverture",
                 "Demandez votre devis gratuit pour vos travaux de couverture, charpente ou zinguerie. JMC, 97 rue Charles Van Wyngene, 77181 Courtry. ☎ 01 64 21 38 37.",
                 "/contact/", lds)
     html += header("/contact/")
-    html += page_hero(trail, "Contact", "Demandez votre devis de toiture gratuit",
+    html += page_hero(trail, "Contact", "Devis toiture gratuit : demandez votre visite",
                       "Décrivez votre projet en quelques lignes : nous vous recontactons rapidement pour organiser une visite et établir un devis détaillé, gratuit et sans engagement.", cta=False)
     html += f"""
 <section><div class="wrap split">
