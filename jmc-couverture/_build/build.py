@@ -575,6 +575,17 @@ document.body.insertBefore(bar,document.body.firstChild);
 history.replaceState(null,'',location.pathname);}}
 var f=document.getElementById('provenance'),pv=sessionStorage.getItem('jmc_prov');
 if(f&&pv){{f.value=pv;var o=document.querySelector('select[name=origine]');if(o&&pv.indexOf('QR')===0)o.value='Panneau de chantier JMC';}}}}catch(e){{}}}})();
+(function(){{if(!document.querySelector('.hero-home')||!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+var sel='.section-head,.card,.mosaic figure,.stats>div,.steps>*,.process>*,.split>.prose>*,.city-links,.marquee,.video-wrap,.faq details';
+var els=[].slice.call(document.querySelectorAll(sel)).filter(function(e){{return e.getBoundingClientRect().top>innerHeight}});
+var count=function(el){{var to=+el.dataset.count,fr=+(el.dataset.from||0),suf=el.dataset.suffix||'',t0=null,d=1600;
+var fmt=function(n){{return to>=1900&&to<2100?String(n):n.toLocaleString('fr-FR')}};
+(function step(t){{t0=t0||t;var k=Math.min(1,(t-t0)/d),v=Math.round(fr+(to-fr)*(1-Math.pow(1-k,3)));el.textContent=fmt(v)+suf;if(k<1)requestAnimationFrame(step)}})(performance.now())}};
+var io=new IntersectionObserver(function(en){{en.forEach(function(e){{if(!e.isIntersecting)return;var el=e.target;io.unobserve(el);
+if(el.dataset.count){{count(el);return}}
+var sib=el.parentNode?[].indexOf.call(el.parentNode.children,el):0;el.style.transitionDelay=Math.min(sib,6)*80+'ms';el.classList.add('in')}})}},{{rootMargin:'0px 0px -8% 0px'}});
+els.forEach(function(e){{e.classList.add('rv');io.observe(e)}});
+[].forEach.call(document.querySelectorAll('[data-count]'),function(e){{io.observe(e)}});}})();
 </script>
 </body>
 </html>
@@ -638,13 +649,20 @@ HOME_PART = ["Ville de Courtry", "Bouygues Immobilier", "Kaufman & Broad", "Vill
              "Ville de Lagny-sur-Marne", "VMZINC", "Quartus", "Ville de Bagnolet", "Terreal", "Ville de Nogent-sur-Marne"]
 
 
-def trust_band():
+def trust_band(marquee=False):
+    logos = part_grid(HOME_PART)
+    if marquee:
+        named = [p for p in PARTENAIRES if p[1] and p[2] in ("communes", "promoteurs", "materiaux")]
+        track = "".join(part_fig(p) for p in named)
+        dup = re.sub(r' alt="[^"]*"', ' alt=""', track)
+        logos = (f'<div class="marquee"><div class="marquee-track">{track}</div>'
+                 f'<div class="marquee-track" aria-hidden="true">{dup}</div></div>')
     return f"""
 <section class="trust-band"><div class="wrap">
   <div class="section-head center"><span class="eyebrow">Ils nous font confiance</span>
   <h2>Communes, promoteurs et fabricants nous confient leurs toitures depuis 1985</h2>
   <p>Plus de 150 partenaires : collectivités, promoteurs immobiliers, architectes, entreprises du bâtiment et fabricants de matériaux.</p></div>
-  {part_grid(HOME_PART)}
+  {logos}
   <p class="center" style="margin-top:26px"><a class="btn btn-primary" href="/nos-references/#partenaires">Voir tous nos partenaires →</a></p>
 </div></section>"""
 
@@ -763,7 +781,7 @@ def home():
                      "fenêtres de toit, elle intervient en Seine-et-Marne de Melun à Meaux, dans le Val-d'Oise, l'Essonne, le Val-de-Marne, "
                      "la Seine-Saint-Denis, les Hauts-de-Seine et à Paris. Devis gratuit au 01 64 21 38 37.")
     html += f"""
-<section class="hero has-photo">{hero_bg()}<div class="wrap">
+<section class="hero has-photo hero-home">{hero_bg()}<div class="wrap">
   <div>
     <span class="eyebrow">Depuis 1985</span>
     <h1>Couvreur zingueur en Seine-et-Marne et Île-de-France depuis 1985</h1>
@@ -772,9 +790,9 @@ def home():
     <a class="btn btn-ghost" href="tel:{BIZ['phone_intl']}">Appeler le {BIZ['phone']}</a></div>
     <div class="hero-labels">{labels()}{google_badge()}<ul class="badges"><li>Garantie décennale</li><li>Devis gratuit</li></ul></div>
   </div>
-</div></section>{en_bref()}
+</div><a class="scroll-cue" href="#realisations" aria-label="Découvrir nos réalisations"></a></section>{en_bref()}
 
-<section class="gallery-band"><div class="wrap">
+<section class="gallery-band" id="realisations"><div class="wrap">
   <div class="section-head"><span class="eyebrow">Nos réalisations</span><h2>Nos réalisations de toiture en Île-de-France</h2></div>
   {hero_mosaic()}
   <p style="margin-top:18px"><a class="more" href="/nos-references/">Voir toutes nos réalisations →</a>{insta_link(" &nbsp;·&nbsp; ")}</p>
@@ -815,10 +833,10 @@ def home():
 
 <section class="section-dark"><div class="wrap">
   <div class="stats">
-    <div><strong>1985</strong><span>couvreurs depuis</span></div>
-    <div><strong>1 500+</strong><span>chantiers réalisés</span></div>
-    <div><strong>1 000+</strong><span>clients, promoteurs et particuliers</span></div>
-    <div><strong>10 ans</strong><span>garantie décennale</span></div>
+    <div><strong data-count="1985" data-from="1960">1985</strong><span>couvreurs depuis</span></div>
+    <div><strong data-count="1500" data-suffix="+">1 500+</strong><span>chantiers réalisés</span></div>
+    <div><strong data-count="1000" data-suffix="+">1 000+</strong><span>clients, promoteurs et particuliers</span></div>
+    <div><strong data-count="10" data-suffix=" ans">10 ans</strong><span>garantie décennale</span></div>
   </div>
 </div></section>
 
@@ -854,7 +872,7 @@ def home():
 
 {secu_proprete()}
 {bouche_oreille()}
-{trust_band()}
+{trust_band(marquee=True)}
 
 {engagement_local()}
 <section class="section-alt"><div class="wrap">
