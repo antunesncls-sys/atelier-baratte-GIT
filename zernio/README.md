@@ -1,13 +1,20 @@
-# Zernio — réseaux sociaux de l'Atelier Baratte
+# Zernio — publication sur les réseaux sociaux
 
-Outils en ligne de commande pour publier et programmer les posts de l'Atelier Baratte
-(bijouterie-horlogerie à Saint-Maur-des-Fossés) sur les réseaux sociaux via
-l'API [Zernio](https://zernio.com), qui gère Instagram, Facebook, Google Business
-Profile, TikTok, X/Twitter et d'autres plateformes avec une seule intégration.
+Outils en ligne de commande pour publier et programmer des posts sur les réseaux
+sociaux via l'API [Zernio](https://zernio.com), qui gère Instagram, Facebook, Google
+Business Profile, TikTok, X/Twitter et d'autres plateformes avec une seule intégration.
 
-Le site lui-même est statique : la clé API ne doit **jamais** apparaître dans les
-pages HTML ni être committée. Ces scripts s'exécutent en local (ou dans une CI)
-avec la clé dans un fichier `.env` ignoré par git.
+Un même compte Zernio peut servir plusieurs entreprises : chaque entreprise a son
+**profil** Zernio, et les scripts ciblent un profil par son nom.
+
+| Profil Zernio      | Comptes connectés                                                        |
+| ------------------ | ------------------------------------------------------------------------ |
+| Construisez        | Instagram `@permis_de_construire_idf`, Facebook `Construisez.idf`        |
+| Atelier Baratte    | à connecter                                                              |
+
+La clé API ne doit **jamais** apparaître dans les pages du site ni être committée.
+Ces scripts s'exécutent en local (ou dans une CI) avec la clé dans un fichier `.env`
+ignoré par git.
 
 ## Mise en place
 
@@ -18,34 +25,42 @@ cp .env.example .env
 # puis renseignez ZERNIO_API_KEY dans .env
 ```
 
-Connectez d'abord vos comptes sociaux dans le tableau de bord Zernio
-(https://zernio.com), sinon aucune publication n'est possible.
+Dans le tableau de bord Zernio (https://zernio.com) :
+
+1. Renommez le profil « Default » en **Construisez** (il contient déjà les comptes Construisez).
+2. Pour l'Atelier Baratte, créez un profil **Atelier Baratte** et connectez-y ses comptes.
 
 ## Utilisation
 
-Lister les comptes connectés et leurs `accountId` :
+Lister les profils, leurs comptes et leurs `accountId` :
 
 ```bash
 npm run accounts
 ```
 
-Créer un brouillon :
+Vérifier un post sans rien envoyer (`--dry-run`) :
 
 ```bash
-npm run post -- --content "Changement de pile de montre en 10 minutes à Saint-Maur ⌚" --account instagram:acc_xxx
+npm run post -- --profile Construisez --content "Votre permis de construire en Île-de-France 🏗️" --media https://exemple.fr/plan.jpg --dry-run
 ```
 
-Programmer un post (heure de Paris) :
+Programmer un post sur tous les comptes d'un profil (heure de Paris) :
 
 ```bash
-npm run post -- --content "Rachat d'or : estimation gratuite à l'atelier" --account facebook:acc_yyy --schedule "2026-11-03T10:00:00+01:00"
+npm run post -- --profile Construisez --content "Dépôt de permis de construire : on s'occupe de tout" --media https://exemple.fr/plan.jpg --schedule "2026-11-03T10:00:00+01:00"
 ```
 
-Publier immédiatement :
+Publier immédiatement, sur Facebook seulement :
 
 ```bash
-npm run post -- --content "L'atelier est ouvert ce samedi !" --account instagram:acc_xxx --account facebook:acc_yyy --now
+npm run post -- --profile Construisez --only facebook --content "Nouveau projet accepté en mairie ✅" --now
 ```
+
+Sans `--schedule` ni `--now`, le post est créé en brouillon dans Zernio.
+On peut aussi cibler des comptes précis avec `--account <platform>:<accountId>` au lieu de `--profile`.
+
+Instagram exige au moins une image ou une vidéo : passez son URL publique avec `--media`
+(option répétable pour un carrousel).
 
 ## Référence
 
