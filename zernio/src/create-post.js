@@ -1,12 +1,13 @@
-import { zernio, findProfile } from './zernio-client.js';
+import { zernio, findProfile, DEFAULT_PROFILE } from './zernio-client.js';
 
-// Publie ou programme un post sur les comptes d'un profil (une entreprise) ou sur des comptes précis.
+// Publie ou programme un post sur les comptes Construisez (par défaut), d'un autre profil, ou sur des comptes précis.
 //
 // Usage :
-//   npm run post -- --content "Texte du post" (--profile "<nom du profil>" [--only instagram,facebook] | --account <platform>:<accountId> ...)
+//   npm run post -- --content "Texte du post" [--profile "<nom du profil>"] [--only instagram,facebook] [--account <platform>:<accountId> ...]
 //                   [--media <url publique> ...] [--schedule 2026-11-01T10:00:00+01:00 | --now] [--dry-run]
 //
-// --profile  cible tous les comptes actifs du profil Zernio (ex. "Construisez", "Atelier Baratte").
+// --profile  cible tous les comptes actifs d'un profil Zernio. Par défaut : ZERNIO_PROFILE, sinon "Construisez".
+//            Ignoré par défaut quand des --account sont donnés.
 // --only     limite --profile à certaines plateformes.
 // --media    image ou vidéo accessible publiquement (obligatoire pour Instagram), répétable.
 // --dry-run  affiche la requête sans rien envoyer à Zernio.
@@ -21,15 +22,15 @@ const getAll = (flag) =>
   args.flatMap((a, i) => (a === flag && args[i + 1] ? [args[i + 1]] : []));
 
 const content = get('--content');
-const profileArg = get('--profile');
-const only = get('--only')?.split(',').map((s) => s.trim().toLowerCase());
 const accountArgs = getAll('--account');
+const profileArg = get('--profile') ?? (accountArgs.length ? undefined : DEFAULT_PROFILE);
+const only = get('--only')?.split(',').map((s) => s.trim().toLowerCase());
 const scheduledFor = get('--schedule');
 const publishNow = args.includes('--now');
 const dryRun = args.includes('--dry-run');
 
-if (!content || (!profileArg && !accountArgs.length)) {
-  console.error('Arguments requis : --content "..." et --profile "<nom>" ou au moins un --account <platform>:<accountId>');
+if (!content) {
+  console.error('Argument requis : --content "..."');
   console.error('Lancez `npm run accounts` pour voir les profils et les accountId.');
   process.exit(1);
 }

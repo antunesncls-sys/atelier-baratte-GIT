@@ -1,18 +1,14 @@
-# Zernio — publication sur les réseaux sociaux
+# Zernio — réseaux sociaux de Construisez
 
-Outils en ligne de commande pour publier et programmer des posts sur les réseaux
-sociaux via l'API [Zernio](https://zernio.com), qui gère Instagram, Facebook, Google
-Business Profile, TikTok, X/Twitter et d'autres plateformes avec une seule intégration.
+Outils en ligne de commande pour publier et programmer les posts de **Construisez**
+(permis de construire en Île-de-France) via l'API [Zernio](https://zernio.com).
 
-Un même compte Zernio peut servir plusieurs entreprises : chaque entreprise a son
-**profil** Zernio, et les scripts ciblent un profil par son nom.
+Par défaut, `npm run post` publie sur les comptes du profil Zernio **Construisez** :
 
-| Profil Zernio      | Comptes connectés                                                        |
-| ------------------ | ------------------------------------------------------------------------ |
-| Construisez        | Instagram `@permis_de_construire_idf`, Facebook `Construisez.idf`        |
-| Atelier Baratte    | à connecter                                                              |
+- Instagram `@permis_de_construire_idf`
+- Facebook `Construisez.idf`
 
-La clé API ne doit **jamais** apparaître dans les pages du site ni être committée.
+La clé API ne doit **jamais** apparaître dans des pages web ni être committée.
 Ces scripts s'exécutent en local (ou dans une CI) avec la clé dans un fichier `.env`
 ignoré par git.
 
@@ -25,11 +21,6 @@ cp .env.example .env
 # puis renseignez ZERNIO_API_KEY dans .env
 ```
 
-Dans le tableau de bord Zernio (https://zernio.com) :
-
-1. Renommez le profil « Default » en **Construisez** (il contient déjà les comptes Construisez).
-2. Pour l'Atelier Baratte, créez un profil **Atelier Baratte** et connectez-y ses comptes.
-
 ## Utilisation
 
 Lister les profils, leurs comptes et leurs `accountId` :
@@ -41,26 +32,31 @@ npm run accounts
 Vérifier un post sans rien envoyer (`--dry-run`) :
 
 ```bash
-npm run post -- --profile Construisez --content "Votre permis de construire en Île-de-France 🏗️" --media https://exemple.fr/plan.jpg --dry-run
+npm run post -- --content "Votre permis de construire en Île-de-France 🏗️" --media https://exemple.fr/plan.jpg --dry-run
 ```
 
-Programmer un post sur tous les comptes d'un profil (heure de Paris) :
+Programmer un post sur Instagram et Facebook (heure de Paris) :
 
 ```bash
-npm run post -- --profile Construisez --content "Dépôt de permis de construire : on s'occupe de tout" --media https://exemple.fr/plan.jpg --schedule "2026-11-03T10:00:00+01:00"
+npm run post -- --content "Dépôt de permis de construire : on s'occupe de tout" --media https://exemple.fr/plan.jpg --schedule "2026-11-03T10:00:00+01:00"
 ```
 
 Publier immédiatement, sur Facebook seulement :
 
 ```bash
-npm run post -- --profile Construisez --only facebook --content "Nouveau projet accepté en mairie ✅" --now
+npm run post -- --only facebook --content "Nouveau projet accepté en mairie ✅" --now
 ```
 
 Sans `--schedule` ni `--now`, le post est créé en brouillon dans Zernio.
-On peut aussi cibler des comptes précis avec `--account <platform>:<accountId>` au lieu de `--profile`.
 
 Instagram exige au moins une image ou une vidéo : passez son URL publique avec `--media`
 (option répétable pour un carrousel).
+
+### Autres profils
+
+Le profil ciblé par défaut se change avec `ZERNIO_PROFILE` dans `.env`, ou ponctuellement
+avec `--profile "<nom>"` (créez le profil et connectez ses comptes dans le tableau de bord
+Zernio). On peut aussi viser des comptes précis avec `--account <platform>:<accountId>`.
 
 ## Référence
 

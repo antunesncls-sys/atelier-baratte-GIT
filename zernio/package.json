@@ -2,7 +2,7 @@
   "name": "atelier-baratte-zernio",
   "version": "1.0.0",
   "private": true,
-  "description": "Outils Zernio pour publier et programmer les posts réseaux sociaux de l'Atelier Baratte",
+  "description": "Outils Zernio pour publier et programmer les posts réseaux sociaux de Construisez",
   "type": "module",
   "scripts": {
     "accounts": "node src/list-accounts.js",

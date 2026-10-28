@@ -8,6 +8,8 @@ if (!process.env.ZERNIO_API_KEY) {
 
 export const zernio = new Zernio();
 
+export const DEFAULT_PROFILE = process.env.ZERNIO_PROFILE || 'Construisez';
+
 const idOf = (ref) => (typeof ref === 'object' && ref ? ref._id : ref);
 
 // Profils Zernio (un par entreprise) avec leurs comptes sociaux rattachés.
