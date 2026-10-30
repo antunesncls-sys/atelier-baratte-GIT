@@ -1,0 +1,5 @@
+Photos du site (jpg, ~1600 px de large pour le fond, < 300 Ko). Noms utilisés :
+  toiture-ardoise-lucarnes-zinc-vue-drone-jmc.jpg (+ version -800.jpg pour mobile) -> fond des en-têtes
+  toiture-mansardee-lucarnes-zinc-jmc.jpg, maison-meuliere-couverture-tuiles-jmc.jpg,
+  toiture-pavillon-renovation-jmc.jpg, depot-flotte-vehicules-jmc-couverture.jpg
+Textes ALT et légendes : dictionnaire PHOTOS dans _build/build.py. Puis : python3 _build/build.py

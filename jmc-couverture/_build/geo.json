@@ -1,0 +1,374 @@
+{
+ "Melun": {
+  "nom": "Melun",
+  "cp": "77000",
+  "lat": 48.541332,
+  "lon": 2.655743
+ },
+ "Pontault-Combault": {
+  "nom": "Pontault-Combault",
+  "cp": "77340",
+  "lat": 48.793811,
+  "lon": 2.609096
+ },
+ "Brie-Comte-Robert": {
+  "nom": "Brie-Comte-Robert",
+  "cp": "77170",
+  "lat": 48.68978,
+  "lon": 2.616586
+ },
+ "Montévrain": {
+  "nom": "Montévrain",
+  "cp": "77144",
+  "lat": 48.867105,
+  "lon": 2.74974
+ },
+ "Claye-Souilly": {
+  "nom": "Claye-Souilly",
+  "cp": "77410",
+  "lat": 48.943181,
+  "lon": 2.668776
+ },
+ "Dammarie-les-Lys": {
+  "nom": "Dammarie-les-Lys",
+  "cp": "77190",
+  "lat": 48.515139,
+  "lon": 2.62042
+ },
+ "Coulommiers": {
+  "nom": "Coulommiers",
+  "cp": "77120",
+  "lat": 48.813927,
+  "lon": 3.091115
+ },
+ "Champs-sur-Marne": {
+  "nom": "Champs-sur-Marne",
+  "cp": "77420",
+  "lat": 48.851394,
+  "lon": 2.593974
+ },
+ "Esbly": {
+  "nom": "Esbly",
+  "cp": "77450",
+  "lat": 48.900953,
+  "lon": 2.811975
+ },
+ "Meaux": {
+  "nom": "Meaux",
+  "cp": "77100",
+  "lat": 48.959417,
+  "lon": 2.900232
+ },
+ "Villeparisis": {
+  "nom": "Villeparisis",
+  "cp": "77270",
+  "lat": 48.943536,
+  "lon": 2.614745
+ },
+ "Mitry-Mory": {
+  "nom": "Mitry-Mory",
+  "cp": "77290",
+  "lat": 48.963211,
+  "lon": 2.604405
+ },
+ "Chelles": {
+  "nom": "Chelles",
+  "cp": "77500",
+  "lat": 48.88646,
+  "lon": 2.600366
+ },
+ "Lagny-sur-Marne": {
+  "nom": "Lagny-sur-Marne",
+  "cp": "77400",
+  "lat": 48.873876,
+  "lon": 2.705794
+ },
+ "Ozoir-la-Ferrière": {
+  "nom": "Ozoir-la-Ferrière",
+  "cp": "77330",
+  "lat": 48.767283,
+  "lon": 2.673278
+ },
+ "Bussy-Saint-Georges": {
+  "nom": "Bussy-Saint-Georges",
+  "cp": "77600",
+  "lat": 48.839438,
+  "lon": 2.715338
+ },
+ "Fontainebleau": {
+  "nom": "Fontainebleau",
+  "cp": "77300",
+  "lat": 48.40781,
+  "lon": 2.70278
+ },
+ "Courtry": {
+  "nom": "Courtry",
+  "cp": "77181",
+  "lat": 48.914749,
+  "lon": 2.59977
+ },
+ "Pontoise": {
+  "nom": "Pontoise",
+  "cp": "95000",
+  "lat": 49.047592,
+  "lon": 2.099968
+ },
+ "Ermont": {
+  "nom": "Ermont",
+  "cp": "95120",
+  "lat": 48.989064,
+  "lon": 2.257404
+ },
+ "Barbizon": {
+  "nom": "Barbizon",
+  "cp": "77630",
+  "lat": 48.445751,
+  "lon": 2.607752
+ },
+ "Argenteuil": {
+  "nom": "Argenteuil",
+  "cp": "95100",
+  "lat": 48.948465,
+  "lon": 2.248202
+ },
+ "Herblay-sur-Seine": {
+  "nom": "Herblay-sur-Seine",
+  "cp": "95220",
+  "lat": 49.004061,
+  "lon": 2.152445
+ },
+ "Cergy": {
+  "nom": "Cergy",
+  "cp": "95000",
+  "lat": 49.04227,
+  "lon": 2.045547
+ },
+ "Montmorency": {
+  "nom": "Montmorency",
+  "cp": "95160",
+  "lat": 48.989397,
+  "lon": 2.321988
+ },
+ "Eaubonne": {
+  "nom": "Eaubonne",
+  "cp": "95600",
+  "lat": 48.9916,
+  "lon": 2.277576
+ },
+ "Franconville": {
+  "nom": "Franconville",
+  "cp": "95130",
+  "lat": 48.98921,
+  "lon": 2.224145
+ },
+ "L'Isle-Adam": {
+  "nom": "L'Isle-Adam",
+  "cp": "95290",
+  "lat": 49.110831,
+  "lon": 2.228778
+ },
+ "Taverny": {
+  "nom": "Taverny",
+  "cp": "95150",
+  "lat": 49.024195,
+  "lon": 2.212634
+ },
+ "Sannois": {
+  "nom": "Sannois",
+  "cp": "95110",
+  "lat": 48.973523,
+  "lon": 2.253694
+ },
+ "Deuil-la-Barre": {
+  "nom": "Deuil-la-Barre",
+  "cp": "95170",
+  "lat": 48.970077,
+  "lon": 2.328479
+ },
+ "Osny": {
+  "nom": "Osny",
+  "cp": "95520",
+  "lat": 49.062903,
+  "lon": 2.06412
+ },
+ "Saint-Maur-des-Fossés": {
+  "nom": "Saint-Maur-des-Fossés",
+  "cp": "94100",
+  "lat": 48.799943,
+  "lon": 2.491801
+ },
+ "Nogent-sur-Marne": {
+  "nom": "Nogent-sur-Marne",
+  "cp": "94130",
+  "lat": 48.837475,
+  "lon": 2.480913
+ },
+ "Le Perreux-sur-Marne": {
+  "nom": "Le Perreux-sur-Marne",
+  "cp": "94170",
+  "lat": 48.8435,
+  "lon": 2.504424
+ },
+ "Cormeilles-en-Parisis": {
+  "nom": "Cormeilles-en-Parisis",
+  "cp": "95240",
+  "lat": 48.970343,
+  "lon": 2.19574
+ },
+ "Le Raincy": {
+  "nom": "Le Raincy",
+  "cp": "93340",
+  "lat": 48.895953,
+  "lon": 2.519715
+ },
+ "Neuilly-sur-Seine": {
+  "nom": "Neuilly-sur-Seine",
+  "cp": "92200",
+  "lat": 48.886191,
+  "lon": 2.265869
+ },
+ "Boulogne-Billancourt": {
+  "nom": "Boulogne-Billancourt",
+  "cp": "92100",
+  "lat": 48.837799,
+  "lon": 2.243202
+ },
+ "Saint-Cloud": {
+  "nom": "Saint-Cloud",
+  "cp": "92210",
+  "lat": 48.850588,
+  "lon": 2.211247
+ },
+ "Sceaux": {
+  "nom": "Sceaux",
+  "cp": "92330",
+  "lat": 48.777193,
+  "lon": 2.296146
+ },
+ "Ville-d'Avray": {
+  "nom": "Ville-d'Avray",
+  "cp": "92410",
+  "lat": 48.824085,
+  "lon": 2.180861
+ },
+ "Marnes-la-Coquette": {
+  "nom": "Marnes-la-Coquette",
+  "cp": "92430",
+  "lat": 48.835162,
+  "lon": 2.170097
+ },
+ "Garches": {
+  "nom": "Garches",
+  "cp": "92380",
+  "lat": 48.847088,
+  "lon": 2.188292
+ },
+ "Vaucresson": {
+  "nom": "Vaucresson",
+  "cp": "92420",
+  "lat": 48.840569,
+  "lon": 2.163482
+ },
+ "Rueil-Malmaison": {
+  "nom": "Rueil-Malmaison",
+  "cp": "92500",
+  "lat": 48.874531,
+  "lon": 2.180455
+ },
+ "Meudon": {
+  "nom": "Meudon",
+  "cp": "92190",
+  "lat": 48.803633,
+  "lon": 2.233989
+ },
+ "Yerres": {
+  "nom": "Yerres",
+  "cp": "91330",
+  "lat": 48.710884,
+  "lon": 2.491344
+ },
+ "Brunoy": {
+  "nom": "Brunoy",
+  "cp": "91800",
+  "lat": 48.695959,
+  "lon": 2.504827
+ },
+ "Draveil": {
+  "nom": "Draveil",
+  "cp": "91210",
+  "lat": 48.677829,
+  "lon": 2.412138
+ },
+ "Soisy-sur-Seine": {
+  "nom": "Soisy-sur-Seine",
+  "cp": "91450",
+  "lat": 48.648028,
+  "lon": 2.448895
+ },
+ "Étiolles": {
+  "nom": "Étiolles",
+  "cp": "91450",
+  "lat": 48.639156,
+  "lon": 2.471442
+ },
+ "Évry-Courcouronnes": {
+  "nom": "Évry-Courcouronnes",
+  "cp": "91000",
+  "lat": 48.62729,
+  "lon": 2.43251
+ },
+ "Corbeil-Essonnes": {
+  "nom": "Corbeil-Essonnes",
+  "cp": "91100",
+  "lat": 48.598229,
+  "lon": 2.465045
+ },
+ "Savigny-sur-Orge": {
+  "nom": "Savigny-sur-Orge",
+  "cp": "91600",
+  "lat": 48.685402,
+  "lon": 2.349202
+ },
+ "Montgeron": {
+  "nom": "Montgeron",
+  "cp": "91230",
+  "lat": 48.704816,
+  "lon": 2.455399
+ },
+ "Montfermeil": {
+  "nom": "Montfermeil",
+  "cp": "93370",
+  "lat": 48.8976,
+  "lon": 2.5678
+ },
+ "Coubron": {
+  "nom": "Coubron",
+  "cp": "93470",
+  "lat": 48.9173,
+  "lon": 2.5759
+ },
+ "Livry-Gargan": {
+  "nom": "Livry-Gargan",
+  "cp": "93190",
+  "lat": 48.9184,
+  "lon": 2.5351
+ },
+ "Noisy-le-Grand": {
+  "nom": "Noisy-le-Grand",
+  "cp": "93160",
+  "lat": 48.8327,
+  "lon": 2.556
+ },
+ "Torcy": {
+  "nom": "Torcy",
+  "cp": "77200",
+  "lat": 48.8534,
+  "lon": 2.6476
+ },
+ "Vaires-sur-Marne": {
+  "nom": "Vaires-sur-Marne",
+  "cp": "77360",
+  "lat": 48.8703,
+  "lon": 2.6332
+ }
+}
