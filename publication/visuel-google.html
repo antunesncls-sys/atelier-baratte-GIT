@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Archivo;src:url(../flyer/fonts/archivo-400.ttf);font-weight:400}
+@font-face{font-family:Archivo;src:url(../flyer/fonts/archivo-600.ttf);font-weight:600}
+@font-face{font-family:Archivo;src:url(../flyer/fonts/archivo-700.ttf);font-weight:700}
+@font-face{font-family:Archivo;src:url(../flyer/fonts/archivo-800.ttf);font-weight:800}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--red:#d41d22;--gold:#e0c552}
+body{font-family:Archivo,Arial,sans-serif}
+.c{position:relative;width:1200px;height:900px;overflow:hidden;color:#fff;background:#121518}
+.bg{position:absolute;inset:0;background:url(../jmc-couverture/assets/photos/toiture-ardoise-lucarnes-zinc-vue-drone-jmc.jpg) center/cover}
+.shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,14,16,.95) 0%,rgba(12,14,16,.9) 50%,rgba(12,14,16,.5) 78%,rgba(12,14,16,.3) 100%)}
+.logo{position:absolute;left:60px;top:52px;background:#fff;border-radius:14px;padding:10px 18px}
+.logo img{height:58px;display:block}
+.eyebrow{position:absolute;left:62px;top:162px;color:var(--gold);font-weight:700;letter-spacing:.18em;text-transform:uppercase;font-size:17px}
+h1{position:absolute;left:60px;top:198px;width:690px;font-weight:800;font-size:68px;line-height:1.03;letter-spacing:-.015em}
+h1 em{font-style:normal;color:var(--gold)}
+.sub{position:absolute;left:62px;top:356px;width:640px;font-size:23px;line-height:1.4;color:#e9e6df}
+.list{position:absolute;left:62px;top:440px;display:grid;gap:15px;font-size:21px;font-weight:600}
+.list div{display:flex;gap:14px;align-items:center}
+.list div:before{content:"";flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--red) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/15px no-repeat}
+.trust{position:absolute;left:62px;top:608px;display:flex;gap:14px;align-items:center}
+.trust img{height:62px;background:#fff;padding:3px;border-radius:6px;display:block}
+.g{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:13px 22px;font-size:20px;font-weight:600}
+.g .stars{color:#f5b400;letter-spacing:.06em}
+.cta{position:absolute;left:60px;top:716px;display:flex;align-items:center;gap:28px;background:var(--red);border-radius:16px;padding:20px 30px;box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.cta small{display:block;font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:14px;opacity:.92}
+.cta b{display:block;font-weight:800;font-size:40px;line-height:1.05}
+.cta .w{border-left:1px solid rgba(255,255,255,.45);padding-left:28px;font-size:18px;line-height:1.35}
+.cta .w b{font-size:24px}
+.phone{position:absolute;left:830px;top:70px;width:320px;height:690px;background:#0d0f11;border-radius:44px;padding:11px;box-shadow:0 30px 70px rgba(0,0,0,.6),0 0 0 2px #3a3f45;transform:rotate(3deg)}
+.phone .s{border-radius:34px;overflow:hidden;height:100%;position:relative}
+.phone .s img{width:100%;display:block}
+.phone .s:after{content:"";position:absolute;top:9px;left:50%;width:78px;height:22px;margin-left:-39px;background:#0d0f11;border-radius:12px}
+.bubble{position:absolute;left:760px;top:640px;background:#fff;color:#121518;border-radius:14px;padding:16px 20px;font-weight:700;font-size:19px;line-height:1.25;box-shadow:0 14px 30px rgba(0,0,0,.4)}
+.bubble em{font-style:normal;color:var(--red)}
+</style></head><body>
+<section class="c" id="gbp">
+  <div class="bg"></div><div class="shade"></div>
+  <div class="logo"><img src="../jmc-couverture/assets/logo-jmc-40ans.svg" alt=""></div>
+  <p class="eyebrow">Couvreur-zingueur depuis 1985 · Courtry (77)</p>
+  <h1>Votre devis toiture <em>en 2 minutes</em></h1>
+  <p class="sub">Rénovation, isolation, VELUX, zinc, zinguerie : décrivez votre projet en 4 questions.</p>
+  <div class="list">
+    <div>Visite sur place et diagnostic gratuits</div>
+    <div>Devis clair, détaillé, sans engagement</div>
+    <div>Garantie décennale et SAV interne</div>
+  </div>
+  <div class="trust">
+    <img src="../jmc-couverture/assets/logo-qualibat.svg" alt="">
+    <img src="../jmc-couverture/assets/logo-rge.png" alt="">
+    <div class="g"><span class="stars">★★★★★</span>4,9/5 sur Google</div>
+  </div>
+  <div class="cta">
+    <div><small>Devis gratuit</small><b>01 64 21 38 37</b></div>
+    <div class="w">ou en ligne sur<br><b>jmccouverture.com</b></div>
+  </div>
+  <div class="phone"><div class="s"><img src="shot-mobile-devis-v2.png" alt=""></div></div>
+  <div class="bubble">Choisissez votre projet,<br><em>on s'occupe du reste</em></div>
+</section>
+</body></html>
