@@ -3160,7 +3160,8 @@ next.addEventListener('click',function(){{if(ok(i))show(i+1,true)}});
 prev.addEventListener('click',function(){{show(i-1,true)}});
 f.querySelectorAll('input[name=travaux]').forEach(function(r){{r.addEventListener('change',function(){{setTimeout(function(){{if(i===0)show(1,true)}},250)}})}});
 f.addEventListener('keydown',function(e){{if(e.key==='Enter'&&e.target.tagName!=='TEXTAREA'&&i<steps.length-1){{e.preventDefault();next.click()}}}});
-f.addEventListener('submit',function(e){{for(var k=0;k<steps.length;k++)if(!ok(k)){{e.preventDefault();show(k);ok(k);return}}}});
+f.addEventListener('submit',function(e){{for(var k=0;k<steps.length;k++)if(!ok(k)){{e.preventDefault();show(k);ok(k);return}}
+try{{var t=f.querySelector('input[name=travaux]:checked');sessionStorage.setItem('jmc_devis',JSON.stringify({{nom:f.nom.value,ville:f.ville.value,travaux:t?t.parentNode.querySelector('b').textContent:''}}))}}catch(x){{}}}});
 try{{var q=new URLSearchParams(location.search).get('travaux');if(q){{var r=[].slice.call(f.querySelectorAll('input[name=travaux]')).filter(function(x){{return x.value.toLowerCase().indexOf(q.toLowerCase())>-1}})[0];if(r){{r.checked=true;show(1)}}}}}}catch(e){{}}
 if(!f.querySelector('.wz-step.active'))show(i);}})();
 </script>
@@ -3173,8 +3174,45 @@ def merci():
     html = head("Demande envoyée | JMC Couverture", "Votre demande de devis a bien été envoyée.", "/merci/",
                 [], robots="noindex,follow")
     html += header("/merci/")
-    html += page_hero([("/", "Accueil"), ("/merci/", "Merci")], "Merci", "Votre demande a bien été envoyée",
-                      "Nous vous recontactons très rapidement pour organiser la visite de votre toiture.")
+    sujet = "Photos de ma toiture – demande de devis"
+    html += f"""
+<section class="devis-immersive merci has-photo">{hero_bg()}<div class="wrap merci-wrap">
+  <div class="merci-card">
+    <svg class="merci-check" viewBox="0 0 52 52" width="76" height="76" aria-hidden="true"><circle cx="26" cy="26" r="24" fill="none"/><path fill="none" d="M15 27l7 7 15-16"/></svg>
+    <span class="eyebrow">Demande bien reçue</span>
+    <h1 id="merci-titre">Merci, votre demande est bien arrivée !</h1>
+    <p class="lead" id="merci-recap">Toute l'équipe JMC Couverture vous remercie de votre confiance.</p>
+    <h2>Et maintenant ?</h2>
+    <ol class="merci-steps">
+      <li><b>1</b><div><strong>Nous vous appelons</strong><span>Un membre de notre équipe vous recontacte rapidement, du lundi au samedi, pour parler de votre projet.</span></div></li>
+      <li><b>2</b><div><strong>Visite gratuite sur place</strong><span>Un couvreur vient voir votre toiture et fait un diagnostic honnête de ce qui doit être fait.</span></div></li>
+      <li><b>3</b><div><strong>Devis clair et détaillé</strong><span>Vous recevez un devis poste par poste, gratuit et sans engagement.</span></div></li>
+    </ol>
+    <div class="merci-tip">
+      <strong>Pour gagner du temps</strong>
+      <p>Envoyez-nous quelques photos de votre toiture (vue d'ensemble, zone concernée, combles si besoin) : nous préparerons la visite plus efficacement.</p>
+      <a class="btn btn-primary" id="merci-mail" href="mailto:{BIZ['email']}?subject={sujet.replace(' ', '%20')}">Envoyer mes photos par e-mail</a>
+    </div>
+    <p class="merci-urgent">Une question ou une demande urgente ? <a href="tel:{BIZ['phone_intl']}"><strong>{BIZ['phone']}</strong></a></p>
+  </div>
+</div></section>
+
+<section class="section-alt"><div class="wrap">
+  <div class="section-head center"><span class="eyebrow">En attendant notre appel</span><h2>Découvrez JMC Couverture</h2></div>
+  <div class="grid g3 merci-links">
+    <a class="card" href="/nos-references/"><h3>Nos réalisations</h3><p>Toitures en tuiles, ardoise et zinc, chantiers de particuliers, de copropriétés et de promoteurs en Île-de-France.</p><span class="more">Voir nos chantiers →</span></a>
+    <a class="card" href="{BIZ['reviews']}" target="_blank" rel="noopener"><h3>{BIZ['rating']}/5 sur Google</h3><p>Ce que nos {BIZ['reviews_count']} clients disent de nos équipes, de nos devis et de nos chantiers.</p><span class="more">Lire les avis →</span></a>
+    <a class="card" href="/notre-methode-sav-qualite/"><h3>Notre méthode</h3><p>Sécurité, propreté, suivi d'exécution et équipe SAV et qualité interne : comment se déroule votre chantier.</p><span class="more">Découvrir →</span></a>
+  </div>
+  <p class="center" style="margin-top:26px">{insta_link()}</p>
+</div></section>
+<script>
+(function(){{try{{var d=JSON.parse(sessionStorage.getItem('jmc_devis')||'null');if(!d)return;
+var pr=(d.nom||'').trim().split(/\s+/)[0];if(pr)document.getElementById('merci-titre').textContent='Merci '+pr+', votre demande est bien arrivée !';
+if(d.travaux||d.ville)document.getElementById('merci-recap').textContent='Votre projet : '+(d.travaux||'travaux de toiture')+(d.ville?' à '+d.ville:'')+'. Toute l’équipe JMC Couverture vous remercie de votre confiance.';
+var m=document.getElementById('merci-mail');m.href=m.href.split('?')[0]+'?subject='+encodeURIComponent('Photos de ma toiture – '+(d.nom||'')+(d.ville?' – '+d.ville:''));}}catch(e){{}}}})();
+</script>
+"""
     html += footer()
     write("/merci/", html)
 
