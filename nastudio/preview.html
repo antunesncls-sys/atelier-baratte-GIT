@@ -145,7 +145,6 @@ form{background:var(--card);border:1px solid var(--line);border-radius:12px;padd
 @media (max-width:560px){.two{grid-template-columns:1fr}}
 form .cta{align-self:flex-start}
 form .note{font-size:.84rem;color:var(--faint);margin:0}
-#form-ok{background:var(--ikb);color:#fff;border-radius:8px;padding:14px 16px;font-weight:600}
 
 /* ---------- footer ---------- */
 footer{position:relative;overflow:hidden;border-top:1px solid var(--line);background:#08090c;padding:64px max(20px, env(safe-area-inset-left, 0px)) calc(24px + env(safe-area-inset-bottom, 0px)) max(20px, env(safe-area-inset-right, 0px));color:var(--dim);font-size:.95rem}
@@ -256,6 +255,24 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
   .inner{gap:28px}
   .jump{margin-top:24px}
 }
+
+/* ---------- confirmation d'envoi ---------- */
+.sent{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:34px 30px;display:flex;flex-direction:column;align-items:flex-start;gap:14px;outline:none;animation:sentin .7s cubic-bezier(.16,1,.3,1)}
+@keyframes sentin{from{opacity:0;translate:0 18px}}
+.sent-ic{width:58px;height:58px;border-radius:50%;background:var(--ikb);display:grid;place-items:center;box-shadow:0 0 0 8px rgba(84,110,255,.14)}
+.sent-ic svg{width:28px;height:28px;fill:none;stroke:#fff;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24;animation:tick .6s .35s ease forwards}
+@keyframes tick{to{stroke-dashoffset:0}}
+.sent-k{margin:6px 0 0;font-size:11px;letter-spacing:.28em;text-transform:uppercase;font-weight:600;color:var(--ikb-l)}
+.sent-t{margin:0;font-family:"Archivo Black",sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(2rem,5vw,2.8rem);line-height:.95;color:var(--fg)}
+.sent-p{margin:0;color:var(--dim);max-width:44ch;line-height:1.65}
+.sent-p b{color:var(--fg)}
+.sent-steps{margin:6px 0 0;padding:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:10px;width:100%}
+.sent-steps li{counter-increment:s;display:flex;align-items:center;gap:12px;color:var(--fg);font-size:.95rem;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:rgba(255,255,255,.02)}
+.sent-steps li::before{content:counter(s);flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:.8rem;font-weight:700;color:var(--ikb-l);border:1.5px solid var(--ikb-l)}
+.sent-a{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:8px}
+.sent-l{color:var(--fg);font-weight:600;text-decoration:none;padding:10px 0}
+.sent-l:hover{color:var(--ikb-l)}
+@media (prefers-reduced-motion: reduce){.sent{animation:none}.sent-ic svg{animation:none;stroke-dashoffset:0}}
 </style>
 
 <script>document.body.classList.add('js')</script>
@@ -455,7 +472,9 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
           <span class="v">Île-de-France · on se déplace à l'atelier, au dépôt ou au bureau</span>
         </div>
       </div>
-      <form class="rv d2" name="devis" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <form class="rv d2" name="devis" method="POST" action="/merci" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="devis">
+        <input type="hidden" name="page" value="accueil">
         <p style="display:none"><label>Ne pas remplir : <input name="bot-field"></label></p>
         <div class="two">
           <div class="field"><label for="f-nom">Nom *</label><input id="f-nom" name="nom" required autocomplete="name"></div>
@@ -480,7 +499,6 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
         </div>
         <div class="field"><label for="f-msg">Votre situation, en quelques lignes *</label><textarea id="f-msg" name="message" rows="4" required></textarea></div>
         <button class="cta" type="submit">Envoyer ma demande</button>
-        <p id="form-ok" hidden>Merci ! Votre demande est bien partie — réponse sous un jour ouvré.</p>
         <p class="note">En envoyant ce formulaire, vous acceptez d'être recontacté au sujet de votre demande. Rien d'autre.</p>
       </form>
     </div>
@@ -612,12 +630,6 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
     update();
   }
 
-  var f = document.querySelector('form[name=devis]');
-  if (f && location.protocol !== 'https:') {
-    f.addEventListener('submit', function(e){
-      e.preventDefault();
-      document.getElementById('form-ok').hidden = false;
-    });
-  }
 })();
 </script>
+<script src="assets/form.js" defer></script>
