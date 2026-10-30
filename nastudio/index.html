@@ -96,6 +96,7 @@ section.ch{
 section.ch.auto{min-height:0;padding-top:90px;padding-bottom:90px}
 .ch::before{content:"";position:absolute;inset:-20%;background:radial-gradient(ellipse at var(--gx,70%) var(--gy,30%), var(--glow,#13204d) 0%, transparent 55%);opacity:.8;pointer-events:none}
 .inner{width:min(1180px,100%);margin-inline:auto;position:relative;display:flex;align-items:center;gap:60px}
+@media (min-width:901px){.inner.rev{flex-direction:row-reverse}}
 @media (max-width:900px){.inner{flex-direction:column;align-items:flex-start;gap:36px}}
 .col{display:block}
 
@@ -322,7 +323,7 @@ footer{border-top:1px solid var(--line);padding:46px max(20px, env(safe-area-ins
 </section>
 
 <section class="ch" id="chantier" style="--glow:#3a1413;--gx:25%;--gy:40%">
-  <div class="inner" style="flex-direction:row-reverse">
+  <div class="inner rev">
     <div class="col">
       <p class="eyebrow rv">Chapitre 03 · Équipes chantier</p>
       <h2 class="giant split"><span class="ln"><span class="lw" style="--l:0">Le chantier</span></span> <span class="ln"><span class="lw blue" style="--l:1">du jour.</span></span></h2>
