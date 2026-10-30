@@ -223,6 +223,39 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
   #hero .giant .blue{color:var(--ikb-l);background:none}
   .progress{display:none}
 }
+
+/* ---------- navigation rapide ---------- */
+.jump{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:30px;max-width:720px}
+.jump-k{width:100%;font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;color:var(--faint);margin-bottom:2px}
+.jump a{color:var(--fg);text-decoration:none;font-size:.88rem;font-weight:600;padding:9px 15px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid #2a2e3a;transition:background .25s ease, border-color .25s ease, translate .25s ease}
+.jump a::after{content:" ↓";color:var(--ikb-l)}
+.jump a:hover{background:rgba(84,110,255,.14);border-color:var(--ikb-l);translate:0 -2px}
+
+.pager{position:fixed;right:max(18px, env(safe-area-inset-right, 0px));top:50%;translate:0 -50%;z-index:45;display:flex;flex-direction:column;gap:6px}
+.pager a{display:flex;align-items:center;justify-content:flex-end;gap:10px;padding:5px 0;text-decoration:none}
+.pager a::after{content:"";width:8px;height:8px;border-radius:50%;background:#3a3e4a;transition:background .3s ease, scale .3s ease}
+.pager a span{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--dim);opacity:0;translate:6px 0;transition:opacity .25s ease, translate .25s ease;white-space:nowrap;background:rgba(11,12,15,.85);padding:4px 8px;border-radius:4px}
+.pager:hover a span,.pager a:focus-visible span{opacity:1;translate:0 0}
+.pager a.on::after{background:var(--ikb-l);scale:1.5}
+.pager a.on span{color:var(--fg)}
+@media (max-width:1100px){.pager{display:none}}
+
+.mbar{display:none}
+@media (max-width:760px){
+  .mbar{position:fixed;left:0;right:0;bottom:0;z-index:55;display:flex;gap:8px;padding:10px max(12px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px));background:rgba(11,12,15,.88);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--line);translate:0 110%;transition:translate .4s cubic-bezier(.16,1,.3,1)}
+  .show-bar .mbar{translate:0 0}
+  .mbar a{display:flex;align-items:center;justify-content:center;min-height:46px;border-radius:999px;text-decoration:none;font-weight:700;font-size:.95rem}
+  .mb-top{flex:0 0 46px;color:var(--fg);border:1px solid #3a3e49;font-size:1.1rem}
+  .mb-call{flex:1;color:var(--fg);border:1.5px solid #3a3e49}
+  .mb-devis{flex:1.4;background:var(--ikb);color:#fff}
+  footer{padding-bottom:calc(96px + env(safe-area-inset-bottom, 0px))}
+  section.ch:not(#hero){min-height:0;padding-top:88px;padding-bottom:64px}
+  section.ch.auto{padding-top:72px;padding-bottom:56px}
+  .actions{gap:10px;margin-top:26px}
+  .phone{width:min(220px,58vw);border-radius:20px}
+  .inner{gap:28px}
+  .jump{margin-top:24px}
+}
 </style>
 
 <script>document.body.classList.add('js')</script>
@@ -237,6 +270,23 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
   <a class="cta" href="#contact">Demander un devis</a>
 </header>
 
+<nav class="pager" aria-label="Sommaire de la page">
+  <a href="#hero"><span>Accueil</span></a>
+  <a href="#real"><span>Réalisations</span></a>
+  <a href="#devis"><span>Devis IA</span></a>
+  <a href="#chantier"><span>Chantier</span></a>
+  <a href="#boutique"><span>Boutique</span></a>
+  <a href="#methode"><span>Méthode</span></a>
+  <a href="#questions"><span>Questions</span></a>
+  <a href="#contact"><span>Contact</span></a>
+</nav>
+
+<div class="mbar" aria-label="Actions rapides">
+  <a class="mb-top" href="#hero" aria-label="Revenir en haut">↑</a>
+  <a class="mb-call" href="tel:+33761705359">Appeler</a>
+  <a class="mb-devis" href="#contact">Demander un devis</a>
+</div>
+
 <main>
 
 <section class="ch" id="hero" style="--glow:#101b45;--gx:50%;--gy:22%">
@@ -249,6 +299,14 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
         <a class="cta pulse" href="#contact">Audit gratuit sur place</a>
         <a class="ghost" href="#real">Voir les réalisations</a>
       </div>
+      <nav class="jump rv d2" aria-label="Aller directement à">
+        <span class="jump-k">Aller directement à</span>
+        <a href="#real">Nos sites</a>
+        <a href="#devis">Nos applications</a>
+        <a href="#methode">Comment on travaille</a>
+        <a href="#questions">Questions</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
   </div>
   <div class="scrolldown">Scroll</div>
@@ -283,7 +341,7 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
         </a>
       </div>
       <p class="works-more rv">Ici, cinq exemples récents. <b>Plus de 45 autres sites livrés</b> en Île-de-France : artisans, commerces, BTP, services.</p>
-      <div class="actions rv"><a class="ghost" href="sites.html">Tout sur les sites web →</a></div>
+      <div class="actions rv"><a class="cta" href="#contact">Je veux un site comme ça</a><a class="ghost" href="sites.html">Tout sur les sites web →</a></div>
     </div>
   </div>
 </section>
@@ -294,6 +352,7 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
       <p class="eyebrow rv">Chapitre 02 · Devis &amp; factures</p>
       <h2 class="giant split"><span class="ln"><span class="lw" style="--l:0">Devis</span></span> <span class="ln"><span class="lw blue" style="--l:1">IA.</span></span></h2>
       <p class="lede rv d2">Décrivez le chantier, <b>l'application rédige le devis</b>. Trois touches, le PDF part par email — le jour de la visite, pas le dimanche soir. Factures et tableau de bord dans la poche.</p>
+      <div class="actions rv d2"><a class="cta" href="#contact">Je veux cet outil</a><a class="ghost" href="applications.html">Les 9 applications →</a></div>
     </div>
     <div class="float" data-par style="--fd:0s"><div class="float-in"><img class="phone rv d2" style="--tilt:2.5deg" src="assets/app-devis-ia.jpg" width="1309" height="2576" loading="lazy" alt="Application devis et factures avec Devis IA"></div></div>
   </div>
@@ -305,6 +364,7 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
       <p class="eyebrow rv">Chapitre 03 · Équipes chantier</p>
       <h2 class="giant split"><span class="ln"><span class="lw" style="--l:0">Le chantier</span></span> <span class="ln"><span class="lw blue" style="--l:1">du jour.</span></span></h2>
       <p class="lede rv d2">Chaque chef de chantier voit son planning de la semaine, <b>demande matériel et échafaudage depuis le chantier</b>, envoie ses bons de fabrication à l'atelier. En production chez JMC Couverture.</p>
+      <div class="actions rv d2"><a class="cta" href="#contact">Parlons de vos équipes</a><a class="ghost" href="applications.html">Les 9 applications →</a></div>
     </div>
     <div class="float" data-par style="--fd:-2.3s"><div class="float-in"><img class="phone rv d2" style="--tilt:-2.5deg" src="assets/app-jmc-chantier.jpg" width="1320" height="2552" loading="lazy" alt="Application équipes chantier JMC Couverture"></div></div>
   </div>
@@ -316,7 +376,7 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
       <p class="eyebrow rv">Chapitre 04 · Caisse &amp; réparations</p>
       <h2 class="giant split"><span class="ln"><span class="lw" style="--l:0">La boutique,</span></span> <span class="ln"><span class="lw blue" style="--l:1">en main.</span></span></h2>
       <p class="lede rv d2">Dépôts de réparation enregistrés en quelques secondes, <b>objectif du jour et chiffre du mois en temps réel</b>. En production à la bijouterie Atelier Baratte, Saint-Maur-des-Fossés.</p>
-      <div class="actions rv d2"><a class="ghost" href="applications.html">Les 9 applications →</a></div>
+      <div class="actions rv d2"><a class="cta" href="#contact">Un outil pour ma boutique</a><a class="ghost" href="applications.html">Les 9 applications →</a></div>
     </div>
     <div class="float" data-par style="--fd:-4.6s"><div class="float-in"><img class="phone rv d2" style="--tilt:2deg" src="assets/app-atelier-baratte.png" width="295" height="640" loading="lazy" alt="Application caisse et réparations Atelier Baratte"></div></div>
   </div>
@@ -334,6 +394,7 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
         <div class="step rv d1"><h3>Mise en ligne</h3><p>Domaine, hébergement, référencement local et fiche Google : tout est installé et vérifié ensemble.</p></div>
         <div class="step rv d2"><h3>Transfert &amp; suivi</h3><p>Accès et documentation remis : vous êtes autonome, avec un interlocuteur direct — pas un ticket.</p></div>
       </div>
+      <div class="actions rv"><a class="cta" href="#contact">Réserver mon audit gratuit</a><a class="ghost" href="tel:+33761705359">Appeler le 07&nbsp;61&nbsp;70&nbsp;53&nbsp;59</a></div>
     </div>
   </div>
 </section>
@@ -373,6 +434,7 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
           <p>De plus en plus de clients trouvent leurs prestataires en interrogeant ChatGPT, Perplexity ou les réponses IA de Google. Ces moteurs lisent les sites comme les humains : structure claire, données vérifiables, entreprise identifiable. Chaque site Atelier NA est construit pour être compris et cité par ces moteurs.</p>
         </details>
       </div>
+      <div class="actions rv"><a class="cta" href="#contact">Poser ma question</a><a class="ghost" href="tel:+33761705359">Appeler le 07&nbsp;61&nbsp;70&nbsp;53&nbsp;59</a></div>
     </div>
   </div>
 </section>
@@ -503,6 +565,23 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
   };
   addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
+  var links = document.querySelectorAll('.pager a');
+  var secs = Array.prototype.map.call(links, function(a){ return document.querySelector(a.getAttribute('href')); });
+  var pio = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if (!e.isIntersecting) return;
+      var i = secs.indexOf(e.target);
+      links.forEach(function(a, j){ a.classList.toggle('on', i === j); });
+    });
+  }, { rootMargin: '-45% 0px -45% 0px' });
+  secs.forEach(function(sct){ if (sct) pio.observe(sct); });
+
+  var hero = document.getElementById('hero'), contact = document.getElementById('contact');
+  var heroOut = false, contactIn = false;
+  var syncBar = function(){ root.classList.toggle('show-bar', heroOut && !contactIn); };
+  new IntersectionObserver(function(es){ heroOut = !es[0].isIntersecting; syncBar(); }, { threshold: 0.15 }).observe(hero);
+  new IntersectionObserver(function(es){ contactIn = es[0].isIntersecting; syncBar(); }, { threshold: 0.2 }).observe(contact);
 
   if (!reduce && matchMedia('(hover: hover) and (pointer: fine)').matches) {
     document.querySelectorAll('.float').forEach(function(f){
