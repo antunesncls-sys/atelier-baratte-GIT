@@ -43,7 +43,7 @@ BIZ = {
     # Associations et clubs soutenus localement
     "partenaires": [("CS Courtry Académie", "club de football de Courtry", "https://www.facebook.com/p/CS-Courtry-Acad%C3%A9mie-100083151285677/")],
     "rating": "4,9",
-    "reviews_count": 29,
+    "reviews_count": 32,
     "lat": 48.91026,
     "lng": 2.60351,
     # Lien qui ouvre directement les avis Google
