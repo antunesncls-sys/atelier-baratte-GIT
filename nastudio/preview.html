@@ -83,10 +83,23 @@ h1,h2,h3{font-family:"Archivo Black",sans-serif;font-weight:400;line-height:.95;
 @media (prefers-reduced-motion: reduce){.js .rv{opacity:1!important;transform:none!important;transition:none}.float-in,.float::after{animation:none}.float{transform:none!important}}
 
 /* ---------- bande portfolio ---------- */
-.strip{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding:40px 4px 20px;margin-top:8px;width:100%;scrollbar-width:thin}
-.strip::-webkit-scrollbar{height:6px}
-.strip::-webkit-scrollbar-thumb{background:#2a2d38;border-radius:3px}
-.site-card{flex:0 0 min(400px,84vw);scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;text-decoration:none;color:var(--fg);display:block}
+.works-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:22px;margin-top:44px;width:100%}
+.works-grid .site-card{grid-column:span 2}
+.works-grid .site-card:nth-child(-n+2){grid-column:span 3}
+.site-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;text-decoration:none;color:var(--fg);display:flex;flex-direction:column;min-width:0}
+.site-card h3::after{content:" ↗";color:var(--ikb-l);font-family:"Public Sans",sans-serif;font-weight:700}
+.works-more{margin:22px 0 0;color:var(--dim);font-size:.95rem}
+.works-more b{color:var(--fg)}
+@media (max-width:900px){
+  .works-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:34px}
+  .works-grid .site-card,.works-grid .site-card:nth-child(-n+2){grid-column:span 1}
+  .works-grid .site-card:first-child{grid-column:span 2}
+}
+@media (max-width:560px){
+  .works-grid .site-card:not(:first-child) .b{padding:11px 12px 13px}
+  .works-grid .site-card:not(:first-child) .m span:last-child{display:none}
+  .works-grid .site-card:not(:first-child) h3{font-size:.86rem;line-height:1.2}
+}
 .site-card img{width:100%;aspect-ratio:1280/860;height:auto;object-fit:cover;object-position:top;display:block}
 .site-card .b{padding:16px 18px}
 .site-card .m{display:flex;justify-content:space-between;gap:10px;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);font-weight:600}
@@ -135,12 +148,26 @@ form .note{font-size:.84rem;color:var(--faint);margin:0}
 #form-ok{background:var(--ikb);color:#fff;border-radius:8px;padding:14px 16px;font-weight:600}
 
 /* ---------- footer ---------- */
-footer{border-top:1px solid var(--line);padding:46px max(20px, env(safe-area-inset-left, 0px)) calc(26px + env(safe-area-inset-bottom, 0px)) max(20px, env(safe-area-inset-right, 0px));color:var(--dim);font-size:.95rem}
-.fwrap{width:min(1180px,100%);margin-inline:auto}
-.fbot{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;color:var(--faint);font-size:.85rem;align-items:center}
+footer{position:relative;overflow:hidden;border-top:1px solid var(--line);background:#08090c;padding:64px max(20px, env(safe-area-inset-left, 0px)) calc(24px + env(safe-area-inset-bottom, 0px)) max(20px, env(safe-area-inset-right, 0px));color:var(--dim);font-size:.95rem}
+footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:80%;translate:-50% 0;background:radial-gradient(ellipse at center,rgba(0,47,167,.22),transparent 65%);pointer-events:none}
+.fwrap{width:min(1180px,100%);margin-inline:auto;position:relative}
+.fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.3fr;gap:40px 32px}
+.fbrand{display:flex;flex-direction:column;align-items:flex-start;gap:12px;min-width:0}
+.fbase{margin:0;font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;color:var(--faint)}
+.fdevise{margin:0 0 6px;color:var(--dim);max-width:34ch;line-height:1.6}
+.fcol{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:0}
+.fh{margin:0 0 8px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;color:var(--ikb-l)}
+.fcol a{color:var(--fg);text-decoration:none;padding:5px 0;transition:color .25s ease, translate .25s ease}
+.fcol a:hover{color:var(--ikb-l);translate:3px 0}
+.fcol span{color:var(--faint);font-size:.88rem;margin-top:6px;max-width:28ch}
+.fcol .fbig{font-family:"Archivo Black",sans-serif;font-size:1.35rem;letter-spacing:.01em}
+.fgiant{margin:56px 0 0;font-family:"Archivo Black",sans-serif;text-transform:uppercase;line-height:.8;white-space:nowrap;font-size:clamp(2.4rem,11.6vw,9.6rem);letter-spacing:-.01em;color:transparent;-webkit-text-stroke:1px #262a35;user-select:none}
+.fgiant span{-webkit-text-stroke-color:rgba(84,110,255,.55)}
+.fbot{display:flex;flex-wrap:wrap;gap:10px 32px;justify-content:space-between;align-items:center;margin-top:22px;padding-top:20px;border-top:1px solid var(--line);color:var(--faint);font-size:.85rem}
 .fbot a{color:var(--faint);text-decoration:none;padding:6px 0;display:inline-block}
-.fbot a:hover{color:var(--dim)}
-.fdevise{margin:0 0 26px;color:var(--dim)}
+.fbot a:hover{color:var(--fg)}
+@media (max-width:980px){.fgrid{grid-template-columns:1fr 1fr}.fbrand{grid-column:span 2}}
+@media (max-width:560px){.fcontact{grid-column:span 2}}
 
 /* ---------- vie : animations ---------- */
 .progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:70;background:linear-gradient(90deg,var(--ikb),var(--ikb-l));transform-origin:0 50%;transform:scaleX(var(--p,0));pointer-events:none}
@@ -233,7 +260,7 @@ footer{border-top:1px solid var(--line);padding:46px max(20px, env(safe-area-ins
       <p class="eyebrow rv">Chapitre 01 · Réalisations</p>
       <h2 class="giant split"><span class="ln"><span class="lw" style="--l:0"><span data-count="50">50</span>+ sites</span></span> <span class="ln"><span class="lw blue" style="--l:1">livrés.</span></span></h2>
       <p class="lede rv d2">Bijouterie, couverture, permis de construire, BTP, rénovation : cinq métiers, cinq identités — aucune ne ressemble aux autres. <b>Cliquez, ils sont en ligne.</b></p>
-      <div class="strip">
+      <div class="works-grid">
         <a class="site-card rv" style="--i:0" href="https://www.atelierbaratte.fr" target="_blank" rel="noopener">
           <div class="shot"><img src="assets/shot-atelierbaratte.jpg" width="1280" height="860" loading="lazy" alt="Site de la bijouterie Atelier Baratte à Saint-Maur-des-Fossés"></div>
           <div class="b"><div class="m"><span>Bijouterie</span><span>Saint-Maur (94)</span></div><h3>Atelier Baratte · 5,0/5 Google</h3></div>
@@ -255,6 +282,7 @@ footer{border-top:1px solid var(--line);padding:46px max(20px, env(safe-area-ins
           <div class="b"><div class="m"><span>Services BTP</span><span>Courtry (77)</span></div><h3>OF Entretiens</h3></div>
         </a>
       </div>
+      <p class="works-more rv">Ici, cinq exemples récents. <b>Plus de 45 autres sites livrés</b> en Île-de-France : artisans, commerces, BTP, services.</p>
       <div class="actions rv"><a class="ghost" href="sites.html">Tout sur les sites web →</a></div>
     </div>
   </div>
@@ -401,10 +429,39 @@ footer{border-top:1px solid var(--line);padding:46px max(20px, env(safe-area-ins
 
 <footer>
   <div class="fwrap">
-    <p class="fdevise">Un service convivial, auquel vous pouvez accorder votre confiance.</p>
+    <div class="fgrid">
+      <div class="fbrand">
+        <a class="brand" href="./"><img src="assets/logo-na-nu-blanc.png" alt=""><span class="bname">Atel<span class="ia">i</span>er&nbsp;N<span class="ia">A</span></span></a>
+        <p class="fbase">Sites web &amp; applications</p>
+        <p class="fdevise">Un service convivial, auquel vous pouvez accorder votre confiance.</p>
+        <a class="cta" href="#contact">Demander un devis</a>
+      </div>
+      <nav class="fcol" aria-label="Pages du site">
+        <p class="fh">Pages</p>
+        <a href="./">Accueil</a>
+        <a href="sites.html">Sites web</a>
+        <a href="applications.html">Applications</a>
+        <a href="creation-site-internet-saint-maur-des-fosses.html">Saint-Maur-des-Fossés</a>
+      </nav>
+      <nav class="fcol" aria-label="Réalisations">
+        <p class="fh">Réalisations</p>
+        <a href="https://www.atelierbaratte.fr" target="_blank" rel="noopener">Atelier Baratte</a>
+        <a href="https://jmccouverture.com" target="_blank" rel="noopener">JMC Couverture</a>
+        <a href="https://ajr-concept.netlify.app" target="_blank" rel="noopener">AJR Concept</a>
+        <a href="https://www.construisez.fr" target="_blank" rel="noopener">Construisez</a>
+        <a href="https://ofentretiens.netlify.app" target="_blank" rel="noopener">OF Entretiens</a>
+      </nav>
+      <div class="fcol fcontact">
+        <p class="fh">Contact</p>
+        <a class="fbig" href="tel:+33761705359">07&nbsp;61&nbsp;70&nbsp;53&nbsp;59</a>
+        <a href="mailto:atelier.na@outlook.fr">atelier.na@outlook.fr</a>
+        <span>On se déplace chez vous, partout en Île-de-France</span>
+      </div>
+    </div>
+    <p class="fgiant" aria-hidden="true">Atel<span>i</span>er N<span>A</span></p>
     <div class="fbot">
-      <span>© 2026 Atelier NA · Île-de-France · <a href="#">Mentions légales</a></span>
-      <span><a href="sites.html">Sites web</a> · <a href="applications.html">Applications</a> · <a href="creation-site-internet-saint-maur-des-fosses.html">Saint-Maur-des-Fossés</a></span>
+      <span>© 2026 Atelier NA · <a href="#">Mentions légales</a></span>
+      <a href="#hero">Retour en haut ↑</a>
     </div>
   </div>
 </footer>
