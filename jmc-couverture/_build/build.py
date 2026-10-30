@@ -401,7 +401,7 @@ def head(title, desc, path, lds, robots="index,follow", og_image="/assets/og-jmc
         PAGES_META.append((path, title, desc))
         lds = list(lds) + [{"@context": "https://schema.org", "@type": "WebPage", "@id": canonical + "#page",
                             "url": canonical, "name": title, "description": desc, "inLanguage": "fr-FR",
-                            "dateModified": TODAY, "isPartOf": {"@id": SITE + "/#site"},
+                            "dateModified": "__DATEMOD__", "isPartOf": {"@id": SITE + "/#site"},
                             "about": {"@id": SITE + "/#entreprise"}}]
     ld = "\n".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in lds)
     return f"""<!doctype html>
@@ -592,7 +592,23 @@ els.forEach(function(e){{e.classList.add('rv');io.observe(e)}});
 """
 
 
+DATES_FILE = ROOT / "_build" / "dates.json"
+DATES = json.loads(DATES_FILE.read_text(encoding="utf-8")) if DATES_FILE.exists() else {}
+
+
+def _norm(html):
+    """Contenu de la page sans ce qui change à chaque génération (dates, version du CSS, année)."""
+    html = re.sub(r'"dateModified": "[^"]*"', "", html)
+    html = re.sub(r"style\.css\?v=\w+", "style.css", html)
+    return re.sub(r"© \d{4}", "©", html)
+
+
 def write(path, html):
+    h = hashlib.sha1(_norm(html).encode("utf-8")).hexdigest()[:16]
+    d = DATES.get(path)
+    if not d or d["h"] != h:
+        d = DATES[path] = {"h": h, "date": TODAY}
+    html = html.replace("__DATEMOD__", d["date"])
     out = ROOT / path.strip("/") / "index.html" if path.endswith("/") else ROOT / path.lstrip("/")
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(html, encoding="utf-8")
@@ -773,7 +789,7 @@ def home():
     ]
     lds = [org_ld(), website_ld(), faq_ld(faq), video_ld()]
     html = head("Couvreur zingueur en Seine-et-Marne et Île-de-France | JMC Couverture",
-                "Couvreur zingueur à Courtry (77) depuis 1985 : rénovation de toiture, couverture zinc, tuiles et ardoise, isolation, zinguerie en Île-de-France. QUALIBAT & RGE. ☎ 01 64 21 38 37.",
+                "Couvreur zingueur à Courtry (77) depuis 1985 : rénovation de toiture, zinc, tuiles, ardoise, isolation et zinguerie en Île-de-France. QUALIBAT & RGE.",
                 "/", lds)
     html += header("/")
     _PAGE["bref"] = ("JMC Couverture (Société JMC) est une entreprise de couverture, charpente et zinguerie fondée en 1985 à Courtry (77). "
@@ -905,7 +921,7 @@ def couverture():
     desc = "Réfection, rénovation et réparation de toiture en tuiles, ardoise, zinc, bac acier et toit-terrasse."
     lds = [org_ld(), crumbs_ld(trail), service_ld("Couverture et rénovation de toiture", "/couverture/", desc), faq_ld(faq)]
     html = head("Couverture de toiture : tuile, ardoise, zinc, bac acier | Couvreur JMC",
-                "Couverture de toiture en tuile, ardoise, zinc ou bac acier, et toiture terrasse EPDM, en Île-de-France. Entreprise QUALIBAT & RGE, garantie décennale. Devis gratuit.",
+                "Couverture de toiture en tuile, ardoise, zinc ou bac acier et toiture terrasse EPDM en Île-de-France. QUALIBAT & RGE, garantie décennale. Devis gratuit.",
                 "/couverture/", lds)
     html += header("/couverture/")
     html += page_hero(trail, "Couverture", "Couverture de toiture : tuiles, ardoise, zinc et bac acier",
@@ -964,7 +980,7 @@ def charpente():
     desc = "Pose de charpente neuve traditionnelle ou industrielle, renfort, réparation et modification de charpente."
     lds = [org_ld(), crumbs_ld(trail), service_ld("Charpente", "/charpente/", desc), faq_ld(faq)]
     html = head("Charpentier à Courtry (77) : pose et renfort de charpente | JMC",
-                "Charpentier couvreur en Seine-et-Marne : charpente neuve traditionnelle ou industrielle, renfort, traitement, modification pour combles et extension. Devis gratuit.",
+                "Charpentier couvreur en Seine-et-Marne : charpente traditionnelle ou industrielle, renfort, traitement, combles et extension. Devis gratuit.",
                 "/charpente/", lds)
     html += header("/charpente/")
     html += page_hero(trail, "Charpente", "Charpentier en Seine-et-Marne : pose, renfort et réparation de charpente",
@@ -1147,7 +1163,7 @@ def nettoyage():
     desc = "Nettoyage de toiture, démoussage, traitement anti-mousse et hydrofuge, nettoyage des gouttières et entretien régulier par des couvreurs professionnels."
     lds = [org_ld(), crumbs_ld(trail), service_ld("Nettoyage, démoussage et entretien de toiture", "/nettoyage-toiture/", desc), faq_ld(faq)]
     html = head("Nettoyage et démoussage de toiture en Seine-et-Marne (77) | JMC",
-                "Nettoyage de toiture, démoussage, traitement hydrofuge et entretien régulier en Seine-et-Marne et Île-de-France, par de vrais couvreurs depuis 1985. Devis gratuit.",
+                "Nettoyage de toiture, démoussage, traitement hydrofuge et entretien en Seine-et-Marne et Île-de-France, par des couvreurs depuis 1985. Devis gratuit.",
                 "/nettoyage-toiture/", lds)
     html += header("/nettoyage-toiture/")
     html += page_hero(trail, "Nettoyage et entretien", "Nettoyage et démoussage de toiture par des couvreurs",
@@ -1214,7 +1230,7 @@ def maison_neuve():
     ]
     desc = "Charpente, couverture et zinguerie de maisons neuves pour les particuliers qui font construire, avec le savoir-faire acquis sur les programmes des promoteurs immobiliers."
     lds = [org_ld(), crumbs_ld(trail), service_ld("Toiture de maison neuve", "/toiture-maison-neuve/", desc), faq_ld(faq)]
-    html = head("Toiture de maison neuve en Île-de-France : charpente et couverture | JMC",
+    html = head("Toiture de maison neuve : charpente et couverture | JMC",
                 "Vous faites construire ? JMC, couvreur des promoteurs depuis 1985, réalise la charpente, la couverture et la zinguerie de votre maison neuve. Devis gratuit.",
                 "/toiture-maison-neuve/", lds)
     html += header("/toiture-maison-neuve/")
@@ -1534,8 +1550,11 @@ def ville(v):
            "areaServed": {"@type": "City", "name": name,
                           "containedInPlace": {"@type": "AdministrativeArea", "name": v["dept"]}}}
     lds = [org_ld(), crumbs_ld(trail), svc, faq_ld(faq)]
-    html = head(f"Couvreur {name} ({v['num']}) : rénovation de toiture, isolation | JMC",
-                f"Couvreur zingueur à {name} depuis 1985 : rénovation de toiture, isolation RGE, toiture zinc, maison neuve, nettoyage. QUALIBAT. Devis gratuit ☎ {BIZ['phone']}.",
+    title = f"Couvreur {name} ({v['num']}) : rénovation de toiture, isolation | JMC"
+    if len(title) > 65:
+        title = title.replace(", isolation", "")
+    html = head(title,
+                f"Couvreur zingueur à {name} depuis 1985 : rénovation de toiture, isolation RGE, zinc, nettoyage. Devis gratuit ☎ {BIZ['phone']}.",
                 url, lds)
     html += header(url)
     dk = round(_dist("Courtry", name))
@@ -1641,6 +1660,8 @@ def dept_page(d):
     lds = [org_ld(), crumbs_ld(trail), svc, faq_ld(faq)]
     title = (f"Couvreur {d['num']} – {d['name']} : rénovation de toiture, isolation | JMC" if d["num"] != "75"
              else "Couvreur zingueur Paris : toiture zinc, ardoise, copropriété | JMC")
+    if len(title) > 65:
+        title = title.replace(", isolation", "")
     html = head(title,
                 f"Couvreur {d['art']} {d['name']} depuis 1985 : rénovation, isolation RGE, zinc, VELUX, copropriétés. Noté 4,9/5 sur Google. Devis gratuit ☎ {BIZ['phone']}.",
                 url, lds)
@@ -2092,7 +2113,7 @@ def copropriete():
     svc = service_ld("Couverture et isolation pour copropriétés", "/couvreur-copropriete-syndic/", desc)
     svc["audience"] = {"@type": "BusinessAudience", "audienceType": "Syndics de copropriété et conseils syndicaux"}
     lds = [org_ld(), crumbs_ld(trail), svc, faq_ld(faq)]
-    html = head("Couvreur copropriété et syndic en Île-de-France : toiture, isolation | JMC",
+    html = head("Couvreur copropriété et syndic en Île-de-France | JMC",
                 "Couvreur pour syndics et copropriétés : réfection et réparation de toiture, isolation des combles RGE, VELUX, lucarnes. Devis pour l'assemblée générale.",
                 "/couvreur-copropriete-syndic/", lds)
     html += header("/couvreur-copropriete-syndic/")
@@ -2154,7 +2175,7 @@ def fenetres():
     desc = "Pose, remplacement et création de fenêtres de toit VELUX, restauration et création de lucarnes, habillage zinc, pour particuliers et copropriétés."
     lds = [org_ld(), crumbs_ld(trail), service_ld("Fenêtres de toit et lucarnes", "/fenetre-de-toit-velux-lucarnes/", desc), faq_ld(faq)]
     html = head("Pose et remplacement de VELUX, fenêtre de toit et lucarne | JMC",
-                "Remplacement et pose de fenêtres de toit VELUX, création et rénovation de lucarnes en zinc ou ardoise en Île-de-France. Particuliers et copropriétés. Devis gratuit.",
+                "Remplacement et pose de fenêtres de toit VELUX, création et rénovation de lucarnes en zinc ou ardoise en Île-de-France. Devis gratuit.",
                 "/fenetre-de-toit-velux-lucarnes/", lds)
     html += header("/fenetre-de-toit-velux-lucarnes/")
     html += page_hero(trail, "Fenêtres de toit · Lucarnes", "Pose et remplacement de VELUX, fenêtres de toit et lucarnes",
@@ -2399,7 +2420,7 @@ def chien_assis():
     <p>Joues fissurées, habillage zinc percé, fronton abîmé : nous restaurons aussi les lucarnes existantes, à l'identique, notamment sur les maisons bourgeoises, en meulière et les immeubles parisiens. Découvrez aussi nos <a href="/fenetre-de-toit-velux-lucarnes/">fenêtres de toit VELUX</a>.</p>"""
     _guide("/chien-assis-lucarne/", "Chien-assis et lucarnes",
            "Chien-assis et lucarne : création, types, prix | Couvreur JMC",
-           "Création de chien-assis et de lucarnes (jacobine, capucine, rampante) en zinc ou ardoise, en Île-de-France. Démarches, étapes et devis gratuit par un couvreur-charpentier.",
+           "Création de chien-assis et de lucarnes (jacobine, capucine, rampante) en zinc ou ardoise en Île-de-France : démarches, étapes, devis gratuit.",
            "Chien-assis · Lucarnes", "Chien-assis et lucarnes : création et rénovation",
            "Jacobine, capucine, rampante ou chien-assis : nous créons et restaurons vos lucarnes, de la charpente à l'habillage en zinc ou en ardoise, en Île-de-France.",
            body, faq, "Création de chien-assis et de lucarnes",
@@ -2551,7 +2572,7 @@ def terrasse():
     <p>Maisons, extensions, immeubles en <a href="/couvreur-copropriete-syndic/">copropriété</a> ou programmes neufs : nous intervenons en direct ou aux côtés de votre maître d'œuvre ou de votre architecte, avec la même rigueur.</p>"""
     _guide("/etancheite-toiture-terrasse/", "Étanchéité toiture terrasse",
            "Étanchéité de toiture terrasse : EPDM, bitume, réfection | JMC",
-           "Réfection et création d'étanchéité de toiture terrasse (EPDM, bitume), isolation, relevés et reprise des descentes d'eaux pluviales en Île-de-France. Devis gratuit.",
+           "Étanchéité de toiture terrasse (EPDM, bitume) : réfection, création, isolation, relevés et descentes d'eaux pluviales en Île-de-France. Devis gratuit.",
            "Étanchéité · Toit-terrasse", "Étanchéité de toiture terrasse et descentes d'eaux pluviales",
            "Membrane EPDM ou étanchéité bitumineuse, isolation, relevés et évacuations : nous refaisons l'étanchéité de vos toits plats et reprenons vos descentes d'eaux pluviales.",
            body, faq, "Étanchéité de toiture terrasse",
@@ -2588,7 +2609,7 @@ def photovoltaique():
     <p>Voir aussi : <a href="/renovation-toiture/">rénovation de toiture</a>, <a href="/charpente/">charpente</a>, <a href="/isolation-toiture/">isolation</a>.</p>"""
     _guide("/toiture-avant-panneaux-photovoltaiques/", "Toiture avant panneaux photovoltaïques",
            "Rénover sa toiture avant des panneaux photovoltaïques | JMC",
-           "Diagnostic, renfort de charpente, réfection de couverture et isolation avant l'installation de panneaux solaires photovoltaïques, en Île-de-France. Devis gratuit.",
+           "Diagnostic, renfort de charpente, réfection de couverture et isolation avant la pose de panneaux photovoltaïques, en Île-de-France. Devis gratuit.",
            "Photovoltaïque", "Rénover sa toiture avant l'installation de panneaux photovoltaïques",
            "Avant de poser des panneaux pour 25 à 30 ans, assurez-vous que votre toiture tiendra aussi longtemps : diagnostic, charpente, couverture et isolation par un couvreur certifié.",
            body, faq, "Travaux de couverture avant pose de panneaux photovoltaïques",
@@ -2631,7 +2652,7 @@ def combles_perdus():
     <p>Combles aménagés ou à aménager ? Voir l'<a href="/isolation-rampants/">isolation des rampants</a>. Toutes nos solutions : <a href="/isolation-toiture/">isolation de toiture</a>. En immeuble, nous intervenons aussi pour les <a href="/couvreur-copropriete-syndic/">copropriétés</a>.</p>"""
     _guide("/isolation-combles-perdus/", "Isolation des combles perdus",
            "Isolation des combles perdus par soufflage, couvreur RGE 77 | JMC",
-           "Isolation des combles perdus par soufflage ou déroulage (laine minérale, ouate de cellulose) en Île-de-France, par un couvreur RGE. Aides possibles, devis gratuit.",
+           "Isolation des combles perdus par soufflage ou déroulage (laine minérale, ouate de cellulose) par un couvreur RGE en Île-de-France. Devis gratuit.",
            "Isolation · Combles perdus", "Isolation des combles perdus par soufflage",
            "Une journée de travaux pour un gain de confort immédiat : nous isolons vos combles perdus par soufflage ou déroulage, avec le regard d'un couvreur sur votre toiture.",
            body, faq, "Isolation des combles perdus",
@@ -2794,7 +2815,7 @@ def auvents():
     <p>Auvent de porte d'entrée, marquise de style pour une maison ancienne ou en meulière, abri de porte de service ou de garage : chaque auvent est fabriqué sur mesure. Il complète idéalement une <a href="/renovation-toiture/">rénovation de toiture</a> ou des <a href="/debord-de-toit-sous-face-finitions/">finitions de façade et de débords de toit</a>.</p>"""
     _guide("/auvent-marquise-sur-mesure/", "Auvents et marquises sur mesure",
            "Auvent et marquise sur mesure en serrurerie, porte d'entrée | JMC",
-           "Auvents et marquises de porte d'entrée sur mesure : structure en serrurerie, couverture et étanchéité par des couvreurs-zingueurs en Île-de-France. Devis gratuit.",
+           "Auvents et marquises de porte d'entrée sur mesure : serrurerie, couverture et étanchéité par des couvreurs-zingueurs en Île-de-France. Devis gratuit.",
            "Serrurerie · Auvents", "Auvent et marquise sur mesure pour votre porte d'entrée",
            "Structure en serrurerie sur mesure, couverture et étanchéité réalisées par nos couvreurs-zingueurs : un auvent qui protège et embellit votre entrée.",
            body, faq, "Auvents et marquises sur mesure",
@@ -2973,7 +2994,7 @@ def zones():
         f'<div class="card"><h3>{g}</h3><ul class="cities" style="columns:2 140px">'
         + "".join(f"<li>{c}</li>" for c in cs) + "</ul></div>" for g, cs in groups)
     html = head("Couvreur en Île-de-France : 77, 91, 93, 94, 95, 92 et Paris | JMC",
-                "Couvreur en Île-de-France : Saint-Maur, Nogent, Le Perreux, Neuilly, Saint-Cloud, Fontainebleau, Chelles, Argenteuil, Yerres, Paris et les départements 77, 91, 93, 94, 95, 92.",
+                "Couvreur en Île-de-France depuis Courtry : Chelles, Meaux, Montfermeil, Saint-Maur, Fontainebleau, Argenteuil, Paris et les départements 77, 91, 93, 94, 95, 92.",
                 "/zones-intervention/", lds)
     html += header("/zones-intervention/")
     html += page_hero(trail, "Zones d'intervention", "Couvreur en Île-de-France : nos zones d'intervention",
@@ -3201,7 +3222,7 @@ SITEMAP = [("/", "1.0"), ("/couverture/", "0.9"), ("/charpente/", "0.9"), ("/zin
 def seo_files():
     SITEMAP.extend((f"/{d['slug']}/", "0.9") for d in DEPTS_PAGES)
     SITEMAP.extend((f"/{v['slug']}/", "0.85") for v in VILLES)
-    urls = "\n".join(f"  <url><loc>{SITE}{u}</loc><lastmod>{TODAY}</lastmod><priority>{p}</priority></url>"
+    urls = "\n".join(f"  <url><loc>{SITE}{u}</loc><lastmod>{DATES.get(u, {}).get('date', TODAY)}</lastmod><priority>{p}</priority></url>"
                      for u, p in SITEMAP)
     (ROOT / "sitemap.xml").write_text(
         f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}\n</urlset>\n',
@@ -3213,6 +3234,7 @@ def seo_files():
                                      encoding="utf-8")
     (ROOT / f"{INDEXNOW_KEY}.txt").write_text(INDEXNOW_KEY, encoding="utf-8")
     write_llms()
+    DATES_FILE.write_text(json.dumps(DATES, ensure_ascii=False, indent=1, sort_keys=True), encoding="utf-8")
     print("écrit sitemap.xml, robots.txt")
     write_qr_redirects()
 

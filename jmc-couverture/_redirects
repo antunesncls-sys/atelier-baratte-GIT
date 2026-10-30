@@ -1,6 +1,8 @@
 # Domaine principal : www et netlify.app -> jmccouverture.com
 https://www.jmccouverture.com/*       https://jmccouverture.com/:splat   301!
 http://www.jmccouverture.com/*        https://jmccouverture.com/:splat   301!
+https://jmccouverture.netlify.app/*   https://jmccouverture.com/:splat   301!
+http://jmccouverture.netlify.app/*    https://jmccouverture.com/:splat   301!
 
 # Redirections de l'ancien site WordPress (jmccouverture.com) vers le nouveau site
 # Réalisations et galeries -> références
