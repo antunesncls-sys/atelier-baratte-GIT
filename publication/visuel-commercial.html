@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Archivo;src:url(../jmc-couverture/assets/fonts/archivo-latin.woff2) format("woff2");font-weight:100 900}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--red:#d41d22;--gold:#e0c552;--ink:#121518}
+body{font-family:Archivo,Arial,sans-serif}
+.c{position:relative;overflow:hidden;color:#fff;background:#121518}
+.bg{position:absolute;inset:0;background:url(../jmc-couverture/assets/photos/toiture-ardoise-lucarnes-zinc-vue-drone-jmc.jpg) center/cover}
+.logo{position:absolute;background:#fff;border-radius:14px;display:flex;align-items:center}
+.logo img{display:block}
+.eyebrow{color:var(--gold);font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+h1{font-weight:800;line-height:1.04;letter-spacing:-.015em}
+h1 em{font-style:normal;color:var(--gold)}
+.sub{color:#e9e6df;line-height:1.4}
+.list{display:grid;grid-template-columns:1fr 1fr}
+.list div{display:flex;gap:12px;align-items:flex-start;font-weight:600;line-height:1.25}
+.list div:before{content:"";flex:0 0 auto;width:22px;height:22px;margin-top:1px;border-radius:50%;background:var(--red) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/14px no-repeat}
+.trust{display:flex;align-items:center}
+.trust img{display:block;border-radius:6px}
+.g{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:999px;font-weight:600}
+.g .stars{color:#f5b400;letter-spacing:.06em}
+.pill{border:1px solid rgba(255,255,255,.35);border-radius:999px;font-weight:600}
+.cta{position:absolute;display:flex;align-items:center;background:var(--red);border-radius:16px;box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.cta .t small{display:block;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.92}
+.cta .t b{display:block;font-weight:800;letter-spacing:.01em;line-height:1.05}
+.cta .w{border-left:1px solid rgba(255,255,255,.4);line-height:1.35}
+.cta .w b{font-weight:800}
+.phone{position:absolute;background:#0d0f11;border-radius:40px;padding:10px;box-shadow:0 30px 60px rgba(0,0,0,.55),0 0 0 2px #3a3f45}
+.phone .s{border-radius:31px;overflow:hidden;position:relative;height:100%}
+.phone .s img{width:100%;display:block}
+.phone .s:after{content:"";position:absolute;top:8px;left:50%;width:70px;height:20px;margin-left:-35px;background:#0d0f11;border-radius:12px}
+.bubble{position:absolute;background:#fff;color:var(--ink);border-radius:14px;font-weight:700;line-height:1.2;box-shadow:0 14px 30px rgba(0,0,0,.35)}
+.bubble em{font-style:normal;color:var(--red)}
+
+</style></head><body>
+
+<!-- ============ 16:9 ============ -->
+<section class="c" id="wide" style="width:1600px;height:900px">
+  <div class="bg"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(12,14,16,.95) 0%,rgba(12,14,16,.88) 46%,rgba(12,14,16,.45) 72%,rgba(12,14,16,.2) 100%)"></div>
+
+  <div class="logo" style="left:64px;top:46px;padding:10px 18px"><img src="../jmc-couverture/assets/logo-jmc-40ans.svg" style="height:58px" alt=""></div>
+
+  <p class="eyebrow" style="position:absolute;left:66px;top:150px;font-size:18px">Couvreur-zingueur depuis 1985 · Île-de-France</p>
+  <h1 style="position:absolute;left:64px;top:186px;width:860px;font-size:64px">Votre toiture refaite par<br>des <em>couvreurs de métier</em></h1>
+  <p class="sub" style="position:absolute;left:66px;top:350px;width:780px;font-size:22px">Couverture zinc et tuiles, rénovation et isolation : la structure et les équipes d'une entreprise de la promotion immobilière, au service de votre maison.</p>
+
+  <div class="list" style="position:absolute;left:66px;top:446px;width:860px;gap:18px 30px;font-size:19px">
+    <div>Rénovation et remplacement de toiture</div>
+    <div>Isolation combles et rampants (RGE)</div>
+    <div>Fenêtres de toit VELUX et lucarnes</div>
+    <div>Zinguerie et toiture terrasse</div>
+    <div>Nettoyage, démoussage et entretien</div>
+    <div>Copropriétés et maisons neuves</div>
+  </div>
+
+  <div class="trust" style="position:absolute;left:66px;top:618px;gap:14px">
+    <img src="../jmc-couverture/assets/logo-qualibat.svg" style="height:58px;background:#fff;padding:3px" alt="">
+    <img src="../jmc-couverture/assets/logo-rge.png" style="height:58px;background:#fff;padding:3px" alt="">
+    <div class="g" style="padding:12px 20px;font-size:18px"><span class="stars">★★★★★</span>4,9/5 · 29 avis Google</div>
+    <div class="pill" style="padding:12px 20px;font-size:18px">Garantie décennale</div>
+  </div>
+
+  <div class="cta" style="left:64px;top:722px;padding:20px 30px;gap:30px">
+    <div class="t"><small style="font-size:14px">Visite et devis gratuits</small><b style="font-size:42px">01 64 21 38 37</b></div>
+    <div class="w" style="padding-left:30px;font-size:19px">ou en 2 minutes sur<br><b style="font-size:23px">jmccouverture.com</b></div>
+  </div>
+
+  <div class="phone" style="left:1226px;top:118px;width:290px;height:620px"><div class="s"><img src="shot-mobile-devis.png" alt=""></div></div>
+  <div class="bubble" style="left:1110px;top:640px;padding:16px 20px;font-size:19px;width:230px">Votre demande de devis<br><em>en 2 minutes</em> depuis<br>votre téléphone
+    <span style="position:absolute;right:-8px;top:30px;width:18px;height:18px;background:#fff;transform:rotate(45deg)"></span></div>
+</section>
+
+<!-- ============ 4:5 ============ -->
+<section class="c" id="insta" style="width:1080px;height:1350px">
+  <div class="bg" style="bottom:auto;height:760px;background-position:center 40%"></div>
+  <div style="position:absolute;left:0;right:0;top:0;height:760px;background:linear-gradient(180deg,rgba(12,14,16,.55) 0%,rgba(12,14,16,.78) 55%,#121518 100%)"></div>
+
+  <div class="logo" style="left:56px;top:50px;padding:10px 18px"><img src="../jmc-couverture/assets/logo-jmc-40ans.svg" style="height:66px" alt=""></div>
+
+  <p class="eyebrow" style="position:absolute;left:58px;top:196px;font-size:20px">Couvreur-zingueur depuis 1985</p>
+  <h1 style="position:absolute;left:56px;top:236px;width:700px;font-size:70px">Votre toiture refaite par des <em>couvreurs de métier</em></h1>
+  <p class="sub" style="position:absolute;left:58px;top:494px;width:690px;font-size:25px;white-space:nowrap">Couverture zinc et tuiles, rénovation, isolation en Île-de-France.</p>
+
+  <div class="phone" style="left:752px;top:170px;width:270px;height:580px"><div class="s"><img src="shot-mobile-devis.png" alt=""></div></div>
+
+  <div class="list" style="position:absolute;left:58px;top:640px;width:660px;gap:16px 26px;font-size:21px;grid-template-columns:1fr">
+    <div>Rénovation et remplacement de toiture</div>
+    <div>Isolation des combles et rampants (RGE)</div>
+    <div>VELUX, lucarnes, zinguerie et étanchéité</div>
+    <div>Nettoyage, démoussage et entretien</div>
+  </div>
+
+  <div class="trust" style="position:absolute;left:58px;top:872px;gap:14px">
+    <img src="../jmc-couverture/assets/logo-qualibat.svg" style="height:64px;background:#fff;padding:3px" alt="">
+    <img src="../jmc-couverture/assets/logo-rge.png" style="height:64px;background:#fff;padding:3px" alt="">
+    <div class="g" style="padding:14px 22px;font-size:21px"><span class="stars">★★★★★</span>4,9/5 · 29 avis Google</div>
+  </div>
+  <p style="position:absolute;left:58px;top:968px;font-size:20px;color:#cfccc5">Garantie décennale · Chantier propre et sécurisé · PV de réception · SAV interne</p>
+
+  <div class="cta" style="left:56px;right:56px;top:1046px;padding:26px 34px;gap:34px">
+    <div class="t"><small style="font-size:15px">Visite et devis gratuits</small><b style="font-size:50px">01 64 21 38 37</b></div>
+    <div class="w" style="padding-left:34px;font-size:21px">ou sur<br><b style="font-size:27px">jmccouverture.com</b></div>
+  </div>
+  <p style="position:absolute;left:0;right:0;top:1240px;text-align:center;font-size:18px;color:#a9a6a0;letter-spacing:.14em;text-transform:uppercase">Seine-et-Marne · Val-de-Marne · Seine-Saint-Denis · Val-d'Oise · Essonne · 92 · Paris</p>
+</section>
+</body></html>
