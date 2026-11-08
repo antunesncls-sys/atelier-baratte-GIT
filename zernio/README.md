@@ -55,7 +55,7 @@ Instagram exige au moins une image ou une vidéo : passez son URL publique avec 
 ### Programmer un calendrier de posts
 
 Les posts prêts à l'emploi sont dans `posts/` (ex. `posts/calendrier-nov-dec-2026.json` : 13 posts,
-mardi et jeudi à 18h30). Chaque post a une date, un texte, une idée de visuel et une liste
+mardi et jeudi à 19h45). Chaque post a une date, un texte, une idée de visuel et une liste
 `media` à remplir avec les URL publiques des images.
 
 ```bash
