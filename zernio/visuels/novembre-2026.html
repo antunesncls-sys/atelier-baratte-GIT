@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<style>
+  :root {
+    --navy: #13233f;
+    --navy-2: #1c3360;
+    --paper: #f5f1e8;
+    --ink: #13233f;
+    --orange: #f37a1f;
+    --line: rgba(255, 255, 255, 0.07);
+    --line-ink: rgba(19, 35, 63, 0.07);
+    --muted: #8fa3c4;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #777; display: flex; flex-direction: column; gap: 40px; padding: 40px; }
+
+  .slide {
+    width: 1080px; height: 1350px; position: relative; overflow: hidden;
+    padding: 110px 96px 150px; display: flex; flex-direction: column;
+  }
+  .dark {
+    background-color: var(--navy); color: #fff;
+    background-image:
+      linear-gradient(var(--line) 2px, transparent 2px),
+      linear-gradient(90deg, var(--line) 2px, transparent 2px),
+      linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+  }
+  .light {
+    background-color: var(--paper); color: var(--ink);
+    background-image:
+      linear-gradient(var(--line-ink) 2px, transparent 2px),
+      linear-gradient(90deg, var(--line-ink) 2px, transparent 2px);
+    background-size: 120px 120px, 120px 120px;
+  }
+
+  .footer {
+    position: absolute; left: 96px; right: 96px; bottom: 56px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 26px; font-weight: 600; letter-spacing: .02em;
+  }
+  .brand { display: flex; align-items: center; gap: 16px; font-weight: 900; letter-spacing: .14em; }
+  .brand::before { content: ''; width: 34px; height: 34px; background: var(--orange); clip-path: polygon(50% 0, 100% 45%, 100% 100%, 0 100%, 0 45%); }
+  .dark .footer { color: var(--muted); }
+  .dark .brand { color: #fff; }
+  .light .footer { color: #6a7790; }
+  .swipe { color: var(--orange); font-weight: 800; }
+
+  .kicker { font-size: 30px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--orange); margin-bottom: 36px; }
+  h1 { font-family: 'Inter Display', 'Inter', sans-serif; font-weight: 900; line-height: .98; letter-spacing: -.03em; }
+  .xl { font-size: 150px; }
+  .l { font-size: 112px; }
+  .m { font-size: 84px; }
+  .s { font-size: 64px; }
+  .sub { font-size: 44px; line-height: 1.25; font-weight: 500; margin-top: 40px; }
+  .dark .sub { color: #d6deec; }
+  .hl { color: var(--orange); }
+  .grow { flex: 1; }
+
+  /* timeline */
+  .timeline { display: flex; flex-direction: column; gap: 0; margin-top: 64px; }
+  .step { display: grid; grid-template-columns: 70px 1fr; gap: 34px; align-items: start; }
+  .dot { width: 70px; height: 70px; border-radius: 50%; border: 6px solid var(--orange); display: grid; place-items: center; font-weight: 900; font-size: 30px; color: var(--orange); background: var(--navy); position: relative; z-index: 1; }
+  .step.final .dot { background: var(--orange); color: var(--navy); }
+  .bar { width: 6px; height: 46px; background: var(--orange); margin-left: 32px; opacity: .5; }
+  .step .when { font-size: 30px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+  .step .what { font-size: 46px; font-weight: 800; margin-top: 6px; }
+
+  /* vrai faux */
+  .vf { display: flex; gap: 30px; margin-top: auto; margin-bottom: 30px; }
+  .vf div { flex: 1; text-align: center; padding: 40px 0; border-radius: 28px; font-size: 76px; font-weight: 900; letter-spacing: .04em; }
+  .vf .v { background: #2e9d63; color: #fff; }
+  .vf .f { background: #d8452f; color: #fff; }
+
+  /* schema seuils */
+  .scale { margin-top: 70px; display: flex; flex-direction: column; gap: 30px; }
+  .row { display: grid; grid-template-columns: 300px 1fr; align-items: center; gap: 30px; }
+  .row .k { white-space: nowrap; font-family: 'Inter Display', sans-serif; font-size: 66px; font-weight: 900; color: var(--navy); }
+  .row .v2 { font-size: 38px; font-weight: 600; line-height: 1.25; padding: 28px 34px; border-radius: 22px; background: #fff; border-left: 12px solid var(--navy); }
+  .row.warn .v2 { border-left-color: var(--orange); }
+  .row.warn .k { color: var(--orange); }
+  .example { margin-top: 56px; font-size: 35px; font-weight: 700; padding: 34px 40px; border: 4px dashed var(--orange); border-radius: 22px; line-height: 1.3; }
+
+  /* tampon */
+  .stamp {
+    align-self: flex-start; margin-top: 90px; transform: rotate(-7deg);
+    border: 12px solid #d8452f; color: #d8452f; border-radius: 22px;
+    padding: 26px 44px; font-family: 'Inter Display', sans-serif; font-size: 96px; font-weight: 900; letter-spacing: .04em;
+    box-shadow: inset 0 0 0 6px var(--paper), inset 0 0 0 10px #d8452f;
+  }
+
+  /* quiz */
+  .opts { display: flex; flex-direction: column; gap: 34px; margin-top: auto; margin-bottom: 30px; }
+  .opt { display: flex; align-items: center; gap: 36px; padding: 44px 40px; background: rgba(255,255,255,.07); border: 3px solid rgba(255,255,255,.18); border-radius: 26px; font-size: 52px; font-weight: 800; }
+  .opt b { width: 92px; height: 92px; flex: none; border-radius: 50%; background: var(--orange); color: var(--navy); display: grid; place-items: center; font-size: 50px; font-weight: 900; }
+
+  /* panneau */
+  .panel { margin: 70px auto 0; width: 640px; }
+  .panel .board { background: #fff; color: var(--ink); border: 10px solid #f3c623; border-radius: 10px; padding: 34px 40px; }
+  .panel .board .t { font-size: 34px; font-weight: 900; letter-spacing: .08em; text-align: center; border-bottom: 4px solid var(--ink); padding-bottom: 16px; }
+  .panel .board .l1 { height: 20px; background: #dfe4ec; border-radius: 6px; margin-top: 22px; }
+  .panel .board .l1.short { width: 60%; }
+  .panel .legs { display: flex; justify-content: space-around; }
+  .panel .legs div { width: 26px; height: 150px; background: #8a6a45; }
+  .big2 { font-family: 'Inter Display', sans-serif; font-size: 240px; font-weight: 900; color: var(--orange); line-height: .9; letter-spacing: -.04em; }
+
+  /* checklist */
+  .list { margin-top: 40px; display: flex; flex-direction: column; gap: 14px; }
+  .li { display: grid; grid-template-columns: 56px 170px 1fr; align-items: center; gap: 20px; font-size: 36px; font-weight: 600; padding: 15px 24px; white-space: nowrap; background: #fff; border-radius: 18px; }
+  .li .ck { width: 50px; height: 50px; border-radius: 14px; background: var(--navy); position: relative; }
+  .li .ck::after { content: ''; position: absolute; left: 17px; top: 6px; width: 12px; height: 26px; border: solid var(--orange); border-width: 0 8px 8px 0; transform: rotate(45deg); }
+  .li .code { font-weight: 900; color: var(--orange); letter-spacing: .02em; }
+  .extra { margin-top: 26px; font-size: 30px; font-weight: 600; color: #4b5872; line-height: 1.35; }
+
+  /* croquis -> plan */
+  .duo { display: grid; grid-template-columns: 1fr 120px 1fr; align-items: center; margin-top: 80px; }
+  .card { aspect-ratio: 3/4; border-radius: 22px; padding: 30px; display: flex; flex-direction: column; justify-content: flex-end; font-size: 34px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  .sketch { background: #fffdf6; color: #6b6255; }
+  .plan { background: #1d4f91; color: #fff; background-image: linear-gradient(rgba(255,255,255,.12) 2px, transparent 2px), linear-gradient(90deg, rgba(255,255,255,.12) 2px, transparent 2px); background-size: 40px 40px; }
+  .card svg { width: 100%; flex: 1; }
+  .arrow { color: var(--orange); font-size: 110px; font-weight: 900; text-align: center; }
+
+  /* validite */
+  .calc { display: flex; align-items: baseline; gap: 30px; margin-top: 90px; font-family: 'Inter Display', sans-serif; font-weight: 900; }
+  .calc .n { font-size: 260px; line-height: .85; letter-spacing: -.05em; }
+  .calc .p { font-size: 120px; color: var(--muted); }
+  .calc .n.o { color: var(--orange); }
+  .legend { display: flex; flex-direction: column; gap: 14px; margin-top: 40px; font-size: 38px; font-weight: 700; color: #d6deec; }
+
+  /* cta */
+  .cta { margin-top: auto; align-self: flex-start; background: var(--orange); color: var(--navy); font-size: 46px; font-weight: 900; padding: 30px 46px; border-radius: 999px; }
+</style>
+</head>
+<body>
+
+<!-- 1. Novembre -->
+<section class="slide dark" id="01-novembre">
+  <div class="kicker">Projet pour le printemps ?</div>
+  <h1 class="l">Novembre, c'est <span class="hl">maintenant</span> qu'on dépose.</h1>
+  <div class="timeline">
+    <div class="step"><div class="dot">1</div><div><div class="when">Novembre</div><div class="what">On monte le dossier</div></div></div>
+    <div class="bar"></div>
+    <div class="step"><div class="dot">2</div><div><div class="when">Décembre → février</div><div class="what">2 mois d'instruction en mairie</div></div></div>
+    <div class="bar"></div>
+    <div class="step"><div class="dot">3</div><div><div class="when">Février → avril</div><div class="what">2 mois de recours des voisins</div></div></div>
+    <div class="bar"></div>
+    <div class="step final"><div class="dot">✓</div><div><div class="when">Printemps</div><div class="what">Le chantier démarre</div></div></div>
+  </div>
+  <div class="footer"><span class="brand">CONSTRUISEZ</span><span>@permis_de_construire_idf</span></div>
+</section>
+
+<!-- 2a. 40 m2 couverture -->
+<section class="slide dark" id="02a-40m2">
+  <div class="kicker">Extension</div>
+  <h1 class="xl">« 40 m² sans permis »</h1>
+  <div class="sub">L'idée reçue qui piège le plus de propriétaires.</div>
+  <div class="vf"><div class="v">VRAI</div><div class="f">FAUX</div></div>
+  <div class="footer"><span class="brand">CONSTRUISEZ</span><span class="swipe">Glissez →</span></div>
+</section>
+
+<!-- 2b. 40 m2 schéma -->
+<section class="slide light" id="02b-40m2">
+  <div class="kicker">Les seuils à connaître</div>
+  <h1 class="s">Zone urbaine d'un PLU</h1>
+  <div class="scale">
+    <div class="row"><div class="k">≤ 40 m²</div><div class="v2">Extension : déclaration préalable en général</div></div>
+    <div class="row warn"><div class="k">&gt; 150 m²</div><div class="v2">Total maison + extension : permis de construire <b>et</b> architecte obligatoires</div></div>
+    <div class="row"><div class="k">≤ 20 m²</div><div class="v2">Le seuil hors zone urbaine</div></div>
+  </div>
+  <div class="example">Maison 120&nbsp;m² + extension 35&nbsp;m² = <span class="hl">155&nbsp;m²</span><br>→ ce n'est plus une simple déclaration.</div>
+  <div class="footer"><span class="brand">CONSTRUISEZ</span><span class="swipe">Glissez →</span></div>
+</section>
+
+<!-- 2c. 40 m2 CTA -->
+<section class="slide dark" id="02c-40m2">
+  <div class="kicker">Un doute sur votre cas ?</div>
+  <h1 class="l">Envoyez-moi la surface actuelle <span class="hl">+ votre projet.</span></h1>
+  <div class="sub">Je vous dis quelle autorisation il vous faut, avant de dessiner.</div>
+  <div class="cta">Message privé →</div>
+  <div class="footer"><span class="brand">CONSTRUISEZ</span><span>@permis_de_construire_idf</span></div>
+</section>
+
+<!-- 3. Dossier incomplet -->
+<section class="slide light" id="03-dossier-incomplet">
+  <div class="kicker">Erreur n°1</div>
+  <h1 class="l">Le dossier incomplet.</h1>
+  <div class="stamp">PIÈCE MANQUANTE</div>
+  <div class="grow"></div>
+  <div class="sub" style="font-weight:700">Tant qu'il manque une pièce, <span class="hl">le délai d'instruction ne court pas.</span> Des semaines perdues pour un plan oublié.</div>
+  <div class="footer"><span class="brand">CONSTRUISEZ</span><span>@permis_de_construire_idf</span></div>
+</section>
+
+<!-- 4. Quiz abri -->
+<section class="slide dark" id="04-quiz-abri">
+  <div class="kicker">Quiz</div>
+  <h1 class="m">Votre abri de jardin fait <span class="hl">15 m²</span>. Il vous faut…</h1>
+  <div class="opts">
+    <div class="opt"><b>A</b>Rien du tout</div>
+    <div class="opt"><b>B</b>Une déclaration préalable</div>
+    <div class="opt"><b>C</b>Un permis de construire</div>
+  </div>
+  <div class="footer"><span class="brand">CONSTRUISEZ</span><span class="swipe">Réponse en commentaire ↓</span></div>
+</section>
+
+<!-- 5. Recours voisin -->
+<section class="slide dark" id="05-recours-voisin">
+  <div class="kicker">Recours des voisins</div>
+  <div style="display:flex; align-items:flex-end; gap:40px">
+    <div class="big2">2</div>
+    <h1 class="m" style="padding-bottom:20px">mois.<br><span style="color:#d6deec;font-size:56px;font-weight:700;letter-spacing:-.01em">À partir de l'affichage sur le terrain.</span></h1>
+  </div>
+  <div class="panel">
+    <div class="board"><div class="t">PERMIS DE CONSTRUIRE</div><div class="l1"></div><div class="l1"></div><div class="l1 short"></div></div>
+    <div class="legs"><div></div><div></div></div>
+  </div>
+  <div class="sub" style="margin-top:46px">Mal affiché ? Le délai peut ne jamais commencer.</div>
+  <div class="footer"><span class="brand">CONSTRUISEZ</span><span>@permis_de_construire_idf</span></div>
+</section>
+
+<!-- 6a. Checklist couverture -->
+<section class="slide dark" id="06a-checklist">
+  <div class="kicker">À enregistrer</div>
+  <h1 class="xl">La checklist du <span class="hl">permis</span> maison.</h1>
+  <div class="sub" style="margin-top:auto">Les 8 pièces obligatoires,<br>dans l'ordre. <span class="hl" style="font-weight:800">À garder sous le coude.</span></div>
+  <div class="footer"><span class="brand">CONSTRUISEZ</span><span class="swipe">Glissez →</span></div>
+</section>
+
+<!-- 6b. Checklist -->
+<section class="slide light" id="06b-checklist" style="padding-top:90px">
+  <div class="kicker" style="margin-bottom:24px">Permis maison individuelle</div>
+  <h1 class="s" style="font-size:56px">Les 8 pièces</h1>
+  <div class="list">
+    <div class="li"><span class="ck"></span><span class="code">PCMI1</span>Plan de situation</div>
+    <div class="li"><span class="ck"></span><span class="code">PCMI2</span>Plan de masse coté</div>
+    <div class="li"><span class="ck"></span><span class="code">PCMI3</span>Plan en coupe</div>
+    <div class="li"><span class="ck"></span><span class="code">PCMI4</span>Notice descriptive</div>
+    <div class="li"><span class="ck"></span><span class="code">PCMI5</span>Façades et toitures</div>
+    <div class="li"><span class="ck"></span><span class="code">PCMI6</span>Insertion graphique</div>
+    <div class="li"><span class="ck"></span><span class="code">PCMI7</span>Photo environnement proche</div>
+    <div class="li"><span class="ck"></span><span class="code">PCMI8</span>Photo environnement lointain</div>
+  </div>
+  <div class="extra">+ selon le projet : attestation RE2020, étude de sol en zone argileuse, pièces en secteur protégé…</div>
+  <div class="footer"><span class="brand">CONSTRUISEZ</span><span class="swipe">Glissez →</span></div>
+</section>
+
+<!-- 6c. Checklist CTA -->
+<section class="slide dark" id="06c-checklist">
+  <div class="kicker">La liste tient en 8 lignes</div>
+  <h1 class="l">Les faire correctement, <span class="hl">c'est un métier.</span></h1>
+  <div class="sub">On s'occupe de votre dossier de A à Z, du premier plan au dépôt en mairie.</div>
+  <div class="cta">Écrivez « DOSSIER » en DM →</div>
+  <div class="footer"><span class="brand">CONSTRUISEZ</span><span>@permis_de_construire_idf</span></div>
+</section>
+
+<!-- 7. Croquis -> permis -->
+<section class="slide dark" id="07-croquis-permis">
+  <div class="kicker">Coulisses</div>
+  <h1 class="l">Du croquis <span class="hl">au permis.</span></h1>
+  <div class="duo">
+    <div class="card sketch">
+      <svg viewBox="0 0 200 200" fill="none" stroke="#6b6255" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M30 150 L32 92 L100 42 L170 94 L168 152 Z" />
+        <path d="M60 152 L61 110 L88 109 L89 151" />
+        <path d="M118 100 L148 101 L147 126 L117 125 Z" />
+        <path d="M24 156 C70 150 130 160 178 154" />
+        <path d="M140 60 L141 36 L156 37 L155 72" />
+      </svg>
+      Votre idée
+    </div>
+    <div class="arrow">→</div>
+    <div class="card plan">
+      <svg viewBox="0 0 200 200" fill="none" stroke="#fff" stroke-width="3">
+        <path d="M30 150 V92 L100 42 L170 92 V150 Z" />
+        <path d="M60 150 V108 H88 V150" />
+        <rect x="118" y="100" width="30" height="26" />
+        <path d="M20 150 H180" stroke-width="4" />
+        <path d="M30 168 H170 M30 162 V174 M170 162 V174" stroke="#f37a1f" />
+        <path d="M184 92 V150 M178 92 H190 M178 150 H190" stroke="#f37a1f" />
+      </svg>
+      Le dossier
+    </div>
+  </div>
+  <div class="sub">PLU, relevés, façades, allers-retours… jusqu'au « c'est exactement ça ».</div>
+  <div class="footer"><span class="brand">CONSTRUISEZ</span><span>@permis_de_construire_idf</span></div>
+</section>
+
+<!-- 8. Validité -->
+<section class="slide dark" id="08-validite">
+  <div class="kicker">Votre permis expire</div>
+  <h1 class="m">Accordé… mais <span class="hl">pas pour toujours.</span></h1>
+  <div class="calc"><span class="n">3</span><span class="p">+</span><span class="n o">1</span><span class="p">+</span><span class="n o">1</span></div>
+  <div class="legend"><span>3 ans de validité</span><span class="hl">+ 2 prorogations d'un an, à demander avant l'expiration</span></div>
+  <div class="sub">Un permis qui dort dans un tiroir ? <b style="color:#fff">Vérifiez la date aujourd'hui.</b></div>
+  <div class="footer"><span class="brand">CONSTRUISEZ</span><span>@permis_de_construire_idf</span></div>
+</section>
+
+</body>
+</html>

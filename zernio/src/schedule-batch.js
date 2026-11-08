@@ -42,6 +42,15 @@ for (const post of posts) {
     continue;
   }
   const media = post.media ?? [];
+  const broken = [];
+  for (const url of media) {
+    const res = await fetch(url, { method: 'HEAD' }).catch(() => null);
+    if (!res?.ok) broken.push(url);
+  }
+  if (broken.length) {
+    console.log(`❌ ${label} : image introuvable, ignoré (${broken.join(', ')})`);
+    continue;
+  }
   const targets = accounts.filter((acc) => media.length || acc.platform !== 'instagram');
   if (!targets.length) {
     console.log(`⚠️  ${label} : aucun compte possible sans visuel, ignoré`);

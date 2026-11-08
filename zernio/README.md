@@ -64,7 +64,20 @@ npm run schedule -- posts/novembre-2026.json             # programmer
 ```
 
 Un post sans image part uniquement sur Facebook (Instagram exige un visuel).
-Les posts dont la date est passée sont ignorés.
+Les posts dont la date est passée, ou dont une image ne répond plus, sont ignorés.
+
+### Créer les visuels
+
+Les visuels (1080×1350, format portrait Instagram) sont décrits en HTML dans `visuels/`
+(ex. `visuels/novembre-2026.html`, une `<section class="slide">` par image). Pour les
+modifier : éditez le HTML, puis régénérez les PNG et envoyez-les sur le stockage Zernio.
+
+```bash
+npm run visuels -- visuels/novembre-2026.html   # génère visuels/novembre-2026/*.png (Playwright)
+npm run upload -- visuels/novembre-2026         # envoie les PNG, URL dans visuels/novembre-2026/urls.json
+```
+
+Copiez ensuite les URL de `urls.json` dans le champ `media` des posts.
 
 ### Autres profils
 
