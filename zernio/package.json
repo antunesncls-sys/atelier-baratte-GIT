@@ -9,7 +9,8 @@
     "post": "node src/create-post.js",
     "schedule": "node src/schedule-batch.js",
     "upload": "node src/upload-media.js",
-    "visuels": "node visuels/generate.cjs"
+    "visuels": "node visuels/generate.cjs",
+    "stories": "node src/add-stories.js"
   },
   "dependencies": {
     "@zernio/node": "^0.2.1374",

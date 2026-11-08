@@ -66,6 +66,17 @@ npm run schedule -- posts/calendrier-nov-dec-2026.json             # programmer
 Un post sans image part uniquement sur Facebook (Instagram exige un visuel).
 Les posts dont la date est passée, ou dont une image ne répond plus, sont ignorés.
 
+### Stories
+
+Chaque post a sa story (1080×1920, couverture du post + « À voir sur notre profil »),
+publiée 5 minutes après le post sur Instagram et Facebook :
+
+```bash
+npm run stories -- posts/<fichier>.json                    # génère, envoie et enregistre les stories
+npm run schedule -- posts/<fichier>.json                   # programme les posts et leurs stories
+npm run schedule -- posts/<fichier>.json --stories-only    # stories seules (posts déjà programmés)
+```
+
 ### Créer les visuels
 
 Les visuels (1080×1350, format portrait Instagram) sont décrits en HTML dans `visuels/`
