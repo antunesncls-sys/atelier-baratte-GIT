@@ -54,13 +54,13 @@ Instagram exige au moins une image ou une vidéo : passez son URL publique avec 
 
 ### Programmer un calendrier de posts
 
-Les posts prêts à l'emploi sont dans `posts/` (ex. `posts/novembre-2026.json` : 8 posts,
+Les posts prêts à l'emploi sont dans `posts/` (ex. `posts/calendrier-nov-dec-2026.json` : 13 posts,
 mardi et jeudi à 18h30). Chaque post a une date, un texte, une idée de visuel et une liste
 `media` à remplir avec les URL publiques des images.
 
 ```bash
-npm run schedule -- posts/novembre-2026.json --dry-run   # vérifier
-npm run schedule -- posts/novembre-2026.json             # programmer
+npm run schedule -- posts/calendrier-nov-dec-2026.json --dry-run   # vérifier
+npm run schedule -- posts/calendrier-nov-dec-2026.json             # programmer
 ```
 
 Un post sans image part uniquement sur Facebook (Instagram exige un visuel).
