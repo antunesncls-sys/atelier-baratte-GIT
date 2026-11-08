@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="brand/construisez.css">
+<style>
+  .house { margin: 40px auto 0; width: 660px; }
+  .house svg { width: 100%; height: auto; display: block; }
+  .ep { align-self: flex-start; font-family: 'IBM Plex Mono', monospace; font-size: 26px; letter-spacing: .2em; color: var(--bg); background: var(--acc-l); padding: 12px 22px; border-radius: 4px; margin-bottom: 36px; }
+  .pts { margin-top: 44px; display: flex; flex-direction: column; gap: 18px; }
+  .pt { display: grid; grid-template-columns: 76px 1fr; gap: 28px; align-items: start; padding: 30px 34px; background: var(--card); border: 2px solid var(--line); border-radius: 8px; }
+  .pt .n { font-family: 'IBM Plex Mono', monospace; font-weight: 500; font-size: 50px; line-height: .9; color: var(--acc-l); }
+  .pt b { display: block; font-size: 38px; font-weight: 700; margin-bottom: 8px; }
+  .pt span { font-size: 31px; line-height: 1.35; color: #d5d9dd; }
+  .steps { margin-top: 50px; display: flex; flex-direction: column; gap: 0; }
+  .st { display: grid; grid-template-columns: 64px 1fr; gap: 30px; align-items: center; }
+  .st .d { width: 64px; height: 64px; border-radius: 50%; border: 3px solid var(--acc-l); display: grid; place-items: center; font-family: 'IBM Plex Mono', monospace; font-size: 24px; color: var(--acc-l); background: var(--bg); }
+  .st.now .d { background: var(--acc-l); color: var(--bg); }
+  .st .w { font-size: 40px; font-weight: 600; }
+  .st.now .w { color: var(--acc-l); }
+  .st .w small { font-family: 'IBM Plex Mono', monospace; font-size: 22px; letter-spacing: .14em; color: var(--dim); margin-left: 16px; }
+  .vbar { width: 3px; height: 28px; background: var(--acc-l); opacity: .45; margin-left: 30px; }
+</style>
+</head>
+<body>
+
+<section class="slide" id="14a-division">
+  <div class="ep">SÉRIE · ÉPISODE 1</div>
+  <h1 class="l">Une maison. <em>5 logements.</em></h1>
+  <div class="house">
+    <svg viewBox="0 0 760 640" fill="none" stroke-linejoin="round">
+      <path d="M60 250 L380 40 L700 250" stroke="#fbfbfa" stroke-width="6"/>
+      <rect x="100" y="250" width="560" height="360" stroke="#fbfbfa" stroke-width="6"/>
+      <path d="M180 250 L380 118 L580 250" stroke="#7fb3a0" stroke-width="3" stroke-dasharray="10 10"/>
+      <path d="M100 430 H660 M380 250 V610" stroke="#7fb3a0" stroke-width="3" stroke-dasharray="10 10"/>
+      <g font-family="IBM Plex Mono, monospace" font-weight="500" font-size="64" fill="#7fb3a0" stroke="none" text-anchor="middle">
+        <text x="380" y="225">5</text>
+        <text x="240" y="370">3</text>
+        <text x="520" y="370">4</text>
+        <text x="240" y="550">1</text>
+        <text x="520" y="550">2</text>
+      </g>
+      <path d="M30 610 H730" stroke="#9ca0ab" stroke-width="3"/>
+    </svg>
+  </div>
+  <div class="sub push">Je vous emmène dans les coulisses du dossier, <b>du relevé jusqu'à la décision de la mairie.</b></div>
+  <div class="footer"><span class="brand"><img src="brand/logo-mark.png" alt="">CONSTRUISEZ</span><span class="swipe">GLISSEZ →</span></div>
+</section>
+
+<section class="slide" id="14b-division">
+  <div class="kicker">Sur le papier, ça paraît simple</div>
+  <h1 class="m">Quatre défis <em>d'une division.</em></h1>
+  <div class="pts">
+    <div class="pt"><div class="n">1</div><div><b>Le stationnement</b><span>Le PLU exige souvent des places par logement créé.</span></div></div>
+    <div class="pt"><div class="n">2</div><div><b>Le permis de diviser</b><span>Beaucoup de communes d'Île-de-France l'imposent.</span></div></div>
+    <div class="pt"><div class="n">3</div><div><b>Des logements décents</b><span>Surfaces et hauteurs minimales, lumière.</span></div></div>
+    <div class="pt"><div class="n">4</div><div><b>Un vrai immeuble</b><span>Règles incendie, acoustique, compteurs séparés.</span></div></div>
+  </div>
+  <div class="footer"><span class="brand"><img src="brand/logo-mark.png" alt="">CONSTRUISEZ</span><span class="swipe">GLISSEZ →</span></div>
+</section>
+
+<section class="slide" id="14c-division">
+  <div class="kicker">La suite de la série</div>
+  <h1 class="m">On avance <em>ensemble.</em></h1>
+  <div class="steps">
+    <div class="st now"><div class="d">01</div><div class="w">Le projet <small>AUJOURD'HUI</small></div></div>
+    <div class="vbar"></div>
+    <div class="st"><div class="d">02</div><div class="w">Le relevé sur place</div></div>
+    <div class="vbar"></div>
+    <div class="st"><div class="d">03</div><div class="w">La lecture du PLU</div></div>
+    <div class="vbar"></div>
+    <div class="st"><div class="d">04</div><div class="w">Les plans avant / après</div></div>
+    <div class="vbar"></div>
+    <div class="st"><div class="d">05</div><div class="w">Le dépôt… et la décision</div></div>
+  </div>
+  <div class="push"></div>
+  <div class="btn">Écrivez « DIVISION » en DM →</div>
+  <div class="footer"><span class="brand"><img src="brand/logo-mark.png" alt="">CONSTRUISEZ</span><span>construisez.fr</span></div>
+</section>
+
+</body>
+</html>
