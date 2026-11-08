@@ -14,6 +14,11 @@ import { zernio, findProfile, DEFAULT_PROFILE } from './zernio-client.js';
 
 const STORY_DELAY_MS = 5 * 60 * 1000;
 
+// Lieu Instagram par ville (champ "city" du post) : identifiant de la page Facebook du lieu.
+// N'ajouter que des identifiants vérifiés : un identifiant invalide fait échouer la publication.
+// Les stories n'acceptent pas de lieu.
+const LOCATIONS = JSON.parse(await readFile(new URL('../posts/lieux.json', import.meta.url), 'utf8').catch(() => '{}'));
+
 const args = process.argv.slice(2);
 const file = args.find((a) => !a.startsWith('--') && args[args.indexOf(a) - 1] !== '--profile');
 const profileArg = args.includes('--profile') ? args[args.indexOf('--profile') + 1] : DEFAULT_PROFILE;
@@ -66,7 +71,11 @@ for (const post of posts) {
     const body = {
       content: post.content,
       profileId: profile._id,
-      platforms: targets.map((acc) => ({ platform: acc.platform, accountId: acc._id })),
+      platforms: targets.map((acc) => ({
+        platform: acc.platform,
+        accountId: acc._id,
+        ...(acc.platform === 'instagram' && LOCATIONS[post.city] ? { platformSpecificData: { locationId: LOCATIONS[post.city] } } : {}),
+      })),
       scheduledFor: post.date,
       timezone: 'Europe/Paris',
     };
