@@ -10,6 +10,9 @@ import { zernio, findProfile, DEFAULT_PROFILE } from './zernio-client.js';
 // Instagram exige une image ou une vidéo : un post sans media part uniquement sur les autres plateformes.
 // Si le post a une story (voir `npm run stories`), elle est publiée 5 minutes après le post,
 // sur Instagram et Facebook. --stories-only programme uniquement les stories (posts déjà programmés).
+// Si un compte Google Business Profile est connecté et que le post a une version "google"
+// (voir `npm run google`), elle est publiée à la même heure avec un bouton vers construisez.fr.
+// --google-only programme uniquement les versions Google.
 // Les posts dont la date est déjà passée sont ignorés.
 
 const STORY_DELAY_MS = 5 * 60 * 1000;
@@ -24,6 +27,8 @@ const file = args.find((a) => !a.startsWith('--') && args[args.indexOf(a) - 1] !
 const profileArg = args.includes('--profile') ? args[args.indexOf('--profile') + 1] : DEFAULT_PROFILE;
 const dryRun = args.includes('--dry-run');
 const storiesOnly = args.includes('--stories-only');
+const googleOnly = args.includes('--google-only');
+const GOOGLE_URL = 'https://www.construisez.fr/?utm_source=google&utm_medium=gbp&utm_campaign=posts';
 
 if (!file) {
   console.error('Usage : npm run schedule -- posts/<fichier>.json [--profile "<nom>"] [--dry-run] [--stories-only]');
@@ -38,20 +43,23 @@ try {
   console.error(err.message);
   process.exit(1);
 }
-const accounts = profile.accounts.filter((acc) => acc.isActive !== false);
+const active = profile.accounts.filter((acc) => acc.isActive !== false);
+const google = active.find((acc) => acc.platform === 'googlebusiness');
+const accounts = active.filter((acc) => acc.platform !== 'googlebusiness');
 const mediaType = (url) =>
   /\.(mp4|mov|webm|m4v)(\?|$)/i.test(url) ? 'video' : /\.gif(\?|$)/i.test(url) ? 'gif' : 'image';
 
 const isOnline = async (url) => (await fetch(url, { method: 'HEAD' }).catch(() => null))?.ok;
 
-console.log(`Profil "${profile.name}" — ${posts.length} posts${dryRun ? ' (--dry-run : rien ne sera envoyé)' : ''}${storiesOnly ? ' (stories uniquement)' : ''}\n`);
+console.log(`Profil "${profile.name}" — ${posts.length} posts${dryRun ? ' (--dry-run : rien ne sera envoyé)' : ''}${storiesOnly ? ' (stories uniquement)' : ''}${googleOnly ? ' (Google uniquement)' : ''}\n`);
 
 let scheduled = 0;
 let stories = 0;
+let googlePosts = 0;
 for (const post of posts) {
   const label = `${post.date} — ${post.theme ?? post.content.split('\n')[0].slice(0, 60)}`;
 
-  if (!storiesOnly) {
+  if (!storiesOnly && !googleOnly) {
     if (new Date(post.date) <= new Date()) {
       console.log(`⏭️  ${label} : date passée, ignoré`);
       continue;
@@ -96,7 +104,38 @@ for (const post of posts) {
     }
   }
 
-  if (!post.story) continue;
+  if (post.google?.image && (googleOnly || !storiesOnly) && new Date(post.date) > new Date()) {
+    if (!google) {
+      if (googleOnly) console.log(`⚠️  Google ${label} : aucun compte Google Business Profile connecté`);
+    } else if (!(await isOnline(post.google.image))) {
+      console.log(`❌ Google ${label} : image introuvable (${post.google.image})`);
+    } else {
+      const googleBody = {
+        content: post.google.content,
+        profileId: profile._id,
+        platforms: [{
+          platform: 'googlebusiness',
+          accountId: google._id,
+          platformSpecificData: { languageCode: 'fr', callToAction: { type: 'LEARN_MORE', url: GOOGLE_URL } },
+        }],
+        mediaItems: [{ type: 'image', url: post.google.image }],
+        scheduledFor: post.date,
+        timezone: 'Europe/Paris',
+      };
+      if (dryRun) {
+        console.log(`🧪 Google ${label} → googlebusiness`);
+      } else {
+        const { data, error } = await zernio.posts.createPost({ body: googleBody });
+        if (error) console.error(`❌ Google ${label} : ${JSON.stringify(error)}`);
+        else {
+          googlePosts++;
+          console.log(`✅ Google ${label} (id: ${data?.post?._id ?? data?._id})`);
+        }
+      }
+    }
+  }
+
+  if (!post.story || googleOnly) continue;
   const storyDate = new Date(new Date(post.date).getTime() + STORY_DELAY_MS);
   if (storyDate <= new Date()) {
     console.log(`⏭️  story ${label} : date passée, ignorée`);
@@ -128,4 +167,4 @@ for (const post of posts) {
   console.log(`✅ story ${label} (id: ${data?.post?._id ?? data?._id})`);
 }
 
-if (!dryRun) console.log(`\n${scheduled} posts et ${stories} stories programmés.`);
+if (!dryRun) console.log(`\n${scheduled} posts, ${stories} stories et ${googlePosts} posts Google programmés.`);

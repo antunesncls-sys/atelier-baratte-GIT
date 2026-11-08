@@ -77,6 +77,19 @@ npm run schedule -- posts/<fichier>.json                   # programme les posts
 npm run schedule -- posts/<fichier>.json --stories-only    # stories seules (posts déjà programmés)
 ```
 
+### Google Business Profile
+
+Chaque post a aussi une version Google (champ `google` : texte court sans hashtags,
+image 1200×900, bouton « En savoir plus » vers construisez.fr). Elle part à la même heure
+que le post dès qu'un compte Google Business Profile est connecté au profil Zernio.
+
+```bash
+npm run google -- posts/<fichier>.json                     # génère, envoie et enregistre les images Google
+npm run schedule -- posts/<fichier>.json --google-only     # programme les versions Google seules
+```
+
+Google refuse les numéros de téléphone dans le texte des posts : renvoyer vers le site.
+
 ### Créer les visuels
 
 Les visuels (1080×1350, format portrait Instagram) sont décrits en HTML dans `visuels/`

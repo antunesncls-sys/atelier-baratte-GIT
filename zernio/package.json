@@ -10,7 +10,8 @@
     "schedule": "node src/schedule-batch.js",
     "upload": "node src/upload-media.js",
     "visuels": "node visuels/generate.cjs",
-    "stories": "node src/add-stories.js"
+    "stories": "node src/add-variants.js story",
+    "google": "node src/add-variants.js google"
   },
   "dependencies": {
     "@zernio/node": "^0.2.1374",
