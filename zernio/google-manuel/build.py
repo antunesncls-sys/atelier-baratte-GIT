@@ -30,13 +30,13 @@ for f in glob.glob('visuels/*/urls.json'):
     for name, url in json.load(open(f, encoding='utf-8')).items():
         local[url] = os.path.join(os.path.dirname(f), name)
 
-now = datetime.now(timezone.utc)
+today = datetime.now(PARIS).date()
 posts = []
 for f in glob.glob('posts/*.json'):
     if f.endswith('lieux.json'):
         continue
     for p in json.load(open(f, encoding='utf-8')):
-        if p.get('google', {}).get('image') and datetime.fromisoformat(p['date']) > now:
+        if p.get('google', {}).get('image') and datetime.fromisoformat(p['date']).astimezone(PARIS).date() >= today:
             posts.append(p)
 posts.sort(key=lambda p: p['date'])
 
@@ -48,7 +48,7 @@ entries, cards = [], []
 for i, p in enumerate(posts, 1):
     d = datetime.fromisoformat(p['date']).astimezone(PARIS)
     src = local[p['google']['image']]
-    image = f"images/{i:02d}-{os.path.splitext(os.path.basename(src))[0]}.jpg"
+    image = f"images/{d.strftime('%Y-%m-%d')}-{os.path.splitext(os.path.basename(src))[0]}.jpg"
     Image.open(src).convert('RGB').save(f'{OUT}/{image}', 'JPEG', quality=85)
     e = {
         'id': d.strftime('%Y-%m-%d'),

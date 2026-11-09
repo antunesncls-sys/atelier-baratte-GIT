@@ -1,12 +1,21 @@
 [
  {
+  "id": "2026-11-09",
+  "jour": "lundi 9 novembre",
+  "heure": "09:00",
+  "titre": "Saisonnier : déposer en hiver pour construire au printemps",
+  "ville": "Saint-Maur-des-Fossés (94)",
+  "texte": "Des travaux au printemps ? C'est maintenant qu'il faut déposer votre permis de construire.\n\nComptez 2 à 3 semaines pour monter un dossier complet, 2 mois d'instruction en mairie pour une maison individuelle (3 mois près d'un monument historique), puis 2 mois de délai de recours des voisins après l'affichage sur le terrain. Un dossier déposé en novembre, c'est un chantier qui peut démarrer au printemps.\n\nConstruisez monte et dépose votre permis de construire ou votre déclaration préalable partout en Île-de-France. Devis sous 24 h.",
+  "image": "images/2026-11-09-google-01-novembre.jpg"
+ },
+ {
   "id": "2026-11-10",
   "jour": "mardi 10 novembre",
   "heure": "19:45",
   "titre": "Délais d'instruction d'une autorisation",
   "ville": "Saint-Maur-des-Fossés (94)",
   "texte": "Combien de temps pour obtenir une autorisation d'urbanisme ? Comptez 1 mois pour une déclaration préalable, 2 mois pour un permis de construire de maison individuelle, 3 mois pour les autres permis, et 1 mois de plus près d'un monument historique.\n\nAttention : le délai ne court qu'à partir du dossier complet. La mairie a 1 mois pour réclamer une pièce manquante, et le délai repart à sa réception. Un dossier complet du premier coup, c'est des semaines gagnées.\n\nConstruisez prépare et dépose vos autorisations d'urbanisme partout en Île-de-France. Devis sous 24 h.",
-  "image": "images/01-google-18a-delais.jpg"
+  "image": "images/2026-11-10-google-18a-delais.jpg"
  },
  {
   "id": "2026-11-11",
@@ -15,7 +24,7 @@
   "titre": "permis modificatif à Pontault-Combault (77)",
   "ville": "Pontault-Combault (77)",
   "texte": "Votre permis est accordé mais votre projet a changé ? Pas besoin de tout recommencer : il existe le permis de construire modificatif.\n\nÀ Pontault-Combault (77), le permis prévoyait 2 maisons. Le modificatif a transformé l'intérieur en 2 logements, dont 1 dans les combles, et 2 bureaux, avec une clôture repensée. Façades, volume et emprise au sol sont inchangés.\n\nÀ savoir : le modificatif se dépose tant que le permis est valable et que les travaux ne sont pas achevés, il ne doit pas bouleverser le projet et il ne prolonge pas la validité du permis initial.\n\nUn permis à modifier ? Devis sous 24 h.",
-  "image": "images/02-google-17a-pontault.jpg"
+  "image": "images/2026-11-11-google-17a-pontault.jpg"
  },
  {
   "id": "2026-11-12",
@@ -24,7 +33,7 @@
   "titre": "extension contemporaine sur une maison ancienne",
   "ville": "Saint-Maur-des-Fossés (94)",
   "texte": "Agrandir une maison ancienne sans perdre son charme : c'est possible.\n\nPour ce client, nous avons conçu une extension contemporaine, toit plat et enduit clair, avec un garage intégré, ainsi qu'une clôture et un portail redessinés, le tout dans un seul dossier. Le défi d'une extension moderne, ce n'est pas le style, c'est le PLU : hauteur, recul, emprise, aspect extérieur. L'insertion du projet dans la vraie rue convainc la mairie.\n\nUn projet d'extension en Île-de-France ? Construisez vérifie la faisabilité avant de dessiner. Devis sous 24 h.",
-  "image": "images/03-google-12a-extension.jpg"
+  "image": "images/2026-11-12-google-12a-extension.jpg"
  },
  {
   "id": "2026-11-13",
@@ -33,7 +42,7 @@
   "titre": "Piscine : déclaration ou permis",
   "ville": "Saint-Maur-des-Fossés (94)",
   "texte": "Une piscine, ça se déclare ? Jusqu'à 10 m² de bassin : aucune formalité, hors secteur protégé. De 10 à 100 m² : déclaration préalable, si le bassin n'est pas couvert ou si sa couverture fait moins de 1,80 m. Au-delà de 100 m², ou avec une couverture de plus de 1,80 m : permis de construire.\n\nAu-delà de 10 m², la piscine entre aussi dans le calcul de la taxe d'aménagement. Pour se baigner l'été prochain, c'est en hiver qu'il faut déposer.\n\nConstruisez prépare et dépose vos autorisations d'urbanisme partout en Île-de-France. Devis sous 24 h.",
-  "image": "images/04-google-19a-piscine.jpg"
+  "image": "images/2026-11-13-google-19a-piscine.jpg"
  },
  {
   "id": "2026-11-14",
@@ -42,7 +51,7 @@
   "titre": "Carport, pergola, auvent : l'emprise au sol",
   "ville": "Saint-Maur-des-Fossés (94)",
   "texte": "Carport, pergola couverte, auvent : ils créent de l'emprise au sol et se déclarent comme une construction. Moins de 5 m² : aucune formalité, hors secteur protégé. De 5 à 20 m² : déclaration préalable. Plus de 20 m² : permis de construire, sauf s'il est accolé à la maison en zone urbaine d'un PLU, où la déclaration va jusqu'à 40 m².\n\nLe PLU peut aussi imposer un recul, une hauteur maximale ou des matériaux.\n\nConstruisez prépare et dépose vos autorisations d'urbanisme partout en Île-de-France. Devis sous 24 h.",
-  "image": "images/05-google-20a-carport.jpg"
+  "image": "images/2026-11-14-google-20a-carport.jpg"
  },
  {
   "id": "2026-11-15",
@@ -51,7 +60,7 @@
   "titre": "élargissement de deux portails et clôture à Argenteuil (95)",
   "ville": "Argenteuil (95)",
   "texte": "Agrandir un portail ? Dans beaucoup de communes, ça se déclare.\n\nÀ Argenteuil (95), ce client voulait sortir sa voiture en sécurité sur une rue passante. Nous avons déposé une déclaration préalable pour élargir ses deux portails, de 3,08 à 3,50 m et de 2,58 à 3,00 m, remplacer le barreaudage et créer un passage pour la petite faune.\n\nLe PLU fixe les règles des clôtures : hauteur, matériaux, couleur, partie ajourée. Un portail, une clôture ou un muret à modifier ? Construisez s'occupe du dossier. Devis sous 24 h.",
-  "image": "images/06-google-16a-argenteuil.jpg"
+  "image": "images/2026-11-15-google-16a-argenteuil.jpg"
  },
  {
   "id": "2026-11-16",
@@ -60,7 +69,7 @@
   "titre": "Fenêtres de toit et combles",
   "ville": "Saint-Maur-des-Fossés (94)",
   "texte": "Aménager ses combles : ce qui se déclare. Les fenêtres de toit modifient la toiture, donc déclaration préalable. Les combles aménagés ajoutent de la surface de plancher. Et au-delà de 150 m², avec un permis de construire, l'architecte devient obligatoire.\n\nEn secteur protégé, l'Architecte des Bâtiments de France donne aussi son avis sur la taille et la position des fenêtres.\n\nConstruisez prépare et dépose vos autorisations d'urbanisme partout en Île-de-France. Devis sous 24 h.",
-  "image": "images/07-google-21a-velux.jpg"
+  "image": "images/2026-11-16-google-21a-velux.jpg"
  },
  {
   "id": "2026-11-17",
@@ -69,7 +78,7 @@
   "titre": "Mythe à démolir : les 40 m² sans permis",
   "ville": "Saint-Maur-des-Fossés (94)",
   "texte": "« Moins de 40 m², pas besoin de permis » : vrai et faux.\n\nEn zone urbaine d'un PLU, une extension jusqu'à 40 m² passe en général par une déclaration préalable. Mais si, avec l'extension, la maison dépasse 150 m² de surface de plancher, il faut un permis de construire et un architecte. Exemple : 120 m² + 35 m² = 155 m². Hors zone urbaine, le seuil tombe à 20 m².\n\nUn doute sur votre projet d'extension ? Construisez vous dit quelle autorisation il vous faut. Devis sous 24 h.",
-  "image": "images/08-google-02a-40m2.jpg"
+  "image": "images/2026-11-17-google-02a-40m2.jpg"
  },
  {
   "id": "2026-11-18",
@@ -78,7 +87,7 @@
   "titre": "Panneaux solaires en toiture",
   "ville": "Saint-Maur-des-Fossés (94)",
   "texte": "Des panneaux solaires sur le toit demandent une déclaration préalable : ils changent l'aspect de la maison, même posés par un professionnel.\n\nLe PLU peut encadrer leur position, leur intégration et leur couleur. En secteur protégé, l'Architecte des Bâtiments de France donne son avis. Sans autorisation, la mairie peut exiger une remise en état.\n\nConstruisez prépare et dépose vos autorisations d'urbanisme partout en Île-de-France. Devis sous 24 h.",
-  "image": "images/09-google-22a-solaire.jpg"
+  "image": "images/2026-11-18-google-22a-solaire.jpg"
  },
  {
   "id": "2026-11-19",
@@ -87,7 +96,7 @@
   "titre": "rénovation d’une façade arrière",
   "ville": "Saint-Maur-des-Fossés (94)",
   "texte": "Même maison, autre vie : la rénovation d'une façade arrière.\n\nBaies agrandies, deux balcons côté jardin, annexe enduite avec une nouvelle toiture, panneaux solaires et fenêtres de toit, soubassement en meulière conservé.\n\nBon à savoir : même côté jardin, tout ce qui modifie l'aspect extérieur se déclare. Nouvelles ouvertures, balcons, panneaux solaires, changement d'enduit : il faut au minimum une déclaration préalable.\n\nUn projet de façade ? Construisez prépare et dépose votre dossier. Devis sous 24 h.",
-  "image": "images/10-google-13a-facade-arriere.jpg"
+  "image": "images/2026-11-19-google-13a-facade-arriere.jpg"
  },
  {
   "id": "2026-11-20",
@@ -96,7 +105,7 @@
   "titre": "Transformer son garage en pièce de vie",
   "ville": "Saint-Maur-des-Fossés (94)",
   "texte": "Transformer son garage en pièce de vie se déclare. La surface de plancher augmente, puisqu'un garage n'en compte pas. La façade change quand la porte de garage devient fenêtre. Et le PLU peut exiger de garder une place de stationnement sur le terrain.\n\nSelon la surface créée : déclaration préalable ou permis de construire, avec un architecte obligatoire au-delà de 150 m² au total.\n\nConstruisez prépare et dépose vos autorisations d'urbanisme partout en Île-de-France. Devis sous 24 h.",
-  "image": "images/11-google-23a-garage.jpg"
+  "image": "images/2026-11-20-google-23a-garage.jpg"
  },
  {
   "id": "2026-11-21",
@@ -105,7 +114,7 @@
   "titre": "Ravalement de façade",
   "ville": "Saint-Maur-des-Fossés (94)",
   "texte": "Ravaler sa façade : faut-il une déclaration ? À l'identique, c'est souvent sans formalité. Mais dans une commune qui l'impose ou en secteur protégé, une déclaration préalable est obligatoire, même à l'identique. Et une nouvelle couleur ou un nouveau matériau change l'aspect : déclaration préalable.\n\nBeaucoup de communes d'Île-de-France ont un nuancier : vérifiez les teintes autorisées avant de choisir.\n\nConstruisez prépare et dépose vos autorisations d'urbanisme partout en Île-de-France. Devis sous 24 h.",
-  "image": "images/12-google-24a-ravalement.jpg"
+  "image": "images/2026-11-21-google-24a-ravalement.jpg"
  },
  {
   "id": "2026-11-22",
@@ -114,7 +123,7 @@
   "titre": "Notre méthode en 4 étapes",
   "ville": "Saint-Maur-des-Fossés (94)",
   "texte": "Quatre étapes, un interlocuteur. On vérifie avant de dessiner, avec la lecture du PLU et la faisabilité. On fait le relevé sur place. On réalise les plans et l'insertion 3D pour que vous voyiez le projet avant le dépôt. Puis on dépose et on suit l'instruction jusqu'à la décision.\n\nPrix forfaitaire connu avant engagement, plus de 300 projets accompagnés en Île-de-France depuis 2018.\n\nConstruisez prépare et dépose vos autorisations d'urbanisme partout en Île-de-France. Devis sous 24 h.",
-  "image": "images/13-google-25a-methode.jpg"
+  "image": "images/2026-11-22-google-25a-methode.jpg"
  },
  {
   "id": "2026-11-23",
@@ -123,7 +132,7 @@
   "titre": "ravalement à la chaux d’un corps de ferme à Wissous (91)",
   "ville": "Wissous (91)",
   "texte": "Un ancien corps de ferme retrouve son éclat à Wissous (91). Les enduits dégradés ont été piochés, la pierre et les joints repris, puis un nouvel enduit à la chaux naturelle, teinte ton pierre et finition mate, a été appliqué côté rue. Volumes, ouvertures et toiture sont conservés.\n\nLa chaux laisse respirer les murs anciens, contrairement au ciment. Et la maison étant à moins de 500 m d’un monument historique, le ravalement a été déclaré, avec l’avis de l’Architecte des Bâtiments de France.\n\nUne façade ancienne à rénover ? Construisez prépare votre déclaration. Devis sous 24 h.",
-  "image": "images/14-google-26a-wissous.jpg"
+  "image": "images/2026-11-23-google-26a-wissous.jpg"
  },
  {
   "id": "2026-11-24",
@@ -132,7 +141,7 @@
   "titre": "Erreur n°1 : le dossier incomplet",
   "ville": "Saint-Maur-des-Fossés (94)",
   "texte": "Votre permis n'avance pas ? Il est peut-être incomplet.\n\nTant qu'il manque une pièce, le délai d'instruction ne court pas, et il repart à la réception des pièces complémentaires. Les oublis les plus fréquents : un plan de masse sans cotes ni distances aux limites, une coupe sans le terrain naturel, une insertion graphique peu réaliste, des photos qui ne montrent pas l'environnement proche et lointain.\n\nConstruisez dépose des dossiers complets du premier coup, partout en Île-de-France. Devis sous 24 h.",
-  "image": "images/15-google-03-dossier-incomplet.jpg"
+  "image": "images/2026-11-24-google-03-dossier-incomplet.jpg"
  },
  {
   "id": "2026-11-25",
@@ -141,7 +150,7 @@
   "titre": "Notre approche : un beau projet est un projet bien étudié",
   "ville": "Saint-Maur-des-Fossés (94)",
   "texte": "Un beau projet, c’est avant tout un projet bien étudié. Extension, rénovation, isolation thermique par l’extérieur (ITE) ou construction de votre maison : un permis de construire accepté ne signifie pas que tous les aspects techniques ont été étudiés.\n\nLes points à anticiper dès la conception : urbanisme et réglementation (PLU, permis, déclaration préalable, CERFA), gestion des eaux pluviales, risques naturels (PPRI, zones inondables), performance thermique (ITE, ponts thermiques, ventilation), RE2020, conception durable (matériaux, humidité, entretien) et suivi administratif (DOC et DAACT).\n\nNotre objectif : un projet accepté par la mairie, et bien pensé pour les années à venir. Construisez intervient dans le 77, 94, 91, 95, 93, 92 et 78. Parlons-en avant de déposer votre dossier.",
-  "image": "images/16-google-27a-manifeste.jpg"
+  "image": "images/2026-11-25-google-27a-manifeste.jpg"
  },
  {
   "id": "2026-11-26",
@@ -150,7 +159,7 @@
   "titre": "création d'une cave sous une maison existante",
   "ville": "Saint-Maur-des-Fossés (94)",
   "texte": "Gagner de la surface sans toucher au jardin ni au toit : nous avons créé une cave sous une maison existante.\n\nCave de 2,18 m sous plafond, sous la pièce de vie, avec escalier intérieur. À savoir avant de creuser : au-delà de 1,80 m sous plafond, la cave compte dans la surface de plancher ; dès 5 m² créés sur une maison existante, il faut au minimum une déclaration préalable ; et creuser sous des murs existants demande une étude de structure.\n\nUn projet de cave ou de sous-sol ? Devis sous 24 h.",
-  "image": "images/17-google-10a-cave.jpg"
+  "image": "images/2026-11-26-google-10a-cave.jpg"
  },
  {
   "id": "2026-12-01",
@@ -159,7 +168,7 @@
   "titre": "Quiz abri de jardin",
   "ville": "Saint-Maur-des-Fossés (94)",
   "texte": "Quiz : votre abri de jardin fait 15 m². Quelle autorisation vous faut-il ?\n\nRéponse : une déclaration préalable. Moins de 5 m² : aucune formalité (hors secteur protégé). De 5 à 20 m² : déclaration préalable. Plus de 20 m² : permis de construire. Au-delà de 5 m², l'abri entre aussi dans le calcul de la taxe d'aménagement.\n\nConstruisez gère vos déclarations préalables et permis de construire en Île-de-France. Devis sous 24 h.",
-  "image": "images/18-google-04-quiz-abri.jpg"
+  "image": "images/2026-12-01-google-04-quiz-abri.jpg"
  },
  {
   "id": "2026-12-03",
@@ -168,7 +177,7 @@
   "titre": "devanture du restaurant Riz Djondjon",
   "ville": "Saint-Maur-des-Fossés (94)",
   "texte": "Une nouvelle devanture pour le restaurant Riz Djondjon.\n\nHabillage bois vertical, enseigne noire et dorée lisible de loin, entrées de l'immeuble et du restaurant conservées. Modifier une devanture se déclare : la façade passe par une déclaration préalable, et l'enseigne demande souvent sa propre autorisation selon la commune.\n\nNotre travail : relevé sur place, plans de façade existant et projet cotés, insertion dans la rue, dépôt et suivi. Vous ouvrez ou rénovez un commerce ? Devis sous 24 h.",
-  "image": "images/19-google-09a-devanture.jpg"
+  "image": "images/2026-12-03-google-09a-devanture.jpg"
  },
  {
   "id": "2026-12-08",
@@ -177,7 +186,7 @@
   "titre": "Le voisin et le recours",
   "ville": "Saint-Maur-des-Fossés (94)",
   "texte": "« Mon voisin a fait un recours contre mon permis. » Ce qu'il faut savoir.\n\nLe délai de recours des tiers est de 2 mois, à partir de l'affichage du permis sur le terrain, visible depuis la rue. Mal affiché, le délai peut ne jamais commencer : faites constater l'affichage. Présenter le projet aux voisins avant le dépôt désamorce la plupart des conflits, et un projet bien conçu laisse peu de prise à un recours.\n\nConstruisez conçoit des projets solides face au PLU. Devis sous 24 h.",
-  "image": "images/20-google-05-recours-voisin.jpg"
+  "image": "images/2026-12-08-google-05-recours-voisin.jpg"
  },
  {
   "id": "2026-12-10",
@@ -186,7 +195,7 @@
   "titre": "L'insertion graphique, la pièce qui fait accepter un projet",
   "ville": "Saint-Maur-des-Fossés (94)",
   "texte": "La pièce qui fait souvent accepter un permis : l'insertion graphique.\n\nC'est la pièce PCMI6 du permis de construire (DP6 en déclaration préalable). Elle montre le projet dans sa vraie rue : une vraie photo prise depuis l'espace public, le projet à la bonne échelle avec ses matériaux, vu comme un passant le verra. Une insertion soignée répond à la question de l'instructeur : est-ce que ça s'intègre ?\n\nConstruisez réalise des insertions 3D réalistes. Devis sous 24 h.",
-  "image": "images/21-google-11a-insertion.jpg"
+  "image": "images/2026-12-10-google-11a-insertion.jpg"
  },
  {
   "id": "2026-12-15",
@@ -195,7 +204,7 @@
   "titre": "Checklist des pièces du permis maison",
   "ville": "Saint-Maur-des-Fossés (94)",
   "texte": "La checklist du permis de construire d'une maison individuelle.\n\nPCMI1 plan de situation, PCMI2 plan de masse coté, PCMI3 plan en coupe, PCMI4 notice descriptive, PCMI5 façades et toitures, PCMI6 insertion graphique, PCMI7 et PCMI8 photos de l'environnement proche et lointain. Selon le projet : attestation RE2020, étude de sol en zone argileuse, pièces en secteur protégé.\n\nVous préférez qu'on s'en occupe ? Construisez monte votre dossier de A à Z. Devis sous 24 h.",
-  "image": "images/22-google-06a-checklist.jpg"
+  "image": "images/2026-12-15-google-06a-checklist.jpg"
  },
  {
   "id": "2026-12-17",
@@ -204,7 +213,7 @@
   "titre": "Coulisses : le permis accordé d’une maison neuve à Lisses (91)",
   "ville": "Lisses (91)",
   "texte": "Les coulisses d'un permis accordé : maison neuve à Lisses (91).\n\nD'abord le plan de masse coté : emprise, distances aux limites, accès, réseaux, chaque cote conforme au PLU. Puis l'insertion 3D : le client voit sa maison avant le dépôt, la mairie comprend comment elle s'intègre dans la rue. Résultat : permis accordé.\n\nNotre méthode : on vérifie avant de dessiner, on dépose un dossier propre, on suit l'instruction. Un terrain ou un projet de maison ? Devis sous 24 h.",
-  "image": "images/23-google-07a-coulisses-lisses.jpg"
+  "image": "images/2026-12-17-google-07a-coulisses-lisses.jpg"
  },
  {
   "id": "2026-12-22",
@@ -213,6 +222,6 @@
   "titre": "Validité du permis",
   "ville": "Saint-Maur-des-Fossés (94)",
   "texte": "Votre permis de construire a une date d'expiration.\n\nIl est valable 3 ans. Si les travaux n'ont pas commencé dans ce délai, ou s'ils sont interrompus plus d'un an, il devient caduc. Vous pouvez demander une prorogation d'un an, deux fois, à condition de la demander avant l'expiration et que les règles d'urbanisme n'aient pas changé. Besoin d'ajuster le projet avant de démarrer ? Un permis modificatif est souvent possible.\n\nConstruisez vous accompagne. Devis sous 24 h.",
-  "image": "images/24-google-08-validite.jpg"
+  "image": "images/2026-12-22-google-08-validite.jpg"
  }
 ]
