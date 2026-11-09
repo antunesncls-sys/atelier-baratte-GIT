@@ -1,10 +1,12 @@
 """Reconstruit la page des posts Google manuels à partir des posts à venir (champ "google").
 
-Usage : python3 -I google-manuel/build.py   (depuis le dossier zernio)
+Usage : python3 -I google-manuel/build.py <sha du commit contenant les images>   (depuis le dossier zernio)
+Les liens « Ouvrir l'image en grand » pointent vers ce commit du dépôt public : commiter et pousser les images avant.
 Écrit google-manuel/posts.json, google-manuel/images/*.jpg et met à jour les fiches
 de google-manuel/posts-google.html (l'en-tête et le style de la page sont conservés).
 """
 import glob
+import sys
 import html
 import json
 import os
@@ -16,6 +18,9 @@ from PIL import Image
 
 OUT = 'google-manuel'
 URL = 'https://www.construisez.fr/?utm_source=google&utm_medium=gbp&utm_campaign=posts'
+# Le cadre des artefacts bloque les téléchargements : chaque image s'ouvre aussi en grand depuis le dépôt public.
+RAW = 'https://raw.githubusercontent.com/antunesncls-sys/atelier-baratte-GIT/{sha}/zernio/google-manuel/'
+SHA = sys.argv[1] if len(sys.argv) > 1 else 'claude/beautiful-ritchie-9o5e4z'
 PARIS = ZoneInfo('Europe/Paris')
 JOURS = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche']
 MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
@@ -64,7 +69,7 @@ for i, p in enumerate(posts, 1):
   <h2>{html.escape(e['titre'])}</h2>
   <p class="city">📍 {html.escape(e['ville'])}</p>
   <div class="body">
-    <figure><img src="{e['image']}" alt="Image du post : {html.escape(e['titre'])}" loading="lazy" width="1200" height="900"><figcaption>Appui long (téléphone) ou clic droit : « Enregistrer l'image »</figcaption></figure>
+    <figure><img src="{e['image']}" alt="Image du post : {html.escape(e['titre'])}" loading="lazy" width="1200" height="900"><a class="open" href="{RAW.format(sha=SHA)}{e['image']}" target="_blank" rel="noopener">Ouvrir l'image en grand</a><figcaption>Puis appui long sur l'image : « Enregistrer » ou « Ajouter à Photos ».</figcaption></figure>
     <div class="txt">
       <div class="label-row"><span class="lab">Texte de l'actualité</span><button type="button" class="copy" data-target="t-{e['id']}">Copier le texte</button></div>
       <pre id="t-{e['id']}" class="text">{html.escape(e['texte'])}</pre>
