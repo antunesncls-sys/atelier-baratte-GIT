@@ -25,8 +25,8 @@ const html = (cover) => `<!doctype html><html lang="fr"><head><meta charset="utf
   .story > * { position: relative; }
   .kicker { margin: 0 0 44px; font-size: 30px; }
   .cover { width: 900px; border-radius: 14px; box-shadow: 0 40px 90px rgba(0,0,0,.6); border: 2px solid var(--line); }
-  .cta { margin-top: 64px; font-family: 'Bodoni Moda', serif; font-size: 64px; font-weight: 500; text-align: center; line-height: 1.1; }
-  .cta em { font-style: italic; color: var(--acc-l); }
+  .cta { margin-top: 64px; font-family: var(--display); font-size: 64px; font-weight: var(--display-weight); letter-spacing: var(--display-track); text-align: center; line-height: 1.1; }
+  .cta em { font-style: var(--display-em); color: var(--acc-l); }
   .foot { position: absolute; bottom: 120px; display: flex; align-items: center; gap: 18px; font-family: 'Public Sans', sans-serif; font-weight: 700; font-size: 30px; letter-spacing: .24em; }
   .foot img { width: 50px; height: 50px; }
 </style></head><body>
