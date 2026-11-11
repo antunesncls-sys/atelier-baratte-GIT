@@ -195,6 +195,18 @@ en slogans. Interdits : « excellence opérationnelle », « solutions innovante
     professionnelle, façades, détails de réserves) ont été montrées en conversation mais
     jamais reçues en fichiers — à renvoyer en pièces jointes pour enrichir la galerie.
 
+## 11 bis. Refonte du site (nov. 2026, non publiée à date)
+
+- Nouvelle structure type « artisan local » : une page par service avec la ville dans l'URL
+  (`/carottage-urgence-montfermeil/`, `/corvoyage-montfermeil/`, `/nettoyage-bureaux-montfermeil/`),
+  page `/plateformes-logistiques/` conservée, estimation en 4 étapes, réalisations, qui sommes-nous, contact.
+- Décisions du dirigeant : remplacer le site actuel ; « devis gratuit et sans engagement » ;
+  aucun prix affiché (« prix sur devis après visite ») ; pas d'avis Google pour l'instant
+  (bloc remplacé par la référence Bouygues Immobilier, aucun aggregateRating).
+- Non repris dans la refonte faute de confirmation : ENEDIS, « recherche de l'origine des
+  infiltrations », « mise en sécurité », « petits travaux d'électricité ».
+- Les anciennes URL sont redirigées en 301 (`site/_redirects`).
+
 ## 12. À ne jamais affirmer sans preuve
 
 Disponibilité 24h/24 · certifications (Qualipropre, MASE, ISO…) · références clients ·

@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.ofentretiens.com/</loc><lastmod>2026-11-11</lastmod><priority>1.0</priority></url>
-  <url><loc>https://www.ofentretiens.com/corvoyage.html</loc><lastmod>2026-11-11</lastmod><priority>0.9</priority></url>
-  <url><loc>https://www.ofentretiens.com/promoteurs.html</loc><lastmod>2026-11-11</lastmod><priority>0.9</priority></url>
-  <url><loc>https://www.ofentretiens.com/plateformes-logistiques.html</loc><lastmod>2026-11-11</lastmod><priority>0.9</priority></url>
-  <url><loc>https://www.ofentretiens.com/carottage-urgence.html</loc><lastmod>2026-11-11</lastmod><priority>0.9</priority></url>
-  <url><loc>https://www.ofentretiens.com/mentions-legales.html</loc><lastmod>2026-11-11</lastmod><priority>0.2</priority></url>
+  <url><loc>https://www.ofentretiens.com/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://www.ofentretiens.com/carottage-urgence-montfermeil/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://www.ofentretiens.com/corvoyage-montfermeil/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://www.ofentretiens.com/nettoyage-bureaux-montfermeil/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://www.ofentretiens.com/plateformes-logistiques/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://www.ofentretiens.com/estimation/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://www.ofentretiens.com/realisations/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://www.ofentretiens.com/qui-sommes-nous/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://www.ofentretiens.com/contact/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://www.ofentretiens.com/mentions-legales/</loc><lastmod>2026-11-11</lastmod></url>
 </urlset>

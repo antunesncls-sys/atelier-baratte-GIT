@@ -1,0 +1,8 @@
+# Anciennes adresses -> nouvelles (redirections permanentes, conservent le référencement)
+/corvoyage.html               /corvoyage-montfermeil/             301
+/promoteurs.html              /corvoyage-montfermeil/             301
+/plateformes-logistiques.html /plateformes-logistiques/           301
+/carottage-urgence.html       /carottage-urgence-montfermeil/     301
+/mentions-legales.html        /mentions-legales/                  301
+/merci.html                   /merci/                             301
+/index.html                   /                                   301

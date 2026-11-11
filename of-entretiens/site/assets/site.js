@@ -1,19 +1,17 @@
-/* OF ENTRETIENS — comportements communs à toutes les pages.
-   Le site reste entièrement utilisable sans JavaScript. */
+/* OF ENTRETIENS — script commun, léger (aucune bibliothèque).
+   Le site reste utilisable sans JavaScript. */
 (function () {
-  var doc = document.documentElement;
-  doc.classList.add('js');
-  var reduit = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.documentElement.classList.add('js');
 
   /* ---------- menu mobile ---------- */
   var burger = document.querySelector('.burger');
   var menu = document.getElementById('menu-mobile');
-  function fermerMenu(rendreFocus) {
+  function fermer(focus) {
     if (!menu || menu.hidden) return;
     menu.hidden = true;
     burger.setAttribute('aria-expanded', 'false');
     burger.setAttribute('aria-label', 'Ouvrir le menu');
-    if (rendreFocus) burger.focus();
+    if (focus) burger.focus();
   }
   if (burger && menu) {
     burger.addEventListener('click', function () {
@@ -22,52 +20,66 @@
       burger.setAttribute('aria-expanded', String(ouvrir));
       burger.setAttribute('aria-label', ouvrir ? 'Fermer le menu' : 'Ouvrir le menu');
     });
-    menu.addEventListener('click', function (e) {
-      if (e.target.closest('a')) fermerMenu(false);
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') fermerMenu(true);
-    });
-    window.addEventListener('resize', function () {
-      if (window.innerWidth > 1080) fermerMenu(false);
-    });
+    menu.addEventListener('click', function (e) { if (e.target.closest('a')) fermer(false); });
   }
 
-  /* ---------- en-tête : ombre dès qu'on fait défiler ---------- */
-  var entete = document.querySelector('.site-header');
-  if (entete) {
-    var majEntete = function () { entete.classList.toggle('scrolled', window.scrollY > 8); };
-    majEntete();
-    window.addEventListener('scroll', majEntete, { passive: true });
-  }
-
-  /* ---------- barre d'appel mobile : masquée quand le formulaire est à l'écran ---------- */
-  var barre = document.querySelector('.barre-mobile');
-  var contact = document.getElementById('contact');
-  if (barre && contact && 'IntersectionObserver' in window) {
-    new IntersectionObserver(function (entrees) {
-      barre.classList.toggle('cachee', entrees[0].isIntersecting);
-    }, { threshold: 0.15 }).observe(contact);
-  }
-
-  /* ---------- apparition douce des blocs au défilement ---------- */
-  if (reduit || !('IntersectionObserver' in window)) return;
-  var cibles = document.querySelectorAll(
-    '.section-head, .card, .public-link, .bloc-liste li, .methode-pas li, .galerie figure,' +
-    ' .avant-apres figure, .engagements article, .recente, .refs, .faq-liste details,' +
-    ' .cta-band .wrap, .situations li, .page-photo, .logo-carte, .coord li'
-  );
-  var obs = new IntersectionObserver(function (entrees) {
-    entrees.forEach(function (e) {
-      if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+  /* ---------- sous-menu « Services » (clavier et tactile) ---------- */
+  var boutonsSousMenu = document.querySelectorAll('.menu button[aria-controls]');
+  Array.prototype.forEach.call(boutonsSousMenu, function (b) {
+    b.addEventListener('click', function () {
+      b.setAttribute('aria-expanded', String(b.getAttribute('aria-expanded') !== 'true'));
     });
-  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-  Array.prototype.forEach.call(cibles, function (el) {
-    // les éléments déjà visibles au chargement ne sont pas animés (pas de « flash »)
-    if (el.getBoundingClientRect().top < window.innerHeight * 0.92) return;
-    var rang = Array.prototype.indexOf.call(el.parentNode.children, el) % 4;
-    el.style.transitionDelay = (rang * 70) + 'ms';
-    el.classList.add('reveal');
-    obs.observe(el);
   });
+  document.addEventListener('click', function (e) {
+    Array.prototype.forEach.call(boutonsSousMenu, function (b) {
+      if (!b.parentNode.contains(e.target)) b.setAttribute('aria-expanded', 'false');
+    });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    fermer(true);
+    Array.prototype.forEach.call(boutonsSousMenu, function (b) {
+      if (b.getAttribute('aria-expanded') === 'true') { b.setAttribute('aria-expanded', 'false'); b.focus(); }
+    });
+  });
+
+  /* ---------- cookies (RGPD) ----------
+     Aujourd'hui le site ne dépose AUCUN cookie de mesure d'audience ni de publicité :
+     le bandeau ne s'affiche donc pas tout seul. Pour ajouter un outil de mesure plus tard,
+     passer data-mesure-audience="on" sur <html> et charger l'outil dans chargerMesure(). */
+  var CLE = 'of-cookies-choix';
+  var bandeau = document.getElementById('cookies');
+  var actif = document.documentElement.getAttribute('data-mesure-audience') === 'on';
+  function lire() { try { return JSON.parse(localStorage.getItem(CLE)); } catch (e) { return null; } }
+  function enregistrer(mesure) {
+    try { localStorage.setItem(CLE, JSON.stringify({ mesure: mesure, date: new Date().toISOString() })); } catch (e) {}
+    if (mesure) chargerMesure();
+    if (bandeau) bandeau.hidden = true;
+  }
+  function chargerMesure() { /* à compléter le jour où un outil de mesure est installé */ }
+  if (bandeau) {
+    var case_ = bandeau.querySelector('input[name="mesure"]');
+    var reglages = bandeau.querySelector('.reglages');
+    bandeau.addEventListener('click', function (e) {
+      var action = e.target.getAttribute('data-cookies');
+      if (action === 'refuser') enregistrer(false);
+      if (action === 'accepter') enregistrer(true);
+      if (action === 'personnaliser') {
+        if (reglages.hidden) { reglages.hidden = false; e.target.textContent = 'Enregistrer'; }
+        else enregistrer(!!(case_ && case_.checked));
+      }
+    });
+    var choix = lire();
+    if (actif && !choix) bandeau.hidden = false;
+    if (actif && choix && choix.mesure) chargerMesure();
+    Array.prototype.forEach.call(document.querySelectorAll('[data-gerer-cookies]'), function (l) {
+      l.addEventListener('click', function (e) {
+        e.preventDefault();
+        var c = lire();
+        if (case_) case_.checked = !!(c && c.mesure);
+        bandeau.hidden = false;
+        bandeau.querySelector('button').focus();
+      });
+    });
+  }
 })();
