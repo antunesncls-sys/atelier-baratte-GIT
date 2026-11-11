@@ -14,6 +14,6 @@
 
 ## Nom de domaine
 
-Les URL `https://ofentretiens.netlify.app/` sont écrites dans les balises canonical,
-Open Graph, le JSON-LD, `sitemap.xml` et `robots.txt` : les remplacer toutes au passage
-à un nom de domaine définitif.
+Le site est publié sur https://www.ofentretiens.com/ (projet Netlify *ofentretiens*).
+Cette adresse est écrite dans les balises canonical, Open Graph, le JSON-LD,
+`sitemap.xml` et `robots.txt` : la changer partout si le domaine change.
