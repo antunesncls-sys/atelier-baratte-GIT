@@ -271,6 +271,42 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
 .sent-l{color:var(--fg);font-weight:600;text-decoration:none;padding:10px 0}
 .sent-l:hover{color:var(--ikb-l)}
 @media (prefers-reduced-motion: reduce){.sent{animation:none}.sent-ic svg{animation:none;stroke-dashoffset:0}}
+
+/* ---------- avant / après ---------- */
+.ba{display:flex;flex-direction:column;gap:8px;margin-top:22px;max-width:52ch}
+.ba-row{display:flex;align-items:baseline;gap:12px;font-size:.95rem;line-height:1.5;color:var(--dim)}
+.ba-row:last-child{color:var(--fg)}
+.ba-k{flex:none;width:58px;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;padding:4px 0;text-align:center;border-radius:4px}
+.ba-before{color:var(--faint);border:1px solid #2c3039}
+.ba-after{color:#fff;background:var(--ikb)}
+
+/* ---------- diagnostic express ---------- */
+.files{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.files span{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:.8rem;color:var(--dim);background:#11131a;border:1px solid var(--line);border-radius:6px;padding:7px 10px 7px 30px;position:relative}
+.files span::before{content:"";position:absolute;left:10px;top:50%;width:12px;height:14px;translate:0 -50%;border-radius:2px;background:#1d6b45}
+.files span:last-child::before{background:#a3322b}
+.diag{margin-top:34px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;width:100%;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px}
+.dq{border:0;margin:0;padding:0;min-width:0}
+.dq legend{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1rem;margin-bottom:12px;padding:0}
+.dn{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:.75rem;color:var(--ikb-l);border:1.5px solid var(--ikb-l)}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts label{position:relative;cursor:pointer}
+.opts input{position:absolute;opacity:0;pointer-events:none}
+.opts span{display:inline-block;padding:9px 14px;border-radius:999px;border:1px solid #2e323d;background:#0e1015;font-size:.9rem;color:var(--fg);transition:background .2s ease, border-color .2s ease}
+.opts label:hover span{border-color:var(--ikb-l)}
+.opts input:checked + span{background:var(--ikb);border-color:var(--ikb);color:#fff}
+.opts input:focus-visible + span{outline:3px solid var(--ikb-l);outline-offset:2px}
+.diag .cta{grid-column:1/-1;justify-self:start}
+.diag-err{grid-column:1/-1;margin:0;color:#ff8a80;font-weight:600;font-size:.92rem}
+.diag-res{margin-top:34px;width:100%;max-width:760px;background:var(--card);border:1px solid var(--ikb-l);border-radius:14px;padding:30px 28px;outline:none;animation:sentin .6s cubic-bezier(.16,1,.3,1)}
+.dr-t{margin:8px 0 0;font-family:"Archivo Black",sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(1.6rem,4vw,2.3rem);line-height:1}
+.dr-list{margin:18px 0 0;padding:0;list-style:none;counter-reset:r;display:flex;flex-direction:column;gap:10px}
+.dr-list li{counter-increment:r;display:flex;gap:12px;align-items:flex-start;padding:13px 15px;border:1px solid var(--line);border-radius:8px;color:var(--fg);font-size:.96rem;line-height:1.5}
+.dr-list li::before{content:counter(r);flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:.75rem;font-weight:700;color:var(--ikb-l);border:1.5px solid var(--ikb-l);margin-top:1px}
+.dr-list li b{color:var(--fg)}
+.dr-note{margin:16px 0 0;color:var(--dim);font-size:.92rem}
+.diag-res .ghost{background:none;cursor:pointer;font:inherit;font-weight:600}
+@media (max-width:760px){.diag{grid-template-columns:1fr;padding:20px 16px}.diag-res{padding:24px 18px}}
 </style>
 
 <script>document.body.classList.add('js')</script>
@@ -291,6 +327,7 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
   <a href="#devis"><span>Devis IA</span></a>
   <a href="#chantier"><span>Chantier</span></a>
   <a href="#boutique"><span>Boutique</span></a>
+  <a href="#diagnostic"><span>Diagnostic</span></a>
   <a href="#methode"><span>Méthode</span></a>
   <a href="#questions"><span>Questions</span></a>
   <a href="#contact"><span>Contact</span></a>
@@ -318,6 +355,7 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
         <span class="jump-k">Aller directement à</span>
         <a href="#real">Nos sites</a>
         <a href="#devis">Nos applications</a>
+        <a href="#diagnostic">Diagnostic 2 min</a>
         <a href="#methode">Comment on travaille</a>
         <a href="#questions">Questions</a>
         <a href="#contact">Contact</a>
@@ -371,6 +409,7 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
       <p class="eyebrow rv">Chapitre 02 · Devis &amp; factures</p>
       <h2 class="giant split"><span class="ln"><span class="lw" style="--l:0">Devis</span></span> <span class="ln"><span class="lw blue" style="--l:1">IA.</span></span></h2>
       <p class="lede rv d2">Décrivez le chantier, <b>l'application rédige le devis</b>. Trois touches, le PDF part par email — le jour de la visite, pas le dimanche soir. Factures et tableau de bord dans la poche.</p>
+      <div class="ba rv d2"><div class="ba-row"><span class="ba-k ba-before">Avant</span><span>Devis tapés le soir sur Word, envoyés le lendemain.</span></div><div class="ba-row"><span class="ba-k ba-after">Après</span><span>Le PDF part depuis le chantier, le jour même de la visite.</span></div></div>
       <div class="actions rv d2"><a class="cta" href="#contact">Je veux cet outil</a><a class="ghost" href="applications.html">Les 9 applications →</a></div>
     </div>
     <div class="float" data-par style="--fd:0s"><div class="float-in"><img class="phone rv d2" style="--tilt:2.5deg" src="assets/app-devis-ia.jpg" width="1309" height="2576" loading="lazy" alt="Application devis et factures avec Devis IA"></div></div>
@@ -383,6 +422,7 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
       <p class="eyebrow rv">Chapitre 03 · Équipes chantier</p>
       <h2 class="giant split"><span class="ln"><span class="lw" style="--l:0">Le chantier</span></span> <span class="ln"><span class="lw blue" style="--l:1">du jour.</span></span></h2>
       <p class="lede rv d2">Chaque chef de chantier voit son planning de la semaine, <b>demande matériel et échafaudage depuis le chantier</b>, envoie ses bons de fabrication à l'atelier. En production chez JMC Couverture.</p>
+      <div class="ba rv d2"><div class="ba-row"><span class="ba-k ba-before">Avant</span><span>Appels et SMS pour le matériel, bons de fabrication sur papier.</span></div><div class="ba-row"><span class="ba-k ba-after">Après</span><span>Chaque demande part du téléphone et arrive au même endroit à l'atelier.</span></div></div>
       <div class="actions rv d2"><a class="cta" href="#contact">Parlons de vos équipes</a><a class="ghost" href="applications.html">Les 9 applications →</a></div>
     </div>
     <div class="float" data-par style="--fd:-2.3s"><div class="float-in"><img class="phone rv d2" style="--tilt:-2.5deg" src="assets/app-jmc-chantier.jpg" width="1320" height="2552" loading="lazy" alt="Application équipes chantier JMC Couverture"></div></div>
@@ -395,16 +435,85 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
       <p class="eyebrow rv">Chapitre 04 · Caisse &amp; réparations</p>
       <h2 class="giant split"><span class="ln"><span class="lw" style="--l:0">La boutique,</span></span> <span class="ln"><span class="lw blue" style="--l:1">en main.</span></span></h2>
       <p class="lede rv d2">Dépôts de réparation enregistrés en quelques secondes, <b>objectif du jour et chiffre du mois en temps réel</b>. En production à la bijouterie Atelier Baratte, Saint-Maur-des-Fossés.</p>
+      <div class="ba rv d2"><div class="ba-row"><span class="ba-k ba-before">Avant</span><span>Dépôts notés à la main, chiffre du mois recalculé en fin de mois.</span></div><div class="ba-row"><span class="ba-k ba-after">Après</span><span>Dépôt enregistré en quelques secondes, chiffre du jour visible en direct.</span></div></div>
       <div class="actions rv d2"><a class="cta" href="#contact">Un outil pour ma boutique</a><a class="ghost" href="applications.html">Les 9 applications →</a></div>
     </div>
     <div class="float" data-par style="--fd:-4.6s"><div class="float-in"><img class="phone rv d2" style="--tilt:2deg" src="assets/app-atelier-baratte.png" width="295" height="640" loading="lazy" alt="Application caisse et réparations Atelier Baratte"></div></div>
   </div>
 </section>
 
+<section class="ch auto" id="diagnostic" style="--glow:#14215a;--gx:60%;--gy:20%">
+  <div class="inner" style="flex-direction:column;align-items:flex-start">
+    <div class="col" style="width:100%">
+      <p class="eyebrow rv">Chapitre 05 · Diagnostic express</p>
+      <h2 class="giant split"><span class="ln"><span class="lw" style="--l:0">Ça vous</span></span> <span class="ln"><span class="lw blue" style="--l:1">parle&nbsp;?</span></span></h2>
+      <div class="files rv d2" aria-label="Exemples de fichiers bricolés">
+        <span>Devis_2026_FINAL_v3.xlsx</span>
+        <span>Suivi_chantiers_OK_bis.xlsx</span>
+        <span>Clients (copie 2).xlsx</span>
+        <span>Bons_commande_scan_0412.pdf</span>
+      </div>
+      <p class="lede rv d2">Des fichiers qui se multiplient, des infos saisies trois fois, des bons papier qui se perdent. <b>Quatre questions, deux minutes</b> : on vous dit par où commencer, puis on vient le vérifier chez vous.</p>
+
+      <form class="diag rv d2" id="diag" novalidate>
+        <fieldset class="dq">
+          <legend><span class="dn">1</span>Vous êtes…</legend>
+          <div class="opts">
+            <label><input type="radio" name="d-metier" value="Artisan"><span>Artisan</span></label>
+            <label><input type="radio" name="d-metier" value="Commerce"><span>Commerce</span></label>
+            <label><input type="radio" name="d-metier" value="Entreprise du BTP"><span>Entreprise du BTP</span></label>
+            <label><input type="radio" name="d-metier" value="Services aux entreprises"><span>Services aux entreprises</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="dq">
+          <legend><span class="dn">2</span>Vos clients vous trouvent surtout…</legend>
+          <div class="opts">
+            <label><input type="radio" name="d-web" value="pas-de-site"><span>Je n'ai pas de site</span></label>
+            <label><input type="radio" name="d-web" value="site-vieux"><span>Mon site date un peu</span></label>
+            <label><input type="radio" name="d-web" value="pas-google"><span>On ne me trouve pas sur Google</span></label>
+            <label><input type="radio" name="d-web" value="ok"><span>Ça va de ce côté</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="dq">
+          <legend><span class="dn">3</span>Vos devis, commandes et suivis passent par…</legend>
+          <div class="opts">
+            <label><input type="radio" name="d-outil" value="excel"><span>Des fichiers Excel</span></label>
+            <label><input type="radio" name="d-outil" value="papier"><span>Du papier et des SMS</span></label>
+            <label><input type="radio" name="d-outil" value="logiciel"><span>Un logiciel qui ne colle pas</span></label>
+            <label><input type="radio" name="d-outil" value="ok"><span>Un outil qui me convient</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="dq">
+          <legend><span class="dn">4</span>Ce qui vous fait perdre le plus de temps…</legend>
+          <div class="opts">
+            <label><input type="radio" name="d-temps" value="Ressaisir les mêmes informations"><span>Ressaisir les mêmes infos</span></label>
+            <label><input type="radio" name="d-temps" value="Faire et envoyer les devis"><span>Faire les devis</span></label>
+            <label><input type="radio" name="d-temps" value="Suivre les équipes et les chantiers"><span>Suivre équipes et chantiers</span></label>
+            <label><input type="radio" name="d-temps" value="Trouver de nouveaux clients"><span>Trouver des clients</span></label>
+          </div>
+        </fieldset>
+        <p class="diag-err" id="diag-err" hidden>Répondez aux quatre questions pour voir le résultat.</p>
+        <button class="cta" type="submit">Voir mon diagnostic</button>
+      </form>
+
+      <div class="diag-res" id="diag-res" hidden tabindex="-1">
+        <p class="sent-k">Votre diagnostic</p>
+        <h3 class="dr-t" id="dr-t"></h3>
+        <ol class="dr-list" id="dr-list"></ol>
+        <p class="dr-note">Ce premier avis se vérifie sur place : on vient voir comment vous travaillez, gratuitement et sans engagement.</p>
+        <div class="actions">
+          <a class="cta" href="#contact" id="dr-go">Recevoir mon audit gratuit</a>
+          <button class="ghost" type="button" id="dr-again">Refaire le diagnostic</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="ch auto" id="methode" style="--glow:#101b45;--gx:30%;--gy:30%">
   <div class="inner" style="flex-direction:column;align-items:flex-start">
     <div class="col" style="width:100%">
-      <p class="eyebrow rv">Chapitre 05 · Notre façon de travailler</p>
+      <p class="eyebrow rv">Chapitre 06 · Notre façon de travailler</p>
       <h2 class="giant split"><span class="ln"><span class="lw" style="--l:0">On vient</span></span> <span class="ln"><span class="lw blue" style="--l:1">vous voir.</span></span></h2>
       <p class="lede rv d2">Pas une agence à distance. On échange sur votre business, vos process, vos clients — <b>à l'atelier, au dépôt, au bureau</b>. C'est là que le site se décide, pas derrière un écran. Un service convivial, auquel vous pouvez accorder votre confiance.</p>
       <div class="steps">
@@ -421,7 +530,7 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
 <section class="ch auto" id="questions" style="--glow:#0d1f3c;--gx:70%;--gy:50%">
   <div class="inner" style="flex-direction:column;align-items:flex-start">
     <div class="col" style="width:100%">
-      <p class="eyebrow rv">Chapitre 06 · Questions fréquentes</p>
+      <p class="eyebrow rv">Chapitre 07 · Questions fréquentes</p>
       <h2 class="giant split"><span class="ln"><span class="lw" style="--l:0">Avant de</span></span> <span class="ln"><span class="lw blue" style="--l:1">se lancer.</span></span></h2>
       <div class="faq rv d2">
         <details>
@@ -462,7 +571,7 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
   <div class="inner" style="flex-direction:column;align-items:flex-start">
     <div class="contact-grid">
       <div class="col">
-        <p class="eyebrow rv">Chapitre 07 · Contact</p>
+        <p class="eyebrow rv">Chapitre 08 · Contact</p>
         <h2 class="giant split"><span class="ln"><span class="lw" style="--l:0">Parlons-</span></span> <span class="ln"><span class="lw blue" style="--l:1">en.</span></span></h2>
         <p class="lede rv d2">Décrivez votre activité et ce qui vous manque : être trouvé, rassurer, recevoir plus d'appels. On convient d'un audit gratuit sur place, et on vous dit franchement ce qu'un site peut changer — et ce qu'il ne changera pas. <b>Réponse sous un jour ouvré.</b></p>
         <div class="coord rv d2">
@@ -597,6 +706,60 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
     });
   }, { rootMargin: '-45% 0px -45% 0px' });
   secs.forEach(function(sct){ if (sct) pio.observe(sct); });
+
+
+  var diag = document.getElementById('diag');
+  if (diag) {
+    var res = document.getElementById('diag-res'), err = document.getElementById('diag-err');
+    var val = function(n){ var c = diag.querySelector('input[name="' + n + '"]:checked'); return c ? c.value : ''; };
+    var label = function(n){ var c = diag.querySelector('input[name="' + n + '"]:checked'); return c ? c.nextElementSibling.textContent : ''; };
+    var advice = null;
+    diag.addEventListener('change', function(){ err.hidden = true; });
+    diag.addEventListener('submit', function(e){
+      e.preventDefault();
+      var metier = val('d-metier'), web = val('d-web'), outil = val('d-outil'), temps = val('d-temps');
+      if (!metier || !web || !outil || !temps) { err.hidden = false; return; }
+      err.hidden = true;
+      var needSite = web !== 'ok' || temps === 'Trouver de nouveaux clients';
+      var needTool = outil !== 'ok' || temps !== 'Trouver de nouveaux clients';
+      var steps = [];
+      if (web === 'pas-de-site') steps.push('<b>Un site qui fait sonner le téléphone</b> : vos services, vos réalisations, vos avis Google, et un bouton d’appel bien visible.');
+      if (web === 'site-vieux') steps.push('<b>Refaire votre site</b> pour qu’il inspire confiance sur mobile et donne envie d’appeler.');
+      if (web === 'pas-google' || temps === 'Trouver de nouveaux clients') steps.push('<b>Être trouvé localement</b> : référencement par ville et par métier, fiche Google tenue à jour, avis mis en avant.');
+      if (outil === 'excel') steps.push('<b>Remettre de l’ordre dans vos fichiers Excel</b> : une seule base, des données saisies une fois, ou une application si le fichier est arrivé au bout.');
+      if (outil === 'papier') steps.push('<b>Passer du papier au téléphone</b> : bons, demandes et suivis saisis sur place, visibles tout de suite au bureau.');
+      if (outil === 'logiciel') steps.push('<b>Un outil taillé pour votre façon de travailler</b>, plutôt que de contourner un logiciel qui ne colle pas.');
+      if (temps === 'Faire et envoyer les devis') steps.push('<b>Un outil de devis</b> qui part depuis le chantier, le jour de la visite.');
+      if (temps === 'Suivre les équipes et les chantiers') steps.push('<b>Un planning partagé</b> : chaque équipe voit son chantier du jour et fait ses demandes depuis le téléphone.');
+      if (temps === 'Ressaisir les mêmes informations') steps.push('<b>Saisir une fois, retrouver partout</b> : clients, devis, factures et suivis reliés entre eux.');
+      if (!steps.length) steps.push('<b>Un regard extérieur</b> : on passe une heure chez vous pour repérer ce qui peut encore être simplifié.');
+      var title = needSite && needTool ? 'Site et outil de gestion' : needSite ? 'Priorité : votre visibilité' : 'Priorité : votre outil de gestion';
+      document.getElementById('dr-t').textContent = title;
+      document.getElementById('dr-list').innerHTML = steps.slice(0, 3).map(function(t){ return '<li><span>' + t + '</span></li>'; }).join('');
+      advice = {
+        besoin: !needTool ? (web === 'pas-de-site' ? 'Créer un premier site' : web === 'site-vieux' ? 'Refaire un site existant' : 'Être mieux trouvé sur Google')
+              : outil === 'excel' ? 'Améliorer un fichier Excel / un outil interne'
+              : (outil === 'papier' || temps === 'Suivre les équipes et les chantiers') ? 'Outil de gestion (flotte, commandes, dépôt, livraisons)'
+              : 'Créer une application',
+        metier: metier,
+        msg: 'Diagnostic express : ' + metier + ' · clients : ' + label('d-web') + ' · outils : ' + label('d-outil') + ' · temps perdu : ' + label('d-temps') + '. Conseil : ' + title + '.'
+      };
+      diag.hidden = true; res.hidden = false;
+      try { res.focus({ preventScroll: true }); } catch (x) {}
+      res.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+    document.getElementById('dr-again').addEventListener('click', function(){
+      res.hidden = true; diag.hidden = false; diag.reset(); advice = null;
+      diag.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    document.getElementById('dr-go').addEventListener('click', function(){
+      if (!advice) return;
+      var sel = document.getElementById('f-besoin'), act = document.getElementById('f-activite'), msg = document.getElementById('f-msg');
+      if (sel) Array.prototype.forEach.call(sel.options, function(o){ if (o.text === advice.besoin) sel.value = o.value; });
+      if (act && !act.value) act.value = advice.metier;
+      if (msg && !msg.value) msg.value = advice.msg + '\n\n';
+    });
+  }
 
   var hero = document.getElementById('hero'), contact = document.getElementById('contact');
   var heroOut = false, contactIn = false;
