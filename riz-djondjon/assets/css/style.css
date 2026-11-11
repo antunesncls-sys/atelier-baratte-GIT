@@ -607,3 +607,14 @@ body.is-ready .split .ch { transform: none; opacity: 1; }
 
 /* Bouton-lien ("voir tout" dans l'agenda) */
 .linkish { background: none; border: 0; padding: 0; color: var(--mango-2); cursor: pointer; font: inherit; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- Bandeau MAQUETTE (à retirer au lancement officiel) ---------- */
+.demo-banner { position: fixed; inset: 0 0 auto 0; z-index: 260; height: 30px; display: flex; align-items: center; justify-content: center; padding: 0 12px; background: var(--guava); color: #fff; font-size: .78rem; font-weight: 600; text-align: center; white-space: nowrap; overflow: hidden; }
+.demo-banner strong { font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
+.demo-banner__short { display: none; }
+.has-demo .header { top: 30px; }
+.has-demo .progress { top: 30px; }
+.has-demo .menu-overlay { padding-top: calc(var(--header-h) + 54px); }
+.has-demo .hero { padding-top: calc(var(--header-h) + 70px); }
+html:has(.has-demo) { scroll-padding-top: calc(var(--header-h) + 38px); }
+@media (max-width: 760px) { .demo-banner__long { display: none; } .demo-banner__short { display: inline; } .demo-banner { font-size: .72rem; } }

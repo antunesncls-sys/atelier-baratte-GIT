@@ -1,0 +1,9 @@
+# Publication statique : aucun build, on sert le dossier tel quel.
+[build]
+  publish = "."
+
+# MAQUETTE : empêche l'indexation par les moteurs de recherche (à retirer au lancement officiel)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
