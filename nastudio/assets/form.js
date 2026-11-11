@@ -13,11 +13,11 @@
       '<div class="sent-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg></div>' +
       '<p class="sent-k">Demande envoyée</p>' +
       '<h3 class="sent-t">Merci' + (firstName ? ' ' + esc(firstName) : '') + '.</h3>' +
-      '<p class="sent-p">Votre demande est bien arrivée. Nicolas vous rappelle <b>sous un jour ouvré</b> pour convenir d\'un rendez-vous chez vous.</p>' +
+      '<p class="sent-p">Votre demande est bien arrivée. <b>Nicolas vous rappelle</b> pour convenir d\'un rendez-vous chez vous.</p>' +
       '<ol class="sent-steps">' +
         '<li>On vous rappelle pour comprendre votre besoin</li>' +
         '<li>On se déplace pour l\'audit gratuit, sur place</li>' +
-        '<li>Vous recevez un devis précis sous 48&nbsp;h</li>' +
+        '<li>Vous recevez un devis précis, sans engagement</li>' +
       '</ol>' +
       '<div class="sent-a">' +
         '<a class="cta" href="tel:+33761705359">Pressé&nbsp;? 07&nbsp;61&nbsp;70&nbsp;53&nbsp;59</a>' +
