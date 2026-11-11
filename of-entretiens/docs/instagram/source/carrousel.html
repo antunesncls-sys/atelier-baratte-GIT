@@ -1,0 +1,119 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Carrousel OF ENTRETIENS</title>
+<style>
+@font-face{font-family:"Gabarito";font-weight:400 900;src:url("gabarito-latin-wght-normal.woff2") format("woff2")}
+@font-face{font-family:"Outfit";font-weight:100 900;src:url("outfit-latin-wght-normal.woff2") format("woff2")}
+:root{--sombre:#0A1A52;--bleu:#095EF9;--clair:#9DBDFF;--action:#FF8A00;--fond:#F5F7FB}
+*{box-sizing:border-box;margin:0}
+body{background:#ccc;font-family:"Outfit",sans-serif;display:grid;gap:40px;padding:40px;justify-content:center}
+.slide{width:1080px;height:1350px;position:relative;overflow:hidden;border-radius:0;color:#fff;background:var(--sombre)}
+h1,h2,.titre{font-family:"Gabarito",sans-serif;line-height:1.02;letter-spacing:-.01em}
+.logo{font-family:"Gabarito";font-weight:800;font-style:italic;font-size:44px;letter-spacing:.01em}
+.logo b{color:var(--clair);font-weight:900}
+.pied{position:absolute;left:72px;right:72px;bottom:64px;display:flex;justify-content:space-between;align-items:center;font-size:30px;color:#C9D3EE}
+.pilule{display:inline-flex;align-items:center;gap:14px;border-radius:999px;padding:18px 34px;font-weight:600;font-size:32px}
+.puce{width:16px;height:16px;border-radius:50%;background:var(--action);box-shadow:0 0 0 8px rgba(255,138,0,.25)}
+.num{position:absolute;top:72px;right:72px;font-size:28px;color:#C9D3EE;font-weight:500}
+
+/* 1 — couverture */
+.s1 .photo{position:absolute;inset:0;background:url("hero-1600.webp") center 30%/cover}
+.s1::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,14,46,.35) 0%,rgba(6,14,46,.55) 40%,rgba(6,14,46,.95) 78%)}
+.s1 .contenu{position:absolute;z-index:2;left:72px;right:72px;bottom:190px}
+.s1 .haut{position:absolute;z-index:2;top:72px;left:72px;right:72px;display:flex;justify-content:space-between;align-items:center}
+.s1 .tag{background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.35);backdrop-filter:blur(6px)}
+.s1 h1{font-size:118px;font-weight:600;margin-bottom:34px}
+.s1 h1 em{font-style:normal;color:var(--clair)}
+.s1 p{font-size:40px;line-height:1.35;color:#E3E9FA;max-width:880px}
+.s1 .pied{z-index:2}
+.fleche{font-family:"Gabarito";font-weight:600;color:#fff;font-size:34px}
+
+/* 2 — services */
+.s2{padding:72px}
+.s2 h2{font-size:92px;font-weight:600;margin:44px 0 18px}
+.s2 .sous{font-size:36px;color:#C9D3EE;margin-bottom:48px}
+.grille{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.tuile{position:relative;height:330px;border-radius:28px;overflow:hidden;background-size:cover;background-position:center}
+.tuile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(6,14,46,.9))}
+.tuile span{position:absolute;z-index:1;left:26px;right:26px;bottom:22px;font-family:"Gabarito";font-weight:600;font-size:38px;line-height:1.1}
+.s2 .plus{margin-top:30px;font-size:32px;color:#C9D3EE}
+.s2 .plus b{color:#fff;font-weight:600}
+
+/* 3 — estimation */
+.s3{background:var(--fond);color:var(--sombre);padding:72px}
+.s3 .logo{color:var(--sombre)} .s3 .logo b{color:var(--bleu)}
+.s3 .num{color:#4A5468}
+.s3 h2{font-size:96px;font-weight:600;margin:44px 0 0;max-width:560px;color:var(--sombre)}
+.s3 .etapes{list-style:none;padding:0;margin-top:44px;display:grid;gap:22px;max-width:470px}
+.s3 .etapes li{display:flex;align-items:center;gap:20px;font-size:34px;font-weight:500;color:#30384A}
+.s3 .etapes b{flex:none;width:58px;height:58px;border-radius:50%;background:var(--sombre);color:#fff;display:grid;place-items:center;font-family:"Gabarito";font-size:30px}
+.telephone{position:absolute;right:64px;top:250px;width:400px;height:866px;border-radius:58px;background:#0B1022;padding:14px;box-shadow:0 40px 80px rgba(10,26,82,.35);transform:rotate(4deg)}
+.telephone img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:46px;display:block}
+.s3 .garanties{position:absolute;left:72px;bottom:150px;display:grid;gap:14px;font-size:32px;color:#30384A}
+.s3 .garanties span::before{content:"✓  ";color:#0E8A4C;font-weight:700}
+.s3 .pied{color:#4A5468}
+.s3 .url{font-family:"Gabarito";font-weight:600;color:var(--bleu);font-size:34px}
+
+/* 4 — appel à l'action */
+.s4 .photo{position:absolute;inset:0;background:url("toiture-site-logistique.webp") center/cover}
+.s4::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,14,46,.55),rgba(6,14,46,.93) 55%)}
+.s4 .contenu{position:absolute;z-index:2;inset:72px}
+.s4 .num{z-index:2}
+.s4 .urg{display:inline-flex;align-items:center;gap:18px;font-size:30px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--action);margin-top:230px}
+.s4 h2{font-size:100px;font-weight:600;margin:30px 0 34px}
+.s4 p{font-size:38px;line-height:1.35;color:#E3E9FA;max-width:860px}
+.s4 .tel{margin-top:56px;background:var(--action);color:var(--sombre);font-size:52px;padding:26px 50px;font-family:"Gabarito";font-weight:700}
+.s4 .tel svg{width:46px;height:46px}
+.s4 .infos{margin-top:40px;font-size:34px;color:#C9D3EE;line-height:1.5}
+.s4 .infos b{color:#fff;font-weight:600}
+.s4 .pied{z-index:2}
+</style></head><body>
+
+<section class="slide s1" id="s1">
+  <div class="photo"></div>
+  <div class="haut"><span class="logo"><b>OF</b> ENTRETIENS</span><span class="pilule tag"><span class="puce"></span>Nouveau</span></div>
+  <div class="contenu">
+    <h1>Notre nouveau site est <em>en ligne</em></h1>
+    <p>Carottage en urgence, corvoyage, nettoyage de bureaux, plateformes logistiques&nbsp;: tout est sur ofentretiens.com</p>
+  </div>
+  <div class="pied"><span>Montfermeil (93) · Toute l’Île-de-France</span><span class="fleche">Glissez →</span></div>
+</section>
+
+<section class="slide s2" id="s2">
+  <span class="logo"><b>OF</b> ENTRETIENS</span><span class="num">2/4</span>
+  <h2>Ce que nous faisons</h2>
+  <p class="sous">Une page dédiée pour chaque service.</p>
+  <div class="grille">
+    <div class="tuile" style="background-image:url(carte-carottage.webp)"><span>Carottage en urgence</span></div>
+    <div class="tuile" style="background-image:url(carte-corvoyage.webp)"><span>Corvoyage &amp; levée de réserves</span></div>
+    <div class="tuile" style="background-image:url(carte-facade.webp)"><span>Nettoyage de façade &amp; bardage</span></div>
+    <div class="tuile" style="background-image:url(carte-logistique.webp)"><span>Plateformes logistiques</span></div>
+  </div>
+  <p class="plus">Et aussi&nbsp;: <b>nettoyage de bureaux &amp; base-vie</b>, <b>travaux tous corps d’état</b>.</p>
+  <div class="pied"><span class="fleche" style="color:#9DBDFF">ofentretiens.com</span><span class="fleche">Glissez →</span></div>
+</section>
+
+<section class="slide s3" id="s3">
+  <span class="logo"><b>OF</b> ENTRETIENS</span><span class="num">3/4</span>
+  <h2>Votre devis en 2&nbsp;minutes</h2>
+  <ol class="etapes">
+    <li><b>1</b>Votre besoin</li>
+    <li><b>2</b>L’ampleur</li>
+    <li><b>3</b>Le lieu</li>
+    <li><b>4</b>Vos coordonnées</li>
+  </ol>
+  <div class="telephone"><img src="ecran-estimation.png" alt=""></div>
+  <div class="garanties"><span>Devis gratuit</span><span>Sans engagement</span><span>Visite avant chiffrage</span></div>
+  <div class="pied"><span class="url">ofentretiens.com/estimation</span></div>
+</section>
+
+<section class="slide s4" id="s4">
+  <div class="photo"></div><span class="num">4/4</span>
+  <div class="contenu">
+    <span class="logo"><b>OF</b> ENTRETIENS</span><br>
+    <span class="urg"><span class="puce"></span>Un imprévu sur un chantier&nbsp;?</span>
+    <h2>Parlons-en directement.</h2>
+    <p>Un interlocuteur direct, une date d’intervention annoncée franchement, un devis gratuit après visite.</p>
+    <span class="pilule tel"><svg viewBox="0 0 24 24" fill="#0A1A52" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg>06 62 06 93 22</span>
+    <p class="infos"><b>www.ofentretiens.com</b> — lien en bio<br>Montfermeil (93) · Toute l’Île-de-France</p>
+  </div>
+</section>
+</body></html>
