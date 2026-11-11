@@ -62,6 +62,8 @@ raisonnable à valider), **[À VALIDER]** (hypothèse ou information manquante).
 | Travaux liés aux réseaux ENEDIS | [CONFIRMÉ — post + dirigeant, oct. 2026] | Carottages, traitement coupe-feu de gaines techniques sur chantiers liés à ENEDIS | Chantiers, promoteurs | Habilitations/qualifications éventuelles |
 | Offre plateformes logistiques | [CONFIRMÉ] (devise du logo + brief) | Propreté et entretien courant des entrepôts : bureaux, locaux sociaux, sanitaires, zones de passage ; interventions organisées autour des flux | Responsables de site, d'exploitation, services généraux, achats | Prestations au-delà du nettoyage courant (quais ? racks ? mécanisation ?) — NE RIEN AFFIRMER sans confirmation |
 
+| Carottage en urgence (page dédiée, nov. 2026) | [CONFIRMÉ — demande du dirigeant + intervention réelle] | Page `carottage-urgence.html` : carottages pour passage de gaines et réseaux, traitement coupe-feu des gaines, reprises (rebouchage, doublage avec bandes, plâtrerie), rectifications ponctuelles (ex. seuil d'ascenseur), zone laissée propre, photos transmises. Aucun délai garanti ni 24h/24 affiché (règle §12). ENEDIS non cité sur cette page. | Promoteurs, entreprises générales, chantiers | **À valider** : diamètres et épaisseurs possibles, matériaux (béton armé ?), matériel (carotteuse à eau / à sec ?), interventions hors heures ouvrées, repérage des réseaux existants, traitement coupe-feu certifié ou non |
+
 **Règle : aucune prestation secondaire ne doit être supprimée ; aucune prestation, capacité,
 référence ou certification ne doit être inventée.**
 

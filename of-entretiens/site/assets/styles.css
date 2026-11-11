@@ -43,7 +43,7 @@ a{color:var(--brand)}
   padding:.8rem 1.5rem;border-radius:4px;text-decoration:none;border:2px solid var(--brand-deep);
 }
 .btn-primary{background:var(--brand);border-color:var(--brand);color:#fff}
-.btn-primary:hover{background:#0450DC;border-color:#0450DC}
+.btn-primary:hover{background:#0450DC;border-color:#0450DC;color:#fff}
 .btn-ghost{color:var(--brand-deep)}
 .btn-ghost:hover{background:#E2E7F5}
 
@@ -60,12 +60,6 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .nav nav{display:flex;gap:1.15rem;flex-wrap:wrap;margin-left:auto}
 .nav nav a{color:var(--ink-soft);text-decoration:none;font-weight:500;font-size:.95rem}
 .nav nav a:hover{color:var(--brand)}
-.nav .btn{
-  padding:.6rem 1.35rem;font-size:.98rem;
-  box-shadow:0 4px 16px rgba(9,94,249,.38);
-}
-.nav .btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(9,94,249,.45)}
-@media (prefers-reduced-motion:reduce){.nav .btn:hover{transform:none}}
 
 /* ---------- hero ---------- */
 .hero{padding-block:4.2rem 3.4rem}
@@ -343,33 +337,14 @@ footer.site .pied-legal{border-top:1px solid rgba(143,181,255,.25);padding-top:1
 @media (max-width:860px){footer.site .pied{grid-template-columns:1fr 1fr}}
 @media (max-width:580px){footer.site .pied{grid-template-columns:1fr}}
 
-/* en-tête responsive */
-@media (max-width:1100px){.insta-top span{display:none}}
-@media (max-width:950px){.nav nav{gap:.8rem}.nav nav a{font-size:.9rem}}
 
 /* menu mobile */
-.burger{
-  display:none;background:var(--surface);border:2px solid var(--brand-deep);border-radius:6px;
-  padding:.4rem .55rem;cursor:pointer;color:var(--brand-deep);
-}
-.burger svg{display:block}
 .menu-mobile{
   background:var(--surface);border-bottom:1px solid var(--line);
   padding:.4rem max(20px, env(safe-area-inset-left, 0px)) 1rem max(20px, env(safe-area-inset-left, 0px));
 }
 .menu-mobile a{display:block;padding:.7rem .2rem;border-bottom:1px solid var(--line);color:var(--brand-deep);font-weight:600;text-decoration:none;font-size:1rem}
 .menu-mobile a.btn{border-bottom:0;margin-top:.8rem;text-align:center}
-.menu-mobile .insta-top{display:flex !important;align-items:center;gap:.5rem}
-.menu-mobile .insta-top span{display:inline !important}
-@media (min-width:761px){.menu-mobile{display:none !important}}
-@media (max-width:760px){
-  .nav nav{display:none}
-  .burger{display:inline-flex;align-items:center}
-}
-@media (max-width:580px){
-  .nav > .btn{display:none}
-  .nav > .insta-top{display:none}
-}
 
 /* avant / après */
 .avant-apres{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-top:2rem}
@@ -394,3 +369,236 @@ footer.site .pied-legal{border-top:1px solid rgba(143,181,255,.25);padding-top:1
 .texte-legal p{color:var(--ink-soft)}
 .texte-legal p + p{margin-top:.7rem}
 .texte-legal b{color:var(--ink)}
+
+/* =====================================================================
+   REFONTE V2 — boutons d'action, animations, en-tête, responsive
+   ===================================================================== */
+:root{
+  --accent:#C2410C;          /* orange « urgence » : 5,2:1 sur blanc */
+  --accent-hover:#A3360A;
+  --accent-clair:#FB923C;    /* sur fond marine */
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --ombre-1:0 1px 2px rgba(10,26,82,.06),0 6px 18px rgba(10,26,82,.07);
+  --ombre-2:0 14px 34px rgba(10,26,82,.16);
+  --ico-tel:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z'/%3E%3C/svg%3E");
+}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--brand-deep);color:#fff;padding:.6rem 1rem;border-radius:6px;font-weight:600;text-decoration:none;transition:top .2s}
+.skip:focus{top:12px}
+
+/* ---------- boutons ---------- */
+.btn{
+  position:relative;isolation:isolate;overflow:hidden;cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;gap:.55em;
+  min-height:48px;line-height:1.2;text-align:center;
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease),background-color .2s,border-color .2s,color .2s;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0) scale(.97);transition-duration:.08s}
+.btn:focus-visible{outline:3px solid var(--brand);outline-offset:3px}
+.btn-primary{box-shadow:0 6px 18px rgba(9,94,249,.28)}
+.btn-primary:hover{box-shadow:0 12px 28px rgba(9,94,249,.40)}
+.btn-ghost{background:var(--surface)}
+.btn-ghost:hover{background:var(--brand-deep);border-color:var(--brand-deep);color:#fff}
+/* reflet qui balaie le bouton au survol */
+.btn-primary::before,.btn-urgence::before{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.32) 50%,transparent 75%);
+  transform:translateX(-130%);transition:transform .7s var(--ease);
+}
+.btn-primary:hover::before,.btn-urgence:hover::before{transform:translateX(130%)}
+/* flèche qui glisse */
+.btn-primary:not(.btn-tel)::after,.btn-ghost::after,.cta-band .btn:not(.btn-tel)::after{
+  content:"→";font-weight:800;transition:transform .25s var(--ease);
+}
+.btn:hover::after{transform:translateX(4px)}
+/* boutons téléphone (icône) et urgence */
+.btn-tel{background:var(--surface);color:var(--brand-deep);border-color:var(--brand-deep)}
+.btn-tel:hover{background:var(--brand-deep);color:#fff}
+.btn-tel::after{
+  content:"";order:-1;width:1.05em;height:1.05em;flex:none;background:currentColor;
+  -webkit-mask:var(--ico-tel) center/contain no-repeat;mask:var(--ico-tel) center/contain no-repeat;
+}
+.btn-tel:hover::after{transform:rotate(-12deg) scale(1.1)}
+.btn-urgence{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 6px 18px rgba(194,65,12,.30)}
+.btn-urgence:hover{background:var(--accent-hover);border-color:var(--accent-hover);color:#fff;box-shadow:0 12px 28px rgba(194,65,12,.42)}
+.btn-urgence:focus-visible{outline-color:var(--accent)}
+.btn-urgence.btn-tel::after{background:#fff}
+.cta-band .btn-tel{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+.cta-band .btn-tel:hover{background:#fff;color:var(--brand-deep);border-color:#fff}
+.cta-band .btn-urgence{background:var(--accent);border-color:var(--accent);color:#fff}
+.cta-band .btn-urgence:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
+
+/* pastille clignotante « urgence » */
+.pulse{width:9px;height:9px;flex:none;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(194,65,12,.55)}70%{box-shadow:0 0 0 10px rgba(194,65,12,0)}100%{box-shadow:0 0 0 0 rgba(194,65,12,0)}}
+
+/* ---------- en-tête ---------- */
+header.site-header{background:rgba(241,242,246,.9);-webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px);transition:box-shadow .3s}
+header.site-header.scrolled{box-shadow:0 6px 24px rgba(10,26,82,.10)}
+.nav{flex-wrap:nowrap;gap:1.1rem;min-height:68px}
+.nav nav{flex-wrap:nowrap;gap:1.05rem;align-items:center}
+.nav nav a{position:relative;padding:.4rem 0;white-space:nowrap}
+.nav nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease)}
+.nav nav a:hover::after,.nav nav a[aria-current="page"]::after{transform:scaleX(1)}
+.nav nav a[aria-current="page"]{color:var(--brand-deep);font-weight:600}
+.nav nav a.nav-urgence{display:inline-flex;align-items:center;gap:.45rem;color:var(--accent);font-weight:600}
+.nav nav a.nav-urgence:hover{color:var(--accent-hover)}
+.nav-tel{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;min-height:44px;min-width:44px;font-family:var(--display);font-weight:650;color:var(--brand-deep);text-decoration:none;white-space:nowrap;border-radius:6px;transition:color .2s,background-color .2s}
+.nav-tel::before{content:"";width:1.05em;height:1.05em;background:currentColor;-webkit-mask:var(--ico-tel) center/contain no-repeat;mask:var(--ico-tel) center/contain no-repeat;transition:transform .25s var(--ease)}
+.nav-tel:hover{color:var(--brand)}
+.nav-tel:hover::before{transform:rotate(-12deg) scale(1.1)}
+.nav-cta{padding:.6rem 1.25rem;font-size:.96rem;min-height:44px;white-space:nowrap}
+.burger{
+  display:none;align-items:center;justify-content:center;flex-direction:column;gap:5px;
+  width:46px;height:46px;flex:none;background:var(--surface);border:2px solid var(--brand-deep);border-radius:8px;
+  cursor:pointer;color:var(--brand-deep);padding:0;
+}
+.burger span{display:block;width:20px;height:2.4px;border-radius:2px;background:currentColor;transition:transform .3s var(--ease),opacity .2s}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7.4px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7.4px) rotate(-45deg)}
+.menu-mobile:not([hidden]){animation:menuIn .28s var(--ease)}
+@keyframes menuIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.menu-mobile a{min-height:48px;display:flex;align-items:center}
+.menu-mobile a[aria-current="page"]{color:var(--brand)}
+.menu-mobile a.nav-urgence{gap:.55rem;color:var(--accent)}
+.menu-mobile .menu-actions{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:.9rem}
+.menu-mobile .menu-actions .btn{margin:0;border-bottom:2px solid}
+@media (max-width:1240px){.nav-tel span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}}
+@media (min-width:1081px){.menu-mobile{display:none !important}}
+@media (max-width:1080px){
+  .nav nav{display:none}
+  .burger{display:inline-flex}
+  .nav-tel{margin-left:auto}
+}
+@media (max-width:580px){.nav-cta{display:none}.nav{gap:.6rem;min-height:62px}}
+@media (max-width:380px){.menu-mobile .menu-actions{grid-template-columns:1fr}}
+
+/* ---------- bandeau urgence du hero ---------- */
+.bandeau-urgence{
+  display:inline-flex;align-items:center;flex-wrap:wrap;gap:.35rem .55rem;margin-bottom:1.3rem;
+  padding:.45rem .95rem .45rem .8rem;border-radius:999px;background:var(--surface);
+  border:1.5px solid rgba(194,65,12,.35);color:var(--ink);text-decoration:none;font-size:.9rem;
+  box-shadow:var(--ombre-1);transition:border-color .2s,transform .25s var(--ease),box-shadow .25s var(--ease);
+}
+.bandeau-urgence b{color:var(--accent);font-weight:700}
+.bandeau-urgence .fl{color:var(--accent);font-weight:800;transition:transform .25s var(--ease)}
+.bandeau-urgence:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:var(--ombre-2)}
+.bandeau-urgence:hover .fl{transform:translateX(4px)}
+
+/* domaines d'intervention cliquables */
+.hero .fields a{border:1.5px solid var(--brand-deep);border-radius:999px;padding:.32rem .85rem;background:var(--surface);color:var(--brand-deep);text-decoration:none;transition:background-color .2s,color .2s,transform .2s var(--ease)}
+.hero .fields a:hover{background:var(--brand-deep);color:#fff;transform:translateY(-2px)}
+.hero .fields a.urg{border-color:var(--accent);color:var(--accent)}
+.hero .fields a.urg:hover{background:var(--accent);color:#fff}
+
+/* ---------- cartes, liens, galeries ---------- */
+.card{overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s}
+.card:hover{transform:translateY(-5px);box-shadow:var(--ombre-2);border-color:#C3CBE2}
+.card > a{display:inline-flex;align-items:center;gap:.3em;min-height:32px}
+.card > a:hover{text-decoration:none}
+.card > a span{transition:transform .25s var(--ease)}
+.card > a:hover span{transform:translateX(4px)}
+.card.urgence{border-color:rgba(194,65,12,.35)}
+.card.urgence .pour{color:var(--accent)}
+.card.urgence > a{color:var(--accent)}
+.public-link{transition:transform .3s var(--ease),box-shadow .3s var(--ease),background-color .2s}
+.public-link:hover{transform:translateY(-4px);box-shadow:var(--ombre-2)}
+.galerie img,.avant-apres img{transition:transform .7s var(--ease)}
+.galerie figure:hover img,.avant-apres figure:hover img{transform:scale(1.045)}
+.faq-liste details{transition:border-color .2s,box-shadow .2s}
+.faq-liste details:hover,.faq-liste details[open]{border-color:#C3CBE2;box-shadow:var(--ombre-1)}
+.faq-liste summary{min-height:48px;align-items:center}
+.faq-liste summary::after{transition:transform .25s var(--ease)}
+.faq-liste details[open] summary::after{content:"+";transform:rotate(45deg)}
+.faq-liste details[open] .rep{animation:menuIn .3s var(--ease)}
+.pied-col a{padding-block:.2rem}
+.insta-btn{transition:background-color .2s,transform .25s var(--ease)}
+.insta-btn:hover{transform:translateY(-2px)}
+
+/* ---------- bandeaux d'appel à l'action ---------- */
+.cta-band .actions{display:flex;gap:.8rem;flex-wrap:wrap}
+.cta-band.urgence{background:linear-gradient(120deg,var(--brand-deep) 0%,#0D2270 60%,#3A1D3F 100%)}
+.cta-band.urgence .eyebrow{color:var(--accent-clair);display:flex;align-items:center;gap:.5rem;margin-bottom:.35rem}
+.cta-band.urgence .pulse{background:var(--accent-clair)}
+
+/* ---------- barre d'appel fixe sur mobile ---------- */
+.barre-mobile{display:none}
+@media (max-width:760px){
+  .barre-mobile{
+    position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:1fr 1.25fr;gap:.6rem;
+    padding:.6rem max(12px,env(safe-area-inset-right,0px)) calc(.6rem + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));
+    background:rgba(255,255,255,.95);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+    border-top:1px solid var(--line);box-shadow:0 -6px 22px rgba(10,26,82,.10);
+    transition:transform .35s var(--ease);
+  }
+  .barre-mobile.cachee{transform:translateY(115%)}
+  .barre-mobile .btn{min-height:48px;padding:.55rem .7rem;font-size:.95rem}
+  body{padding-bottom:calc(72px + env(safe-area-inset-bottom,0px))}
+}
+
+/* ---------- apparition au défilement (activée par assets/site.js) ---------- */
+.js .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.js .reveal.is-visible{opacity:1;transform:none}
+
+/* ---------- responsive : petits écrans ---------- */
+.deux-cols > *,.hero-grid > *{min-width:0}
+.form-contact select,.form-contact input,.form-contact textarea{width:100%;max-width:100%}
+.form-contact input,.form-contact textarea,.form-contact select{min-height:46px;transition:border-color .2s,box-shadow .2s}
+.form-contact input:focus,.form-contact textarea:focus,.form-contact select:focus{box-shadow:0 0 0 4px rgba(9,94,249,.15)}
+.coord .tel-grand{font-family:var(--display);font-size:1.35rem;font-weight:800;color:var(--brand-deep);text-decoration:none}
+.coord .tel-grand:hover{color:var(--brand)}
+@media (max-width:860px){
+  .hero{padding-block:2.6rem 2.4rem}
+  .page-hero{padding-block:2.2rem 2.2rem}
+}
+@media (max-width:580px){
+  body{font-size:16px}
+  section{padding-block:2.6rem}
+  .hero h1{font-size:clamp(1.95rem,8.6vw,2.4rem)}
+  .page-hero h1{font-size:clamp(1.85rem,8.2vw,2.3rem)}
+  .hero p.lead,.page-hero p.lead{font-size:1rem}
+  .hero .actions,.page-hero .actions{flex-direction:column;align-items:stretch}
+  .hero .actions .btn,.page-hero .actions .btn,.form-contact button{width:100%}
+  .cta-band .actions{flex-direction:column;align-items:stretch;width:100%}
+  .cta-band .btn{width:100%}
+  .galerie{grid-auto-rows:150px}
+  .card{padding:1.3rem 1.2rem}
+  .card .visuel{margin:-1.3rem -1.2rem .45rem;width:calc(100% + 2.4rem)}
+  .fiche-head{font-size:.88rem}
+}
+
+/* ---------- page carottage en urgence ---------- */
+.situations{list-style:none;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.situations li{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:1.1rem 1.2rem;box-shadow:var(--ombre-1)}
+.situations h3{font-size:1.05rem;font-weight:800;color:var(--brand-deep);margin-bottom:.35rem}
+.situations p{font-size:.95rem;color:var(--ink-soft)}
+.franchise{margin-top:1.6rem;background:#FFF4EC;border:1px solid rgba(194,65,12,.25);border-left:4px solid var(--accent);border-radius:0 8px 8px 0;padding:1.1rem 1.3rem}
+.franchise .quand{font-weight:600;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.35rem}
+.franchise p{font-size:.95rem;color:var(--ink-soft)}
+.page-hero.urgence-hero{background:linear-gradient(100deg,var(--bg) 34%,rgba(241,242,246,.88) 56%,rgba(241,242,246,.45) 100%),url("reprise-platrerie.webp") center 40%/cover no-repeat}
+@media (max-width:860px){
+  .situations{grid-template-columns:1fr}
+  .page-hero.urgence-hero{background:linear-gradient(rgba(241,242,246,.93),rgba(241,242,246,.93)),url("reprise-platrerie.webp") center/cover no-repeat}
+}
+
+/* ---------- mouvements réduits : on coupe toutes les animations ---------- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .btn:hover,.card:hover,.public-link:hover,.bandeau-urgence:hover,.hero .fields a:hover,.insta-btn:hover{transform:none}
+  .btn-primary::before,.btn-urgence::before{display:none}
+  .galerie figure:hover img,.avant-apres figure:hover img{transform:none}
+}
+/* bouton clair sur fond marine */
+.btn-ghost-clair{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+.btn-ghost-clair::after{content:"→";font-weight:800;transition:transform .25s var(--ease)}
+.btn-ghost-clair:hover{background:#fff;color:var(--brand-deep);border-color:#fff}
+.cta-band .btn-primary{background:var(--brand);border-color:var(--brand);color:#fff}
+.cta-band .btn-primary:hover{background:#0450DC;border-color:#0450DC}
+/* téléphone de l'en-tête : bouton bien visible quand seul l'icône est affichée */
+@media (max-width:1240px){
+  .nav-tel{width:46px;height:46px;border:2px solid var(--brand-deep);border-radius:8px;background:var(--surface)}
+  .nav-tel::before{width:1.15em;height:1.15em}
+  .nav-tel:hover{background:var(--brand-deep);color:#fff}
+}
+@media (max-width:580px){.bandeau-urgence{border-radius:14px;padding:.55rem .9rem}}
