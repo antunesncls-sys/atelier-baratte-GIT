@@ -135,20 +135,18 @@ h1,h2,h3{font-family:"Archivo Black",sans-serif;font-weight:400;line-height:.95;
 /* ---------- bande portfolio ---------- */
 .works-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:22px;margin-top:44px;width:100%}
 .works-grid .site-card{grid-column:span 2}
-.works-grid .site-card:nth-child(-n+2){grid-column:span 3}
 .site-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;text-decoration:none;color:var(--fg);display:flex;flex-direction:column;min-width:0}
 .site-card h3::after{content:" ↗";color:var(--ikb-l);font-family:"Public Sans",sans-serif;font-weight:700}
 .works-more{margin:22px 0 0;color:var(--dim);font-size:.95rem}
 .works-more b{color:var(--fg)}
 @media (max-width:900px){
   .works-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:34px}
-  .works-grid .site-card,.works-grid .site-card:nth-child(-n+2){grid-column:span 1}
-  .works-grid .site-card:first-child{grid-column:span 2}
+  .works-grid .site-card{grid-column:span 1}
 }
 @media (max-width:560px){
-  .works-grid .site-card:not(:first-child) .b{padding:11px 12px 13px}
-  .works-grid .site-card:not(:first-child) .m span:last-child{display:none}
-  .works-grid .site-card:not(:first-child) h3{font-size:.86rem;line-height:1.2}
+  .works-grid .site-card .b{padding:11px 12px 13px}
+  .works-grid .site-card .m span:last-child{display:none}
+  .works-grid .site-card h3{font-size:.86rem;line-height:1.2}
 }
 .site-card img{width:100%;aspect-ratio:1280/860;height:auto;object-fit:cover;object-position:top;display:block}
 .site-card .b{padding:16px 18px}
@@ -385,7 +383,7 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
     <div class="col" style="width:100%">
       <p class="eyebrow rv">Chapitre 01 · Réalisations</p>
       <h2 class="giant split"><span class="ln"><span class="lw" style="--l:0"><span data-count="50">50</span>+ sites</span></span> <span class="ln"><span class="lw blue" style="--l:1">livrés.</span></span></h2>
-      <p class="lede rv d2">Bijouterie, couverture, permis de construire, BTP, rénovation : cinq métiers, cinq identités — aucune ne ressemble aux autres. <b>Cliquez, ils sont en ligne.</b></p>
+      <p class="lede rv d2">Bijouterie, couverture, permis de construire, BTP, rénovation, restauration : six métiers, six identités — aucune ne ressemble aux autres. <b>Cliquez, ils sont en ligne.</b></p>
       <div class="works-grid">
         <a class="site-card rv" style="--i:0" href="https://www.atelierbaratte.fr" target="_blank" rel="noopener">
           <div class="shot"><img src="assets/shot-atelierbaratte.jpg" width="1280" height="860" loading="lazy" alt="Site de la bijouterie Atelier Baratte à Saint-Maur-des-Fossés"></div>
@@ -403,12 +401,16 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
           <div class="shot"><img src="assets/shot-construisez.jpg" width="1280" height="860" loading="lazy" alt="Site de Construisez, permis de construire et déclaration préalable en Île-de-France"></div>
           <div class="b"><div class="m"><span>Permis de construire</span><span>Saint-Maur (94)</span></div><h3>Construisez · depuis 2018</h3></div>
         </a>
-        <a class="site-card rv" style="--i:4" href="https://ofentretiens.netlify.app" target="_blank" rel="noopener">
-          <div class="shot"><img src="assets/shot-ofentretiens.jpg" width="1280" height="860" loading="lazy" alt="Site d'OF Entretiens, services au BTP en Île-de-France"></div>
-          <div class="b"><div class="m"><span>Services BTP</span><span>Courtry (77)</span></div><h3>OF Entretiens</h3></div>
+        <a class="site-card rv" style="--i:4" href="https://www.ofentretiens.com" target="_blank" rel="noopener">
+          <div class="shot"><img src="assets/shot-ofentretiens.jpg" width="1280" height="860" loading="lazy" alt="Site d'OF Entretiens, corvoyage et services aux promoteurs en Île-de-France"></div>
+          <div class="b"><div class="m"><span>Services BTP</span><span>Montfermeil (93)</span></div><h3>OF Entretiens</h3></div>
+        </a>
+        <a class="site-card rv" style="--i:5" href="https://riz-djondjon-maquette.netlify.app" target="_blank" rel="noopener">
+          <div class="shot"><img src="assets/shot-rizdjondjon.jpg" width="1280" height="860" loading="lazy" alt="Maquette de site pour Riz Djondjon, restaurant haïtien à Paris 2e"></div>
+          <div class="b"><div class="m"><span>Restaurant</span><span>Paris 2e</span></div><h3>Riz Djondjon · maquette</h3></div>
         </a>
       </div>
-      <p class="works-more rv">Ici, cinq exemples récents. <b>Plus de 45 autres sites livrés</b> en Île-de-France : artisans, commerces, BTP, services.</p>
+      <p class="works-more rv">Ici, six exemples récents. <b>Plus de 40 autres sites livrés</b> en Île-de-France : artisans, commerces, BTP, services.</p>
       <div class="actions rv"><a class="cta" href="#contact">Je veux un site comme ça</a><a class="ghost" href="sites.html">Tout sur les sites web →</a></div>
     </div>
   </div>
@@ -580,7 +582,8 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
         <a href="https://jmccouverture.com" target="_blank" rel="noopener">JMC Couverture</a>
         <a href="https://ajr-concept.netlify.app" target="_blank" rel="noopener">AJR Concept</a>
         <a href="https://www.construisez.fr" target="_blank" rel="noopener">Construisez</a>
-        <a href="https://ofentretiens.netlify.app" target="_blank" rel="noopener">OF Entretiens</a>
+        <a href="https://www.ofentretiens.com" target="_blank" rel="noopener">OF Entretiens</a>
+        <a href="https://riz-djondjon-maquette.netlify.app" target="_blank" rel="noopener">Riz Djondjon (maquette)</a>
       </nav>
       <div class="fcol fcontact">
         <p class="fh">Contact</p>
