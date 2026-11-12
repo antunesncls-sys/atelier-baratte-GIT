@@ -49,6 +49,20 @@ const accounts = active.filter((acc) => acc.platform !== 'googlebusiness');
 const mediaType = (url) =>
   /\.(mp4|mov|webm|m4v)(\?|$)/i.test(url) ? 'video' : /\.gif(\?|$)/i.test(url) ? 'gif' : 'image';
 
+// Facebook rend les liens cliquables dans le texte : on y ajoute un lien suivi vers le site.
+const withLink = (post) => {
+  const url = `https://www.construisez.fr/?utm_source=facebook&utm_medium=social&utm_campaign=${post.date.slice(0, 10)}`;
+  const line = `🔗 Devis gratuit sous 24 h : ${url}`;
+  const i = post.content.lastIndexOf('\n\n#');
+  return i < 0 ? `${post.content}\n\n${line}` : `${post.content.slice(0, i)}\n\n${line}${post.content.slice(i)}`;
+};
+const platformData = (platform, post) => {
+  const data = {};
+  if (platform === 'instagram' && LOCATIONS[post.city]) data.locationId = LOCATIONS[post.city];
+  if (platform === 'facebook' && post.format === 'reel') data.contentType = 'reel';
+  return Object.keys(data).length ? { platformSpecificData: data } : {};
+};
+
 const isOnline = async (url) => (await fetch(url, { method: 'HEAD' }).catch(() => null))?.ok;
 
 console.log(`Profil "${profile.name}" — ${posts.length} posts${dryRun ? ' (--dry-run : rien ne sera envoyé)' : ''}${storiesOnly ? ' (stories uniquement)' : ''}${googleOnly ? ' (Google uniquement)' : ''}\n`);
@@ -82,7 +96,8 @@ for (const post of posts) {
       platforms: targets.map((acc) => ({
         platform: acc.platform,
         accountId: acc._id,
-        ...(acc.platform === 'instagram' && LOCATIONS[post.city] ? { platformSpecificData: { locationId: LOCATIONS[post.city] } } : {}),
+        ...(acc.platform === 'facebook' ? { customContent: withLink(post) } : {}),
+        ...platformData(acc.platform, post),
       })),
       scheduledFor: post.date,
       timezone: 'Europe/Paris',

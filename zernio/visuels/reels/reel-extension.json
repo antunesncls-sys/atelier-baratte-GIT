@@ -1,0 +1,13 @@
+{
+ "avant": "brand/photos/projets/extension-rue-avant.webp",
+ "apres": "brand/photos/projets/extension-rue-apres.webp",
+ "fit": "cover",
+ "hook1": "Une maison ancienne, <em>un mur sur rue.</em>",
+ "hook2": "Une extension moderne <em>qui s’intègre.</em>",
+ "bottom1": "Avant · vue depuis la rue.",
+ "bottom2": "<b>Toit plat, enduit clair</b>, garage intégré.",
+ "endKicker": "Agrandir votre maison ?",
+ "endTitle": "On vérifie le PLU <em>avant de dessiner.</em>",
+ "endSub": "Extension, garage, clôture : un seul dossier.",
+ "endButton": "Écrivez « EXTENSION » en DM"
+}

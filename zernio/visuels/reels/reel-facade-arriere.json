@@ -1,0 +1,16 @@
+{
+ "avant": "brand/photos/projets/facade-arriere-avant.webp",
+ "apres": "brand/photos/projets/facade-arriere-apres.webp",
+ "fit": "contain",
+ "pad": "white",
+ "tagAvant": "EXISTANT",
+ "tagApres": "PROJET",
+ "hook1": "Une façade fermée, <em>une annexe grise.</em>",
+ "hook2": "Baies, balcons, enduit : <em>tout change.</em>",
+ "bottom1": "Côté jardin · état existant.",
+ "bottom2": "Même côté jardin, <b>tout ce qui se voit se déclare.</b>",
+ "endKicker": "Une façade à transformer ?",
+ "endTitle": "Montrez-la-nous <em>en photo.</em>",
+ "endSub": "On vous dit ce qui est possible, et ce qui se déclare.",
+ "endButton": "Envoyez une photo en DM"
+}
