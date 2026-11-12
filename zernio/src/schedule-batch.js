@@ -6,7 +6,8 @@ import { zernio, findProfile, DEFAULT_PROFILE } from './zernio-client.js';
 // Usage :
 //   npm run schedule -- posts/<fichier>.json [--profile "<nom>"] [--dry-run] [--stories-only]
 //
-// Chaque post est un objet { date, content, media: [urls publiques], story?: url }.
+// Chaque post est un objet { date, content, media: [urls publiques], story?: url, platforms?: [...] }.
+// Sans "platforms", un post part sur Instagram et Facebook uniquement (jamais TikTok par défaut).
 // Instagram exige une image ou une vidéo : un post sans media part uniquement sur les autres plateformes.
 // Si le post a une story (voir `npm run stories`), elle est publiée 5 minutes après le post,
 // sur Instagram et Facebook. --stories-only programme uniquement les stories (posts déjà programmés).
@@ -60,6 +61,8 @@ const platformData = (platform, post) => {
   const data = {};
   if (platform === 'instagram' && LOCATIONS[post.city]) data.locationId = LOCATIONS[post.city];
   if (platform === 'facebook' && post.format === 'reel') data.contentType = 'reel';
+  // TikTok : la vidéo arrive en brouillon dans la boîte TikTok, où l'on ajoute un son tendance avant de publier.
+  if (platform === 'tiktok') Object.assign(data, { draft: true, privacyLevel: 'PUBLIC_TO_EVERYONE', allowComment: true, allowDuet: true, allowStitch: true, commercialContentType: 'brand_organic' });
   return Object.keys(data).length ? { platformSpecificData: data } : {};
 };
 
@@ -85,7 +88,8 @@ for (const post of posts) {
       console.log(`❌ ${label} : image introuvable, ignoré (${broken.join(', ')})`);
       continue;
     }
-    const targets = accounts.filter((acc) => media.length || acc.platform !== 'instagram');
+    const wanted = post.platforms ?? ['instagram', 'facebook'];
+    const targets = accounts.filter((acc) => wanted.includes(acc.platform) && (media.length || acc.platform !== 'instagram'));
     if (!targets.length) {
       console.log(`⚠️  ${label} : aucun compte possible sans visuel, ignoré`);
       continue;
