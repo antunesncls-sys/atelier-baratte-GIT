@@ -61,8 +61,12 @@ const platformData = (platform, post) => {
   const data = {};
   if (platform === 'instagram' && LOCATIONS[post.city]) data.locationId = LOCATIONS[post.city];
   if (platform === 'facebook' && post.format === 'reel') data.contentType = 'reel';
-  // TikTok : la vidéo arrive en brouillon dans la boîte TikTok, où l'on ajoute un son tendance avant de publier.
-  if (platform === 'tiktok') Object.assign(data, { draft: true, privacyLevel: 'PUBLIC_TO_EVERYONE', allowComment: true, allowDuet: true, allowStitch: true, commercialContentType: 'brand_organic' });
+  // TikTok (compte Business) : les brouillons n'arrivent pas dans l'application, on publie donc directement,
+  // avec un titre de la bibliothèque commerciale TikTok (post.music = clip.id, voir accounts.listTikTokCommercialMusic).
+  if (platform === 'tiktok') {
+    Object.assign(data, { draft: false, privacyLevel: 'PUBLIC_TO_EVERYONE', allowComment: true, allowDuet: true, allowStitch: true, commercialContentType: 'brand_organic' });
+    if (post.music) data.musicSoundInfo = { musicSoundId: post.music };
+  }
   return Object.keys(data).length ? { platformSpecificData: data } : {};
 };
 
