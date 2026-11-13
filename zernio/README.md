@@ -114,3 +114,14 @@ Zernio). On peut aussi viser des comptes précis avec `--account <platform>:<acc
 - Quickstart : https://zernio.com/agent-quickstart.md
 - API complète : https://zernio.com/llms.txt · OpenAPI : https://zernio.com/openapi.yaml
 - SDK Node : [`@zernio/node`](https://www.npmjs.com/package/@zernio/node)
+
+## Zones visibles (formats verticaux 1080x1920)
+
+Les Reels, TikTok et stories sont recouverts par l'interface des applications. Les générateurs gardent les textes à l'intérieur :
+
+| Format | Rien au-dessus de | Rien en dessous de | Marge droite |
+| --- | --- | --- | --- |
+| Reels / TikTok (`make-reel.cjs`, `tiktok-*.html`) | y = 220–240 | y = 1440 (légende, pseudo, musique) | 150 px (boutons) |
+| Stories (`generate-stories.cjs`) | y = 250 (barre de progression) | y = 1650 (« Envoyer un message ») | — |
+
+Formats : feed Instagram/Facebook 1080x1350 (4:5, la grille du profil le recadre en 3:4 : garder 90 px de marge sur les côtés), stories/Reels/TikTok 1080x1920 (9:16), Google 1200x900 (4:3), vidéos H.264 + AAC 30 i/s.
