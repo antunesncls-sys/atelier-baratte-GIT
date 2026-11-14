@@ -1,0 +1,16 @@
+{
+ "avant": "brand/photos/projets/sannois-rendu-avant.webp",
+ "apres": "brand/photos/projets/sannois-rendu-apres.webp",
+ "fit": "cover",
+ "transition": "wipeleft",
+ "transitionDuration": 1.1,
+ "tagApres": "APRÈS · PROJET",
+ "hook1": "Un garage <em>accolé à la maison.</em>",
+ "hook2": "Un étage de plus, <em>même terrain.</em>",
+ "bottom1": "Sannois (95) · la maison aujourd'hui.",
+ "bottom2": "<b>+36,6 m²</b> en déclaration préalable.",
+ "endKicker": "Un garage à transformer ?",
+ "endTitle": "On vérifie <em>le PLU d'abord.</em>",
+ "endSub": "Relevé, plans, insertion, dépôt.",
+ "endButton": "Écrivez « GARAGE » en DM"
+}

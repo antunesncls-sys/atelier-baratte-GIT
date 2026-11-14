@@ -3,6 +3,8 @@
 // Le JSON décrit : avant, apres (chemins d'images), fit ("cover" ou "contain"), boxHeight,
 // tagAvant, tagApres, hook1, hook2, bottom1, bottom2, endKicker, endTitle, endSub, endButton.
 // hook*, bottom* et endTitle acceptent <em> et <b>. Écrit visuels/reels/<nom>.mp4.
+// transition : "slideleft" (défaut, l'après pousse l'avant) ou "wipeleft" (volet qui balaie l'image : à réserver
+// aux deux images cadrées à l'identique) ; transitionDuration en secondes (défaut 0.5).
 // Les textes restent dans la zone visible de TikTok et des Reels Instagram/Facebook :
 // rien au-dessus de y=240 (onglets), rien sous y=1440 (légende, pseudo, musique),
 // et une marge droite de 150 px (boutons j'aime / commentaire / partage).
@@ -85,15 +87,33 @@ body { background: transparent; padding: 0; gap: 0; }
   const fit = cfg.fit === 'contain'
     ? `scale=${W2}:${H2}:force_original_aspect_ratio=decrease,pad=${W2}:${H2}:(ow-iw)/2:(oh-ih)/2:color=${cfg.pad || 'white'}`
     : `scale=${W2}:${H2}:force_original_aspect_ratio=increase,crop=${W2}:${H2}`;
+  const trans = cfg.transition || 'slideleft';
+  const td = cfg.transitionDuration || 0.5;
+  const wipe = trans.startsWith('wipe');
+  const rate = 0.04 / 102, lead = Math.round((3.4 - td) * 30);   // volet : même zoom des deux côtés à chaque instant
   const zoom = (from, to, frames) => `zoompan=z='${from}+(${to}-${from})*on/${frames}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=${frames}:s=1080x${boxH}:fps=30`;
-  const filter = [
+  const off = (3.4 - td).toFixed(2);
+  const end = `[AB][C]xfade=transition=fade:duration=0.4:offset=${(7.0 - td).toFixed(2)},format=yuv420p[v]`;
+  const filter = (wipe ? [
+    // volet : seule la photo est balayée, les textes passent en fondu au même moment
+    `[0:v]${fit},setsar=1,${zoom(1, 1 + rate * 102, 102)},format=yuv420p[p0]`,
+    `[1:v]${fit},setsar=1,${zoom(1 + rate * lead, 1 + rate * (lead + 120), 120)},format=yuv420p[p1]`,
+    `[p0][p1]xfade=transition=${trans}:duration=${td}:offset=${off}[P]`,
+    `[5:v][2:v]overlay=0:0:shortest=1,format=yuv420p,setsar=1[TA]`,
+    `[6:v][3:v]overlay=0:0:shortest=1,format=yuv420p,setsar=1[TB]`,
+    `[TA][TB]xfade=transition=fade:duration=${td}:offset=${off}[T]`,
+    `[T][P]overlay=0:${boxY}:shortest=1,format=yuv420p,setsar=1[AB]`,
+    `[4:v]fps=30,format=yuv420p,setsar=1[C]`,
+    end,
+  ] : [
     `[0:v]${fit},setsar=1,${zoom(1, 1.08, 102)}[p0]`,
     `[1:v]${fit},setsar=1,${zoom(1.08, 1, 120)}[p1]`,
     `[5:v][p0]overlay=0:${boxY}:shortest=1[a0];[a0][2:v]overlay=0:0:shortest=1,format=yuv420p,setsar=1[A]`,
     `[6:v][p1]overlay=0:${boxY}:shortest=1[b0];[b0][3:v]overlay=0:0:shortest=1,format=yuv420p,setsar=1[B]`,
     `[4:v]fps=30,format=yuv420p,setsar=1[C]`,
-    `[A][B]xfade=transition=slideleft:duration=0.5:offset=2.9[AB];[AB][C]xfade=transition=fade:duration=0.4:offset=6.4,format=yuv420p[v]`,
-  ].join(';');
+    `[A][B]xfade=transition=${trans}:duration=${td}:offset=${off}[AB]`,
+    end,
+  ]).join(';');
   execFileSync('ffmpeg', ['-v', 'error', '-y',
     '-i', path.join(tmp, 'a.png'), '-i', path.join(tmp, 'b.png'),
     '-loop', '1', '-t', '3.4', '-i', path.join(tmp, 'o1.png'),
