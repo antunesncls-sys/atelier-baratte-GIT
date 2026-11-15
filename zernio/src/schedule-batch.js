@@ -14,6 +14,8 @@ import { zernio, findProfile, DEFAULT_PROFILE } from './zernio-client.js';
 // Si un compte Google Business Profile est connecté et que le post a une version "google"
 // (voir `npm run google`), elle est publiée à la même heure avec un bouton vers construisez.fr.
 // --google-only programme uniquement les versions Google.
+// Si le post a une version "tiktok" (voir `npm run tiktok`), le carrousel part aussi sur TikTok à la même heure,
+// en images verticales avec une musique. --tiktok-only programme uniquement ces versions (posts déjà programmés).
 // Les posts dont la date est déjà passée sont ignorés.
 
 const STORY_DELAY_MS = 5 * 60 * 1000;
@@ -29,6 +31,7 @@ const profileArg = args.includes('--profile') ? args[args.indexOf('--profile') +
 const dryRun = args.includes('--dry-run');
 const storiesOnly = args.includes('--stories-only');
 const googleOnly = args.includes('--google-only');
+const tiktokOnly = args.includes('--tiktok-only');
 const GOOGLE_URL = 'https://www.construisez.fr/?utm_source=google&utm_medium=gbp&utm_campaign=posts';
 
 if (!file) {
@@ -47,6 +50,7 @@ try {
 const active = profile.accounts.filter((acc) => acc.isActive !== false);
 const google = active.find((acc) => acc.platform === 'googlebusiness');
 const accounts = active.filter((acc) => acc.platform !== 'googlebusiness');
+const tiktok = accounts.find((acc) => acc.platform === 'tiktok');
 const mediaType = (url) =>
   /\.(mp4|mov|webm|m4v)(\?|$)/i.test(url) ? 'video' : /\.gif(\?|$)/i.test(url) ? 'gif' : 'image';
 
@@ -77,10 +81,11 @@ console.log(`Profil "${profile.name}" — ${posts.length} posts${dryRun ? ' (--d
 let scheduled = 0;
 let stories = 0;
 let googlePosts = 0;
+let tiktokPosts = 0;
 for (const post of posts) {
   const label = `${post.date} — ${post.theme ?? post.content.split('\n')[0].slice(0, 60)}`;
 
-  if (!storiesOnly && !googleOnly) {
+  if (!storiesOnly && !googleOnly && !tiktokOnly) {
     if (new Date(post.date) <= new Date()) {
       console.log(`⏭️  ${label} : date passée, ignoré`);
       continue;
@@ -127,7 +132,34 @@ for (const post of posts) {
     }
   }
 
-  if (post.google?.image && (googleOnly || !storiesOnly) && new Date(post.date) > new Date()) {
+  if (post.tiktok?.media?.length && tiktok && !storiesOnly && !googleOnly && new Date(post.date) > new Date()) {
+    const broken = [];
+    for (const url of post.tiktok.media) if (!(await isOnline(url))) broken.push(url);
+    if (broken.length) {
+      console.log(`❌ TikTok ${label} : image introuvable (${broken.join(', ')})`);
+    } else {
+      const tiktokBody = {
+        content: post.tiktok.content,
+        profileId: profile._id,
+        platforms: [{ platform: 'tiktok', accountId: tiktok._id, ...platformData('tiktok', { music: post.tiktok.music }) }],
+        mediaItems: post.tiktok.media.map((url) => ({ type: 'image', url })),
+        scheduledFor: post.date,
+        timezone: 'Europe/Paris',
+      };
+      if (dryRun) {
+        console.log(`🧪 TikTok ${label} → tiktok (${post.tiktok.media.length} images)`);
+      } else {
+        const { data, error } = await zernio.posts.createPost({ body: tiktokBody });
+        if (error) console.error(`❌ TikTok ${label} : ${JSON.stringify(error)}`);
+        else {
+          tiktokPosts++;
+          console.log(`✅ TikTok ${label} (id: ${data?.post?._id ?? data?._id})`);
+        }
+      }
+    }
+  }
+
+  if (post.google?.image && !tiktokOnly && (googleOnly || !storiesOnly) && new Date(post.date) > new Date()) {
     if (!google) {
       if (googleOnly) console.log(`⚠️  Google ${label} : aucun compte Google Business Profile connecté`);
     } else if (!(await isOnline(post.google.image))) {
@@ -158,7 +190,7 @@ for (const post of posts) {
     }
   }
 
-  if (!post.story || googleOnly) continue;
+  if (!post.story || googleOnly || tiktokOnly) continue;
   const storyDate = new Date(new Date(post.date).getTime() + STORY_DELAY_MS);
   if (storyDate <= new Date()) {
     console.log(`⏭️  story ${label} : date passée, ignorée`);
@@ -190,4 +222,4 @@ for (const post of posts) {
   console.log(`✅ story ${label} (id: ${data?.post?._id ?? data?._id})`);
 }
 
-if (!dryRun) console.log(`\n${scheduled} posts, ${stories} stories et ${googlePosts} posts Google programmés.`);
+if (!dryRun) console.log(`\n${scheduled} posts, ${stories} stories, ${tiktokPosts} carrousels TikTok et ${googlePosts} posts Google programmés.`);

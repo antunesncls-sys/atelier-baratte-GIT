@@ -125,3 +125,13 @@ Les Reels, TikTok et stories sont recouverts par l'interface des applications. L
 | Stories (`generate-stories.cjs`) | y = 250 (barre de progression) | y = 1650 (« Envoyer un message ») | — |
 
 Formats : feed Instagram/Facebook 1080x1350 (4:5, la grille du profil le recadre en 3:4 : garder 90 px de marge sur les côtés), stories/Reels/TikTok 1080x1920 (9:16), Google 1200x900 (4:3), vidéos H.264 + AAC 30 i/s.
+
+## Tout partout : Instagram, Facebook et TikTok
+
+Règle demandée par le client : chaque publication part sur Instagram, Facebook et TikTok.
+
+- `npm run tiktok -- posts/<fichier>.json` prépare la version TikTok des carrousels (images verticales 1080x1920 dans la zone visible, légende courte, musique de la bibliothèque commerciale) et l'enregistre dans le champ `tiktok` du post.
+- `npm run schedule -- posts/<fichier>.json` programme alors le carrousel sur TikTok à la même heure que le post. `--tiktok-only` ne programme que la version TikTok (posts déjà programmés).
+- Ordre pour un nouveau post : `npm run upload`, `npm run stories`, `npm run google`, `npm run tiktok`, puis `npm run schedule`.
+- Les Reels (`format: "reel"`) partent sur TikTok par leur propre fichier (`platforms: ["tiktok"]`).
+- Google Business Profile reste publié à la main (compte non connecté).

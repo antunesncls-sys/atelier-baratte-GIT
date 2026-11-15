@@ -2,7 +2,7 @@
   "name": "atelier-baratte-zernio",
   "version": "1.0.0",
   "private": true,
-  "description": "Outils Zernio pour publier et programmer les posts réseaux sociaux de Construisez",
+  "description": "Outils Zernio pour publier et programmer les posts r\u00e9seaux sociaux de Construisez",
   "type": "module",
   "scripts": {
     "accounts": "node src/list-accounts.js",
@@ -11,7 +11,8 @@
     "upload": "node src/upload-media.js",
     "visuels": "node visuels/generate.cjs",
     "stories": "node src/add-variants.js story",
-    "google": "node src/add-variants.js google"
+    "google": "node src/add-variants.js google",
+    "tiktok": "node src/add-tiktok.js"
   },
   "dependencies": {
     "@zernio/node": "^0.2.1374",
