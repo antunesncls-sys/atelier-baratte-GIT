@@ -24,6 +24,10 @@ const STORY_DELAY_MS = 5 * 60 * 1000;
 // N'ajouter que des identifiants vérifiés : un identifiant invalide fait échouer la publication.
 // Les stories n'acceptent pas de lieu.
 const LOCATIONS = JSON.parse(await readFile(new URL('../posts/lieux.json', import.meta.url), 'utf8').catch(() => '{}'));
+// Lieu TikTok par ville (posts/lieux-tiktok.json, { ville: { id, name } }, voir accounts.searchTikTokLocations).
+// Ville inconnue : Saint-Maur-des-Fossés.
+const TIKTOK_LOCATIONS = JSON.parse(await readFile(new URL('../posts/lieux-tiktok.json', import.meta.url), 'utf8').catch(() => '{}'));
+const tiktokLocation = (city) => TIKTOK_LOCATIONS[(city ?? '').replace(/\s*\(\d+\)$/, '')] ?? TIKTOK_LOCATIONS['Saint-Maur-des-Fossés'];
 
 const args = process.argv.slice(2);
 const file = args.find((a) => !a.startsWith('--') && args[args.indexOf(a) - 1] !== '--profile');
@@ -70,6 +74,8 @@ const platformData = (platform, post) => {
   if (platform === 'tiktok') {
     Object.assign(data, { draft: false, privacyLevel: 'PUBLIC_TO_EVERYONE', allowComment: true, allowDuet: true, allowStitch: true, commercialContentType: 'brand_organic' });
     if (post.music) data.musicSoundInfo = { musicSoundId: post.music };
+    const place = tiktokLocation(post.city);
+    if (place) Object.assign(data, { locationId: place.id, locationName: place.name });
   }
   return Object.keys(data).length ? { platformSpecificData: data } : {};
 };
@@ -141,7 +147,7 @@ for (const post of posts) {
       const tiktokBody = {
         content: post.tiktok.content,
         profileId: profile._id,
-        platforms: [{ platform: 'tiktok', accountId: tiktok._id, ...platformData('tiktok', { music: post.tiktok.music }) }],
+        platforms: [{ platform: 'tiktok', accountId: tiktok._id, ...platformData('tiktok', { music: post.tiktok.music, city: post.city }) }],
         mediaItems: post.tiktok.media.map((url) => ({ type: 'image', url })),
         scheduledFor: post.date,
         timezone: 'Europe/Paris',
