@@ -307,6 +307,41 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
 .dr-note{margin:16px 0 0;color:var(--dim);font-size:.92rem}
 .diag-res .ghost{background:none;cursor:pointer;font:inherit;font-weight:600}
 @media (max-width:760px){.diag{grid-template-columns:1fr;padding:20px 16px}.diag-res{padding:24px 18px}}
+
+/* ---------- deux univers ---------- */
+.doors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:34px;width:100%;max-width:760px}
+.door{display:flex;flex-direction:column;gap:6px;padding:22px 24px;border-radius:14px;border:1px solid #2c3140;background:rgba(19,21,27,.78);text-decoration:none;color:var(--fg);transition:border-color .25s ease, background .25s ease, translate .25s ease}
+.door:hover{border-color:var(--ikb-l);background:rgba(0,47,167,.2);translate:0 -3px}
+.door-k{font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;color:var(--ikb-l)}
+.door-t{font-family:"Archivo Black",sans-serif;text-transform:uppercase;font-size:1.65rem;line-height:1}
+.door-p{color:var(--dim);font-size:.92rem;line-height:1.45}
+.door-go{margin-top:6px;font-weight:700;font-size:.92rem}
+@media (max-width:560px){.doors{grid-template-columns:1fr}}
+
+.svc3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:34px;width:100%}
+.svc{display:flex;flex-direction:column;gap:8px;padding:20px 22px;border:1px solid var(--line);border-radius:12px;background:var(--card);text-decoration:none;color:var(--fg);transition:border-color .25s ease, translate .25s ease}
+.svc:hover{border-color:var(--ikb-l);translate:0 -3px}
+.svc .tag{align-self:flex-start;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;padding:4px 8px;border-radius:4px;background:rgba(84,110,255,.14);color:var(--ikb-l)}
+.svc .tag.main{background:var(--ikb);color:#fff}
+.svc b{font-size:1.02rem}
+.svc .p{color:var(--dim);font-size:.9rem;line-height:1.5}
+@media (max-width:900px){.svc3{grid-template-columns:1fr}}
+
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:34px;margin-top:44px;width:100%}
+.trio-item{display:flex;flex-direction:column;gap:12px;min-width:0}
+.trio .float{align-self:center}
+.trio .phone{width:min(230px,100%)}
+.trio-k{margin:18px 0 0;font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;color:var(--ikb-l)}
+.trio h3{font-family:"Archivo Black",sans-serif;font-weight:400;text-transform:uppercase;font-size:1.25rem;line-height:1.05;margin:0}
+.trio .ba{margin-top:4px}
+@media (max-width:900px){
+  .trio{grid-template-columns:1fr;gap:30px}
+  .trio-item{display:grid;grid-template-columns:118px minmax(0,1fr);gap:6px 18px;align-items:start}
+  .trio .float{grid-row:1 / span 3;align-self:start}
+  .trio .phone{width:118px;border-radius:16px}
+  .trio-k{margin-top:0}
+  .trio .ba{grid-column:1 / -1;margin-top:10px}
+}
 </style>
 
 <script>document.body.classList.add('js')</script>
@@ -323,10 +358,8 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
 
 <nav class="pager" aria-label="Sommaire de la page">
   <a href="#hero"><span>Accueil</span></a>
-  <a href="#real"><span>Réalisations</span></a>
-  <a href="#devis"><span>Devis IA</span></a>
-  <a href="#chantier"><span>Chantier</span></a>
-  <a href="#boutique"><span>Boutique</span></a>
+  <a href="#real"><span>Sites web</span></a>
+  <a href="#apps"><span>Applications</span></a>
   <a href="#diagnostic"><span>Diagnostic</span></a>
   <a href="#methode"><span>Méthode</span></a>
   <a href="#questions"><span>Questions</span></a>
@@ -347,19 +380,24 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
       <p class="eyebrow rv">Atelier NA · Sites web &amp; applications · Île-de-France</p>
       <h1 class="giant split"><span class="ln"><span class="lw" style="--l:0">Des sites</span></span> <span class="ln"><span class="lw" style="--l:1">qui vendent.</span></span> <span class="ln"><span class="lw blue" style="--l:2">Des outils</span></span> <span class="ln"><span class="lw blue" style="--l:3">qui gèrent.</span></span></h1>
       <p class="lede rv d2">Création de sites internet et d'applications de gestion pour artisans, TPE et PME. <b>Rien ne se fait à distance</b> : on se déplace chez vous, on regarde vos process, et tout se construit sur ce qu'on a compris sur place.</p>
+      <div class="doors rv d2">
+        <a class="door" href="sites.html">
+          <span class="door-k">Univers 01</span>
+          <span class="door-t">Sites web</span>
+          <span class="door-p">Création de site · fiche Google · réseaux sociaux</span>
+          <span class="door-go">Découvrir →</span>
+        </a>
+        <a class="door" href="applications.html">
+          <span class="door-k">Univers 02</span>
+          <span class="door-t">Applications</span>
+          <span class="door-p">Devis · chantiers · boutique · stock · Excel</span>
+          <span class="door-go">Découvrir →</span>
+        </a>
+      </div>
       <div class="actions rv d2">
         <a class="cta pulse" href="#contact">Audit gratuit sur place</a>
-        <a class="ghost" href="#real">Voir les réalisations</a>
+        <a class="ghost" href="#diagnostic">Diagnostic en 2 min</a>
       </div>
-      <nav class="jump rv d2" aria-label="Aller directement à">
-        <span class="jump-k">Aller directement à</span>
-        <a href="#real">Nos sites</a>
-        <a href="#devis">Nos applications</a>
-        <a href="#diagnostic">Diagnostic 2 min</a>
-        <a href="#methode">Comment on travaille</a>
-        <a href="#questions">Questions</a>
-        <a href="#contact">Contact</a>
-      </nav>
     </div>
   </div>
   <div class="scrolldown">Scroll</div>
@@ -368,7 +406,7 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
 <section class="ch auto" id="real" style="--glow:#0d1f3c;--gx:80%;--gy:20%">
   <div class="inner" style="flex-direction:column;align-items:flex-start">
     <div class="col" style="width:100%">
-      <p class="eyebrow rv">Chapitre 01 · Réalisations</p>
+      <p class="eyebrow rv">Univers 01 · Sites web</p>
       <h2 class="giant split"><span class="ln"><span class="lw" style="--l:0"><span data-count="50">50</span>+ sites</span></span> <span class="ln"><span class="lw blue" style="--l:1">livrés.</span></span></h2>
       <p class="lede rv d2">Bijouterie, couverture, permis de construire, BTP, rénovation, restauration : six métiers, six identités — aucune ne ressemble aux autres. <b>Cliquez, ils sont en ligne.</b></p>
       <div class="works-grid">
@@ -398,54 +436,51 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
         </a>
       </div>
       <p class="works-more rv">Ici, six exemples récents. <b>Plus de 40 autres sites livrés</b> en Île-de-France : artisans, commerces, BTP, services.</p>
-      <div class="actions rv"><a class="cta" href="#contact">Je veux un site comme ça</a><a class="ghost" href="sites.html">Tout sur les sites web →</a></div>
+      <div class="svc3 rv">
+        <a class="svc" href="sites.html#creation"><span class="tag main">Prestation principale</span><b>Création de site internet</b><span class="p">Sur mesure, textes rédigés, référencement local et IA. Livré complet, à votre nom.</span></a>
+        <a class="svc" href="sites.html#fiche-google"><span class="tag">En option ou seule</span><b>Fiche Google My Business</b><span class="p">Création et optimisation, puis suivi mensuel si vous le souhaitez.</span></a>
+        <a class="svc" href="sites.html#reseaux-sociaux"><span class="tag">En option ou seule</span><b>Réseaux sociaux automatisés</b><span class="p">Publications créées et programmées, rapport régulier. Abonnement sans engagement.</span></a>
+      </div>
+      <div class="actions rv"><a class="cta" href="#contact">Je veux un site comme ça</a><a class="ghost" href="sites.html">Tout l'univers Sites web →</a></div>
     </div>
   </div>
 </section>
 
-<section class="ch" id="devis" style="--glow:#0f2b1d;--gx:75%;--gy:35%">
-  <div class="inner">
-    <div class="col">
-      <p class="eyebrow rv">Chapitre 02 · Devis &amp; factures</p>
-      <h2 class="giant split"><span class="ln"><span class="lw" style="--l:0">Devis</span></span> <span class="ln"><span class="lw blue" style="--l:1">IA.</span></span></h2>
-      <p class="lede rv d2">Décrivez le chantier, <b>l'application rédige le devis</b>. Trois touches, le PDF part par email — le jour de la visite, pas le dimanche soir. Factures et tableau de bord dans la poche.</p>
-      <div class="ba rv d2"><div class="ba-row"><span class="ba-k ba-before">Avant</span><span>Devis tapés le soir sur Word, envoyés le lendemain.</span></div><div class="ba-row"><span class="ba-k ba-after">Après</span><span>Le PDF part depuis le chantier, le jour même de la visite.</span></div></div>
-      <div class="actions rv d2"><a class="cta" href="#contact">Je veux cet outil</a><a class="ghost" href="applications.html">Les 9 applications →</a></div>
+<section class="ch auto" id="apps" style="--glow:#0f2b1d;--gx:75%;--gy:25%">
+  <div class="inner" style="flex-direction:column;align-items:flex-start">
+    <div class="col" style="width:100%">
+      <p class="eyebrow rv">Univers 02 · Applications</p>
+      <h2 class="giant split"><span class="ln"><span class="lw" style="--l:0">Vos outils,</span></span> <span class="ln"><span class="lw blue" style="--l:1">sur mesure.</span></span></h2>
+      <p class="lede rv d2">Des applications construites sur votre façon de travailler, constatée sur place. <b>Trois exemples en production chez nos clients</b> :</p>
+      <div class="trio">
+        <article class="trio-item rv ">
+          <div class="float" style="--fd:0s"><div class="float-in"><img class="phone" style="--tilt:2.5deg" src="assets/app-devis-ia.jpg" width="1309" height="2576" loading="lazy" alt="Application devis et factures avec Devis IA"></div></div>
+          <p class="trio-k">Devis &amp; factures</p>
+          <h3>Le devis part le jour de la visite.</h3>
+          <div class="ba"><div class="ba-row"><span class="ba-k ba-before">Avant</span><span>Devis tapés le soir sur Word, envoyés le lendemain.</span></div><div class="ba-row"><span class="ba-k ba-after">Après</span><span>Le PDF part depuis le chantier, le jour même de la visite.</span></div></div>
+        </article>
+        <article class="trio-item rv d1">
+          <div class="float" style="--fd:-2.3s"><div class="float-in"><img class="phone" style="--tilt:-2.5deg" src="assets/app-jmc-chantier.jpg" width="1320" height="2552" loading="lazy" alt="Application équipes chantier JMC Couverture"></div></div>
+          <p class="trio-k">Équipes chantier · JMC Couverture</p>
+          <h3>Le chantier du jour, sur le téléphone.</h3>
+          <div class="ba"><div class="ba-row"><span class="ba-k ba-before">Avant</span><span>Appels et SMS pour le matériel, bons de fabrication sur papier.</span></div><div class="ba-row"><span class="ba-k ba-after">Après</span><span>Chaque demande part du téléphone et arrive au même endroit à l'atelier.</span></div></div>
+        </article>
+        <article class="trio-item rv d2">
+          <div class="float" style="--fd:-4.6s"><div class="float-in"><img class="phone" style="--tilt:2deg" src="assets/app-atelier-baratte.png" width="295" height="640" loading="lazy" alt="Application caisse et réparations Atelier Baratte"></div></div>
+          <p class="trio-k">Caisse &amp; réparations · Atelier Baratte</p>
+          <h3>La boutique, en main.</h3>
+          <div class="ba"><div class="ba-row"><span class="ba-k ba-before">Avant</span><span>Dépôts notés à la main, chiffre du mois recalculé en fin de mois.</span></div><div class="ba-row"><span class="ba-k ba-after">Après</span><span>Dépôt enregistré en quelques secondes, chiffre du jour visible en direct.</span></div></div>
+        </article>
+      </div>
+      <div class="actions rv"><a class="cta" href="#contact">Je veux un outil sur mesure</a><a class="ghost" href="applications.html">Tout l'univers Applications →</a></div>
     </div>
-    <div class="float" data-par style="--fd:0s"><div class="float-in"><img class="phone rv d2" style="--tilt:2.5deg" src="assets/app-devis-ia.jpg" width="1309" height="2576" loading="lazy" alt="Application devis et factures avec Devis IA"></div></div>
-  </div>
-</section>
-
-<section class="ch" id="chantier" style="--glow:#3a1413;--gx:25%;--gy:40%">
-  <div class="inner rev">
-    <div class="col">
-      <p class="eyebrow rv">Chapitre 03 · Équipes chantier</p>
-      <h2 class="giant split"><span class="ln"><span class="lw" style="--l:0">Le chantier</span></span> <span class="ln"><span class="lw blue" style="--l:1">du jour.</span></span></h2>
-      <p class="lede rv d2">Chaque chef de chantier voit son planning de la semaine, <b>demande matériel et échafaudage depuis le chantier</b>, envoie ses bons de fabrication à l'atelier. En production chez JMC Couverture.</p>
-      <div class="ba rv d2"><div class="ba-row"><span class="ba-k ba-before">Avant</span><span>Appels et SMS pour le matériel, bons de fabrication sur papier.</span></div><div class="ba-row"><span class="ba-k ba-after">Après</span><span>Chaque demande part du téléphone et arrive au même endroit à l'atelier.</span></div></div>
-      <div class="actions rv d2"><a class="cta" href="#contact">Parlons de vos équipes</a><a class="ghost" href="applications.html">Les 9 applications →</a></div>
-    </div>
-    <div class="float" data-par style="--fd:-2.3s"><div class="float-in"><img class="phone rv d2" style="--tilt:-2.5deg" src="assets/app-jmc-chantier.jpg" width="1320" height="2552" loading="lazy" alt="Application équipes chantier JMC Couverture"></div></div>
-  </div>
-</section>
-
-<section class="ch" id="boutique" style="--glow:#2e2510;--gx:70%;--gy:60%">
-  <div class="inner">
-    <div class="col">
-      <p class="eyebrow rv">Chapitre 04 · Caisse &amp; réparations</p>
-      <h2 class="giant split"><span class="ln"><span class="lw" style="--l:0">La boutique,</span></span> <span class="ln"><span class="lw blue" style="--l:1">en main.</span></span></h2>
-      <p class="lede rv d2">Dépôts de réparation enregistrés en quelques secondes, <b>objectif du jour et chiffre du mois en temps réel</b>. En production à la bijouterie Atelier Baratte, Saint-Maur-des-Fossés.</p>
-      <div class="ba rv d2"><div class="ba-row"><span class="ba-k ba-before">Avant</span><span>Dépôts notés à la main, chiffre du mois recalculé en fin de mois.</span></div><div class="ba-row"><span class="ba-k ba-after">Après</span><span>Dépôt enregistré en quelques secondes, chiffre du jour visible en direct.</span></div></div>
-      <div class="actions rv d2"><a class="cta" href="#contact">Un outil pour ma boutique</a><a class="ghost" href="applications.html">Les 9 applications →</a></div>
-    </div>
-    <div class="float" data-par style="--fd:-4.6s"><div class="float-in"><img class="phone rv d2" style="--tilt:2deg" src="assets/app-atelier-baratte.png" width="295" height="640" loading="lazy" alt="Application caisse et réparations Atelier Baratte"></div></div>
   </div>
 </section>
 
 <section class="ch auto" id="diagnostic" style="--glow:#14215a;--gx:60%;--gy:20%">
   <div class="inner" style="flex-direction:column;align-items:flex-start">
     <div class="col" style="width:100%">
-      <p class="eyebrow rv">Chapitre 05 · Diagnostic express</p>
+      <p class="eyebrow rv">Chapitre 03 · Diagnostic express</p>
       <h2 class="giant split"><span class="ln"><span class="lw" style="--l:0">Ça vous</span></span> <span class="ln"><span class="lw blue" style="--l:1">parle&nbsp;?</span></span></h2>
       <div class="files rv d2" aria-label="Exemples de fichiers bricolés">
         <span>Devis_2026_FINAL_v3.xlsx</span>
@@ -471,6 +506,7 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
             <label><input type="radio" name="d-web" value="pas-de-site"><span>Je n'ai pas de site</span></label>
             <label><input type="radio" name="d-web" value="site-vieux"><span>Mon site date un peu</span></label>
             <label><input type="radio" name="d-web" value="pas-google"><span>On ne me trouve pas sur Google</span></label>
+            <label><input type="radio" name="d-web" value="reseaux"><span>Je suis absent des réseaux sociaux</span></label>
             <label><input type="radio" name="d-web" value="ok"><span>Ça va de ce côté</span></label>
           </div>
         </fieldset>
@@ -513,7 +549,7 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
 <section class="ch auto" id="methode" style="--glow:#101b45;--gx:30%;--gy:30%">
   <div class="inner" style="flex-direction:column;align-items:flex-start">
     <div class="col" style="width:100%">
-      <p class="eyebrow rv">Chapitre 06 · Notre façon de travailler</p>
+      <p class="eyebrow rv">Chapitre 04 · Notre façon de travailler</p>
       <h2 class="giant split"><span class="ln"><span class="lw" style="--l:0">On vient</span></span> <span class="ln"><span class="lw blue" style="--l:1">vous voir.</span></span></h2>
       <p class="lede rv d2">Pas une agence à distance. On échange sur votre business, vos process, vos clients — <b>à l'atelier, au dépôt, au bureau</b>. C'est là que le site se décide, pas derrière un écran. Un service convivial, auquel vous pouvez accorder votre confiance.</p>
       <div class="steps">
@@ -530,7 +566,7 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
 <section class="ch auto" id="questions" style="--glow:#0d1f3c;--gx:70%;--gy:50%">
   <div class="inner" style="flex-direction:column;align-items:flex-start">
     <div class="col" style="width:100%">
-      <p class="eyebrow rv">Chapitre 07 · Questions fréquentes</p>
+      <p class="eyebrow rv">Chapitre 05 · Questions fréquentes</p>
       <h2 class="giant split"><span class="ln"><span class="lw" style="--l:0">Avant de</span></span> <span class="ln"><span class="lw blue" style="--l:1">se lancer.</span></span></h2>
       <div class="faq rv d2">
         <details>
@@ -547,7 +583,11 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
         </details>
         <details>
           <summary>Le référencement Google est-il inclus ?</summary>
-          <p>Oui. Balises optimisées, données structurées, sitemap et accompagnement sur votre fiche Google : c'est compris dans le devis, pas une option facturée ensuite.</p>
+          <p>Oui. Chaque site est livré avec son référencement de base : balises optimisées, données structurées, sitemap et liens vers votre fiche Google. La création et le suivi de la fiche Google My Business sont proposés en option.</p>
+        </details>
+        <details>
+          <summary>Pouvez-vous gérer seulement ma fiche Google ou mes réseaux sociaux ?</summary>
+          <p>Oui. La création et le suivi de votre fiche Google My Business, comme la gestion automatisée de vos réseaux sociaux, se prennent en option de votre site, ou seuls si vous avez déjà un site. Le suivi des réseaux sociaux est un abonnement mensuel sans engagement.</p>
         </details>
         <details>
           <summary>Serai-je propriétaire de mon site ?</summary>
@@ -571,7 +611,7 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
   <div class="inner" style="flex-direction:column;align-items:flex-start">
     <div class="contact-grid">
       <div class="col">
-        <p class="eyebrow rv">Chapitre 08 · Contact</p>
+        <p class="eyebrow rv">Chapitre 06 · Contact</p>
         <h2 class="giant split"><span class="ln"><span class="lw" style="--l:0">Parlons-</span></span> <span class="ln"><span class="lw blue" style="--l:1">en.</span></span></h2>
         <p class="lede rv d2">Décrivez votre activité et ce qui vous manque : être trouvé, rassurer, recevoir plus d'appels. On convient d'un audit gratuit sur place, et on vous dit franchement ce qu'un site peut changer — et ce qu'il ne changera pas. <b>On vous rappelle pour en parler.</b></p>
         <div class="coord rv d2">
@@ -601,7 +641,9 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
             <option>Créer un premier site</option>
             <option>Refaire un site existant</option>
             <option>Être mieux trouvé sur Google</option>
-            <option>Gestion de ma fiche Google</option>
+            <option>Fiche Google : création et optimisation</option>
+            <option>Fiche Google : suivi mensuel</option>
+            <option>Réseaux sociaux automatisés</option>
             <option>Outil de gestion (flotte, commandes, dépôt, livraisons)</option>
             <option>Améliorer un fichier Excel / un outil interne</option>
             <option>Créer une application</option>
@@ -631,6 +673,8 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
         <p class="fh">Pages</p>
         <a href="./">Accueil</a>
         <a href="sites.html">Sites web</a>
+        <a href="sites.html#fiche-google">Fiche Google</a>
+        <a href="sites.html#reseaux-sociaux">Réseaux sociaux</a>
         <a href="applications.html">Applications</a>
         <a href="creation-site-internet-saint-maur-des-fosses.html">Saint-Maur-des-Fossés</a>
       </nav>
@@ -725,7 +769,9 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
       var steps = [];
       if (web === 'pas-de-site') steps.push('<b>Un site qui fait sonner le téléphone</b> : vos services, vos réalisations, vos avis Google, et un bouton d’appel bien visible.');
       if (web === 'site-vieux') steps.push('<b>Refaire votre site</b> pour qu’il inspire confiance sur mobile et donne envie d’appeler.');
-      if (web === 'pas-google' || temps === 'Trouver de nouveaux clients') steps.push('<b>Être trouvé localement</b> : référencement par ville et par métier, fiche Google tenue à jour, avis mis en avant.');
+      if (web === 'pas-google') steps.push('<b>Votre fiche Google My Business</b> : la créer ou la remettre à plat, puis la faire vivre chaque mois pour monter sur Google Maps.');
+      if (web === 'reseaux') steps.push('<b>Vos réseaux sociaux en pilote automatique</b> : publications créées à partir de vos photos et programmées sur Instagram, Facebook, TikTok, LinkedIn et Google.');
+      if (temps === 'Trouver de nouveaux clients' && web !== 'pas-google') steps.push('<b>Être trouvé localement</b> : référencement par ville et par métier, avis Google mis en avant.');
       if (outil === 'excel') steps.push('<b>Remettre de l’ordre dans vos fichiers Excel</b> : une seule base, des données saisies une fois, ou une application si le fichier est arrivé au bout.');
       if (outil === 'papier') steps.push('<b>Passer du papier au téléphone</b> : bons, demandes et suivis saisis sur place, visibles tout de suite au bureau.');
       if (outil === 'logiciel') steps.push('<b>Un outil taillé pour votre façon de travailler</b>, plutôt que de contourner un logiciel qui ne colle pas.');
@@ -737,7 +783,7 @@ footer::before{content:"";position:absolute;left:50%;top:-40%;width:90%;height:8
       document.getElementById('dr-t').textContent = title;
       document.getElementById('dr-list').innerHTML = steps.slice(0, 3).map(function(t){ return '<li><span>' + t + '</span></li>'; }).join('');
       advice = {
-        besoin: !needTool ? (web === 'pas-de-site' ? 'Créer un premier site' : web === 'site-vieux' ? 'Refaire un site existant' : 'Être mieux trouvé sur Google')
+        besoin: !needTool ? (web === 'pas-de-site' ? 'Créer un premier site' : web === 'site-vieux' ? 'Refaire un site existant' : web === 'pas-google' ? 'Fiche Google : création et optimisation' : web === 'reseaux' ? 'Réseaux sociaux automatisés' : 'Être mieux trouvé sur Google')
               : outil === 'excel' ? 'Améliorer un fichier Excel / un outil interne'
               : (outil === 'papier' || temps === 'Suivre les équipes et les chantiers') ? 'Outil de gestion (flotte, commandes, dépôt, livraisons)'
               : 'Créer une application',

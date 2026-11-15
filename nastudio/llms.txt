@@ -1,6 +1,6 @@
 # Atelier NA
 
-> Studio de création de sites internet et d'applications pour artisans, TPE et PME en Île-de-France. Amélioration et automatisation de fichiers Excel (devis, suivi de chantier, tableaux de bord). Plus de 50 sites réalisés.
+> Studio de création de sites internet et d'applications pour artisans, TPE et PME en Île-de-France. Deux univers : Sites web (création de site, fiche Google My Business, réseaux sociaux automatisés) et Applications (outils de gestion sur mesure, fichiers Excel). Plus de 50 sites réalisés.
 
 Devise : « Un service convivial, auquel vous pouvez accorder votre confiance »
 
@@ -8,7 +8,7 @@ Devise : « Un service convivial, auquel vous pouvez accorder votre confiance »
 
 - Rendez-vous sur place chez le client (atelier, dépôt, bureau), partout en Île-de-France : le site se construit sur le métier et les process observés, pas à distance.
 - Audit gratuit sur place, puis devis précis et sans engagement.
-- Chaque site est livré avec son référencement local (balises, données structurées schema.org, sitemap, fiche Google Business Profile) et optimisé pour les moteurs de recherche IA.
+- Chaque site est livré avec son référencement local de base (balises, données structurées schema.org, sitemap, liens vers la fiche Google) et optimisé pour les moteurs de recherche IA.
 - Le client reste propriétaire : nom de domaine à son nom, code et accès remis, documentation fournie.
 
 ## Applications livrées
@@ -25,9 +25,13 @@ Devise : « Un service convivial, auquel vous pouvez accorder votre confiance »
 - Suivi de GPA (garantie de parfait achèvement) et levée de réserves : saisie sur place avec photos, attribution par corps d'état, relances, levée documentée
 - Planning d'interventions : équipes et techniciens, créneaux, matériel à prévoir, client prévenu, rapport signé sur place
 
-## Gestion de fiche Google (Google Business Profile)
+## Univers Sites web : prestations
 
-Service mensuel : création ou reprise de la fiche, publications régulières, collecte et réponse aux avis, cohérence NAP, rapport mensuel (vues, appels, position dans le pack local).
+- Création de site internet (prestation principale) : design et textes sur mesure, référencement local et IA, site livré complet au nom du client.
+- Fiche Google My Business (en option d'un site, ou seule) : niveau 1, création et optimisation de la fiche, une fois ; niveau 2, suivi mensuel (publications, photos, réponses aux avis, aide à la collecte d'avis, rapport mensuel).
+- Réseaux sociaux automatisés (en option d'un site, ou seuls) : publications créées à partir des photos du client et programmées sur Instagram, Facebook, TikTok (carrousels photo), LinkedIn et les actualités de la fiche Google ; rapport régulier ; abonnement mensuel sans engagement ; pas de tournage vidéo.
+
+Page : https://www.atelier-na.fr/sites
 
 ## Réalisations vérifiables
 
