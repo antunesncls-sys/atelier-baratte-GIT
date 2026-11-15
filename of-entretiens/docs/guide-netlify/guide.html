@@ -1,0 +1,204 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Mettre en ligne le site OF ENTRETIENS sur Netlify</title>
+<style>
+@font-face{font-family:"Gabarito";font-weight:400 900;src:url("gabarito-latin-wght-normal.woff2") format("woff2")}
+@font-face{font-family:"Outfit";font-weight:100 900;src:url("outfit-latin-wght-normal.woff2") format("woff2")}
+@page{size:A4;margin:18mm 17mm 18mm}
+:root{--sombre:#0A1A52;--bleu:#095EF9;--action:#FF8A00;--fond:#F5F7FB;--ligne:#DCE1EC;--doux:#4A5468}
+*{box-sizing:border-box}
+body{font-family:"Outfit",sans-serif;font-size:10.6pt;line-height:1.5;color:#1C1F1E;margin:0}
+h1,h2,h3{font-family:"Gabarito",sans-serif;color:var(--sombre);line-height:1.12;margin:0}
+h1{font-size:26pt;font-weight:600}
+h2{font-size:15.5pt;font-weight:600;margin:20pt 0 7pt;display:flex;align-items:center;gap:9pt;break-after:avoid}
+h2 .n{flex:none;width:23pt;height:23pt;border-radius:50%;background:var(--sombre);color:#fff;display:grid;place-items:center;font-size:12pt}
+h3{font-size:11.5pt;font-weight:600;margin:11pt 0 4pt;break-after:avoid}
+p{margin:0 0 6pt}
+ol,ul{margin:0 0 7pt;padding-left:15pt}
+li{margin-bottom:3pt}
+b{font-weight:600}
+.menu{font-weight:600;color:var(--sombre);background:#E8EEFF;border-radius:4pt;padding:0 4pt;white-space:nowrap}
+code{font-family:"DejaVu Sans Mono",monospace;font-size:9pt;background:#EEF1F7;border-radius:3pt;padding:0 3pt}
+.entete{background:var(--sombre);color:#fff;border-radius:12pt;padding:20pt 22pt 18pt;margin-bottom:14pt}
+.entete h1{color:#fff}
+.entete .logo{font-family:"Gabarito";font-style:italic;font-weight:800;font-size:13pt;margin-bottom:10pt;display:block}
+.entete .logo b{color:#9DBDFF;font-weight:900}
+.entete p{color:#C9D3EE;font-size:11.5pt;margin:8pt 0 0}
+.chips{display:flex;gap:6pt;flex-wrap:wrap;margin-top:12pt}
+.chips span{border:1pt solid rgba(255,255,255,.4);border-radius:99pt;padding:2pt 9pt;font-size:9.5pt;color:#fff}
+.deux{display:grid;grid-template-columns:1fr 1fr;gap:10pt}
+.boite{border:1pt solid var(--ligne);border-radius:9pt;padding:10pt 12pt;background:var(--fond);break-inside:avoid}
+.boite h3{margin-top:0}
+.info{border-left:3.5pt solid var(--bleu);background:#F1F5FF;border-radius:0 8pt 8pt 0;padding:8pt 11pt;margin:8pt 0;break-inside:avoid}
+.attention{border-left:3.5pt solid var(--action);background:#FFF6EB;border-radius:0 8pt 8pt 0;padding:8pt 11pt;margin:8pt 0;break-inside:avoid}
+.info .t,.attention .t{display:block;font-weight:600;font-size:8.5pt;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2pt}
+.info .t{color:var(--bleu)} .attention .t{color:#9A4A00}
+table{width:100%;border-collapse:collapse;margin:6pt 0 8pt;font-size:9.8pt;break-inside:avoid}
+th{text-align:left;background:var(--sombre);color:#fff;font-weight:600;padding:5pt 7pt}
+td{border-bottom:1pt solid var(--ligne);padding:5pt 7pt;vertical-align:top}
+tr:nth-child(even) td{background:#FAFBFD}
+.arbre{font-family:"DejaVu Sans Mono",monospace;font-size:8.8pt;background:#0B1022;color:#DDE4F7;border-radius:8pt;padding:9pt 12pt;line-height:1.45;white-space:pre;break-inside:avoid}
+.arbre .ok{color:#7EE2A8}
+.coche li{list-style:none;margin-left:-15pt}
+.coche li::before{content:"☐  ";color:var(--bleu)}
+.saut{break-before:page}
+.pied{margin-top:16pt;padding-top:8pt;border-top:1pt solid var(--ligne);font-size:8.8pt;color:var(--doux)}
+
+</style></head><body>
+
+<div class="entete">
+  <span class="logo"><b>OF</b> ENTRETIENS</span>
+  <h1>Mettre en ligne le site sur votre compte Netlify</h1>
+  <p>Mode d’emploi pas à pas, avec l’offre gratuite de Netlify. Aucune compétence technique n’est nécessaire.</p>
+  <div class="chips"><span>Durée : environ 30 minutes</span><span>Coût : 0 €</span><span>Version de novembre 2026</span></div>
+</div>
+
+<div class="deux">
+  <div class="boite">
+    <h3>Ce qu’il vous faut</h3>
+    <ul>
+      <li>Le fichier <b>of-entretiens-site.zip</b> (fourni avec ce guide).</li>
+      <li>Une adresse e-mail pour créer le compte Netlify.</li>
+      <li>Les accès au <b>nom de domaine</b> ofentretiens.com (chez le bureau d’enregistrement : OVH, Gandi, IONOS…) ou au compte Netlify qui le gère aujourd’hui.</li>
+    </ul>
+  </div>
+  <div class="boite">
+    <h3>Ce que fait Netlify</h3>
+    <ul>
+      <li>Héberge le site et le sert en HTTPS (cadenas) gratuitement.</li>
+      <li>Reçoit les demandes des formulaires <b>Estimation</b> et <b>Contact</b> et vous les envoie par e-mail.</li>
+      <li>Applique les redirections des anciennes adresses du site (déjà prévues dans le zip).</li>
+    </ul>
+  </div>
+</div>
+
+<h2><span class="n">€</span>L’offre gratuite : ce qu’elle permet</h2>
+<p>L’offre <b>Free</b> de Netlify coûte 0 € et donne <b>300 crédits par mois</b>, remis à zéro chaque mois. Le site les consomme ainsi&nbsp;:</p>
+<table>
+  <tr><th>Action</th><th>Crédits consommés</th><th>Pour ce site</th></tr>
+  <tr><td>Une mise en ligne (nouvelle version du site)</td><td>15 crédits</td><td>Faites-en peu : regroupez vos modifications.</td></tr>
+  <tr><td>Données envoyées aux visiteurs</td><td>20 crédits par Go</td><td>Une visite complète de l’accueil ≈ 0,8 Mo.</td></tr>
+  <tr><td>Requêtes (chargement des fichiers)</td><td>2 crédits par 10 000</td><td>Environ 25 requêtes par visite.</td></tr>
+  <tr><td>Formulaires (Estimation, Contact)</td><td>0 crédit</td><td>Gratuits et illimités.</td></tr>
+</table>
+<p><b>En pratique</b> : avec 4 mises en ligne dans le mois, il reste de quoi servir <b>environ 10&nbsp;000 visites</b>, ce qui est très au-dessus de la fréquentation habituelle d’un site d’entreprise local.</p>
+<div class="attention"><span class="t">À savoir</span>
+L’offre gratuite a une limite stricte : si les 300 crédits sont épuisés, Netlify <b>met le site en pause</b> (page « Site not available ») jusqu’au mois suivant, et il n’est pas possible d’acheter des crédits sans passer à une offre payante. Jetez un œil à la consommation une fois par mois (voir l’étape 8).</div>
+
+<div class="etape">
+<h2><span class="n">1</span>Créer le compte Netlify</h2>
+<ol>
+  <li>Allez sur <b>netlify.com</b> et cliquez sur <span class="menu">Sign up</span>.</li>
+  <li>Inscrivez-vous avec votre adresse e-mail (ou un compte Google), puis confirmez l’e-mail reçu.</li>
+  <li>Si Netlify vous demande de choisir une offre, prenez <span class="menu">Free</span>.</li>
+  <li>Donnez un nom à votre équipe, par exemple <code>OF ENTRETIENS</code>.</li>
+</ol>
+</div>
+
+<div class="etape">
+<h2><span class="n">2</span>Préparer les fichiers</h2>
+<p>Netlify demande un <b>dossier</b>, pas un fichier zip. Faites un clic droit sur <b>of-entretiens-site.zip</b> puis <span class="menu">Extraire tout…</span> (Windows) ou double-cliquez dessus (Mac). Vous obtenez un dossier qui doit contenir <b>directement</b> le fichier <code>index.html</code>&nbsp;:</p>
+<div class="arbre">of-entretiens-site/
+├── <span class="ok">index.html</span>              ← doit être ici, pas dans un sous-dossier
+├── carottage-urgence-montfermeil/
+├── corvoyage-montfermeil/
+├── estimation/   contact/   realisations/ …
+├── assets/
+├── _redirects   _headers   netlify.toml
+└── sitemap.xml   robots.txt</div>
+<div class="info"><span class="t">Fichiers invisibles</span>Les fichiers <code>_redirects</code> et <code>_headers</code> sont indispensables (redirections des anciennes pages et sécurité). Ne supprimez rien dans ce dossier.</div>
+</div>
+
+<div class="etape">
+<h2><span class="n">3</span>Mettre le site en ligne</h2>
+<ol>
+  <li>Connecté à Netlify, ouvrez la page <span class="menu">Projects</span> de votre équipe.</li>
+  <li>Tout en bas de la page se trouve une zone « glisser-déposer ». <b>Faites glisser le dossier</b> préparé à l’étape 2 dans cette zone. <br>(Autre possibilité : l’adresse <b>app.netlify.com/drop</b>.)</li>
+  <li>Après quelques secondes, le site est en ligne à une adresse provisoire du type <code>nom-au-hasard-12345.netlify.app</code>. Cliquez dessus pour vérifier.</li>
+  <li>Pour une adresse plus lisible : <span class="menu">Project configuration</span> → <span class="menu">Change project name</span> → par exemple <code>ofentretiens-site</code>.</li>
+</ol>
+</div>
+
+<div class="etape">
+<h2><span class="n">4</span>Activer les formulaires de devis</h2>
+<p>Sans cette étape, les demandes envoyées depuis le site ne vous parviennent pas.</p>
+<ol>
+  <li>Dans le projet, ouvrez <span class="menu">Forms</span> puis cliquez sur <span class="menu">Enable form detection</span>.</li>
+  <li><b>Remettez le site en ligne une fois</b> pour que Netlify repère les formulaires : <span class="menu">Deploys</span> → faites glisser à nouveau le même dossier dans la zone en bas de la page.</li>
+  <li>Retournez dans <span class="menu">Forms</span> : les formulaires <b>estimation</b> et <b>contact</b> apparaissent.</li>
+  <li><span class="menu">Forms</span> → <span class="menu">Submission notifications</span> → <span class="menu">Add notification</span> → <b>Email notification</b> : indiquez <code>mike.ofentretiens@gmail.com</code>. Choisissez « tous les formulaires » (ou ajoutez une notification pour chacun des deux).</li>
+  <li>Faites un essai : remplissez le formulaire de la page <b>/estimation/</b>. Vous devez arriver sur la page « Merci » et recevoir l’e-mail (pensez à regarder dans les indésirables la première fois).</li>
+</ol>
+</div>
+
+<div class="etape">
+<h2><span class="n">5</span>Brancher le nom de domaine ofentretiens.com</h2>
+<div class="attention"><span class="t">Situation actuelle</span>
+Aujourd’hui, <b>ofentretiens.com</b> est relié au compte Netlify de votre prestataire. Un domaine ne peut être utilisé que par un seul compte : il faut d’abord le <b>libérer</b> dans l’ancien compte. Le site peut être indisponible de quelques minutes à quelques heures pendant la bascule : faites-la un soir ou un week-end.</div>
+<h3>a) Libérer le domaine dans l’ancien compte (à faire par votre prestataire)</h3>
+<ol>
+  <li>Dans l’ancien projet : <span class="menu">Domain management</span> → à côté de chaque domaine, <span class="menu">Options</span> → <span class="menu">Remove domain</span>.</li>
+  <li>Dans l’équipe : <span class="menu">Domains</span> → <code>ofentretiens.com</code> → supprimer la zone DNS (si le domaine utilise « Netlify DNS »).</li>
+</ol>
+<h3>b) Ajouter le domaine dans votre compte</h3>
+<ol>
+  <li>Dans votre projet : <span class="menu">Domain management</span> → <span class="menu">Add a domain</span> → saisissez <code>www.ofentretiens.com</code>. Netlify ajoute automatiquement <code>ofentretiens.com</code>. Gardez <b>www.ofentretiens.com</b> comme domaine principal (c’est l’adresse utilisée partout dans le site).</li>
+  <li>Netlify vous propose ensuite de régler le DNS. Deux possibilités :</li>
+</ol>
+<div class="deux">
+  <div class="boite">
+    <h3>Option 1 — Netlify DNS (le plus simple)</h3>
+    <p>Acceptez « Netlify DNS ». Netlify affiche <b>4 serveurs de noms</b> (du type <code>dns1.p01.nsone.net</code>). Chez votre bureau d’enregistrement, remplacez les serveurs de noms du domaine par ces 4 adresses. Netlify gère ensuite tout le reste.</p>
+  </div>
+  <div class="boite">
+    <h3>Option 2 — garder le DNS chez votre bureau d’enregistrement</h3>
+    <p>Créez ces deux enregistrements dans la zone DNS du domaine&nbsp;:</p>
+    <p><b>A</b> &nbsp;<code>@</code> → <code>75.2.60.5</code><br>
+    <b>CNAME</b> &nbsp;<code>www</code> → <code>votre-projet.netlify.app</code></p>
+    <p style="font-size:9pt;color:var(--doux)">Remplacez « votre-projet » par l’adresse de l’étape 3. Si votre fournisseur propose ALIAS/ANAME, préférez <code>apex-loadbalancer.netlify.com</code> à l’adresse A.</p>
+  </div>
+</div>
+<h3>c) Activer le HTTPS (cadenas)</h3>
+<p>Une fois le DNS pris en compte (de quelques minutes à 24 heures), allez dans <span class="menu">Domain management</span> → <span class="menu">HTTPS</span>. Le certificat gratuit Let’s Encrypt est créé automatiquement ; sinon, cliquez sur <span class="menu">Verify DNS configuration</span> puis sur le bouton de création ou de renouvellement du certificat.</p>
+</div>
+
+<div class="etape">
+<h2><span class="n">6</span>Vérifier que tout fonctionne</h2>
+<ul class="coche">
+  <li><b>https://www.ofentretiens.com</b> s’affiche avec le cadenas, et <b>ofentretiens.com</b> (sans www) y renvoie.</li>
+  <li>Les pages de service s’ouvrent depuis le menu <b>Services</b>, sur ordinateur et sur téléphone.</li>
+  <li>Une ancienne adresse comme <code>/corvoyage.html</code> renvoie bien vers <code>/corvoyage-montfermeil/</code>.</li>
+  <li>Le bouton <b>Appeler</b> lance bien un appel depuis un téléphone.</li>
+  <li>Une demande test envoyée depuis <b>/estimation/</b> et depuis <b>/contact/</b> arrive par e-mail.</li>
+  <li>Une adresse qui n’existe pas affiche la page « Cette page n’existe pas ».</li>
+</ul>
+</div>
+
+<div class="etape">
+<h2><span class="n">7</span>Mettre à jour le site plus tard</h2>
+<ol>
+  <li>Récupérez le nouveau zip fourni par votre prestataire et extrayez-le (comme à l’étape 2).</li>
+  <li>Dans le projet : <span class="menu">Deploys</span> → faites glisser le dossier dans la zone en bas de la page.</li>
+  <li>La nouvelle version remplace l’ancienne en quelques secondes. En cas de souci, dans <span class="menu">Deploys</span>, cliquez sur une version précédente puis sur <span class="menu">Publish deploy</span> pour revenir en arrière (sans consommer de crédits).</li>
+</ol>
+<div class="info"><span class="t">Économiser les crédits</span>Chaque mise en ligne consomme 15 crédits : regroupez vos changements plutôt que de publier plusieurs fois par jour.</div>
+</div>
+
+<div class="etape">
+<h2><span class="n">8</span>Surveiller la consommation</h2>
+<p>Une fois par mois, ouvrez la page de facturation et d’utilisation de votre équipe (rubrique <span class="menu">Billing</span> / <span class="menu">Usage</span>) pour voir les crédits restants. Si vous approchez des 300 crédits, évitez les mises à jour jusqu’au mois suivant ou envisagez une offre payante.</p>
+</div>
+
+<div class="etape">
+<h2><span class="n">?</span>En cas de problème</h2>
+<table>
+  <tr><th style="width:38%">Ce que vous voyez</th><th>Ce qu’il faut faire</th></tr>
+  <tr><td>« Page not found » à l’adresse du site</td><td>Le dossier glissé ne contient pas <code>index.html</code> à la racine (souvent un sous-dossier en trop). Refaites l’étape 2 et glissez le bon dossier.</td></tr>
+  <tr><td>Les demandes de devis n’arrivent pas</td><td>Vérifiez l’étape 4 : détection activée <b>puis</b> nouvelle mise en ligne, et notification e-mail créée. Regardez aussi dans <span class="menu">Forms</span> et dans vos courriers indésirables.</td></tr>
+  <tr><td>« Another project is already using this domain »</td><td>Le domaine est encore relié à l’ancien compte : refaites l’étape 5 a).</td></tr>
+  <tr><td>Pas de cadenas / avertissement HTTPS</td><td>Attendez la propagation du DNS (jusqu’à 24 h), puis <span class="menu">Verify DNS configuration</span> et renouvelez le certificat.</td></tr>
+  <tr><td>« Site not available »</td><td>Les crédits du mois sont épuisés : le site revient au début du mois suivant, ou passez à une offre payante.</td></tr>
+</table>
+</div>
+
+<div class="pied">Guide préparé pour OF ENTRETIENS — 8 avenue des Frères Lumière, 93370 Montfermeil — 06 62 06 93 22.<br>
+Les intitulés des menus sont ceux de l’interface Netlify en anglais à la date du guide ; ils peuvent légèrement évoluer. Tarifs : offre Free de Netlify telle que décrite sur netlify.com/pricing et dans la documentation officielle (novembre 2026).</div>
+</body></html>
