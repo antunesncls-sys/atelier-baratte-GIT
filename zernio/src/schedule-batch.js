@@ -74,7 +74,9 @@ const platformData = (platform, post) => {
   if (platform === 'tiktok') {
     Object.assign(data, { draft: false, privacyLevel: 'PUBLIC_TO_EVERYONE', allowComment: true, allowDuet: true, allowStitch: true, commercialContentType: 'brand_organic' });
     if (post.music) data.musicSoundInfo = { musicSoundId: post.music };
-    const place = tiktokLocation(post.city);
+    // Lieu : uniquement sur les vidéos. TikTok refuse le lieu sur les carrousels photo des comptes Business
+    // (la publication échoue), donc jamais de lieu sur un post d'images.
+    const place = post.format === 'reel' ? tiktokLocation(post.city) : null;
     if (place) Object.assign(data, { locationId: place.id, locationName: place.name });
   }
   return Object.keys(data).length ? { platformSpecificData: data } : {};
