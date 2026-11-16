@@ -1,0 +1,57 @@
+{
+  "kicker": "AVANT DE DÉPOSER EN MAIRIE",
+  "title": "Un dossier se vérifie avant le dépôt.",
+  "sub": "Après, chaque oubli se paie en semaines.",
+  "steps": [
+    {
+      "title": "Dessinez l'existant, pas seulement le projet.",
+      "text": [
+        "La mairie ne juge pas une maison.",
+        "Elle juge un changement.",
+        "",
+        "Façades, toiture et photos de l'existant",
+        "comptent autant que le projet."
+      ],
+      "quote": "Sans l'avant, l'après ne se lit pas."
+    },
+    {
+      "title": "Le terrain se montre en coupe.",
+      "text": [
+        "Un plan vu du dessus ne dit pas tout.",
+        "La coupe montre la pente, les niveaux,",
+        "et la hauteur réelle de la construction.",
+        "",
+        "Elle se mesure depuis le sol d'origine,",
+        "pas depuis la terrasse."
+      ]
+    },
+    {
+      "title": "Ce qu'on oublie presque toujours.",
+      "text": [
+        "D'où chaque photo a été prise, sur le plan.",
+        "Où vont les eaux de pluie.",
+        "Les places de stationnement, cotées.",
+        "Les matériaux et les teintes, nommés.",
+        "La pleine terre gardée au jardin.",
+        "",
+        "Aucune de ces lignes n'est longue",
+        "quand le relevé est fait."
+      ]
+    },
+    {
+      "title": "Pensez à celui qui instruit.",
+      "text": [
+        "Il lit des dizaines de dossiers.",
+        "Des plans cotés, lisibles, et une notice",
+        "qui répond au PLU point par point."
+      ],
+      "quote": "Tant qu'il manque une pièce, le délai ne démarre pas."
+    }
+  ],
+  "end": "Un jour de plus sur le dossier évite des semaines d'attente.",
+  "meta": [
+    "Permis de construire et déclarations préalables.",
+    "Île-de-France · construisez.fr"
+  ],
+  "cta": "Écrivez « DOSSIER » en commentaire"
+}
