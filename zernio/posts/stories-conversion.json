@@ -1,0 +1,26 @@
+{
+  "pilier": "conversion",
+  "note": "Séquence de 4 stories Instagram + Facebook pour les abonnés déjà engagés. Programmée directement (hors schedule-batch).",
+  "stories": [
+    {
+      "date": "2026-11-25T18:30:00+01:00",
+      "story": "https://media.zernio.com/temp/1794789955927_4c8fb6ae91cebd2a_s1.png",
+      "zernioId": "6afa525c68fb34c732a7085d"
+    },
+    {
+      "date": "2026-11-25T18:31:00+01:00",
+      "story": "https://media.zernio.com/temp/1794789956763_4ee2d9a9ceb04547_s2.png",
+      "zernioId": "6afa525de23ac5ddaa527412"
+    },
+    {
+      "date": "2026-11-25T18:32:00+01:00",
+      "story": "https://media.zernio.com/temp/1794789957487_35813c0e86642392_s3.png",
+      "zernioId": "6afa525df0989cd6128d2f97"
+    },
+    {
+      "date": "2026-11-25T18:33:00+01:00",
+      "story": "https://media.zernio.com/temp/1794789958263_597c16360263f9db_s4.png",
+      "zernioId": "6afa525ee23ac5ddaa52741f"
+    }
+  ]
+}
