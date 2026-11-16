@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="brand/construisez.css">
+<style>
+  .ba { margin-top: 36px; display: flex; flex-direction: column; gap: 22px; }
+  .ba figure { position: relative; border-radius: 6px; overflow: hidden; border: 2px solid var(--line); margin: 0; }
+  .ba img { display: block; width: 100%; height: 410px; object-fit: cover; }
+  .ba figcaption { position: absolute; left: 20px; top: 20px; font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: .14em; background: rgba(11,12,15,.85); color: var(--fg); padding: 10px 18px; border-radius: 4px; }
+  .ba figure.after figcaption { background: var(--acc); }
+  .pts { margin-top: 40px; display: flex; flex-direction: column; gap: 16px; }
+  .pt { display: grid; grid-template-columns: 76px 1fr; gap: 26px; align-items: start; padding: 24px 30px; background: var(--card); border: 2px solid var(--line); border-radius: 8px; }
+  .pt .n { font-family: 'IBM Plex Mono', monospace; font-weight: 500; font-size: 46px; line-height: 1; color: var(--acc-l); }
+  .pt b { display: block; font-size: 33px; font-weight: 700; margin-bottom: 6px; }
+  .pt span { font-size: 28px; line-height: 1.35; color: #d5d9dd; }
+  .big500 { font-family: var(--display); font-weight: var(--display-weight); letter-spacing: -.04em; line-height: .85; color: var(--acc-l); font-size: 200px; margin-top: 50px; }
+  .big500 small { display: block; font-size: 54px; letter-spacing: -.02em; color: var(--fg); margin-top: 22px; line-height: 1.1; }
+</style>
+<style>
+  /* Carrousel TikTok : la maison entière dans un cadre net, sur le fond flouté de la même image.
+     Zone visible : y 240 → 1440, marge droite 150 px. */
+  .slide.tk { width: 1080px; height: 1920px; padding: 0; position: relative; overflow: hidden; background: #0b0c0f; }
+  .tk .blur { position: absolute; inset: -80px; background: center / cover no-repeat; filter: blur(44px) brightness(.42) saturate(1.1); }
+  .tk .pic { position: absolute; left: 0; top: 370px; width: 1080px; height: 980px; background: center / auto 100% no-repeat; box-shadow: 0 30px 80px rgba(0,0,0,.55); }
+  .tk .pic.shade::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(11,12,15,0) 35%, rgba(11,12,15,.88) 100%); }
+  .tk .top { position: absolute; left: 80px; right: 150px; top: 244px; display: flex; align-items: center; justify-content: space-between; }
+  .tk .n { font-family: var(--display); font-weight: 800; font-size: 96px; line-height: 1; letter-spacing: -.04em; }
+  .tk .n small { font-size: 40px; letter-spacing: 0; font-weight: 700; margin-left: 14px; color: #dfe3e6; }
+  .tk .lab { font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: .14em; padding: 10px 16px; border-radius: 4px; background: var(--acc); }
+  .tk .brandline { display: flex; align-items: center; gap: 14px; font-weight: 700; font-size: 28px; letter-spacing: .22em; }
+  .tk .brandline img { width: 44px; height: 44px; }
+  .tk .big { position: absolute; left: 80px; right: 150px; bottom: 630px; font-family: var(--display); font-weight: 800; letter-spacing: var(--display-track); font-size: 100px; line-height: 1.02; text-shadow: 0 4px 26px rgba(0,0,0,.6); }
+  .tk .big em { font-style: normal; color: var(--acc-l); }
+  .tk .next { position: absolute; left: 80px; right: 150px; top: 1378px; font-size: 38px; color: #e6e9ec; }
+  .tk .small { position: absolute; left: 80px; right: 150px; font-size: 42px; line-height: 1.35; color: #e6e9ec; }
+</style>
+</head>
+<body>
+
+<section class="slide tk" id="q0"><div class="blur" style="background-image:url('brand/photos/projets/projet-toit-zinc.webp')"></div><div class="pic shade" style="background-image:url('brand/photos/projets/projet-toit-zinc.webp');background-position:71.1% center"></div><div class="top"><div class="brandline"><img src="brand/logo-mark.png" alt="">CONSTRUISEZ</div></div><div class="big">3 projets de maison. <em>Lequel vous préférez ?</em></div><div class="next">Glissez →</div></section>
+<section class="slide tk" id="q1"><div class="blur" style="background-image:url('brand/photos/projets/projet-villa-blanche.webp')"></div><div class="pic" style="background-image:url('brand/photos/projets/projet-villa-blanche.webp');background-position:50.0% center"></div><div class="top"><div class="n">1<small>/ 3</small></div><div class="lab">IMAGE DU PROJET</div></div><div class="next">Glissez pour le suivant →</div></section>
+<section class="slide tk" id="q2"><div class="blur" style="background-image:url('brand/photos/projets/projet-toit-zinc.webp')"></div><div class="pic" style="background-image:url('brand/photos/projets/projet-toit-zinc.webp');background-position:71.1% center"></div><div class="top"><div class="n">2<small>/ 3</small></div><div class="lab">IMAGE DU PROJET</div></div><div class="next">Glissez pour le suivant →</div></section>
+<section class="slide tk" id="q3"><div class="blur" style="background-image:url('brand/photos/projets/projet-jardin.webp')"></div><div class="pic" style="background-image:url('brand/photos/projets/projet-jardin.webp');background-position:76.3% center"></div><div class="top"><div class="n">3<small>/ 3</small></div><div class="lab">IMAGE DU PROJET</div></div><div class="next">Alors : 1, 2 ou 3 ?</div></section>
+<section class="slide tk" id="q9"><div class="top"><div class="brandline"><img src="brand/logo-mark.png" alt="">CONSTRUISEZ</div></div><div class="big" style="bottom:900px"><em>1, 2 ou 3 ?</em> Dites-le en commentaire.</div><div class="small" style="top:1060px">Et si vous avez un projet, écrivez « PROJET » : on vérifie ce que votre PLU autorise.</div></section>
+
+</body>
+</html>
