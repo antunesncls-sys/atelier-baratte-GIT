@@ -1,0 +1,29 @@
+{
+  "servon": [
+    "Une grande maison de village. Un seul logement.",
+    "Donc on en fait deux.",
+    "Mais deux logements, c'est deux fois plus de voitures.",
+    "Donc le PLU exige des places de stationnement sur le terrain.",
+    "Mais il faut aussi de la lumière sous les toits.",
+    "Donc on ajoute trois lucarnes, et on surélève le garage.",
+    "Une maison à diviser ? Écrivez DIVISION en commentaire."
+  ],
+  "landon": [
+    "Une grange, et une ancienne boulangerie.",
+    "Mais pas question de construire plus haut.",
+    "Donc tout se joue à l'intérieur : douze logements, dans les murs existants.",
+    "Mais douze logements, c'est quatorze places de stationnement à trouver.",
+    "Donc on les a dessinées sur la parcelle, mètre par mètre.",
+    "Résultat : depuis la rue, presque rien ne change.",
+    "Un bâtiment à transformer ? Écrivez DIVISION en commentaire."
+  ],
+  "epinay": [
+    "Vous n'allez rien faire de cette ruine.",
+    "Mais nous, on a vu une maison de village.",
+    "Mais elle est en secteur protégé : l'Architecte des Bâtiments de France regarde tout.",
+    "Donc elle doit s'accorder avec ses voisines : tuiles en terre cuite, enduit clair, fenêtres en bois.",
+    "Donc chaque détail visible de la rue est dessiné dans le dossier.",
+    "Et la ruine redevient une maison.",
+    "Un projet en secteur protégé ? Écrivez A B F en commentaire."
+  ]
+}

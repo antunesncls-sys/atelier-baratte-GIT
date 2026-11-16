@@ -135,3 +135,13 @@ Règle demandée par le client : chaque publication part sur Instagram, Facebook
 - Ordre pour un nouveau post : `npm run upload`, `npm run stories`, `npm run google`, `npm run tiktok`, puis `npm run schedule`.
 - Les Reels (`format: "reel"`) partent sur TikTok par leur propre fichier (`platforms: ["tiktok"]`).
 - Google Business Profile reste publié à la main (compte non connecté).
+
+## Vidéos racontées (voix + sous-titres)
+
+`node visuels/reels/make-voice-reel.cjs visuels/reels/<nom>.json` monte une vidéo verticale : une image plein écran par phrase,
+un léger mouvement de caméra, le sous-titre synchronisé sur la voix, « MAIS » et « DONC » mis en avant.
+
+- Les scripts suivent la règle « mais / donc » : chaque phrase pose un problème ou une conséquence.
+- Les voix sont dans `visuels/reels/voix/` (une ligne par fichier, générées avec vidIQ, voix française « Guillaume »). Le texte parlé est dans `voix/scripts.json`.
+- Dans le fichier de posts, `voice: true` garde la voix à plein volume sur TikTok et passe la musique en fond.
+- Les images de projet (rendus) portent la mention « IMAGE DU PROJET ».

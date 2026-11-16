@@ -73,7 +73,9 @@ const platformData = (platform, post) => {
   // avec un titre de la bibliothèque commerciale TikTok (post.music = clip.id, voir accounts.listTikTokCommercialMusic).
   if (platform === 'tiktok') {
     Object.assign(data, { draft: false, privacyLevel: 'PUBLIC_TO_EVERYONE', allowComment: true, allowDuet: true, allowStitch: true, commercialContentType: 'brand_organic' });
-    if (post.music) data.musicSoundInfo = { musicSoundId: post.music };
+    // Vidéo avec voix (post.voice) : la musique passe en fond, la voix de la vidéo reste à plein volume.
+    if (post.music) data.musicSoundInfo = { musicSoundId: post.music, ...(post.voice ? { musicSoundVolume: 12 } : {}) };
+    if (post.music && post.voice) data.videoOriginalSoundVolume = 100;
     // Lieu : uniquement sur les vidéos. TikTok refuse le lieu sur les carrousels photo des comptes Business
     // (la publication échoue), donc jamais de lieu sur un post d'images.
     const place = post.format === 'reel' ? tiktokLocation(post.city) : null;

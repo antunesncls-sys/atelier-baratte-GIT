@@ -1,0 +1,62 @@
+{
+ "beats": [
+  {
+   "img": "brand/photos/projets/servon-rue-avant.webp",
+   "audio": "reels/voix/l00.mp3",
+   "text": "Une grande maison de village. Un seul logement.",
+   "from": 0.47,
+   "to": 0.54,
+   "cy": 0.56
+  },
+  {
+   "img": "brand/photos/projets/servon-rendu-apres.webp",
+   "audio": "reels/voix/l01.mp3",
+   "text": "Donc on en fait deux.",
+   "from": 0.52,
+   "to": 0.56,
+   "tag": "IMAGE DU PROJET",
+   "cy": 0.42
+  },
+  {
+   "img": "brand/photos/projets/servon-rue-avant.webp",
+   "audio": "reels/voix/l02.mp3",
+   "text": "Mais deux logements, c'est deux fois plus de voitures.",
+   "from": 0.62,
+   "to": 0.79,
+   "cy": 0.66
+  },
+  {
+   "img": "brand/photos/projets/servon-3d-cour.webp",
+   "audio": "reels/voix/l03.mp3",
+   "text": "Donc le PLU exige des places sur le terrain.",
+   "fit": true,
+   "tag": "IMAGE DU PROJET"
+  },
+  {
+   "img": "brand/photos/projets/servon-rue-avant.webp",
+   "audio": "reels/voix/l04.mp3",
+   "text": "Mais il faut aussi de la lumière sous les toits.",
+   "from": 0.54,
+   "to": 0.5,
+   "cy": 0.56
+  },
+  {
+   "img": "brand/photos/projets/servon-rendu-apres.webp",
+   "audio": "reels/voix/l05.mp3",
+   "text": "Donc on ajoute trois lucarnes, et on surélève le garage.",
+   "from": 0.5,
+   "to": 0.6,
+   "tag": "IMAGE DU PROJET",
+   "cy": 0.42
+  },
+  {
+   "img": "brand/photos/projets/servon-rendu-apres.webp",
+   "audio": "reels/voix/l18.mp3",
+   "text": "Une maison à diviser ? Écrivez « DIVISION » en commentaire.",
+   "from": 0.56,
+   "to": 0.52,
+   "cta": true,
+   "cy": 0.42
+  }
+ ]
+}

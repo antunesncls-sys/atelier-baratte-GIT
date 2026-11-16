@@ -1,0 +1,64 @@
+{
+ "beats": [
+  {
+   "img": "brand/photos/projets/maison-ville-avant.webp",
+   "audio": "reels/voix/l12.mp3",
+   "text": "« Vous n'allez rien faire de cette ruine. »",
+   "from": 0.5,
+   "to": 0.54,
+   "cy": 0.5
+  },
+  {
+   "img": "brand/photos/projets/epinay-rendu-apres.webp",
+   "audio": "reels/voix/l13.mp3",
+   "text": "Mais nous, on y a vu une maison.",
+   "from": 0.46,
+   "to": 0.5,
+   "tag": "IMAGE DU PROJET",
+   "cy": 0.56
+  },
+  {
+   "img": "brand/photos/projets/maison-ville-avant.webp",
+   "audio": "reels/voix/l14.mp3",
+   "text": "Mais elle est en secteur protégé : l'Architecte des Bâtiments de France regarde tout.",
+   "from": 0.4,
+   "to": 0.6,
+   "cy": 0.5
+  },
+  {
+   "img": "brand/photos/projets/epinay-rendu-apres.webp",
+   "audio": "reels/voix/l15.mp3",
+   "text": "Donc elle doit s'accorder avec ses voisines : tuiles en terre cuite, enduit clair, fenêtres en bois.",
+   "from": 0.25,
+   "to": 0.62,
+   "tag": "IMAGE DU PROJET",
+   "cy": 0.56
+  },
+  {
+   "img": "brand/photos/projets/maison-ville-projet.webp",
+   "audio": "reels/voix/l16.mp3",
+   "text": "Donc chaque détail visible de la rue est dessiné dans le dossier.",
+   "from": 0.48,
+   "to": 0.54,
+   "cy": 0.5
+  },
+  {
+   "img": "brand/photos/projets/epinay-rendu-apres.webp",
+   "audio": "reels/voix/l17.mp3",
+   "text": "Et la ruine redevient une maison.",
+   "from": 0.5,
+   "to": 0.46,
+   "tag": "IMAGE DU PROJET",
+   "cy": 0.56
+  },
+  {
+   "img": "brand/photos/projets/epinay-rendu-apres.webp",
+   "audio": "reels/voix/l18.mp3",
+   "text": "Un projet en secteur protégé ? Écrivez « ABF » en commentaire.",
+   "from": 0.44,
+   "to": 0.48,
+   "cta": true,
+   "cy": 0.56
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "beats": [
+  {
+   "img": "brand/photos/projets/landon-rue-avant.webp",
+   "audio": "reels/voix/l06.mp3",
+   "text": "Une grange, et une ancienne boulangerie.",
+   "from": 0.25,
+   "to": 0.45,
+   "cy": 0.5
+  },
+  {
+   "img": "brand/photos/projets/landon-rue-avant.webp",
+   "audio": "reels/voix/l07.mp3",
+   "text": "Mais pas question de construire plus haut.",
+   "from": 0.45,
+   "to": 0.38,
+   "cy": 0.5
+  },
+  {
+   "img": "brand/photos/projets/landon-plan-rdc.webp",
+   "audio": "reels/voix/l08.mp3",
+   "text": "Donc tout se joue à l'intérieur : 12 logements, dans les murs existants.",
+   "fit": true
+  },
+  {
+   "img": "brand/photos/projets/landon-plan-rdc.webp",
+   "audio": "reels/voix/l09.mp3",
+   "text": "Mais 12 logements, c'est 14 places de stationnement à trouver.",
+   "from": 0.3,
+   "to": 0.42,
+   "cy": 0.55
+  },
+  {
+   "img": "brand/photos/projets/landon-plan-rdc.webp",
+   "audio": "reels/voix/l10.mp3",
+   "text": "Donc on les a dessinées sur la parcelle.",
+   "from": 0.42,
+   "to": 0.5,
+   "cy": 0.55
+  },
+  {
+   "img": "brand/photos/projets/landon-rue-apres.webp",
+   "audio": "reels/voix/l11.mp3",
+   "text": "Résultat : depuis la rue, presque rien ne change.",
+   "from": 0.3,
+   "to": 0.5,
+   "tag": "IMAGE DU PROJET",
+   "cy": 0.5
+  },
+  {
+   "img": "brand/photos/projets/landon-rendu-3d.webp",
+   "audio": "reels/voix/l18.mp3",
+   "text": "Un bâtiment à transformer ? Écrivez « DIVISION » en commentaire.",
+   "from": 0.4,
+   "to": 0.5,
+   "cta": true,
+   "cy": 0.45
+  }
+ ]
+}

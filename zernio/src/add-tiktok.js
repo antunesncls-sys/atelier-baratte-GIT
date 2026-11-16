@@ -39,7 +39,8 @@ let n = 0;
 for (const file of files) {
   const posts = JSON.parse(await readFile(file, 'utf8'));
   for (const post of posts) {
-    if (post.format === 'reel' || post.platforms?.includes('tiktok') || !post.media?.length) continue;
+    // Un post qui a déjà sa version TikTok (carrousel conçu en vertical, par exemple) est laissé tel quel.
+    if (post.format === 'reel' || post.platforms?.includes('tiktok') || !post.media?.length || post.tiktok?.media?.length) continue;
     const locals = post.media.map((url) => byUrl[url]);
     if (locals.some((l) => !l || !/\.(png|jpe?g|webp)$/i.test(l))) {
       console.warn(`⚠️  ${post.date} : image introuvable en local, ignoré`);
