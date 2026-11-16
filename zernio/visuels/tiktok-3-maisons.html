@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="brand/construisez.css">
+<style>
+  .ba { margin-top: 36px; display: flex; flex-direction: column; gap: 22px; }
+  .ba figure { position: relative; border-radius: 6px; overflow: hidden; border: 2px solid var(--line); margin: 0; }
+  .ba img { display: block; width: 100%; height: 410px; object-fit: cover; }
+  .ba figcaption { position: absolute; left: 20px; top: 20px; font-family: 'IBM Plex Mono', monospace; font-size: 24px; letter-spacing: .14em; background: rgba(11,12,15,.85); color: var(--fg); padding: 10px 18px; border-radius: 4px; }
+  .ba figure.after figcaption { background: var(--acc); }
+  .pts { margin-top: 40px; display: flex; flex-direction: column; gap: 16px; }
+  .pt { display: grid; grid-template-columns: 76px 1fr; gap: 26px; align-items: start; padding: 24px 30px; background: var(--card); border: 2px solid var(--line); border-radius: 8px; }
+  .pt .n { font-family: 'IBM Plex Mono', monospace; font-weight: 500; font-size: 46px; line-height: 1; color: var(--acc-l); }
+  .pt b { display: block; font-size: 33px; font-weight: 700; margin-bottom: 6px; }
+  .pt span { font-size: 28px; line-height: 1.35; color: #d5d9dd; }
+  .big500 { font-family: var(--display); font-weight: var(--display-weight); letter-spacing: -.04em; line-height: .85; color: var(--acc-l); font-size: 200px; margin-top: 50px; }
+  .big500 small { display: block; font-size: 54px; letter-spacing: -.02em; color: var(--fg); margin-top: 22px; line-height: 1.1; }
+</style>
+<style>
+  .slide.tt { width: 1080px; height: 1920px; padding: 0; background: #0b0c0f center / cover no-repeat; position: relative; }
+  .tt::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(11,12,15,.6) 0, rgba(11,12,15,0) 520px, rgba(11,12,15,0) 1000px, rgba(11,12,15,.8) 1500px, rgba(11,12,15,.9) 1920px); }
+  .tt > * { position: absolute; z-index: 1; }
+  .tt .n { left: 80px; top: 250px; font-family: var(--display); font-weight: 800; font-size: 150px; line-height: 1; letter-spacing: -.04em; text-shadow: 0 4px 24px rgba(0,0,0,.6); }
+  .tt .lab { left: 80px; top: 420px; font-family: 'IBM Plex Mono', monospace; font-size: 30px; letter-spacing: .16em; padding: 12px 20px; border-radius: 5px; background: rgba(11,12,15,.85); }
+  .tt .lab.after { background: var(--acc); }
+  .tt .big { left: 80px; right: 150px; bottom: 520px; font-family: var(--display); font-weight: 800; letter-spacing: var(--display-track); font-size: 104px; line-height: 1.02; text-shadow: 0 4px 26px rgba(0,0,0,.7); }
+  .tt .big em { font-style: normal; color: var(--acc-l); }
+  .tt .small { left: 80px; right: 150px; bottom: 500px; font-size: 42px; line-height: 1.35; color: #e6e9ec; text-shadow: 0 2px 14px rgba(0,0,0,.7); }
+  .tt .brandline { left: 80px; top: 250px; display: flex; align-items: center; gap: 14px; font-weight: 700; font-size: 28px; letter-spacing: .22em; text-shadow: 0 2px 12px rgba(0,0,0,.6); }
+  .tt .brandline img { width: 44px; height: 44px; }
+  .tt .where { left: 80px; right: 150px; bottom: 500px; font-size: 44px; font-weight: 700; text-shadow: 0 2px 16px rgba(0,0,0,.75); }
+  .tt .where span { display: block; font-weight: 400; font-size: 36px; color: #dfe3e6; margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<section class="slide tt" id="p0" style="background-image:url('brand/photos/projets/epinay-rendu-apres.webp');background-position:45.6% center"><div class="brandline"><img src="brand/logo-mark.png" alt="">CONSTRUISEZ</div><div class="big">3 maisons. Avant / après. <em>Laquelle vous préférez ?</em></div></section>
+<section class="slide tt" id="p1a" style="background-image:url('brand/photos/projets/maison-ville-avant.webp');background-position:58.0% center"><div class="n">1</div><div class="lab">AVANT</div><div class="where">Épinay-Champlâtreux (95)<span>Une ruine au milieu du village</span></div></section>
+<section class="slide tt" id="p1b" style="background-image:url('brand/photos/projets/epinay-rendu-apres.webp');background-position:45.6% center"><div class="n">1</div><div class="lab after">APRÈS · IMAGE DU PROJET</div><div class="where">Épinay-Champlâtreux (95)<span>Glissez pour la suivante →</span></div></section>
+<section class="slide tt" id="p2a" style="background-image:url('brand/photos/projets/sannois-rendu-avant.webp');background-position:48.3% center"><div class="n">2</div><div class="lab">AVANT</div><div class="where">Sannois (95)<span>Un garage accolé à la maison</span></div></section>
+<section class="slide tt" id="p2b" style="background-image:url('brand/photos/projets/sannois-rendu-apres.webp');background-position:48.3% center"><div class="n">2</div><div class="lab after">APRÈS · IMAGE DU PROJET</div><div class="where">Sannois (95)<span>Glissez pour la suivante →</span></div></section>
+<section class="slide tt" id="p3a" style="background-image:url('brand/photos/projets/servon-rue-avant.webp');background-position:53.5% center"><div class="n">3</div><div class="lab">AVANT</div><div class="where">Servon (77)<span>Une maison, un seul logement</span></div></section>
+<section class="slide tt" id="p3b" style="background-image:url('brand/photos/projets/servon-rendu-apres.webp');background-position:57.3% center"><div class="n">3</div><div class="lab after">APRÈS · IMAGE DU PROJET</div><div class="where">Servon (77)<span>Alors : 1, 2 ou 3 ?</span></div></section>
+<section class="slide tt" id="p9" style="background:#0b0c0f"><div class="brandline"><img src="brand/logo-mark.png" alt="">CONSTRUISEZ</div><div class="big" style="bottom:760px"><em>1, 2 ou 3 ?</em> Dites-le en commentaire.</div><div class="small" style="bottom:560px">Et si vous avez un projet, écrivez « PROJET » : on vérifie ce que votre PLU autorise.</div></section>
+
+</body>
+</html>
