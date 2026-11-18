@@ -33,9 +33,10 @@ for f in glob.glob('visuels/*/urls.json'):
 today = datetime.now(PARIS).date()
 posts = []
 for f in glob.glob('posts/*.json'):
-    if f.endswith('lieux.json'):
+    data = json.load(open(f, encoding='utf-8'))
+    if not isinstance(data, list):   # lieux.json, lieux-tiktok.json : pas des calendriers
         continue
-    for p in json.load(open(f, encoding='utf-8')):
+    for p in data:
         if p.get('google', {}).get('image') and datetime.fromisoformat(p['date']).astimezone(PARIS).date() >= today:
             posts.append(p)
 posts.sort(key=lambda p: p['date'])
