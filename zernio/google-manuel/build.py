@@ -45,14 +45,19 @@ for old in glob.glob(f'{OUT}/images/*.jpg'):
     os.remove(old)
 os.makedirs(f'{OUT}/images', exist_ok=True)
 
+# Deux posts le même jour : celui du soir garde l'ancre de la date (celle des rappels), l'autre reçoit son heure.
+last = {datetime.fromisoformat(p['date']).astimezone(PARIS).strftime('%Y-%m-%d'): p for p in posts}
+
 entries, cards = [], []
 for i, p in enumerate(posts, 1):
     d = datetime.fromisoformat(p['date']).astimezone(PARIS)
+    day = d.strftime('%Y-%m-%d')
+    pid = day if last[day] is p else d.strftime('%Y-%m-%d-%H%M')
     src = local[p['google']['image']]
     image = f"images/{d.strftime('%Y-%m-%d')}-{os.path.splitext(os.path.basename(src))[0]}.jpg"
     Image.open(src).convert('RGB').save(f'{OUT}/{image}', 'JPEG', quality=85)
     e = {
-        'id': d.strftime('%Y-%m-%d'),
+        'id': pid,
         'jour': f"{JOURS[d.weekday()]} {d.day} {MOIS[d.month - 1]}",
         'heure': d.strftime('%H:%M'),
         'titre': re.sub(r'^Réalisation : ', '', p['theme']),
