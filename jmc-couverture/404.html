@@ -25,7 +25,7 @@
 <link rel="preload" href="/assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" type="image/webp" media="(max-width:700px)" href="/assets/photos/toiture-ardoise-lucarnes-zinc-vue-drone-jmc-mobile.webp" fetchpriority="high">
 <link rel="preload" as="image" type="image/webp" media="(min-width:701px)" imagesrcset="/assets/photos/toiture-ardoise-lucarnes-zinc-vue-drone-jmc-800.webp 800w, /assets/photos/toiture-ardoise-lucarnes-zinc-vue-drone-jmc.webp 1605w" imagesizes="100vw" fetchpriority="high">
-<link rel="stylesheet" href="/assets/style.css?v=537afc65">
+<link rel="stylesheet" href="/assets/style.css?v=2ae973e9">
 
 </head>
 <body>
@@ -92,6 +92,15 @@ document.body.insertBefore(bar,document.body.firstChild);
 history.replaceState(null,'',location.pathname);}
 var f=document.getElementById('provenance'),pv=sessionStorage.getItem('jmc_prov');
 if(f&&pv){f.value=pv;var o=document.querySelector('select[name=origine]');if(o&&pv.indexOf('QR')===0)o.value='Panneau de chantier JMC';}}catch(e){}})();
+(function(){var v=document.querySelector('.hero-video'),b=document.querySelector('.video-toggle');if(!v)return;
+var c=navigator.connection||{};if(matchMedia('(prefers-reduced-motion:reduce)').matches||c.saveData)return;
+v.src=matchMedia('(max-width:700px)').matches?v.dataset.mobile:v.dataset.desktop;
+v.addEventListener('playing',function(){v.classList.add('on');b.hidden=false},{once:true});
+var p=v.play();if(p&&p.catch)p.catch(function(){});
+b.addEventListener('click',function(){if(v.paused){v.play();b.classList.remove('paused');b.setAttribute('aria-label','Mettre la vidéo en pause')}else{v.pause();b.classList.add('paused');b.setAttribute('aria-label','Lire la vidéo')}});})();
+(function(){var figs=document.querySelectorAll('.story-fig');if(!figs.length||!('IntersectionObserver' in window))return;
+var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){var i=e.target.dataset.i;figs.forEach(function(f){f.classList.toggle('on',f.dataset.i===i)})}})},{rootMargin:'-45% 0px -45% 0px'});
+document.querySelectorAll('.story-step').forEach(function(s){io.observe(s)});})();
 (function(){if(!document.querySelector('.hero-home')||!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
 var sel='.section-head,.card,.mosaic figure,.stats>div,.steps>*,.process>*,.split>.prose>*,.city-links,.marquee,.video-wrap,.faq details';
 var els=[].slice.call(document.querySelectorAll(sel)).filter(function(e){return e.getBoundingClientRect().top>innerHeight});

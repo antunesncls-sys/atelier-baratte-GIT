@@ -575,6 +575,15 @@ document.body.insertBefore(bar,document.body.firstChild);
 history.replaceState(null,'',location.pathname);}}
 var f=document.getElementById('provenance'),pv=sessionStorage.getItem('jmc_prov');
 if(f&&pv){{f.value=pv;var o=document.querySelector('select[name=origine]');if(o&&pv.indexOf('QR')===0)o.value='Panneau de chantier JMC';}}}}catch(e){{}}}})();
+(function(){{var v=document.querySelector('.hero-video'),b=document.querySelector('.video-toggle');if(!v)return;
+var c=navigator.connection||{{}};if(matchMedia('(prefers-reduced-motion:reduce)').matches||c.saveData)return;
+v.src=matchMedia('(max-width:700px)').matches?v.dataset.mobile:v.dataset.desktop;
+v.addEventListener('playing',function(){{v.classList.add('on');b.hidden=false}},{{once:true}});
+var p=v.play();if(p&&p.catch)p.catch(function(){{}});
+b.addEventListener('click',function(){{if(v.paused){{v.play();b.classList.remove('paused');b.setAttribute('aria-label','Mettre la vidéo en pause')}}else{{v.pause();b.classList.add('paused');b.setAttribute('aria-label','Lire la vidéo')}}}});}})();
+(function(){{var figs=document.querySelectorAll('.story-fig');if(!figs.length||!('IntersectionObserver' in window))return;
+var io=new IntersectionObserver(function(en){{en.forEach(function(e){{if(e.isIntersecting){{var i=e.target.dataset.i;figs.forEach(function(f){{f.classList.toggle('on',f.dataset.i===i)}})}}}})}},{{rootMargin:'-45% 0px -45% 0px'}});
+document.querySelectorAll('.story-step').forEach(function(s){{io.observe(s)}});}})();
 (function(){{if(!document.querySelector('.hero-home')||!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
 var sel='.section-head,.card,.mosaic figure,.stats>div,.steps>*,.process>*,.split>.prose>*,.city-links,.marquee,.video-wrap,.faq details';
 var els=[].slice.call(document.querySelectorAll(sel)).filter(function(e){{return e.getBoundingClientRect().top>innerHeight}});
@@ -774,6 +783,46 @@ def bouche_oreille():
 
 
 # ================================================================ PAGES
+CHANTIER_STORY = [
+    ("chantier-toiture-echafaudage-grue-livraison-jmc", "Étape 1", "Un chantier sécurisé dès le premier jour",
+     "Échafaudage, garde-corps et filets de protection sont installés avant toute intervention. Les matériaux arrivent par camion-grue : rien ne transite par votre jardin ni par votre maison.",
+     "Échafaudage avec filet de protection et camion-grue livrant les palettes de tuiles depuis la rue, chantier JMC Couverture"),
+    ("chantier-toiture-palette-tuiles-grue-jmc", "Étape 2", "Les tuiles neuves montées directement sur le toit",
+     "La grue dépose les palettes au plus près de la zone de pose. Moins de manutention, moins de casse, et un chantier plus rapide pour vous.",
+     "Palette de tuiles terre cuite neuves levée par la grue au-dessus d'une toiture en cours de rénovation par JMC Couverture"),
+    ("chantier-toiture-liteaux-ecran-sous-toiture-jmc", "Étape 3", "Écran sous toiture et liteaux neufs",
+     "Après la dépose de l'ancienne couverture, nous contrôlons la charpente, posons un écran sous toiture et un litelage neuf : la base d'une toiture saine pour des décennies.",
+     "Toiture en rénovation avec écran sous toiture noir, liteaux en bois neufs et paquets de tuiles prêts à poser, chantier JMC Couverture"),
+    ("maison-meuliere-toiture-tuiles-velux-drone-jmc", "Le résultat", "Une toiture neuve, des combles lumineux",
+     "Tuiles terre cuite, faîtage, zinguerie et fenêtres de toit VELUX : la maison retrouve son caractère, avec une toiture couverte par notre garantie décennale.",
+     "Vue drone d'une maison en meulière après rénovation complète de la toiture en tuiles rouges avec fenêtres de toit VELUX, réalisée par JMC Couverture"),
+]
+
+
+def chantier_story():
+    steps, figs = [], []
+    for i, (base, tag, title, text, alt) in enumerate(CHANTIER_STORY):
+        src = f"/assets/photos/{base}.jpg"
+        w, h = photo_dims(src)
+        img = (f'<picture><source srcset="/assets/photos/{base}.webp" type="image/webp"><img src="{src}" alt="{alt}" '
+               f'loading="lazy" decoding="async" width="{w}" height="{h}"></picture>')
+        figs.append(f'<figure class="story-fig{" on" if i == 0 else ""}" data-i="{i}">{img}</figure>')
+        steps.append(f'<div class="story-step" data-i="{i}"><figure class="story-mob">{img}</figure>'
+                     f'<span class="eyebrow">{tag}</span><h3>{title}</h3><p>{text}</p></div>')
+    return f"""
+<section class="story" id="chantier"><div class="wrap">
+  <div class="section-head"><span class="eyebrow">Un chantier JMC, étape par étape</span>
+  <h2>Rénovation de toiture : de l'échafaudage au résultat</h2>
+  <p>Des photos réelles d'un de nos chantiers de rénovation de toiture en tuiles. Faites défiler pour suivre le chantier.</p></div>
+  <div class="story-grid">
+    <div class="story-media" aria-hidden="true"><div class="story-frame">{"".join(figs)}</div></div>
+    <div class="story-steps">{"".join(steps)}
+      <div class="story-cta"><a class="btn btn-primary" href="/contact/?travaux=Rénovation">Demander un devis pour ma toiture</a></div>
+    </div>
+  </div>
+</div></section>"""
+
+
 def home():
     faq = [
         ("Quelle zone couvre JMC Couverture ?",
@@ -797,7 +846,7 @@ def home():
                      "fenêtres de toit, elle intervient en Seine-et-Marne de Melun à Meaux, dans le Val-d'Oise, l'Essonne, le Val-de-Marne, "
                      "la Seine-Saint-Denis, les Hauts-de-Seine et à Paris. Devis gratuit au 01 64 21 38 37.")
     html += f"""
-<section class="hero has-photo hero-home">{hero_bg()}<div class="wrap">
+<section class="hero has-photo hero-home">{hero_bg()}<video class="hero-video" muted loop playsinline preload="none" aria-hidden="true" data-desktop="/assets/video/accueil-chantier-1280.mp4" data-mobile="/assets/video/accueil-chantier-mobile.mp4"></video><button class="video-toggle" type="button" aria-label="Mettre la vidéo en pause" hidden></button><div class="wrap">
   <div>
     <span class="eyebrow">Depuis 1985</span>
     <h1>Couvreur zingueur en Seine-et-Marne et Île-de-France depuis 1985</h1>
@@ -813,6 +862,8 @@ def home():
   {hero_mosaic()}
   <p style="margin-top:18px"><a class="more" href="/nos-references/">Voir toutes nos réalisations →</a>{insta_link(" &nbsp;·&nbsp; ")}</p>
 </div></section>
+
+{chantier_story()}
 
 {video_section()}
 
@@ -3208,7 +3259,7 @@ def merci():
 </div></section>
 <script>
 (function(){{try{{var d=JSON.parse(sessionStorage.getItem('jmc_devis')||'null');if(!d)return;
-var pr=(d.nom||'').trim().split(/\s+/)[0];if(pr)document.getElementById('merci-titre').textContent='Merci '+pr+', votre demande est bien arrivée !';
+var pr=(d.nom||'').trim().split(/\\s+/)[0];if(pr)document.getElementById('merci-titre').textContent='Merci '+pr+', votre demande est bien arrivée !';
 if(d.travaux||d.ville)document.getElementById('merci-recap').textContent='Votre projet : '+(d.travaux||'travaux de toiture')+(d.ville?' à '+d.ville:'')+'. Toute l’équipe JMC Couverture vous remercie de votre confiance.';
 var m=document.getElementById('merci-mail');m.href=m.href.split('?')[0]+'?subject='+encodeURIComponent('Photos de ma toiture – '+(d.nom||'')+(d.ville?' – '+d.ville:''));}}catch(e){{}}}})();
 </script>
