@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><title>Plaquette JMC Couverture, version simple</title>
+<style>
+@font-face{font-family:Archivo;src:url(fonts/archivo-400.ttf) format("truetype");font-weight:100 500;font-style:normal}
+@font-face{font-family:Archivo;src:url(fonts/archivo-600.ttf) format("truetype");font-weight:600;font-style:normal}
+@font-face{font-family:Archivo;src:url(fonts/archivo-700.ttf) format("truetype");font-weight:700;font-style:normal}
+@font-face{font-family:Archivo;src:url(fonts/archivo-800.ttf) format("truetype");font-weight:800 900;font-style:normal}
+@page{size:A4;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--red:#d41d22;--gold:#e0c552;--ink:#121518;--mut:#5b6168;--paper:#f4f2ed;--line:#e3e0d9}
+body{font-family:Archivo,Arial,sans-serif;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:210mm;height:297mm;position:relative;overflow:hidden;page-break-after:always;background:#fff}
+.page:last-child{page-break-after:auto}
+svg.i{width:15mm;height:15mm;stroke:var(--red);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.top{display:flex;justify-content:space-between;align-items:center;padding:9mm 12mm 0}
+.top img{height:17mm}
+.top b{font-size:10pt;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);font-weight:700}
+.hero{margin:7mm 12mm 0;height:96mm;border-radius:5mm;position:relative;overflow:hidden;background:url(../jmc-couverture/assets/photos/toiture-ardoise-lucarnes-zinc-vue-drone-jmc.jpg) center 35%/cover}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,12,14,.82),rgba(10,12,14,.25) 75%)}
+.hero h1{position:absolute;z-index:1;left:9mm;bottom:9mm;color:#fff;font-size:31pt;line-height:1.02;font-weight:800;letter-spacing:-.01em}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);margin:7mm 12mm 0;text-align:center}
+.stats div{border-right:1px solid var(--line)}
+.stats div:last-child{border:0}
+.stats b{display:block;font-size:24pt;font-weight:800;color:var(--red);line-height:1}
+.stats small{font-size:9pt;color:var(--mut);text-transform:uppercase;letter-spacing:.1em;font-weight:600}
+h2{font-size:14pt;font-weight:800;margin:5.5mm 12mm 3.5mm;display:flex;align-items:center;gap:4mm}
+h2:after{content:"";flex:1;height:.5mm;background:var(--line)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm;margin:0 12mm}
+.tile{background:var(--paper);border-radius:4mm;padding:7mm 3mm 6.5mm;text-align:center}
+.tile svg{margin:0 auto 2.5mm;display:block}
+.tile b{display:block;font-size:11.5pt;line-height:1.2;font-weight:800}
+.tile small{display:block;font-size:8.8pt;color:var(--mut);margin-top:1mm;line-height:1.25}
+.cta{position:absolute;left:0;right:0;bottom:0;height:30mm;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 12mm}
+.cta .tel small{display:block;font-size:9pt;letter-spacing:.16em;text-transform:uppercase;font-weight:700;opacity:.9}
+.cta .tel b{font-size:32pt;font-weight:800;line-height:1.05}
+.cta .web{text-align:right;font-size:11pt;line-height:1.5}
+.cta .web b{font-size:14pt}
+/* verso */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:0 12mm;position:relative}
+.steps:before{content:"";position:absolute;left:12%;right:12%;top:8.5mm;height:.8mm;background:var(--red);opacity:.25}
+.step{text-align:center;position:relative;padding:0 2mm}
+.step .c{width:17mm;height:17mm;border-radius:50%;background:#fff;border:.8mm solid var(--red);margin:0 auto 3mm;display:flex;align-items:center;justify-content:center;position:relative}
+.step .c span{position:absolute;top:-2mm;right:-2mm;width:7.5mm;height:7.5mm;border-radius:50%;background:var(--ink);color:#fff;font-weight:800;font-size:10pt;display:flex;align-items:center;justify-content:center}
+.step svg.i{width:9.5mm;height:9.5mm}
+.step b{display:block;font-size:11pt;font-weight:800;line-height:1.2}
+.step small{display:block;font-size:8.6pt;color:var(--mut);margin-top:1mm;line-height:1.3}
+.team{margin:0 12mm;height:40mm;border-radius:4mm;position:relative;overflow:hidden;background:url(../jmc-couverture/assets/photos/equipe-jmc-couverture-40-ans.jpg) center 30%/cover}
+.team span{position:absolute;left:0;right:0;bottom:0;padding:2.5mm 5mm;background:linear-gradient(0deg,rgba(10,12,14,.75),rgba(10,12,14,0));color:#fff;font-size:9.5pt;font-weight:700}
+.who{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm;margin:0 12mm}
+.who div{border:1px solid var(--line);border-radius:4mm;padding:2.5mm 3mm;text-align:center;font-weight:800;font-size:10pt;line-height:1.2}
+.who svg.i{width:8.5mm;height:8.5mm;margin:0 auto 1.5mm;display:block}
+.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm;margin:0 12mm;align-items:center;text-align:center}
+.trust div{background:var(--paper);border-radius:4mm;height:21mm;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5mm}
+.trust img{height:11mm}
+.trust b{font-size:13pt;font-weight:800}
+.trust small{font-size:8.5pt;color:var(--mut);font-weight:600}
+.trust .stars{color:#e3a400;font-size:12pt;letter-spacing:.05em}
+.zone{margin:0 12mm;display:flex;flex-wrap:wrap;gap:2.5mm}
+.zone span{border:1px solid var(--line);border-radius:99px;padding:1.5mm 3.5mm;font-size:9pt;font-weight:700}
+.zone span.home{background:var(--red);border-color:var(--red);color:#fff}
+.contact{position:absolute;left:12mm;right:12mm;bottom:10mm;height:37mm;background:var(--ink);color:#fff;border-radius:5mm;display:flex;align-items:center;gap:7mm;padding:0 7mm}
+.contact .qr{background:#fff;padding:1.5mm;border-radius:2mm;width:29mm;height:29mm;flex:0 0 auto}
+.contact .qr img{width:100%;height:100%;display:block}
+.contact h3{font-size:16pt;font-weight:800;line-height:1.15}
+.contact h3 em{font-style:normal;color:var(--gold)}
+.contact .tel{font-size:24pt;font-weight:800;margin-top:2mm}
+.contact small{display:block;font-size:9pt;color:#cfccc5;margin-top:1mm}
+.legal{position:absolute;left:0;right:0;bottom:5mm;text-align:center;font-size:6.6pt;color:#8a8f96}
+</style></head><body>
+
+<!-- ===================== RECTO ===================== -->
+<section class="page">
+  <div class="top"><img src="../jmc-couverture/assets/logo-jmc-40ans.svg" alt="JMC Couverture"><b>Couvreur · Charpentier · Zingueur</b></div>
+  <div class="hero"><h1>Votre toiture,<br>notre métier<br><em>depuis 1985</em></h1></div>
+
+  <div class="stats">
+    <div><b>1 500+</b><small>chantiers réalisés</small></div>
+    <div><b>4,9/5</b><small>29 avis Google</small></div>
+    <div><b>10 ans</b><small>garantie décennale</small></div>
+  </div>
+
+  <h2>Ce que nous faisons</h2>
+  <div class="grid">
+    <div class="tile"><svg class="i" viewBox="0 0 48 48"><path d="M4 26L24 9l20 17"/><path d="M10 21v19h28V21"/><path d="M14 27h20M14 33h20"/></svg><b>Couverture</b><small>zinc, tuiles, ardoise</small></div>
+    <div class="tile"><svg class="i" viewBox="0 0 48 48"><path d="M4 26L24 9l20 17"/><path d="M10 21v19h28V21"/><path d="M30 13l8-6M34 7h4v4"/></svg><b>Rénovation</b><small>réfection complète</small></div>
+    <div class="tile"><svg class="i" viewBox="0 0 48 48"><path d="M4 26L24 9l20 17"/><path d="M10 21v19h28V21"/><path d="M14 30c3-3 5 3 8 0s5 3 8 0 5 3 6 1"/></svg><b>Isolation</b><small>combles, rampants · RGE</small></div>
+    <div class="tile"><svg class="i" viewBox="0 0 48 48"><path d="M8 36L24 12l16 24z"/><rect x="18" y="24" width="12" height="9"/><path d="M24 24v9M18 28.5h12"/></svg><b>VELUX</b><small>et lucarnes</small></div>
+    <div class="tile"><svg class="i" viewBox="0 0 48 48"><path d="M6 12h30a6 6 0 0 1 0 12h-2"/><path d="M34 24v18"/><path d="M6 12v6h28"/></svg><b>Zinguerie</b><small>gouttières, raccords</small></div>
+    <div class="tile"><svg class="i" viewBox="0 0 48 48"><path d="M6 30h36v10H6z"/><path d="M6 30l4-6h28l4 6"/><path d="M14 20l3-8M24 20V10M34 20l-3-8"/></svg><b>Toit terrasse</b><small>étanchéité</small></div>
+    <div class="tile"><svg class="i" viewBox="0 0 48 48"><path d="M4 26L24 9l20 17"/><path d="M10 21v19h28V21"/><path d="M33 4l1.5 3.5L38 9l-3.5 1.5L33 14l-1.5-3.5L28 9l3.5-1.5z"/></svg><b>Entretien</b><small>nettoyage, démoussage</small></div>
+    <div class="tile"><svg class="i" viewBox="0 0 48 48"><path d="M8 42V18l10-8 10 8v24"/><path d="M28 24h12v18"/><path d="M4 42h40"/><path d="M14 24h8M14 31h8M32 30h4M32 36h4"/></svg><b>Maisons neuves</b><small>et d'architecte</small></div>
+  </div>
+
+  <div class="cta">
+    <div class="tel"><small>Visite et devis gratuits</small><b>01 64 21 38 37</b></div>
+    <div class="web"><b>jmccouverture.com</b><br>Courtry (77) · Île-de-France</div>
+  </div>
+</section>
+
+<!-- ===================== VERSO ===================== -->
+<section class="page">
+  <div class="top"><img src="../jmc-couverture/assets/logo-jmc-40ans.svg" alt="JMC Couverture"><b>Comment ça se passe ?</b></div>
+
+  <h2 style="margin-top:8mm">4 étapes, un seul interlocuteur</h2>
+  <div class="steps">
+    <div class="step"><div class="c"><span>1</span><svg class="i" viewBox="0 0 48 48"><path d="M12 6h8l4 10-5 3a22 22 0 0 0 10 10l3-5 10 4v8a3 3 0 0 1-3 3C21 39 9 27 9 9a3 3 0 0 1 3-3z"/></svg></div><b>Visite gratuite</b><small>diagnostic sur place, photos à l'appui</small></div>
+    <div class="step"><div class="c"><span>2</span><svg class="i" viewBox="0 0 48 48"><path d="M12 4h18l8 8v32H12z"/><path d="M30 4v8h8"/><path d="M18 22h14M18 29h14M18 36h8"/></svg></div><b>Devis détaillé</b><small>gratuit, poste par poste</small></div>
+    <div class="step"><div class="c"><span>3</span><svg class="i" viewBox="0 0 48 48"><path d="M24 4l16 6v12c0 10-7 18-16 22C15 40 8 32 8 22V10z"/><path d="M17 24l5 5 9-10"/></svg></div><b>Chantier propre</b><small>sécurisé, suivi, accès au toit</small></div>
+    <div class="step"><div class="c"><span>4</span><svg class="i" viewBox="0 0 48 48"><circle cx="24" cy="20" r="11"/><path d="M19 20l4 4 7-8"/><path d="M17 30l-4 14 11-5 11 5-4-14"/></svg></div><b>PV de réception</b><small>contrôle qualité, puis SAV</small></div>
+  </div>
+
+  <h2>Une équipe, depuis 1985</h2>
+  <div class="team"><span>Couvreurs, charpentiers, zingueurs : toute l'équipe réunie pour les 40 ans de JMC.</span></div>
+
+  <h2>Nous travaillons pour</h2>
+  <div class="who">
+    <div><svg class="i" viewBox="0 0 48 48"><path d="M6 24L24 9l18 15"/><path d="M11 20v20h26V20"/><path d="M20 40V29h8v11"/></svg>Particuliers</div>
+    <div><svg class="i" viewBox="0 0 48 48"><path d="M8 44V8h32v36"/><path d="M15 15h5M28 15h5M15 23h5M28 23h5M15 31h5M28 31h5"/><path d="M21 44v-7h6v7"/></svg>Copropriétés<br>et syndics</div>
+    <div><svg class="i" viewBox="0 0 48 48"><path d="M6 18L24 7l18 11z"/><path d="M10 18v20M18 18v20M30 18v20M38 18v20"/><path d="M5 42h38"/></svg>Collectivités</div>
+    <div><svg class="i" viewBox="0 0 48 48"><path d="M8 44V12l14-6v38"/><path d="M22 18h18v26"/><path d="M4 44h40"/><path d="M13 16h4M13 24h4M13 32h4M28 26h6M28 34h6"/></svg>Promoteurs<br>et architectes</div>
+  </div>
+
+  <h2>Des garanties concrètes</h2>
+  <div class="trust">
+    <div><img src="../jmc-couverture/assets/logo-qualibat.svg" alt="QUALIBAT"><small>Qualifications couverture</small></div>
+    <div><img src="../jmc-couverture/assets/logo-rge.png" alt="RGE"><small>Éligible aux aides</small></div>
+    <div><b>10 ans</b><small>Garantie décennale</small></div>
+    <div><span class="stars">★★★★★</span><b>4,9/5</b><small>29 avis Google</small></div>
+  </div>
+
+  <h2>Où nous intervenons</h2>
+  <div class="zone">
+    <span class="home">Courtry · siège</span><span>Seine-et-Marne (77)</span><span>Val-de-Marne (94)</span><span>Seine-Saint-Denis (93)</span><span>Val-d'Oise (95)</span><span>Essonne (91)</span><span>Hauts-de-Seine (92)</span><span>Paris</span>
+  </div>
+
+  <div class="contact">
+    <div class="qr"><img src="qr-flyer.svg" alt="QR code"></div>
+    <div>
+      <h3>Un projet de toiture ?<br><em>Visite et devis gratuits</em></h3>
+      <div class="tel">01 64 21 38 37</div>
+      <small>contact@jmccouverture.com · jmccouverture.com · 97 rue Charles Van Wyngene, 77181 Courtry</small>
+    </div>
+  </div>
+  <p class="legal">SARL JMC · SIRET 380 660 779 00048 · RCS Meaux · Document non contractuel · Ne pas jeter sur la voie publique</p>
+</section>
+</body></html>
