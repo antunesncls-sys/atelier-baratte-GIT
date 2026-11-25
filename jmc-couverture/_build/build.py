@@ -466,7 +466,7 @@ def breadcrumb(trail):
 
 
 def page_hero(trail, eyebrow, h1, lead, cta=True):
-    btns = (f'<div class="hero-cta"><a class="btn btn-primary" href="/contact/">Demander un devis gratuit</a>'
+    btns = (f'<div class="hero-cta"><a class="btn btn-primary" href="{devis_url()}">Demander un devis gratuit</a>'
             f'<a class="btn btn-ghost" href="tel:{BIZ["phone_intl"]}">Appeler le {BIZ["phone"]}</a></div>') if cta else ""
     return f"""
 <section class="hero page-hero has-photo">{hero_bg()}<div class="wrap"><div>
@@ -487,12 +487,42 @@ def en_bref():
             f'QUALIBAT &amp; RGE · {BIZ["rating"]}/5 sur Google · Mis à jour : {MAJ}</p></div></div></section>')
 
 
+DEVIS_TRAVAUX_PAR_PAGE = {
+    "/renovation-toiture/": "rénovation", "/couverture/": "rénovation", "/toiture-tuile/": "rénovation",
+    "/toiture-mansardee-brisis-terrasson/": "rénovation", "/souche-cheminee-solin-abergement/": "rénovation",
+    "/isolation-toiture/": "isolation", "/isolation-combles-perdus/": "isolation", "/isolation-rampants/": "isolation",
+    "/fenetre-de-toit-velux-lucarnes/": "velux", "/chien-assis-lucarne/": "velux",
+    "/couverture-zinc-bardage/": "zinc", "/zinguerie/": "gouttières", "/cheneau-noue-zinc/": "gouttières",
+    "/nettoyage-toiture/": "nettoyage", "/toiture-maison-neuve/": "neuve", "/couvreur-copropriete-syndic/": "copropriété",
+    "/charpente/": "charpente", "/etancheite-toiture-terrasse/": "terrasse",
+}
+
+
+def devis_url():
+    t = DEVIS_TRAVAUX_PAR_PAGE.get(_PAGE.get("path", ""))
+    return f"/contact/?travaux={t}" if t else "/contact/"
+
+
+def cta_inline(title, text):
+    return f"""<div class="cta-inline"><div><p class="cta-inline-title">{title}</p><p>{text}</p></div>
+  <div class="cta-inline-btns"><a class="btn btn-primary" href="{devis_url()}">Devis gratuit</a>
+  <a class="btn btn-outline" href="tel:{BIZ['phone_intl']}">{BIZ['phone']}</a></div></div>"""
+
+
+def action_bar():
+    path = _PAGE.get("path", "")
+    devis = "" if path in ("/contact/", "/merci/") else f'<a class="btn btn-primary" href="{devis_url()}">Devis gratuit</a>'
+    return (f'<div class="action-bar{" solo" if not devis else ""}"><a class="btn btn-call" href="tel:{BIZ["phone_intl"]}">'
+            f'<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1z"/></svg>'
+            f'Appeler</a>{devis}</div>')
+
+
 def cta_band(title="Un projet de toiture ? Parlons-en.",
              text="Visite sur place et devis détaillé gratuits, sans engagement."):
     return f"""
 <section class="cta-band"><div class="wrap">
   <div><p class="cta-title">{title}</p><p>{text}</p></div>
-  <div class="hero-cta" style="margin:0"><a class="btn btn-dark" href="/contact/">Demander mon devis</a>
+  <div class="hero-cta" style="margin:0"><a class="btn btn-dark" href="{devis_url()}">Demander mon devis</a>
   <a class="btn btn-ghost" href="tel:{BIZ['phone_intl']}">{BIZ['phone']}</a></div>
 </div></section>"""
 
@@ -522,7 +552,7 @@ def aside(title="Pourquoi choisir JMC ?"):
     <li>Devis gratuit et détaillé</li>
   </ul>
   {google_badge(light=True)}
-  <p><a class="btn btn-primary" href="/contact/">Devis gratuit</a></p>
+  <p><a class="btn btn-primary" href="{devis_url()}">Devis gratuit</a></p>
   {spotlight()}
   <p class="small">Ou par téléphone : <a href="tel:{BIZ['phone_intl']}"><strong>{BIZ['phone']}</strong></a></p>
 </aside>"""
@@ -563,7 +593,7 @@ def footer():
   </div>
   <div class="legal"><span>© {date.today().year} {BIZ['legal']} · <a href="/mentions-legales/">Mentions légales</a> · <a href="/contact/">Contact</a></span><span>{partenaires_footer()}</span></div>
 </div></footer>
-<a class="btn btn-primary call-fab" href="tel:{BIZ['phone_intl']}">Appeler JMC : {BIZ['phone']}</a>
+{action_bar()}
 <script>
 (function(){{var b=document.querySelector('.menu-toggle'),n=document.getElementById('nav');
 if(b&&n)b.addEventListener('click',function(){{var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o)}});}})();
@@ -584,15 +614,20 @@ b.addEventListener('click',function(){{if(v.paused){{v.play();b.classList.remove
 (function(){{var figs=document.querySelectorAll('.story-fig');if(!figs.length||!('IntersectionObserver' in window))return;
 var io=new IntersectionObserver(function(en){{en.forEach(function(e){{if(e.isIntersecting){{var i=e.target.dataset.i;figs.forEach(function(f){{f.classList.toggle('on',f.dataset.i===i)}})}}}})}},{{rootMargin:'-45% 0px -45% 0px'}});
 document.querySelectorAll('.story-step').forEach(function(s){{io.observe(s)}});}})();
-(function(){{if(!document.querySelector('.hero-home')||!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-var sel='.section-head,.card,.mosaic figure,.stats>div,.steps>*,.process>*,.split>.prose>*,.city-links,.marquee,.video-wrap,.faq details';
+(function(){{var bars=document.querySelectorAll('.action-bar');if(!bars.length)return;
+var hide=[].slice.call(document.querySelectorAll('.hero-cta,.cta-band,.cta-inline,footer,form.quote'));var vis=new Set();
+function upd(){{var on=scrollY>innerHeight*0.35&&vis.size===0;bars.forEach(function(b){{b.classList.toggle('show',on)}})}}
+if('IntersectionObserver' in window){{var io=new IntersectionObserver(function(en){{en.forEach(function(e){{e.isIntersecting?vis.add(e.target):vis.delete(e.target)}});upd()}});hide.forEach(function(h){{io.observe(h)}})}}
+addEventListener('scroll',upd,{{passive:true}});upd();}})();
+(function(){{if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+var sel='.section-head,.card,.mosaic figure,.stats>div,.steps>*,.process>*,.prose>h2,.prose>figure,.prose>.checks,.city-links,.marquee,.video-wrap,.faq details,.aside,.cta-inline,.cta-band .wrap>*,.ref,.plogos .pl';
 var els=[].slice.call(document.querySelectorAll(sel)).filter(function(e){{return e.getBoundingClientRect().top>innerHeight}});
 var count=function(el){{var to=+el.dataset.count,fr=+(el.dataset.from||0),suf=el.dataset.suffix||'',t0=null,d=1600;
 var fmt=function(n){{return to>=1900&&to<2100?String(n):n.toLocaleString('fr-FR')}};
 (function step(t){{t0=t0||t;var k=Math.min(1,(t-t0)/d),v=Math.round(fr+(to-fr)*(1-Math.pow(1-k,3)));el.textContent=fmt(v)+suf;if(k<1)requestAnimationFrame(step)}})(performance.now())}};
 var io=new IntersectionObserver(function(en){{en.forEach(function(e){{if(!e.isIntersecting)return;var el=e.target;io.unobserve(el);
 if(el.dataset.count){{count(el);return}}
-var sib=el.parentNode?[].indexOf.call(el.parentNode.children,el):0;el.style.transitionDelay=Math.min(sib,6)*80+'ms';el.classList.add('in')}})}},{{rootMargin:'0px 0px -8% 0px'}});
+var sib=el.parentNode?[].indexOf.call(el.parentNode.children,el):0;el.style.transitionDelay=Math.min(sib,4)*60+'ms';el.classList.add('in')}})}},{{rootMargin:'0px 0px -8% 0px'}});
 els.forEach(function(e){{e.classList.add('rv');io.observe(e)}});
 [].forEach.call(document.querySelectorAll('[data-count]'),function(e){{io.observe(e)}});}})();
 </script>
@@ -851,7 +886,7 @@ def home():
     <span class="eyebrow">Depuis 1985</span>
     <h1>Couvreur zingueur en <span class="nowrap">Seine-et-Marne</span> et <span class="nowrap">Île-de-France</span> depuis 1985</h1>
     <p class="lead">Couverture zinc, toitures en tuiles, rénovation, isolation et maisons neuves : depuis 1985, JMC met au service des particuliers la structure et les équipes qui réalisent les toitures des programmes de promotion immobilière, en Île-de-France.</p>
-    <div class="hero-cta"><a class="btn btn-primary" href="/contact/">Demander un devis gratuit</a>
+    <div class="hero-cta"><a class="btn btn-primary" href="{devis_url()}">Demander un devis gratuit</a>
     <a class="btn btn-ghost" href="tel:{BIZ['phone_intl']}">Appeler le {BIZ['phone']}</a></div>
     <div class="hero-labels">{labels()}{google_badge()}<ul class="badges"><li>Garantie décennale</li><li>Devis gratuit</li></ul></div>
   </div>
@@ -889,6 +924,7 @@ def home():
   {service_card("drop", "Couverture, charpente, zinguerie", "/couverture/", "Tous les métiers du toit, maîtrisés par nos propres équipes.",
                 ['<a href="/toiture-tuile/">Toiture en tuiles</a>, ardoise, zinc', '<a href="/charpente/">Charpente</a> traditionnelle ou industrielle', '<a href="/zinguerie/">Zinguerie</a> et gouttières', "Fenêtres de toit et lucarnes"])}
   </div>
+  {cta_inline("Votre projet fait partie de cette liste ?", "Visite sur place et devis détaillé gratuits, sans engagement.")}
 </div></section>
 
 <section class="savoir"><div class="wrap">
@@ -934,6 +970,7 @@ def home():
   <div class="section-head"><span class="eyebrow">Notre process</span><h2>De la visite au SAV : un suivi complet par nos équipes</h2>
   <p>Une méthode éprouvée sur les chantiers de promotion immobilière, et une <strong>équipe SAV et qualité dédiée en interne</strong> qui contrôle chaque chantier et reste votre interlocutrice après les travaux.</p></div>
   {process_html()}
+  {cta_inline("Prêt à lancer votre chantier ?", "Décrivez votre projet en 2 minutes : nous vous rappelons pour organiser la visite.")}
   <p style="margin-top:22px"><a class="more" href="/notre-methode-sav-qualite/">Découvrir notre méthode, notre SAV et notre suivi qualité →</a></p>
 </div></section>
 
@@ -1634,6 +1671,7 @@ def ville(v):
       <li><a href="/charpente/">Charpente</a> et <a href="/zinguerie/">zinguerie</a> : gouttières, chéneaux, lucarnes, habillages.</li>
     </ul>
     {photo("mansarde")}
+    {cta_inline(f"Un projet de toiture à {name} ?", "Visite sur place et devis gratuits, par une équipe basée à Courtry.")}
     {quartiers}
     <h3>Communes voisines</h3>
     <p>Nous intervenons aussi à {vois}, et dans tout le département : voir notre page <a href="/{dd['slug']}/">couvreur {dd['art']} {dd['name']}</a>.</p>
@@ -1740,6 +1778,7 @@ def dept_page(d):
       <li><a href="/toiture-maison-neuve/"><strong>Toiture de maison neuve</strong></a></li>
       <li><a href="/nettoyage-toiture/"><strong>Nettoyage et démoussage</strong></a></li>
     </ul>
+    {cta_inline(f"Un projet {d['art']} {d['name']} ?", "Visite sur place et devis détaillé gratuits, sans engagement.")}
     {photo("drone")}
     <h3>Autres communes où nous intervenons</h3>
     <p>{', '.join(d['autres'])}, et toutes les communes {('de Paris' if d['num'] == '75' else 'du département')}.</p>
@@ -2118,6 +2157,7 @@ def courtry(v):
       <li><a href="/nettoyage-toiture/"><strong>Nettoyage, démoussage et entretien</strong></a> avec traitement hydrofuge.</li>
       <li><a href="/couvreur-copropriete-syndic/"><strong>Copropriétés et syndics</strong></a> : devis détaillé pour l'assemblée générale et suivi des travaux.</li>
     </ul>
+    {cta_inline("Un projet de toiture à Courtry ?", "Nos équipes partent chaque jour de Courtry : visite et devis gratuits.")}
     <h2>Une méthode de chantier claire</h2>
     <p>Visite et diagnostic gratuits, devis détaillé poste par poste, démarches en mairie gérées si besoin, chantier sûr et propre, accès au toit pendant les travaux pour constater l'avancement, contrôle qualité et procès-verbal de réception : découvrez <a href="/notre-methode-sav-qualite/">notre méthode, notre SAV et notre suivi qualité</a>.</p>
     {reviews_block(["lily", "richard"], "Ce que nos clients en disent")}
