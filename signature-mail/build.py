@@ -67,7 +67,23 @@ def courte(logo):
 </table>'''
 
 
+def perso():
+    # Adresse personnelle : pas de logo ni de bouton, juste le nom, le numéro et une ligne discrète vers Construisez.
+    # L'adresse e-mail n'y figure pas : le destinataire la voit déjà comme expéditeur.
+    return f'''<table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;{F}">
+  <tr>
+    <td valign="top" style="border-left:2px solid {LEAF};padding:0 0 0 12px;">
+      <div style="{F}font-size:14px;line-height:19px;font-weight:bold;color:{DARK};">{NOM}</div>
+      <div style="{F}font-size:13px;line-height:19px;color:{DARK};"><a href="{TEL_LIEN}" style="{A}">{TEL}</a></div>
+      <div style="{F}font-size:12px;line-height:18px;color:{GREY};padding-top:2px;">Fondateur de <a href="{SITE.replace('campaign=signature', 'campaign=signature-perso')}" style="color:{ACC};text-decoration:none;font-weight:bold;">Construisez</a></div>
+    </td>
+  </tr>
+</table>'''
+
+
 def texte(full):
+    if full == 'perso':
+        return f'{NOM}\n{TEL}\nFondateur de Construisez'
     if not full:
         return f'{NOM} · Construisez\n{TEL} · construisez.fr'
     return '\n'.join([NOM, TITRE, 'Permis de construire & déclarations préalables en Île-de-France',
@@ -85,16 +101,21 @@ open(os.path.join(HERE, 'signature-construisez.html'), 'w', encoding='utf-8').wr
 <p style="{F}font-size:13px;color:{GREY};">Version courte (réponses et transferts) :</p>
 <br>
 {courte(LOGO_URL)}
+<br><br><br>
+<p style="{F}font-size:13px;color:{GREY};">Adresse personnelle :</p>
+<br>
+{perso()}
 </body></html>
 ''')
 
 # 2. Page de l'artefact : l'aperçu montre le logo intégré (seul construisez.fr est bloqué dans le cadre de la page),
 #    le bouton Copier copie la version qui charge le logo depuis construisez.fr.
 logo_data = 'data:image/png;base64,' + base64.b64encode(open(os.path.join(HERE, 'logo-mark.png'), 'rb').read()).decode()
-sigs = {'complete': {'html': complete(LOGO_URL), 'text': texte(True)}, 'courte': {'html': courte(LOGO_URL), 'text': texte(False)}}
+sigs = {'complete': {'html': complete(LOGO_URL), 'text': texte(True)}, 'courte': {'html': courte(LOGO_URL), 'text': texte(False)}, 'perso': {'html': perso(), 'text': texte('perso')}}
 page = open(os.path.join(HERE, 'page.template.html'), encoding='utf-8').read()
 page = (page.replace('{{PREVIEW_COMPLETE}}', complete(logo_data))
             .replace('{{PREVIEW_COURTE}}', courte(logo_data))
+            .replace('{{PREVIEW_PERSO}}', perso())
             .replace('{{SIGS_JSON}}', json.dumps(sigs, ensure_ascii=False).replace('</', '<\\/')))
 open(os.path.join(HERE, 'page.html'), 'w', encoding='utf-8').write(page)
 print('signature-construisez.html et page.html écrits')

@@ -55,7 +55,7 @@ button:focus-visible { outline: 2px solid var(--acc); outline-offset: 3px; }
   <header>
     <div class="eyebrow">Construisez · signature e-mail</div>
     <h1>Votre signature, prête à coller</h1>
-    <p class="intro">Deux versions : la complète pour vos nouveaux messages, la courte pour les réponses. Touchez « Copier la signature », puis collez-la dans les réglages de votre messagerie (marche à suivre en bas de page).</p>
+    <p class="intro">Trois versions : la complète pour vos nouveaux messages, la courte pour les réponses, et une version sobre pour votre adresse personnelle. Touchez « Copier la signature », puis collez-la dans les réglages de votre messagerie (marche à suivre en bas de page).</p>
   </header>
 
   <section class="sig" aria-labelledby="t-complete">
@@ -90,6 +90,24 @@ button:focus-visible { outline: 2px solid var(--acc); outline-offset: 3px; }
       <div class="mail-body" id="preview-courte">
         <p>Parfait, je vous envoie les plans demain.</p>
         {{PREVIEW_COURTE}}
+      </div>
+    </div>
+  </section>
+
+  <section class="sig" aria-labelledby="t-perso">
+    <div class="sig-head">
+      <div><div class="lab">Adresse personnelle</div><h2 id="t-perso">Version perso</h2><p>Votre nom et le même numéro, avec une ligne discrète vers Construisez.</p></div>
+      <div class="actions">
+        <button type="button" class="copy" id="copy-perso" data-sig="perso">Copier la signature</button>
+        <button type="button" class="code" id="code-perso" data-code="perso">Copier le code HTML</button>
+      </div>
+    </div>
+    <div class="status" id="status-perso" role="status"></div>
+    <div class="mail">
+      <div class="mail-top"><span>À</span><b>Un proche</b><span>Objet</span><b>Dimanche</b></div>
+      <div class="mail-body" id="preview-perso">
+        <p>Salut,<br><br>Je te rappelle ce soir.<br><br>À bientôt,</p>
+        {{PREVIEW_PERSO}}
       </div>
     </div>
   </section>
@@ -131,6 +149,7 @@ button:focus-visible { outline: 2px solid var(--acc); outline-offset: 3px; }
     </div>
     <div class="note">
       <p><b>Le logo s'affiche chez vos destinataires</b> : il est chargé depuis construisez.fr. Certaines messageries masquent les images tant que le destinataire ne les a pas autorisées ; le texte reste lisible sans.</p>
+      <p>La version perso n'affiche pas votre adresse e-mail : vos destinataires la voient déjà comme expéditeur.</p>
       <p>Si le bouton ne copie pas, sélectionnez la signature dans l'aperçu à la main, puis Ctrl + C (⌘ + C sur Mac).</p>
     </div>
   </section>
