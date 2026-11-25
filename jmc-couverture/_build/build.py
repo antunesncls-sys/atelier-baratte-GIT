@@ -846,7 +846,7 @@ def home():
                      "fenêtres de toit, elle intervient en Seine-et-Marne de Melun à Meaux, dans le Val-d'Oise, l'Essonne, le Val-de-Marne, "
                      "la Seine-Saint-Denis, les Hauts-de-Seine et à Paris. Devis gratuit au 01 64 21 38 37.")
     html += f"""
-<section class="hero has-photo hero-home">{hero_bg()}<video class="hero-video" muted loop playsinline preload="none" aria-hidden="true" data-desktop="/assets/video/accueil-chantier-1280.mp4" data-mobile="/assets/video/accueil-chantier-mobile.mp4"></video><button class="video-toggle" type="button" aria-label="Mettre la vidéo en pause" hidden></button><div class="wrap">
+<section class="hero has-photo hero-home">{hero_bg()}<video class="hero-video" muted loop playsinline preload="none" aria-hidden="true" data-desktop="/assets/video/accueil-chantier-1080.mp4" data-mobile="/assets/video/accueil-chantier-mobile.mp4"></video><button class="video-toggle" type="button" aria-label="Mettre la vidéo en pause" hidden></button><div class="wrap">
   <div>
     <span class="eyebrow">Depuis 1985</span>
     <h1>Couvreur zingueur en Seine-et-Marne et Île-de-France depuis 1985</h1>
