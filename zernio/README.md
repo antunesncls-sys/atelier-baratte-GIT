@@ -145,3 +145,7 @@ un léger mouvement de caméra, le sous-titre synchronisé sur la voix, « MAIS 
 - Les voix sont dans `visuels/reels/voix/` (une ligne par fichier, générées avec vidIQ, voix française « Guillaume »). Le texte parlé est dans `voix/scripts.json`.
 - Dans le fichier de posts, `voice: true` garde la voix à plein volume sur TikTok et passe la musique en fond.
 - Les images de projet (rendus) portent la mention « IMAGE DU PROJET ».
+
+## Hashtags
+
+5 hashtags au plus par légende (Instagram réduit progressivement la limite à 5 depuis décembre 2025). `src/hashtags.js` garde jusqu'à 3 hashtags propres au sujet, `#permisdeconstruire`, puis un hashtag local (département, sinon `#iledefrance`). `npm run schedule` applique cette règle automatiquement. Sur TikTok, 98 % des vues viennent du fil « Pour toi » : les mots-clés de la première ligne et du texte à l'écran comptent plus que les hashtags.

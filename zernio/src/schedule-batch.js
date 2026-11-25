@@ -1,5 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import { zernio, findProfile, DEFAULT_PROFILE } from './zernio-client.js';
+import { limitHashtags } from './hashtags.js';
 
 // Programme tous les posts d'un fichier de calendrier (ex. posts/novembre-2026.json) sur le profil par défaut.
 //
@@ -93,6 +94,9 @@ let stories = 0;
 let googlePosts = 0;
 let tiktokPosts = 0;
 for (const post of posts) {
+  // 5 hashtags au plus par légende (limite d'Instagram, voir src/hashtags.js)
+  post.content = limitHashtags(post.content);
+  if (post.tiktok?.content) post.tiktok.content = limitHashtags(post.tiktok.content);
   const label = `${post.date} — ${post.theme ?? post.content.split('\n')[0].slice(0, 60)}`;
 
   if (!storiesOnly && !googleOnly && !tiktokOnly) {
