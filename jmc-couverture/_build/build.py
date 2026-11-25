@@ -785,7 +785,7 @@ def bouche_oreille():
 # ================================================================ PAGES
 CHANTIER_STORY = [
     ("chantier-toiture-echafaudage-grue-livraison-jmc", "Étape 1", "Un chantier sécurisé dès le premier jour",
-     "Échafaudage, garde-corps et filets de protection sont installés avant toute intervention. Les matériaux arrivent par camion-grue : rien ne transite par votre jardin ni par votre maison.",
+     "Échafaudage, garde-corps et filets de protection sont installés avant toute intervention. Les matériaux arrivent par camion-grue, directement sur le chantier.",
      "Échafaudage avec filet de protection et camion-grue livrant les palettes de tuiles depuis la rue, chantier JMC Couverture"),
     ("chantier-toiture-palette-tuiles-grue-jmc", "Étape 2", "Les tuiles neuves montées directement sur le toit",
      "La grue dépose les palettes au plus près de la zone de pose. Moins de manutention, moins de casse, et un chantier plus rapide pour vous.",
