@@ -529,3 +529,54 @@ form.wizard .rgpd input{width:auto;margin-top:5px}
 .page-hero .wrap>div>:nth-child(2){animation-delay:.08s}.page-hero .wrap>div>:nth-child(3){animation-delay:.16s}.page-hero .wrap>div>:nth-child(4){animation-delay:.24s}.page-hero .wrap>div>:nth-child(5){animation-delay:.32s}
 .hero-home .btn-primary::after{animation-duration:7s}
 @media (prefers-reduced-motion:reduce){.page-hero .wrap>div>*{animation:none}.action-bar,.float-cta{transition:none}}
+
+/* ---------- Accueil aéré ---------- */
+.svc-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.svc-tile{position:relative;display:flex;flex-direction:column;gap:6px;padding:22px 20px;background:#fff;border:1px solid var(--line);border-radius:16px;text-decoration:none;color:var(--ink);transition:transform .2s,box-shadow .2s,border-color .2s}
+.svc-tile:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--tile)}
+.svc-tile .icon{width:44px;height:44px;border-radius:12px;background:var(--tile-soft);display:grid;place-items:center;margin-bottom:6px}
+.svc-tile .icon svg{width:24px;height:24px}
+.svc-tile strong{font-size:1.05rem}
+.svc-txt{color:var(--muted);font-size:.92rem;line-height:1.4}
+.svc-go{position:absolute;right:18px;top:20px;color:var(--tile);font-weight:800;transition:transform .2s}
+.svc-tile:hover .svc-go{transform:translateX(4px)}
+.more-box{margin:22px 0 0;border:1px solid var(--line);border-radius:14px;background:#fff;padding:0 18px}
+.more-box summary{cursor:pointer;padding:14px 0;font-weight:700;color:var(--tile-dark,#a3141a);list-style:none}
+.more-box summary::-webkit-details-marker{display:none}
+.more-box summary::after{content:"+";float:right;font-size:1.3em;line-height:1}
+.more-box[open] summary::after{content:"–"}
+.more-box[open]{padding-bottom:16px}
+.about-home{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:center}
+.about-home .photo{margin:0}
+.engage-grid{list-style:none;padding:0;margin:20px 0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.engage-grid li{background:var(--bg-2,#f6f4ef);border-radius:12px;padding:14px 16px}
+.engage-grid strong{display:block}.engage-grid span{color:var(--muted);font-size:.9rem}
+.link-row{display:flex;gap:22px;flex-wrap:wrap}
+.process-compact{list-style:none;padding:0;margin:10px 0 18px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;counter-reset:none}
+.process-compact li{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:.95rem}
+.process-compact b{flex:0 0 auto;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--tile);color:#fff;font-size:.85rem}
+.dept-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:8px 0 6px}
+.dept-chips a{padding:.65em 1.1em;border-radius:999px;background:#fff;border:1px solid var(--line);text-decoration:none;color:var(--ink);font-weight:600;transition:border-color .2s,color .2s}
+.dept-chips a:hover{border-color:var(--tile);color:var(--tile)}
+.dept-chips .chip-main{background:var(--tile);border-color:var(--tile);color:#fff}
+.dept-chips .chip-main:hover{color:#fff}
+@media (max-width:1000px){.svc-tiles{grid-template-columns:repeat(2,1fr)}.process-compact{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:760px){
+ .about-home{grid-template-columns:1fr;gap:20px}
+ .svc-tile{padding:16px 14px}.svc-txt{font-size:.85rem}.svc-go{display:none}
+ .engage-grid{grid-template-columns:1fr 1fr;gap:8px}.engage-grid li{padding:12px}
+ .process-compact{grid-template-columns:1fr}
+ /* avis et étapes du chantier : défilement horizontal */
+ .story-steps{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding-bottom:10px;-webkit-overflow-scrolling:touch}
+ .story-step{flex:0 0 84%;scroll-snap-align:start;padding:0!important}
+ .story-step p{font-size:.98rem}
+ .story-cta{flex:0 0 70%;display:flex;align-items:center;scroll-snap-align:start}
+ .home-reviews .grid.g3{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding-bottom:8px}
+ .home-reviews .grid.g3>*{flex:0 0 86%;scroll-snap-align:start}
+ section{padding-top:52px;padding-bottom:52px}
+}
+/* pied de page compact */
+@media (max-width:760px){.f-links{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px}.footer-grid{gap:24px}}
+.story-step{min-height:58vh}
+.story-step{min-height:50vh}
+@media (max-width:760px){.process-compact{grid-template-columns:1fr 1fr;gap:8px}.process-compact li{padding:10px;font-size:.84rem;gap:8px}.process-compact b{width:24px;height:24px;font-size:.75rem}}

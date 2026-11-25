@@ -576,18 +576,13 @@ def footer():
       {insta_link()}
     </div>
     <div>
-      <p class="ft">Liens utiles</p>
+      <p class="ft">Navigation</p>
       <ul class="f-links">
-        <li><a href="/renovation-toiture/">Rénovation de toiture</a></li>
-        <li><a href="/isolation-toiture/">Isolation</a></li>
-        <li><a href="/toiture-maison-neuve/">Maison neuve</a></li>
-        <li><a href="/couverture-zinc-bardage/">Zinc &amp; bardage</a></li>
-        <li><a href="/couvreur-copropriete-syndic/">Copropriétés</a></li>
-        <li><a href="/zones-intervention/">Zones d'intervention</a></li>
+        <li><a href="/renovation-toiture/">Nos services</a></li>
         <li><a href="/nos-references/">Réalisations</a></li>
-        <li><a href="/notre-methode-sav-qualite/">Méthode &amp; SAV</a></li>
+        <li><a href="/zones-intervention/">Zones d'intervention</a></li>
         <li><a href="/qui-sommes-nous/">Qui sommes-nous</a></li>
-        <li><a href="/questions-frequentes-toiture/">Questions fréquentes</a></li>
+        <li><a href="/contact/">Devis gratuit</a></li>
       </ul>
     </div>
   </div>
@@ -802,7 +797,7 @@ def secu_proprete():
 
 def bouche_oreille():
     return f"""
-<section><div class="wrap">
+<section class="home-reviews"><div class="wrap">
   <div class="section-head"><span class="eyebrow">Bouche-à-oreille</span>
   <h2>Avis clients : notre meilleure publicité, vos recommandations</h2>
   {google_badge(light=True)}
@@ -858,6 +853,21 @@ def chantier_story():
 </div></section>"""
 
 
+def svc_tile(icon, title, url, text):
+    return (f'<a class="svc-tile" href="{url}"><span class="icon">{ICON[icon]}</span>'
+            f'<strong>{title}</strong><span class="svc-txt">{text}</span><span class="svc-go" aria-hidden="true">→</span></a>')
+
+
+def process_compact():
+    items = "".join(f'<li><b>{i}</b><strong>{t}</strong></li>' for i, (t, d) in enumerate(PROCESS, 1))
+    return f'<ol class="process-compact">{items}</ol><p class="center"><a class="more" href="/notre-methode-sav-qualite/">Le détail de chaque étape →</a></p>'
+
+
+def dept_chips():
+    out = "".join(f'<a href="/{d["slug"]}/">{d["name"]}{" (" + d["num"] + ")" if d["num"] != "75" else ""}</a>' for d in DEPTS_PAGES)
+    return '<a class="chip-main" href="/couvreur-courtry/">Courtry (siège)</a>' + out
+
+
 def home():
     faq = [
         ("Quelle zone couvre JMC Couverture ?",
@@ -871,7 +881,7 @@ def home():
         ("Pourquoi faire appel à un couvreur RGE ?",
          "Le label RGE (Reconnu Garant de l'Environnement) est exigé pour que vos travaux d'isolation de toiture puissent bénéficier des aides publiques à la rénovation énergétique, sous réserve des conditions d'éligibilité en vigueur."),
     ]
-    lds = [org_ld(), website_ld(), faq_ld(faq), video_ld()]
+    lds = [org_ld(), website_ld(), faq_ld(faq)]
     html = head("Couvreur zingueur en Seine-et-Marne et Île-de-France | JMC Couverture",
                 "Couvreur zingueur à Courtry (77) depuis 1985 : rénovation de toiture, zinc, tuiles, ardoise, isolation et zinguerie en Île-de-France. QUALIBAT & RGE.",
                 "/", lds)
@@ -890,7 +900,7 @@ def home():
     <a class="btn btn-ghost" href="tel:{BIZ['phone_intl']}">Appeler le {BIZ['phone']}</a></div>
     <div class="hero-labels">{labels()}{google_badge()}<ul class="badges"><li>Garantie décennale</li><li>Devis gratuit</li></ul></div>
   </div>
-</div><a class="scroll-cue" href="#realisations" aria-label="Découvrir nos réalisations"></a></section>{en_bref()}
+</div><a class="scroll-cue" href="#realisations" aria-label="Découvrir nos réalisations"></a></section>
 
 <section class="gallery-band" id="realisations"><div class="wrap">
   <div class="section-head"><span class="eyebrow">Nos réalisations</span><h2>Nos réalisations de toiture en Île-de-France</h2></div>
@@ -898,40 +908,22 @@ def home():
   <p style="margin-top:18px"><a class="more" href="/nos-references/">Voir toutes nos réalisations →</a>{insta_link(" &nbsp;·&nbsp; ")}</p>
 </div></section>
 
-{chantier_story()}
-
-{video_section()}
-
 <section class="section-alt"><div class="wrap">
-  <div class="section-head"><span class="eyebrow">Nos spécialités</span>
-  <h2>Nos spécialités de couvreur : un seul interlocuteur pour votre toit</h2>
-  <p>De la maison neuve à la demeure de caractère, nos couvreurs, charpentiers et zingueurs réalisent l'ensemble de votre toiture : un chantier coordonné, des délais tenus et une seule garantie décennale.</p></div>
-  <div class="grid g4" style="margin-bottom:24px">
-  {service_card("roof", "Rénovation et remplacement de toiture", "/renovation-toiture/", "Réfection complète de votre couverture, de la charpente aux gouttières.",
-                ["Dépose de l'ancienne couverture", "Contrôle et renfort de charpente", "Tuiles, ardoise ou zinc neufs", "Isolation intégrée possible"])}
-  {service_card("shield", "Isolation de toiture", "/isolation-toiture/", "Isolation par l'extérieur ou sous rampants, par une entreprise RGE.",
-                ["Sarking lors de la rénovation", '<a href="/isolation-rampants/">Isolation des rampants</a>', '<a href="/isolation-combles-perdus/">Isolation des combles perdus</a>', "Aides possibles (RGE)"])}
-  {service_card("beam", "Toiture de maison neuve", "/toiture-maison-neuve/", "Le savoir-faire des promoteurs immobiliers, au service des particuliers.",
-                ["Charpente, couverture, zinguerie", "Mise hors d'eau rapide", "Coordination avec l'architecte", "Attestations dommages-ouvrage"])}
-  {service_card("doc", "Maison d'architecte : zinc et bardage", "/couverture-zinc-bardage/", "Couverture zinc à joint debout, bardage de façade et habillages sur mesure.",
-                ["Toitures faible pente et courbes", "Bardage zinc ventilé", "Lucarnes et brisis", "Calepinage avec l'architecte"])}
-  {service_card("leaf", "Nettoyage, démoussage et entretien", "/nettoyage-toiture/", "Redonnez à votre toit son aspect d'origine et prolongez sa durée de vie.",
-                ["Démoussage adapté au matériau", "Remplacement des tuiles abîmées", "Traitement hydrofuge", "Nettoyage des gouttières"])}
-  {service_card("doc", "Copropriétés et syndics", "/couvreur-copropriete-syndic/", "Réfection, réparation et isolation des combles pour les immeubles.",
-                ["Devis détaillés pour l'assemblée générale", "Isolation des combles RGE", "Travaux en site occupé", "Suivi avec le syndic"])}
-  {service_card("roof", "Fenêtres de toit VELUX et lucarnes", "/fenetre-de-toit-velux-lucarnes/", "Plus de lumière et de confort sous les toits.",
-                ["Remplacement de VELUX", "Création de fenêtres de toit", "Restauration de lucarnes", "Habillage zinc"])}
-  {service_card("drop", "Couverture, charpente, zinguerie", "/couverture/", "Tous les métiers du toit, maîtrisés par nos propres équipes.",
-                ['<a href="/toiture-tuile/">Toiture en tuiles</a>, ardoise, zinc', '<a href="/charpente/">Charpente</a> traditionnelle ou industrielle', '<a href="/zinguerie/">Zinguerie</a> et gouttières', "Fenêtres de toit et lucarnes"])}
+  <div class="section-head center"><span class="eyebrow">Nos spécialités</span>
+  <h2>Tous les métiers du toit, un seul interlocuteur</h2></div>
+  <div class="svc-tiles">
+  {svc_tile("roof", "Rénovation de toiture", "/renovation-toiture/", "Tuiles, ardoise ou zinc, de la charpente aux gouttières.")}
+  {svc_tile("shield", "Isolation RGE", "/isolation-toiture/", "Combles, rampants et sarking.")}
+  {svc_tile("roof", "VELUX et lucarnes", "/fenetre-de-toit-velux-lucarnes/", "Remplacement, création, restauration.")}
+  {svc_tile("doc", "Zinc et bardage", "/couverture-zinc-bardage/", "Joint debout, maisons d'architecte.")}
+  {svc_tile("drop", "Zinguerie", "/zinguerie/", "Gouttières, chéneaux, habillages.")}
+  {svc_tile("leaf", "Nettoyage", "/nettoyage-toiture/", "Démoussage et traitement hydrofuge.")}
+  {svc_tile("beam", "Maison neuve", "/toiture-maison-neuve/", "Charpente, couverture, mise hors d'eau.")}
+  {svc_tile("doc", "Copropriétés", "/couvreur-copropriete-syndic/", "Devis pour l'assemblée générale.")}
   </div>
+  <details class="more-box"><summary>Voir aussi nos ouvrages de couvreur-zingueur</summary>
+  <div class="city-links">{"".join(f'<a href="{u}">{n}</a>' for u, n in SAVOIR_FAIRE)}<a href="/charpente/">Charpente</a><a href="/toiture-tuile/">Toiture en tuiles</a><a href="/etancheite-toiture-terrasse/">Toiture terrasse</a></div></details>
   {cta_inline("Votre projet fait partie de cette liste ?", "Visite sur place et devis détaillé gratuits, sans engagement.")}
-</div></section>
-
-<section class="savoir"><div class="wrap">
-  <div class="section-head"><span class="eyebrow">Savoir-faire de couvreur-zingueur</span>
-  <h2>Chien-assis, mansardes, chéneaux : les ouvrages que peu d'entreprises maîtrisent</h2>
-  <p>Chien-assis, lucarnes, mansardes, chéneaux, noues, cheminées : ces détails font la qualité et la durée de vie d'une toiture. Nos couvreurs-zingueurs les réalisent dans les règles de l'art.</p></div>
-  <div class="city-links">{"".join(f'<a href="{u}">{n}</a>' for u, n in SAVOIR_FAIRE)}</div>
 </div></section>
 
 <section class="section-dark"><div class="wrap">
@@ -943,50 +935,42 @@ def home():
   </div>
 </div></section>
 
-<section><div class="wrap split">
-  <div class="prose">
+{chantier_story()}
+
+<section><div class="wrap about-home">
+  <div>{photo("equipe")}</div>
+  <div>
     <span class="eyebrow">L'entreprise</span>
     <h2>La structure de la promotion immobilière, au service des particuliers</h2>
-    {photo("equipe")}
-    <p>Depuis 1985, la société JMC réalise la charpente, la couverture et la zinguerie de programmes de <a href="/couvreur-promotion-immobiliere/">promotion immobilière</a> pour Bouygues Immobilier, Kaufman &amp; Broad, Nexity ou Archicrea, ainsi que pour des architectes et des collectivités. Pour tenir ces chantiers, nous avons bâti à Courtry une vraie structure : <strong>des équipes de couvreurs, charpentiers et zingueurs, un atelier, une flotte de véhicules et un encadrement de chantier</strong>.</p>
-    <p>Cette organisation, nous la mettons aussi au service des <strong>particuliers</strong> : vous bénéficiez de la capacité et de la rigueur d'une entreprise habituée aux grands chantiers, avec un interlocuteur dédié et l'écoute d'une entreprise familiale. Nous travaillons aussi avec les <strong>maîtres d'œuvre</strong> et les architectes, pouvons <strong>gérer vos démarches en mairie</strong> et vous recommander des prestataires compétents pour préparer au mieux vos travaux.</p>
-    <p>Notre approche est simple : <strong>confier vos travaux à des professionnels</strong>. Chaque chantier commence par un diagnostic honnête de votre toiture. Nous vous expliquons ce qui doit être fait tout de suite, ce qui peut attendre, et nous vous remettons un devis clair, poste par poste.</p>
-    <h3>Nos engagements</h3>
-    <ul class="checks">
-      <li><strong>Qualité certifiée</strong> : titulaire de l'ensemble des qualifications QUALIBAT en couverture, et label RGE.</li>
-      <li><strong>Sécurité</strong> : garantie décennale et responsabilité civile professionnelle.</li>
-      <li><strong>Conseil honnête</strong> : nettoyage ou remplacement, nous vous recommandons la solution adaptée.</li>
-      <li><strong>Transparence</strong> : suivi d'exécution, accès au toit pendant les travaux pour constater le travail réalisé, PV de réception.</li>
-      <li><strong>Transparence</strong> : devis gratuit, détaillé et sans engagement.</li>
-      <li><strong>Sécurité</strong> : des équipes formées pour intervenir chez vous en toute sécurité.</li>
-      <li><strong>Propreté</strong> : chantier protégé, nettoyé chaque jour, gravats évacués.</li>
-      <li><strong>Suivi après travaux</strong> : une <a href="/notre-methode-sav-qualite/">équipe SAV et qualité dédiée</a>, en interne.</li>
+    <p>Depuis 1985, JMC réalise la charpente, la couverture et la zinguerie de programmes pour Bouygues Immobilier, Kaufman &amp; Broad ou Nexity. Cette organisation (équipes, atelier, encadrement de chantier, SAV interne) est aussi à votre service, avec l'écoute d'une entreprise familiale.</p>
+    <ul class="engage-grid">
+      <li><strong>QUALIBAT &amp; RGE</strong><span>L'ensemble des qualifications en couverture</span></li>
+      <li><strong>Garantie décennale</strong><span>Et responsabilité civile professionnelle</span></li>
+      <li><strong>Chantier propre</strong><span>Protégé et nettoyé chaque jour</span></li>
+      <li><strong>SAV interne</strong><span>Une équipe qualité dédiée</span></li>
     </ul>
+    <p class="link-row"><a class="more" href="/qui-sommes-nous/">Qui sommes-nous →</a><a class="more" href="/notre-methode-sav-qualite/">Notre méthode et notre SAV →</a></p>
   </div>
-  {aside()}
 </div></section>
 
 <section class="section-alt"><div class="wrap">
-  <div class="section-head"><span class="eyebrow">Notre process</span><h2>De la visite au SAV : un suivi complet par nos équipes</h2>
-  <p>Une méthode éprouvée sur les chantiers de promotion immobilière, et une <strong>équipe SAV et qualité dédiée en interne</strong> qui contrôle chaque chantier et reste votre interlocutrice après les travaux.</p></div>
-  {process_html()}
+  <div class="section-head center"><span class="eyebrow">Notre process</span><h2>De la visite au SAV, un seul suivi</h2></div>
+  {process_compact()}
   {cta_inline("Prêt à lancer votre chantier ?", "Décrivez votre projet en 2 minutes : nous vous rappelons pour organiser la visite.")}
-  <p style="margin-top:22px"><a class="more" href="/notre-methode-sav-qualite/">Découvrir notre méthode, notre SAV et notre suivi qualité →</a></p>
 </div></section>
 
-{secu_proprete()}
 {bouche_oreille()}
 {trust_band(marquee=True)}
 
-{engagement_local()}
 <section class="section-alt"><div class="wrap">
-  <div class="section-head"><span class="eyebrow">Zone d'intervention</span>
-  <h2>Couvreur en Île-de-France : nos zones d'intervention</h2>
-  <p>Depuis notre siège de Courtry, nos équipes interviennent dans toute la Seine-et-Marne, de Melun à Meaux, dans le Val-d'Oise, l'Essonne, le Val-de-Marne, la Seine-Saint-Denis, les Hauts-de-Seine et à Paris.</p></div>
-  {city_groups()}
-  <ul class="cities">{"".join(f"<li>{c}</li>" for c in CITIES[3:])}</ul>
-  <p><a class="more" href="/zones-intervention/">Toutes nos zones d'intervention →</a></p>
+  <div class="section-head center"><span class="eyebrow">Zone d'intervention</span>
+  <h2>Couvreur en Île-de-France, depuis Courtry</h2>
+  <p>Nos équipes interviennent dans toute la Seine-et-Marne et les départements voisins.</p></div>
+  <div class="dept-chips">{dept_chips()}</div>
+  <details class="more-box"><summary>Voir les villes où nous intervenons</summary>{city_groups()}</details>
+  <p class="center"><a class="more" href="/zones-intervention/">Toutes nos zones d'intervention →</a></p>
 </div></section>
+{en_bref()}
 """
     html += faq_html(faq, "Questions fréquentes sur nos travaux de toiture")
     html += cta_band()
@@ -2922,7 +2906,7 @@ def qui_sommes_nous():
             "name": "Qui sommes-nous – JMC Couverture", "about": {"@id": SITE + "/#entreprise"}}
     html = head("Qui sommes-nous : JMC Couverture, couvreur depuis 1985 à Courtry",
                 "JMC Couverture (Société JMC) : entreprise de couverture, charpente et zinguerie fondée en 1985 à Courtry (77). QUALIBAT, RGE, 1 500 chantiers, 4,9/5 sur Google.",
-                url, [org_ld(), crumbs_ld(trail), page], og_image="/assets/og-jmc-equipe.jpg")
+                url, [org_ld(), crumbs_ld(trail), page, video_ld()], og_image="/assets/og-jmc-equipe.jpg")
     html += header(url)
     _PAGE["bref"] = ("JMC Couverture (raison sociale : Société JMC) est une entreprise de couverture, charpente et zinguerie "
                      "fondée en 1985 et installée au 97 rue Charles Van Wyngene à Courtry (77181, Seine-et-Marne). "
@@ -2966,6 +2950,7 @@ def qui_sommes_nous():
   {aside()}
 </div></section>
 """
+    html += video_section()
     html += cta_band()
     html += footer()
     write(url, html)
