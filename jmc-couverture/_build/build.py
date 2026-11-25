@@ -849,7 +849,7 @@ def home():
 <section class="hero has-photo hero-home">{hero_bg()}<video class="hero-video" muted loop playsinline preload="none" aria-hidden="true" data-desktop="/assets/video/accueil-chantier-1080.mp4" data-mobile="/assets/video/accueil-chantier-mobile.mp4"></video><button class="video-toggle" type="button" aria-label="Mettre la vidéo en pause" hidden></button><div class="wrap">
   <div>
     <span class="eyebrow">Depuis 1985</span>
-    <h1>Couvreur zingueur en Seine-et-Marne et Île-de-France depuis 1985</h1>
+    <h1>Couvreur zingueur en <span class="nowrap">Seine-et-Marne</span> et <span class="nowrap">Île-de-France</span> depuis 1985</h1>
     <p class="lead">Couverture zinc, toitures en tuiles, rénovation, isolation et maisons neuves : depuis 1985, JMC met au service des particuliers la structure et les équipes qui réalisent les toitures des programmes de promotion immobilière, en Île-de-France.</p>
     <div class="hero-cta"><a class="btn btn-primary" href="/contact/">Demander un devis gratuit</a>
     <a class="btn btn-ghost" href="tel:{BIZ['phone_intl']}">Appeler le {BIZ['phone']}</a></div>

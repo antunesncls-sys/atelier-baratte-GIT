@@ -477,3 +477,17 @@ form.wizard .rgpd input{width:auto;margin-top:5px}
 @media (max-width:900px){.story-grid{grid-template-columns:1fr;gap:0}.story-media{display:none}.story-step{min-height:0;padding:0 0 48px}
  .story-mob{display:block;margin:0 0 18px;border-radius:14px;overflow:hidden;aspect-ratio:4/5}.story-mob img{width:100%;height:100%;object-fit:cover;display:block}}
 @media (prefers-reduced-motion:reduce){.story-fig{transition:none;transform:none}.hero-video{display:none}}
+
+/* ---------- Accueil : voile plus léger pour laisser voir la vidéo ---------- */
+.nowrap{white-space:nowrap}
+.hero.hero-home::before{background:linear-gradient(90deg,rgba(12,14,17,.82) 0%,rgba(12,14,17,.6) 38%,rgba(12,14,17,.15) 70%,rgba(12,14,17,0) 100%)}
+.hero-home h1,.hero-home .lead,.hero-home .eyebrow{text-shadow:0 2px 18px rgba(0,0,0,.45)}
+@media (max-width:900px){
+ .hero.hero-home::before{background:linear-gradient(180deg,rgba(12,14,17,.1) 0%,rgba(12,14,17,.25) 30%,rgba(12,14,17,.82) 62%,rgba(12,14,17,.94) 100%)}
+ .hero-home .wrap{min-height:calc(100svh - 70px)!important;display:flex!important;align-items:flex-end;padding-top:0!important;padding-bottom:28px!important}
+ .hero-home .lead,.hero-home .badges{display:none}
+ .hero-home h1{font-size:clamp(1.7rem,7.4vw,2.2rem)}
+ .hero-home .hero-cta{margin:18px 0 16px}
+ .hero-home .video-toggle{top:14px;bottom:auto}
+}
+@media (min-width:901px){.hero.has-photo.hero-home .wrap{grid-template-columns:minmax(0,780px) 1fr}}
