@@ -1,0 +1,178 @@
+<title>Signature mail Construisez</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Mise en page : une colonne ; chaque signature posée sur un « message » blanc, comme dans une boîte mail, puis la marche à suivre par messagerie. */
+:root {
+  --bg: #f3f4f2; --surface: #ffffff; --line: #dcdfdb; --fg: #1c1d21; --dim: #5f6470;
+  --acc: #3e6b5c; --acc-fg: #ffffff; --acc-soft: #e4eee9; --ok: #2f6b4f;
+  --display: 'Public Sans', Arial, Helvetica, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0b0c0f; --surface: #13151b; --line: #2a2e38; --fg: #fbfbfa; --dim: #9ca0ab;
+  --acc: #7fb3a0; --acc-fg: #0b0c0f; --acc-soft: #17251f; --ok: #7fb3a0; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0b0c0f; --surface: #13151b; --line: #2a2e38; --fg: #fbfbfa; --dim: #9ca0ab;
+  --acc: #7fb3a0; --acc-fg: #0b0c0f; --acc-soft: #17251f; --ok: #7fb3a0; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font-family: var(--display); font-size: 16px; line-height: 1.55; }
+.wrap { max-width: 860px; margin: 0 auto; padding-block: 40px 72px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 36px; }
+.eyebrow, .lab, .step-n { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--acc); }
+h1 { font-weight: 800; font-size: clamp(30px, 5vw, 44px); line-height: 1.08; letter-spacing: -.02em; margin: 8px 0 0; text-wrap: balance; }
+h2 { font-weight: 700; font-size: 22px; line-height: 1.2; margin: 0; text-wrap: balance; }
+.intro { margin: 12px 0 0; max-width: 62ch; color: var(--dim); }
+.sig { display: flex; flex-direction: column; gap: 12px; }
+.sig-head { display: flex; justify-content: space-between; align-items: end; gap: 12px; flex-wrap: wrap; }
+.sig-head p { margin: 4px 0 0; color: var(--dim); font-size: 15px; }
+/* Le message reste blanc dans les deux thèmes : une signature se lit sur un mail blanc. */
+.mail { background: #ffffff; color: #1c1d21; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.mail-top { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; padding: 14px 20px; border-bottom: 1px solid #e6e8e4; font-size: 13px; color: #5f6470; }
+.mail-top b { color: #1c1d21; font-weight: 600; }
+.mail-body { padding: 22px 20px 26px; overflow-x: auto; }
+.mail-body > p { margin: 0 0 22px; font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.5; color: #1c1d21; }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+button { font: 700 14px/1 var(--display); border-radius: 6px; padding: 11px 16px; cursor: pointer; border: 1px solid var(--acc); }
+.copy { background: var(--acc); color: var(--acc-fg); }
+.code { background: transparent; color: var(--acc); }
+button:hover { filter: brightness(1.08); }
+button:focus-visible { outline: 2px solid var(--acc); outline-offset: 3px; }
+.status { font-size: 14px; color: var(--ok); min-height: 1.4em; }
+.how { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.card h3 { margin: 0; font-size: 17px; font-weight: 700; }
+.card .who { font-size: 13px; color: var(--dim); margin: -6px 0 0; }
+.card ol { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 6px; font-size: 15px; }
+.card b { font-weight: 600; }
+.note { background: var(--acc-soft); border-radius: 10px; padding: 16px 20px; font-size: 15px; }
+.note p { margin: 0; }
+.note p + p { margin-top: 8px; }
+#copy-holder { position: fixed; left: -10000px; top: 0; width: 600px; background: #ffffff; }
+@media (prefers-reduced-motion: no-preference) { button { transition: filter .15s; } }
+</style>
+
+<main class="wrap">
+  <header>
+    <div class="eyebrow">Construisez · signature e-mail</div>
+    <h1>Votre signature, prête à coller</h1>
+    <p class="intro">Deux versions : la complète pour vos nouveaux messages, la courte pour les réponses. Touchez « Copier la signature », puis collez-la dans les réglages de votre messagerie (marche à suivre en bas de page).</p>
+  </header>
+
+  <section class="sig" aria-labelledby="t-complete">
+    <div class="sig-head">
+      <div><div class="lab">Nouveaux messages</div><h2 id="t-complete">Version complète</h2><p>Logo, coordonnées, avis Google, bouton vers le site et réseaux.</p></div>
+      <div class="actions">
+        <button type="button" class="copy" id="copy-complete" data-sig="complete">Copier la signature</button>
+        <button type="button" class="code" id="code-complete" data-code="complete">Copier le code HTML</button>
+      </div>
+    </div>
+    <div class="status" id="status-complete" role="status"></div>
+    <div class="mail">
+      <div class="mail-top"><span>À</span><b>Futur client</b><span>Objet</span><b>Votre projet d'extension</b></div>
+      <div class="mail-body" id="preview-complete">
+        <p>Bonjour,<br><br>Merci pour votre message. Je reviens vers vous avec un devis sous 24 h.<br><br>Bien cordialement,</p>
+        {{PREVIEW_COMPLETE}}
+      </div>
+    </div>
+  </section>
+
+  <section class="sig" aria-labelledby="t-courte">
+    <div class="sig-head">
+      <div><div class="lab">Réponses et transferts</div><h2 id="t-courte">Version courte</h2><p>Pour ne pas répéter le bloc complet à chaque échange.</p></div>
+      <div class="actions">
+        <button type="button" class="copy" id="copy-courte" data-sig="courte">Copier la signature</button>
+        <button type="button" class="code" id="code-courte" data-code="courte">Copier le code HTML</button>
+      </div>
+    </div>
+    <div class="status" id="status-courte" role="status"></div>
+    <div class="mail">
+      <div class="mail-top"><span>À</span><b>Futur client</b><span>Objet</span><b>RE : Votre projet d'extension</b></div>
+      <div class="mail-body" id="preview-courte">
+        <p>Parfait, je vous envoie les plans demain.</p>
+        {{PREVIEW_COURTE}}
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="t-how" style="display:flex;flex-direction:column;gap:14px;">
+    <div><div class="lab">Installation</div><h2 id="t-how">Où la coller</h2></div>
+    <div class="how">
+      <div class="card">
+        <h3>Outlook (sur ordinateur)</h3>
+        <p class="who">Pour construisez@outlook.fr, sur outlook.com</p>
+        <ol>
+          <li>Ouvrez <b>outlook.com</b>, puis la roue dentée <b>Paramètres</b>.</li>
+          <li><b>Comptes</b>, puis <b>Signatures</b>.</li>
+          <li><b>Nouvelle signature</b>, nommez-la « Construisez » et collez.</li>
+          <li>Choisissez-la pour les <b>nouveaux messages</b> ; créez la courte pour les <b>réponses et transferts</b>.</li>
+          <li><b>Enregistrer</b>.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3>Gmail (sur ordinateur)</h3>
+        <p class="who">Sur mail.google.com</p>
+        <ol>
+          <li>Roue dentée, puis <b>Voir tous les paramètres</b>.</li>
+          <li>Onglet <b>Général</b>, rubrique <b>Signature</b>.</li>
+          <li><b>Créer</b>, nommez-la et collez.</li>
+          <li>Choisissez-la pour les nouveaux e-mails et les réponses.</li>
+          <li>Tout en bas : <b>Enregistrer les modifications</b>.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3>iPhone (app Mail)</h3>
+        <p class="who">Ouvrez cette page dans Safari</p>
+        <ol>
+          <li>Touchez <b>Copier la signature</b> (la courte passe mieux sur téléphone).</li>
+          <li><b>Réglages</b>, <b>Apps</b>, <b>Mail</b>, puis <b>Signature</b>.</li>
+          <li>Effacez « Envoyé de mon iPhone » et collez.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Le logo s'affiche chez vos destinataires</b> : il est chargé depuis construisez.fr. Certaines messageries masquent les images tant que le destinataire ne les a pas autorisées ; le texte reste lisible sans.</p>
+      <p>Si le bouton ne copie pas, sélectionnez la signature dans l'aperçu à la main, puis Ctrl + C (⌘ + C sur Mac).</p>
+    </div>
+  </section>
+</main>
+<div id="copy-holder" aria-hidden="true"></div>
+
+<script>
+(function () {
+  const SIGS = {{SIGS_JSON}};
+  const say = (key, msg) => { const el = document.getElementById('status-' + key); el.textContent = msg; clearTimeout(el._t); el._t = setTimeout(() => { el.textContent = ''; }, 6000); };
+  const selectNode = (node) => { const r = document.createRange(); r.selectNodeContents(node); const s = window.getSelection(); s.removeAllRanges(); s.addRange(r); };
+
+  // Copie « riche » : la messagerie reçoit la mise en forme et le logo (chargé depuis construisez.fr).
+  async function copySig(key) {
+    const { html, text } = SIGS[key];
+    try {
+      if (!window.ClipboardItem || !navigator.clipboard?.write) throw new Error('no-rich');
+      await navigator.clipboard.write([new ClipboardItem({
+        'text/html': new Blob([html], { type: 'text/html' }),
+        'text/plain': new Blob([text], { type: 'text/plain' })
+      })]);
+      return say(key, 'Copiée. Collez-la dans les réglages de signature.');
+    } catch (e) {
+      const holder = document.getElementById('copy-holder');
+      holder.innerHTML = html;
+      selectNode(holder);
+      let done = false;
+      try { done = document.execCommand('copy'); } catch (err) { done = false; }
+      window.getSelection().removeAllRanges();
+      holder.innerHTML = '';
+      if (done) return say(key, 'Copiée. Collez-la dans les réglages de signature.');
+      selectNode(document.querySelector('#preview-' + key + ' > table'));
+      say(key, 'Signature sélectionnée : copiez avec Ctrl + C (⌘ + C sur Mac).');
+    }
+  }
+
+  async function copyCode(key) {
+    try { await navigator.clipboard.writeText(SIGS[key].html); say(key, 'Code HTML copié.'); }
+    catch (e) { say(key, 'Copie du code refusée par ce navigateur : utilisez « Copier la signature ».'); }
+  }
+
+  document.querySelectorAll('[data-sig]').forEach((b) => b.addEventListener('click', () => copySig(b.dataset.sig)));
+  document.querySelectorAll('[data-code]').forEach((b) => b.addEventListener('click', () => copyCode(b.dataset.code)));
+})();
+</script>
